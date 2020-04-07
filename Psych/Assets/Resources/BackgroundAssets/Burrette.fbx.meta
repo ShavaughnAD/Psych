@@ -3,7 +3,12 @@ guid: b6cc957d0e7a19d4ca0bd756b99a11ca
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Burrette1
+    second: {fileID: 2100000, guid: 522fb8af80207d8418b4f94dd01b151c, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
