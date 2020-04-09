@@ -13,7 +13,8 @@ public class Damage : MonoBehaviour
             collision.gameObject.GetComponent<Health>().TakeDamage(damage);
             if(gameObject.tag == "Projectile")
             {
-                Destroy(gameObject);
+                gameObject.SetActive(false);
+                //Destroy(gameObject);
             }
         }
     }
