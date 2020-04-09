@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
     public float healingRecieved = 0;
 
     public GameObject popup;
+    public bool fullHealth;
     bool invulnerable = false;
     public bool immune { get => invulnerable; set => invulnerable = value; }
 
@@ -33,12 +34,14 @@ public class Health : MonoBehaviour
         {
             damageTaken = damageAmount;
             onHurt.CallEvent(currentHealth / maxHealth);
+            fullHealth = false;
         }
     }
 
     public virtual void ResetHealth()
     {
         currentHealth = maxHealth;
+        fullHealth = true;
     }
 
     public void Healing(float healingAmount)
@@ -50,6 +53,7 @@ public class Health : MonoBehaviour
         if(currentHealth >= maxHealth)
         {
             currentHealth = maxHealth;
+            fullHealth = true;
         }
     }
 
