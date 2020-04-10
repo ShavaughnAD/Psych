@@ -21,11 +21,15 @@ public class WeaponShooting : MonoBehaviour
     Rigidbody rb;
     CameraController cam;
 
+    ObjectPooler objectpooler;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
         cam = Camera.main.GetComponent<CameraController>();
+
+        objectpooler = ObjectPooler.instance;
 
         if (transform.parent.tag == "Player")
         {
@@ -78,7 +82,8 @@ public class WeaponShooting : MonoBehaviour
         {
             if (shootTimer >= rate)
             {
-                GameObject bullet = Instantiate(ammo, spawnPoint.position, spawnPoint.rotation);
+
+                GameObject bullet = objectpooler.SpawnFromPool("Bullet", spawnPoint.position, spawnPoint.rotation);
                 bullet.GetComponent<Damage>().damage = damage;
                 bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * force;
                 shootTimer = 0;
