@@ -27,8 +27,16 @@ public class AudioManager : MonoBehaviour
         {
             s.soundSource = gameObject.AddComponent<AudioSource>();
             AudioMixer mixer = Resources.Load("MainMixer") as AudioMixer;
-            string _OutputMixer = "Master";
-            s.soundSource.outputAudioMixerGroup = mixer.FindMatchingGroups(_OutputMixer)[0];
+            if (s.isMusic)
+            {
+                string _musicOutputMixer = "Music";
+                s.soundSource.outputAudioMixerGroup = mixer.FindMatchingGroups(_musicOutputMixer)[0];
+            }
+            else
+            {
+                string _sfxOutputMixer = "SoundEffects";
+                s.soundSource.outputAudioMixerGroup = mixer.FindMatchingGroups(_sfxOutputMixer)[0];
+            }
             s.soundSource.clip = s.audioClip;
             s.soundSource.volume = s.soundVolume;
             s.soundSource.pitch = s.soundPitch;

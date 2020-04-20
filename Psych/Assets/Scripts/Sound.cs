@@ -11,6 +11,7 @@ public class Sound
     [Range(.1f, 3f)] public float soundPitch;
 
     public bool loopSound;
+    public bool isMusic;
 
     [HideInInspector] public AudioSource soundSource;
 }

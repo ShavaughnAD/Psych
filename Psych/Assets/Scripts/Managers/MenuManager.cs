@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] private GameObject mainMenu;
-    [SerializeField] private GameObject levelSelect;
-    [SerializeField] private GameObject settings;
-    [SerializeField] private GameObject credits;
-    [SerializeField] private GameObject quitPrompt;
+    [SerializeField] GameObject mainMenu;
+    [SerializeField] GameObject levelSelect;
+    [SerializeField] GameObject settings;
+    [SerializeField] GameObject credits;
+    [SerializeField] GameObject quitPrompt;
 
     public void PlayGame()
     {

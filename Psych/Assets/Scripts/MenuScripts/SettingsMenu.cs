@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -8,7 +7,9 @@ using UnityEngine.UI;
 public class SettingsMenu : MonoBehaviour
 {
     #region Public Variables
-    public AudioMixer audioMixer;
+    public AudioMixer masterMixer;
+    public AudioMixer musicMixer;
+    public AudioMixer soundEffectsMixer;
     public Dropdown resolutionDropdown;
     #endregion
 
@@ -36,7 +37,7 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
-        audioMixer = Resources.Load("MainMixer") as AudioMixer;
+        masterMixer = Resources.Load("MainMixer") as AudioMixer;
     }
 
     public void SetReolution(int resolutionIndex)
@@ -46,9 +47,19 @@ public class SettingsMenu : MonoBehaviour
         //TODO Make a "Are you sure text pop up so that player can revert"
     }
 
-    public void SetVolume(float volume)
+    public void SetMasterVolume(float volume)
     {
-        audioMixer.SetFloat("volume", Mathf.Log10(volume) * 20);
+        masterMixer.SetFloat("volume", Mathf.Log10(volume) * 20);
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        masterMixer.SetFloat("musicVolume", Mathf.Log10(volume) * 20);
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        masterMixer.SetFloat("soundEffectsVolume", Mathf.Log10(volume) * 20);
     }
 
     public void SetQuality(int qualityIndex)
