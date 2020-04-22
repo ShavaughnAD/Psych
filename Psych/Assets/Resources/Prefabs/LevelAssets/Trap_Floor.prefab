@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 3704560466345126193}
   - component: {fileID: 5634628355513635591}
   - component: {fileID: 2093806356026896382}
+  - component: {fileID: 8793128534239623951}
+  - component: {fileID: 1682881605932067002}
+  - component: {fileID: 4712725150841225710}
   m_Layer: 0
   m_Name: Trap_Floor
   m_TagString: Untagged
@@ -80,3 +83,42 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &8793128534239623951
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374475815819287330}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2519621, y: 0.005466574, z: 0.0016045389}
+  m_Center: {x: -0.022772664, y: 0.047265194, z: 0.000039295854}
+--- !u!65 &1682881605932067002
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374475815819287330}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2519621, y: 0.005550521, z: 0.0016045389}
+  m_Center: {x: -0.022772664, y: -0.047226455, z: 0.000039295854}
+--- !u!65 &4712725150841225710
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374475815819287330}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.10735146, y: 0.08879562, z: 0.0010945725}
+  m_Center: {x: -0.0004297352, y: 0.0001039505, z: -0.00021568764}
