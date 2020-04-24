@@ -1,5 +1,42 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1763197956170603346
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3f6f3f7c722b4544b97e3c75840aa33, type: 3}
+  m_Name: AutoExposure
+  m_EditorClassIdentifier: 
+  active: 0
+  enabled:
+    overrideState: 1
+    value: 1
+  filtering:
+    overrideState: 1
+    value: {x: 53.999996, y: 99}
+  minLuminance:
+    overrideState: 1
+    value: -0.44
+  maxLuminance:
+    overrideState: 1
+    value: 9
+  keyValue:
+    overrideState: 1
+    value: 1
+  eyeAdaptation:
+    overrideState: 1
+    value: 1
+  speedUp:
+    overrideState: 1
+    value: 2
+  speedDown:
+    overrideState: 1
+    value: 1
 --- !u!114 &-288224270747930234
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -18,34 +55,34 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0
+    value: 13.5
   threshold:
     overrideState: 1
-    value: 3
+    value: 1
   softKnee:
     overrideState: 1
-    value: 0.5
+    value: 0.567
   clamp:
-    overrideState: 0
+    overrideState: 1
     value: 65472
   diffusion:
-    overrideState: 0
-    value: 7
+    overrideState: 1
+    value: 4
   anamorphicRatio:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 1
   color:
-    overrideState: 0
-    value: {r: 1, g: 1, b: 1, a: 1}
+    overrideState: 1
+    value: {r: 0, g: 2, b: 1.8980392, a: 1}
   fastMode:
-    overrideState: 0
+    overrideState: 1
     value: 0
   dirtTexture:
-    overrideState: 0
+    overrideState: 1
     value: {fileID: 0}
     defaultState: 1
   dirtIntensity:
-    overrideState: 0
+    overrideState: 1
     value: 0
 --- !u!114 &11400000
 MonoBehaviour:
@@ -62,6 +99,7 @@ MonoBehaviour:
   settings:
   - {fileID: 1865135245032822617}
   - {fileID: -288224270747930234}
+  - {fileID: -1763197956170603346}
 --- !u!114 &1865135245032822617
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -83,7 +121,7 @@ MonoBehaviour:
     value: 0
   intensity:
     overrideState: 1
-    value: 0
+    value: 4
   color:
     overrideState: 1
     value: {r: 0, g: 0, b: 0, a: 1}
@@ -107,7 +145,7 @@ MonoBehaviour:
     value: 0
   radius:
     overrideState: 1
-    value: 30
+    value: 0.25
   quality:
     overrideState: 1
     value: 3

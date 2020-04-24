@@ -82,11 +82,12 @@ public class WeaponShooting : MonoBehaviour
         {
             if (shootTimer >= rate)
             {
-                GameObject bullet = objectpooler.SpawnFromPool("Bullet", spawnPoint.position, spawnPoint.rotation);
+                //GameObject bullet = objectpooler.SpawnFromPool("Bullet", spawnPoint.position, spawnPoint.rotation);
+                GameObject bullet = Instantiate(ammo, spawnPoint.position, spawnPoint.rotation);
                 bullet.GetComponent<Damage>().damage = damage;
                 bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * force;
                 shootTimer = 0;
-                AudioManager.audioManager.Play("GunShot");
+                //AudioManager.audioManager.Play("GunShot");
             }
         }
     }

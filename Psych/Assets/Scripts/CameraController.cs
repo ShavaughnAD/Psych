@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void Update()
+    void LateUpdate()
     {
         float vertical = Input.GetAxis("Mouse Y") * rotSpeed;
         float horizontal = Input.GetAxis("Mouse X") * rotSpeed;
