@@ -7,7 +7,7 @@ public class EnemyHealth : Health
     public override void Awake()
     {
         base.Awake();
-        popup = Resources.Load<GameObject>("Prefabs/DamageFloatingText");
+        popup = Resources.Load<GameObject>("Prefabs/UIAssets/DamageFloatingText");
         onHurt.BindToEvent(Hurt);
         onDeath.BindToEvent(Death);
     }
