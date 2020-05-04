@@ -71,12 +71,14 @@ public class Health : MonoBehaviour
     {
         var go = Instantiate(popup, transform.position, Quaternion.identity, transform);
         go.GetComponent<TextMesh>().text = damageTaken.ToString();
-        
+        go.transform.rotation = Camera.main.transform.rotation;
+
     }
 
     public virtual void HealingFloatingText()
     {
         var go = Instantiate(healingpopup, transform.position, Quaternion.identity, transform);
         go.GetComponent<TextMesh>().text = healingRecieved.ToString();
+        go.transform.rotation = Camera.main.transform.rotation;
     }
 }
