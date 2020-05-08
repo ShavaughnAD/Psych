@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
     public float healingRecieved = 0;
 
     public GameObject popup;
+    public GameObject healingpopup;
     public bool fullHealth;
     bool invulnerable = false;
     public bool immune { get => invulnerable; set => invulnerable = value; }
@@ -35,6 +36,11 @@ public class Health : MonoBehaviour
             damageTaken = damageAmount;
             onHurt.CallEvent(currentHealth / maxHealth);
             fullHealth = false;
+            if (popup)
+            {
+                DamageFloatingText();
+            }
+            
         }
     }
 
@@ -54,6 +60,10 @@ public class Health : MonoBehaviour
         {
             currentHealth = maxHealth;
             fullHealth = true;
+            if (healingpopup)
+            {
+                HealingFloatingText();
+            }
         }
     }
 
@@ -61,11 +71,14 @@ public class Health : MonoBehaviour
     {
         var go = Instantiate(popup, transform.position, Quaternion.identity, transform);
         go.GetComponent<TextMesh>().text = damageTaken.ToString();
+        go.transform.rotation = Camera.main.transform.rotation;
+
     }
 
     public virtual void HealingFloatingText()
     {
-        var go = Instantiate(popup, transform.position, Quaternion.identity, transform);
+        var go = Instantiate(healingpopup, transform.position, Quaternion.identity, transform);
         go.GetComponent<TextMesh>().text = healingRecieved.ToString();
+        go.transform.rotation = Camera.main.transform.rotation;
     }
 }

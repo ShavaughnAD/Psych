@@ -28,6 +28,7 @@ public class CameraController : MonoBehaviour
     {
         float vertical = Input.GetAxis("Mouse Y") * rotSpeed;
         float horizontal = Input.GetAxis("Mouse X") * rotSpeed;
+        vertical = Mathf.Clamp(vertical, -35, 60);
         float desiredYAngle = target.eulerAngles.y;
         float desiredXAngle = pivot.eulerAngles.x;
         Quaternion rot = Quaternion.Euler(desiredXAngle, desiredYAngle, 0);
