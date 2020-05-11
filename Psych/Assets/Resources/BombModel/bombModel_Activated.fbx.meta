@@ -3,7 +3,52 @@ guid: 7250847e28c87fe4b99bf2e004958f81
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SwitchBase
+    second: {fileID: 2100000, guid: 515931442ecf3804d9179cce7cf01a35, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SwitchLever
+    second: {fileID: 2100000, guid: 8b9aacef714e6144ba63981f578e1414, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wires
+    second: {fileID: 2100000, guid: 893ca6fed51b3d447931bad288095ae6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: endDetail
+    second: {fileID: 2100000, guid: f7f5c358f1ecae540ad2681559b71135, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: keypad1
+    second: {fileID: 2100000, guid: 3a0f9fbaab5cd13479ec493974f9eba4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: keypadButtons
+    second: {fileID: 2100000, guid: 0c1a75664e7146e4187313ae6f4c987b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 2fbda1ede2e3f3644838c59aaa7c02bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metalDetail
+    second: {fileID: 2100000, guid: f7f5c358f1ecae540ad2681559b71135, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: screen1
+    second: {fileID: 2100000, guid: cbcdfb95c51107d4ea187c3d46cf7722, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
