@@ -3,76 +3,73 @@
 
 public class PlayerMovement : MonoBehaviour
 {
-    //public float moveSpeed = 10;
-    //public float turnSpeed = 50;
-    //public float moveBackPenalty = 3;
-    //public float sideMovePenalty = 2;
-    //public float sprintSpeedBoost = 5f;
-    //public float rot = 0;
-    //public float rotSpeed = 80;
+    public GameObject weapon;
+    CharacterController characterController;
+    WeaponThrow weaponThrow;
 
-    //void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.LeftShift))
-    //    {
-    //        moveSpeed += sprintSpeedBoost;
-    //    }
-    //    if (Input.GetKeyUp(KeyCode.LeftShift))
-    //    {
-    //        moveSpeed -= sprintSpeedBoost;
-    //    }
-    //    if (Input.GetKey(KeyCode.W)) //Move Forward
-    //    {
-    //        transform.Translate(Vector3.forward * (moveSpeed * Time.deltaTime));
-    //    }
-    //    if (Input.GetKey(KeyCode.S)) //Move Back
-    //    {
-    //        transform.Translate(Vector3.back * ((moveSpeed - moveBackPenalty) * Time.deltaTime));
-    //    }
-    //    if (Input.GetKey(KeyCode.A)) //Move Left
-    //    {
-    //        transform.Translate(Vector3.left * ((moveSpeed - sideMovePenalty) * Time.deltaTime));
-    //    }
-    //    if (Input.GetKey(KeyCode.D)) //Move Right
-    //    {
-    //        transform.Translate(Vector3.right * ((moveSpeed - sideMovePenalty) * Time.deltaTime));
-    //    }
-    //}
+    public float speed = 6;
+    public float jumpHeight = 8;
+    public float gravity = 20;
 
-    public float moveSpeed;
-    public CharacterController playerController;
-    public float jumpForce;
-    public float gravityScale;
+    Vector3 moveDir = Vector3.zero;
 
-    Vector3 moveDirection;
+    public Camera playerCam;
+    public float camXSensitivity = 1.5f;
+    public float camYSensitivity = 1;
+
+    public bool isBeingControlled = false;
 
     void Start()
     {
-        playerController = GetComponent<CharacterController>();
+        characterController = GetComponent<CharacterController>();
+        weaponThrow = GetComponent<WeaponThrow>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
     {
+        Movement();
+        CamControls();
+        WeaponMovement();
+    }
 
-        if (Input.GetKey(KeyCode.W))
+    void Movement()
+    {
+        if (characterController.isGrounded)
         {
-            playerController.Move(transform.forward * (moveSpeed * Time.deltaTime));
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
+            moveDir = new Vector3(horizontal, 0, vertical);
+            moveDir *= speed;
         }
-        if (Input.GetKey(KeyCode.S))
-        {
-            playerController.Move(-transform.forward * (moveSpeed * Time.deltaTime));
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            playerController.Move(transform.right * (moveSpeed * Time.deltaTime));
+        moveDir.y -= gravity * Time.deltaTime;
+        moveDir = transform.TransformDirection(moveDir);
+        characterController.Move(moveDir * Time.deltaTime);
+    }
 
-        }
-        if (Input.GetKey(KeyCode.A))
+    void CamControls()
+    {
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
+
+        Vector3 rotationY = transform.localEulerAngles;
+        rotationY.y += mouseX * camYSensitivity;
+        transform.localRotation = Quaternion.AngleAxis(rotationY.y, Vector3.up);
+
+        Vector3 rotationX = playerCam.gameObject.transform.localEulerAngles;
+        rotationX.x -= mouseY * camXSensitivity;
+        //rotationX.x = Mathf.Clamp(rotationX.x, 0, 30);
+        playerCam.gameObject.transform.localRotation = Quaternion.AngleAxis(rotationX.x, Vector3.right);
+    }
+
+    void WeaponMovement()
+    {
+        if (isBeingControlled == false)
         {
-            playerController.Move(-transform.right * (moveSpeed * Time.deltaTime));
-
+            float x = Screen.width / 2;
+            float y = Screen.height / 2;
+            var ray = playerCam.ScreenPointToRay(new Vector3(x, y, 0));
+            weapon.transform.LookAt(playerCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 100)));
         }
-
-        moveDirection.y = moveDirection.y + (Physics.gravity.y * Time.deltaTime);
     }
 }
