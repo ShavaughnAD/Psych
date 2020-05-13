@@ -12,7 +12,7 @@ public class ObjectHandler : MonoBehaviour
     Rigidbody objectRB = null;
     Rigidbody objectRBinHand = null;
     [SerializeField] float attractSpeed = 7f;
-    [SerializeField] float throwSpeed = 7f;
+    [SerializeField] float throwSpeed = 30f;
     [SerializeField] bool isCarryingObject = false;
     [SerializeField] bool isAttracting = false;
 
@@ -51,26 +51,11 @@ public class ObjectHandler : MonoBehaviour
             objectRBinHand.isKinematic = false;
             objectRBinHand.tag = ("Selectable");
 
-            Vector3 toTarget = targetPoint - objectRBinHand.position;
-
-            float gSquared = Physics.gravity.sqrMagnitude;
-
-            /*float b = throwSpeed * throwSpeed + Vector3.Dot(toTarget, Physics.gravity);    
-            float discriminant = b * b - gSquared * toTarget.sqrMagnitude;
-
-            
-            if(discriminant < 0) {
-                Debug.Log("Object not in range");
-                return;
+            Vector3 velocity = SetThrowVelocity(objectRBinHand, targetPoint, throwSpeed);
+            if(velocity != Vector3.zero)
+            {
+                objectRBinHand.AddForce(velocity, ForceMode.VelocityChange);
             }
-
-            float discRoot = Mathf.Sqrt(discriminant);*/
-
-            float T_lowEnergy = Mathf.Sqrt(Mathf.Sqrt(toTarget.sqrMagnitude * 4f/gSquared));
-            float T = T_lowEnergy;
-            Vector3 velocity = toTarget / T - Physics.gravity * T / 2f;
-
-            objectRBinHand.AddForce(velocity, ForceMode.VelocityChange);
         }
     }
 
@@ -82,9 +67,36 @@ public class ObjectHandler : MonoBehaviour
         if(objectRBPosition == targetPosition)
         {
             objectRBinHand.transform.parent = GameObject.FindGameObjectWithTag("Player").transform;
+            objectRBinHand.tag = "NotSelectable";
             isAttracting = false;
             return;
         }
         objectRBinHand.position = Vector3.MoveTowards(objectRB.position, targetPosition, speed);    
+    }
+
+    Vector3 SetThrowVelocity(Rigidbody rigidbody, Vector3 target, float force, float arch = 0.2f)
+    {
+        Mathf.Clamp(arch, 0, 1);
+        var origin = rigidbody.position;
+        float x = target.x - origin.x;
+        float y = target.y - origin.y;
+        float z = target.z - origin.z;
+        float gravity = -Physics.gravity.y;
+        float b = force * force - y * gravity;
+        float discriminant = b * b - gravity * gravity * (x * x + y * y + z * z);
+        if (discriminant < 0)
+        {
+            Debug.Log("Object not in range");
+            return Vector3.zero;
+        }
+        float discriminantSquareRoot = Mathf.Sqrt(discriminant);
+        float minTime = Mathf.Sqrt((b - discriminantSquareRoot) * 2) / Mathf.Abs(gravity);
+        float maxTime = Mathf.Sqrt((b + discriminantSquareRoot) * 2) / Mathf.Abs(gravity);
+        float time = (maxTime - minTime) * arch + minTime;
+        float vx = x / time;
+        float vy = y / time + time * gravity / 2;
+        float vz = z / time;
+        Vector3 velocity = new Vector3(vx, vy, vz);
+        return velocity;
     }
 }
