@@ -15,7 +15,7 @@ public class PlayerHealth : Health
     public override void Awake()
     {
         base.Awake();
-        popup = Resources.Load<GameObject>("Prefabs/HealingFloatingText");
+        popup = Resources.Load<GameObject>("Resources/Prefabs/UIAssets/HealingFloatingText");
         //onHurt.BindToEvent(Hurt);
         onHeal.BindToEvent(Heal);
         onDeath.BindToEvent(Death);

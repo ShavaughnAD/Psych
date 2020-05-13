@@ -60,7 +60,7 @@ public class Health : MonoBehaviour
         {
             currentHealth = maxHealth;
             fullHealth = true;
-            if (healingpopup)
+            if (healingpopup!=null)
             {
                 HealingFloatingText();
             }
