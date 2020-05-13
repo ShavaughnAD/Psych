@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
         Movement();
         CamControls();
         WeaponMovement();
+        GetCursor();
+        ObjectHandlers();
     }
 
     void Movement()
@@ -70,6 +72,27 @@ public class PlayerMovement : MonoBehaviour
             float y = Screen.height / 2;
             var ray = playerCam.ScreenPointToRay(new Vector3(x, y, 0));
             weapon.transform.LookAt(playerCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 100)));
+        }
+    }
+
+    void GetCursor()
+    {
+        if (Input.GetKeyDown("escape"))
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
+    void ObjectHandlers()
+    {
+        if (Input.GetKey(KeyCode.Alpha9))
+        {
+            GetComponent<ObjectHandler>().ObjectPickUP();
+        }
+
+        if (Input.GetKey(KeyCode.Alpha0))
+        {
+            GetComponent<ObjectHandler>().ThrowObject();
         }
     }
 }
