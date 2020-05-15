@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class doorCollider : MonoBehaviour
 {
-    public Animator anim;
+    private Animator anim;
+    public GameObject doorAnimation;
 
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = doorAnimation.GetComponent<Animator>();
     }
 
     // Update is called once per frame
