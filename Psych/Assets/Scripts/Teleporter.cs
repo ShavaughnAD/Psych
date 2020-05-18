@@ -6,19 +6,14 @@ public class Teleporter : MonoBehaviour
 {
     public GameObject destination;
     public bool ready = true;
-    // Start is called before the first frame update
+    GameObject player;
+
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    private void OnTriggerStay(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         Debug.Log(other + " : " + other.tag);
 
@@ -28,15 +23,22 @@ public class Teleporter : MonoBehaviour
             {
                 destination.GetComponent<Teleporter>().ready = false;
             }
+            other.GetComponent<PlayerMovement>().enabled = false;
             other.gameObject.transform.position = new Vector3(destination.transform.position.x,other.gameObject.transform.position.y,destination.transform.position.z);
+            Invoke("EnablePlayerMovement", .02f);
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
             ready = true;
         }
+    }
+
+    void EnablePlayerMovement()
+    {
+        player.GetComponent<PlayerMovement>().enabled = true;
     }
 }

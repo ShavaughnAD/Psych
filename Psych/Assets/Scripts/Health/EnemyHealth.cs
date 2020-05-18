@@ -20,7 +20,7 @@ public class EnemyHealth : Health
 
     void Death(float param)
     {
-        ScoreSystem.Instance.AddScore(killScore);
+        //ScoreSystem.Instance.AddScore(killScore);
         Destroy(gameObject);
     }
 }

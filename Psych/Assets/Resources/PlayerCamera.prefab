@@ -104,7 +104,8 @@ MonoBehaviour:
   offset: {x: 0, y: -5, z: 10}
   useOffsetValues: 0
   rotSpeed: 5
-  focusPlayer: 1
+  inAirMoveSpeed: 0
+  moveSpeed: 0
 --- !u!114 &570587067
 MonoBehaviour:
   m_ObjectHideFlags: 0
