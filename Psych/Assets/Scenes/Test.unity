@@ -732,6 +732,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &713365410 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4322808052490781564, guid: 39f555063808e20409df1c5125fee58b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1682984613}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &713365412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713365410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83581540366f8b146ba6dc2ed6c21951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  pickUpMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!4 &728933503 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4322808052733305659, guid: 39f555063808e20409df1c5125fee58b,
@@ -1002,6 +1026,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1924798444, guid: 39f555063808e20409df1c5125fee58b, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4322808052490781562, guid: 39f555063808e20409df1c5125fee58b,
         type: 3}
       propertyPath: healthBar
@@ -1082,6 +1110,11 @@ PrefabInstance:
       propertyPath: weaponCam
       value: 
       objectReference: {fileID: 672407958}
+    - target: {fileID: 4322808053286615226, guid: 39f555063808e20409df1c5125fee58b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39f555063808e20409df1c5125fee58b, type: 3}
 --- !u!1001 &1844656039
@@ -1558,7 +1591,7 @@ PrefabInstance:
     - target: {fileID: 4364637116042457203, guid: d483bafc33e0bdd4d97bea4d44d194aa,
         type: 3}
       propertyPath: maxHealth
-      value: 2
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 4759328387583901556, guid: d483bafc33e0bdd4d97bea4d44d194aa,
         type: 3}
@@ -1569,6 +1602,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759328387583901556, guid: d483bafc33e0bdd4d97bea4d44d194aa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7434205156770132816, guid: d483bafc33e0bdd4d97bea4d44d194aa,
         type: 3}

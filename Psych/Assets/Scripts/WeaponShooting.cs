@@ -26,6 +26,7 @@ public class WeaponShooting : MonoBehaviour
         if (transform.parent.tag == "Player")
         {
             equipped = true;
+            PlayerAim.aim.UpdateCurrentWeaponStats(rate, damage);
             return;
         }
         else
@@ -52,7 +53,7 @@ public class WeaponShooting : MonoBehaviour
             {
                 transform.LookAt(target.transform);
             }
-            ShootProjectile();
+            //ShootProjectile();
 
             if(thrown == true && Input.GetKeyDown(KeyCode.Alpha3) && WeaponThrow.weaponThrow.isReturning == false)
             {
@@ -71,8 +72,8 @@ public class WeaponShooting : MonoBehaviour
         {
             if (shootTimer >= rate)
             {
-                //GameObject bullet = objectpooler.SpawnFromPool("Bullet", spawnPoint.position, spawnPoint.rotation);
-                GameObject bullet = Instantiate(ammo, spawnPoint.position, spawnPoint.rotation);
+                GameObject bullet = objectpooler.SpawnFromPool("Bullet", spawnPoint.position, spawnPoint.rotation);
+                //GameObject bullet = Instantiate(ammo, spawnPoint.position, spawnPoint.rotation);
                 bullet.GetComponent<Damage>().damage = damage;
                 bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * force;
                 shootTimer = 0;
