@@ -5,12 +5,13 @@ using UnityEngine;
 public class ObjectHandler : MonoBehaviour
 {
 
-    GameObject selectionManager;
+    GameObject gameManager;
     GameObject attractTarget;
     Vector3 targetPosition; 
     Vector3 objectRBPosition;
     Rigidbody objectRB = null;
     Rigidbody objectRBinHand = null;
+    bool isPowerSufficient = false;
     [SerializeField] float attractSpeed = 7f;
     [SerializeField] float throwSpeed = 30f;
     [SerializeField] bool isCarryingObject = false;
@@ -18,7 +19,7 @@ public class ObjectHandler : MonoBehaviour
 
     private void Start()
     {
-        selectionManager = GameObject.Find("Selection Manager");
+        gameManager = GameObject.Find("Game Manager");
         attractTarget = GameObject.Find("Target Left");
     }
 
@@ -30,10 +31,15 @@ public class ObjectHandler : MonoBehaviour
 
     public void ObjectPickUP()
     {
-        objectRB = selectionManager.GetComponent<SelectionManager>().selectedObjectRB;
+        objectRB = gameManager.GetComponent<SelectionManager>().selectedObjectRB;
+        
         if (objectRB != null && isCarryingObject != true)
         {
-            
+            isPowerSufficient = gameManager.GetComponent<PowerManager>().DecrementPower(5f);
+            if(!isPowerSufficient)
+            {
+                return;
+            }
             objectRBinHand = objectRB;
             objectRBinHand.isKinematic = true;
             isCarryingObject = true;
@@ -43,7 +49,7 @@ public class ObjectHandler : MonoBehaviour
 
     public void ThrowObject()
     {
-        Vector3 targetPoint = selectionManager.GetComponent<SelectionManager>().selectedObjectRB.transform.position;
+        Vector3 targetPoint = gameManager.GetComponent<SelectionManager>().selectedObjectRB.transform.position;
         if (isCarryingObject == true)
         {
             isCarryingObject = false;
