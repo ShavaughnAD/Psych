@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 328626044}
   - component: {fileID: 328626043}
   - component: {fileID: 328626047}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Object 2
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -504,7 +504,7 @@ GameObject:
   - component: {fileID: 815212885}
   - component: {fileID: 815212884}
   - component: {fileID: 815212888}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Object 3
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -769,7 +769,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1716633805}
-  - component: {fileID: 1716633804}
   - component: {fileID: 1716633806}
   m_Layer: 0
   m_Name: Game Manager
@@ -778,21 +777,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1716633804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1716633803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ab396c0382f6574c886e159107cef12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlightMaterial: {fileID: 2100000, guid: 0e146bcc86aa80146b24006bf57a6fcf, type: 2}
-  defaultMaterial: {fileID: 2100000, guid: 632477125d4cb62429d84745cd498c0a, type: 2}
-  selectedObjectRB: {fileID: 0}
 --- !u!4 &1716633805
 Transform:
   m_ObjectHideFlags: 0
@@ -984,6 +968,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39f555063808e20409df1c5125fee58b, type: 3}
+--- !u!1 &1834040662 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4322808052490781564, guid: 39f555063808e20409df1c5125fee58b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1834040661}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1834040663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834040662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83581540366f8b146ba6dc2ed6c21951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  pickUpMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  highlightMaterial: {fileID: 2100000, guid: 0e146bcc86aa80146b24006bf57a6fcf, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: 632477125d4cb62429d84745cd498c0a, type: 2}
+  selectedObjectRB: {fileID: 0}
+  attractSpeed: 7
+  throwSpeed: 30
+  isCarryingObject: 0
+  isAttracting: 0
 --- !u!143 &1834040664 stripped
 CharacterController:
   m_CorrespondingSourceObject: {fileID: 4322808052490781563, guid: 39f555063808e20409df1c5125fee58b,
@@ -996,7 +1011,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1834040661}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1834040662}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4cdd5a3e8de717a42b112ecdb2390709, type: 3}
@@ -1015,7 +1030,7 @@ GameObject:
   - component: {fileID: 1946015182}
   - component: {fileID: 1946015181}
   - component: {fileID: 1946015185}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Object 1
   m_TagString: Selectable
   m_Icon: {fileID: 0}

@@ -1,13 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ObjectHandler : MonoBehaviour
+public class PlayerAim : MonoBehaviour
 {
+    public static PlayerAim aim;
+    public LayerMask enemyMask;
+    public LayerMask pickUpMask;
+
+    float shootTimer = 0;
+    float rate = 0;
+    float damage;
+
+    [SerializeField] private Material highlightMaterial;
+    [SerializeField] private Material defaultMaterial;
+    private Transform _selection;
+    [HideInInspector] public Rigidbody selectedObjectRB = null;
 
     GameObject gameManager;
     GameObject attractTarget;
-    Vector3 targetPosition; 
+    Vector3 targetPosition;
     Vector3 objectRBPosition;
     Rigidbody objectRB = null;
     Rigidbody objectRBinHand = null;
@@ -17,26 +27,82 @@ public class ObjectHandler : MonoBehaviour
     [SerializeField] bool isCarryingObject = false;
     [SerializeField] bool isAttracting = false;
 
+    void Awake()
+    {
+        aim = this;
+    }
+
     private void Start()
     {
         gameManager = GameObject.Find("Game Manager");
         attractTarget = GameObject.Find("Target Left");
     }
 
-    private void Update()
+    void Update()
     {
-        if(isAttracting)
+        if (isAttracting)
             MoveToTarget();
+
+        Vector3 centerScreen = new Vector3(0.5f, 0.5f, 100);
+        Ray ray = Camera.main.ViewportPointToRay(centerScreen);
+        RaycastHit hit;
+
+        shootTimer += Time.deltaTime;
+
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, enemyMask))
+        {
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                if(shootTimer >= rate)
+                {
+                    Debug.LogError(WeaponThrow.weaponThrow.weapon.GetComponent<WeaponShooting>().damage);
+                    hit.collider.GetComponent<Health>().TakeDamage(damage);
+                    shootTimer = 0;
+
+                    //AudioManager.audioManager.Play("GunShot");
+                }
+            }
+        }
+
+        if (_selection != null)
+        {
+            var selectionRenderer = _selection.GetComponent<Renderer>();
+            selectionRenderer.material = defaultMaterial;
+            selectedObjectRB = null;
+            _selection = null;
+        }
+
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, pickUpMask))
+        {
+            var selection = hit.transform;
+            if (selection.CompareTag("Selectable"))
+            {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                    selectedObjectRB = selectionRenderer.GetComponent<Rigidbody>();
+                }
+
+                _selection = selection;
+            }
+        }
+    }
+
+    public void UpdateCurrentWeaponStats(float weaponRateOfFire, float weaponDamage)
+    {
+        damage = weaponDamage;
+        rate = weaponRateOfFire;
     }
 
     public void ObjectPickUP()
     {
-        objectRB = gameManager.GetComponent<SelectionManager>().selectedObjectRB;
-        
+        objectRB = selectedObjectRB;
+
         if (objectRB != null && isCarryingObject != true)
         {
             isPowerSufficient = gameManager.GetComponent<PowerManager>().DecrementPower(5f);
-            if(!isPowerSufficient)
+            if (!isPowerSufficient)
             {
                 return;
             }
@@ -49,7 +115,7 @@ public class ObjectHandler : MonoBehaviour
 
     public void ThrowObject()
     {
-        Vector3 targetPoint = gameManager.GetComponent<SelectionManager>().selectedObjectRB.transform.position;
+        Vector3 targetPoint = selectedObjectRB.transform.position;
         if (isCarryingObject == true)
         {
             isCarryingObject = false;
@@ -58,7 +124,7 @@ public class ObjectHandler : MonoBehaviour
             objectRBinHand.tag = ("Selectable");
 
             Vector3 velocity = SetThrowVelocity(objectRBinHand, targetPoint, throwSpeed);
-            if(velocity != Vector3.zero)
+            if (velocity != Vector3.zero)
             {
                 objectRBinHand.AddForce(velocity, ForceMode.VelocityChange);
             }
@@ -70,14 +136,14 @@ public class ObjectHandler : MonoBehaviour
         objectRBPosition = objectRBinHand.position;
         targetPosition = attractTarget.transform.position;
         float speed = attractSpeed * Time.deltaTime;
-        if(objectRBPosition == targetPosition)
+        if (objectRBPosition == targetPosition)
         {
             objectRBinHand.transform.parent = GameObject.FindGameObjectWithTag("Player").transform;
             objectRBinHand.tag = "NotSelectable";
             isAttracting = false;
             return;
         }
-        objectRBinHand.position = Vector3.MoveTowards(objectRB.position, targetPosition, speed);    
+        objectRBinHand.position = Vector3.MoveTowards(objectRB.position, targetPosition, speed);
     }
 
     Vector3 SetThrowVelocity(Rigidbody rigidbody, Vector3 target, float force, float arch = 0.2f)

@@ -87,12 +87,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Alpha9))
         {
-            GetComponent<ObjectHandler>().ObjectPickUP();
+            GetComponent<PlayerAim>().ObjectPickUP();
         }
 
         if (Input.GetKey(KeyCode.Alpha0))
         {
-            GetComponent<ObjectHandler>().ThrowObject();
+            GetComponent<PlayerAim>().ThrowObject();
         }
     }
 }
