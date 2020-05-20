@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : Health
 {
+    public int killScore;
     public override void Awake()
     {
         base.Awake();
@@ -19,6 +20,7 @@ public class EnemyHealth : Health
 
     void Death(float param)
     {
+        //ScoreSystem.Instance.AddScore(killScore);
         Destroy(gameObject);
     }
 }

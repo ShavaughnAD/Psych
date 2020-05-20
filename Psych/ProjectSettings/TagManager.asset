@@ -6,8 +6,8 @@ TagManager:
   tags:
   - Projectile
   - Enemy
-  - Weapon
-  - Stealable
+  - Selectable
+  - NotSelectable
   layers:
   - Default
   - TransparentFX
@@ -19,8 +19,8 @@ TagManager:
   - 
   - Player
   - PostProcessing
-  - 
-  - 
+  - Enemy
+  - PickUp
   - 
   - 
   - 

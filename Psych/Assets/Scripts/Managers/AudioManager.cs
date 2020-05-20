@@ -41,6 +41,7 @@ public class AudioManager : MonoBehaviour
             s.soundSource.volume = s.soundVolume;
             s.soundSource.pitch = s.soundPitch;
             s.soundSource.loop = s.loopSound;
+            s.soundSource.playOnAwake = s.playAwake;
         }
     }
 

@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WeaponShooting : MonoBehaviour
 {
     public GameObject ammo = null;
     public GameObject target;
+    public CameraController weaponCam;
+    public PlayerMovement playerCam;
     public float damage = 5;
     float shootTimer = 0;
     public float rate = 0;
@@ -14,26 +14,19 @@ public class WeaponShooting : MonoBehaviour
     public Transform spawnPoint = null;
     public bool equipped = false;
     public bool thrown = false;
-    public bool controlling = false;
 
-    Transform playerTrans;
-    WeaponThrow weaponThrow;
     Rigidbody rb;
-    CameraController cam;
-
     ObjectPooler objectpooler;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
-        cam = Camera.main.GetComponent<CameraController>();
-
         objectpooler = ObjectPooler.instance;
 
         if (transform.parent.tag == "Player")
         {
             equipped = true;
+            PlayerAim.aim.UpdateCurrentWeaponStats(rate, damage);
             return;
         }
         else
@@ -46,7 +39,6 @@ public class WeaponShooting : MonoBehaviour
     {
         if (equipped)
         {
-            weaponThrow = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponThrow>();
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(ray, out hit, distance))
@@ -61,16 +53,14 @@ public class WeaponShooting : MonoBehaviour
             {
                 transform.LookAt(target.transform);
             }
-            ShootProjectile();
+            //ShootProjectile();
 
-            if(thrown && Input.GetKeyDown(KeyCode.Alpha3))
+            if(thrown == true && Input.GetKeyDown(KeyCode.Alpha3) && WeaponThrow.weaponThrow.isReturning == false)
             {
-                controlling = true;
-                cam.target = transform;
-                cam.focusPlayer = false;
+                CameraManager.cameraManager.ActivateWeaponCamera();
+                CameraManager.cameraManager.cameraController.target = transform;
                 rb.isKinematic = true;
                 transform.rotation = Quaternion.identity;
-                transform.Rotate(playerTrans.forward);
             }
         }
     }
@@ -82,8 +72,8 @@ public class WeaponShooting : MonoBehaviour
         {
             if (shootTimer >= rate)
             {
-                //GameObject bullet = objectpooler.SpawnFromPool("Bullet", spawnPoint.position, spawnPoint.rotation);
-                GameObject bullet = Instantiate(ammo, spawnPoint.position, spawnPoint.rotation);
+                GameObject bullet = objectpooler.SpawnFromPool("Bullet", spawnPoint.position, spawnPoint.rotation);
+                //GameObject bullet = Instantiate(ammo, spawnPoint.position, spawnPoint.rotation);
                 bullet.GetComponent<Damage>().damage = damage;
                 bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * force;
                 shootTimer = 0;
