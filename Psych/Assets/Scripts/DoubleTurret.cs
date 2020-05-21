@@ -4,48 +4,35 @@ using UnityEngine;
 
 public class DoubleTurret : MonoBehaviour
 {
-
-    private GameObject target;
-    public GameObject TurretHead1;
-    public GameObject TurretHead2;
-    public GameObject Bullet;
-    /*public GameObject BulletRotation;*/
-    public GameObject BulletSpawnPoint1;
-    public GameObject BulletSpawnPoint2;
-
-    private bool targetIsLocked;
-    public float fireTimer;
-    private bool shotReady;
-    private bool firing1;
-    
-    public float distance = 15f;
-    public LayerMask layer;
-    private float oscillateSpeed = 0.7f;
-    private float oscillateAngle = 60;
     private float disengageTimer = 0;
-    private float cancelTime = 0.4f;
+    private Transform target = null;
     private bool realigning = false;
+    private bool shotReady = true;
+    private bool firing1 = false;
 
-    void Start()
-    {
-        shotReady = true;
-        firing1 = false;
-    }
+    [Header("Targeting Variables")]
+    [SerializeField] private LayerMask mask;
+    [SerializeField] private float distance = 15;
+    [SerializeField] private float speed = 100;
+    [SerializeField] private float cancelTime = 0.4f;
+
+    [Header("Shooting Variables")]
+    [SerializeField] private GameObject ammo = null;
+    [SerializeField] private float rate = 0.75f;
+
+    [Header("Turret Parts")]
+    [SerializeField] private Transform turretPivot = null;
+    [SerializeField] private Transform turretSight = null;
+    [SerializeField] private Transform turretLeftMuzzle = null;
+    [SerializeField] private Transform turretRightMuzzle = null;
+
+    [Header("Oscillation Variables")]
+    [SerializeField] private float oscillateSpeed = 0.7f;
+    [SerializeField] private float oscillateAngle = 60;
 
     void Update()
     {
-
-        if (targetIsLocked)
-        {
-            TurretHead1.transform.LookAt(target.transform);
-            TurretHead2.transform.LookAt(target.transform);
-
-            if (shotReady)
-            {
-                Shoot();
-            }
-        }
-        else
+        if (target == null)
         {
             if (realigning)
             {
@@ -55,73 +42,60 @@ public class DoubleTurret : MonoBehaviour
             {
                 Oscillate();
             }
-                        
-        }
-    }
-
-    void Shoot()
-    {
-        if (!firing1)
-        {
-            Transform _bullet = Instantiate(Bullet.transform, BulletSpawnPoint1.transform.position, BulletSpawnPoint1.transform.rotation);
-            _bullet.transform.rotation = BulletSpawnPoint1.transform.rotation;
-            _bullet.transform.Rotate(-90, 0, 0);
-            firing1 = true;
         }
         else
         {
-            Transform _bullet = Instantiate(Bullet.transform, BulletSpawnPoint2.transform.position, BulletSpawnPoint2.transform.rotation);
-            _bullet.transform.rotation = BulletSpawnPoint2.transform.rotation;
-            /*_bullet.transform.Rotate(-90, 0, 0);*/
-            firing1 = false;
+            Targeting();
         }
-        DisengageCheck();
-
-         shotReady = false;
-        StartCoroutine(FireRate());
     }
 
-    IEnumerator FireRate()
+    void Targeting()
     {
-        yield return new WaitForSeconds(fireTimer);
-        shotReady = true;
-    }
+        Vector3 targetPosition = new Vector3(target.position.x, turretPivot.position.y, target.position.z);
+        Vector3 targetDirection = targetPosition - turretPivot.position;
+        Vector3 newDirection = Vector3.RotateTowards(turretPivot.forward, targetDirection, speed * Time.deltaTime, 0f);
+        turretPivot.rotation = Quaternion.LookRotation(newDirection);
 
-    /*void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Player")
+        float half = (360f - (oscillateAngle * 2f)) / 2f;
+
+        if (turretPivot.localRotation.eulerAngles.y > oscillateAngle && turretPivot.localRotation.eulerAngles.y < oscillateAngle + half)
         {
-            target = other.gameObject;
-            targetIsLocked = true;
+            turretPivot.localRotation = Quaternion.Euler(new Vector3(0, oscillateAngle, 0));
         }
-    }*/
+        else if (turretPivot.localRotation.eulerAngles.y < 360 - oscillateAngle && turretPivot.localRotation.eulerAngles.y >= oscillateAngle + half)
+        {
+            turretPivot.localRotation = Quaternion.Euler(new Vector3(0, 360 - oscillateAngle, 0));
+        }
+
+        ShootProjectile();
+        DisengageCheck();
+    }
+
+    void Oscillate()
+    {
+        float Y = Mathf.Cos(oscillateSpeed * Time.time) * oscillateAngle;
+        turretPivot.localRotation = Quaternion.Euler(0, Y, 0);
+        TargetSearch();
+    }
 
     void TargetSearch()
     {
         RaycastHit hit;
-        Ray ray = new Ray(BulletSpawnPoint2.transform.position, BulletSpawnPoint2.transform.forward);
-        if(Physics.Raycast(ray, out hit, distance, layer))
+        Ray ray = new Ray(turretSight.position, turretSight.forward);
+        if (Physics.Raycast(ray, out hit, distance, mask))
         {
-            if(hit.collider.tag == "Player")
+            if (hit.collider.tag == "Player")
             {
-                target = hit.collider.gameObject;
-                targetIsLocked = true; 
+                target = hit.transform;
             }
         }
-    }
-    void Oscillate()
-    {
-        float Y = Mathf.Cos(oscillateSpeed * Time.time) * oscillateAngle;
-        TurretHead1.transform.localRotation = Quaternion.Euler(0, Y, 0);
-        TurretHead2.transform.localRotation = Quaternion.Euler(0, Y, 0);
-        TargetSearch();
     }
 
     void DisengageCheck()
     {
         RaycastHit contact;
-        Ray rc = new Ray(BulletSpawnPoint2.transform.position, BulletSpawnPoint2.transform.forward);
-        if (Physics.Raycast(rc, out contact, distance, layer))
+        Ray rc = new Ray(turretSight.position, turretSight.forward);
+        if (Physics.Raycast(rc, out contact, distance, mask))
         {
             if (contact.collider.tag == "Player`")
             {
@@ -140,7 +114,7 @@ public class DoubleTurret : MonoBehaviour
         if (disengageTimer >= cancelTime)
         {
             realigning = true;
-            targetIsLocked = false;
+            target = null;
         }
     }
     void Realignment()
@@ -150,13 +124,38 @@ public class DoubleTurret : MonoBehaviour
         {
             Y = 360 + Y;
         }
-        float difference1 = Mathf.Abs(Y - TurretHead1.transform.localRotation.eulerAngles.y);
-        float difference2 = Mathf.Abs(Y - TurretHead2.transform.localRotation.eulerAngles.y);
+        float difference = Mathf.Abs(Y - turretPivot.localRotation.eulerAngles.y);
 
-        if ((difference1 <= 10f) || (difference2 <= 10f))
+        if (difference <= 10f)
         {
             realigning = false;
         }
         TargetSearch();
+    }
+
+    void ShootProjectile()
+    {
+        if (shotReady)
+        {
+            if (!firing1)
+            {
+                GameObject bullet = Instantiate(ammo, turretLeftMuzzle.position, turretLeftMuzzle.rotation);
+                firing1 = true;
+            }
+            else
+            {
+                GameObject shot = Instantiate(ammo, turretRightMuzzle.position, turretRightMuzzle.rotation);
+                firing1 = false;
+            }
+            shotReady = false;
+            StartCoroutine(FireRate());
+
+        }
+    }
+
+    IEnumerator FireRate()
+    {
+        yield return new WaitForSeconds(rate);
+        shotReady = true;
     }
 }

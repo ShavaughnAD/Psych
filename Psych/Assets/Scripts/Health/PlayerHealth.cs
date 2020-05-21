@@ -20,15 +20,15 @@ public class PlayerHealth : Health
         onHeal.BindToEvent(Heal);
         onDeath.BindToEvent(Death);
 
-#if DEBUG
-        //DEBUG
-        DebugManager dm = GameObject.Find("DebugManager").GetComponent<DebugManager>();
-        if(dm)
-        {
-            dm.eve_playerInvul += DM_playerInvul;
+//#if DEBUG
+//        //DEBUG
+//        DebugManager dm = GameObject.Find("DebugManager").GetComponent<DebugManager>();
+//        if(dm)
+//        {
+//            dm.eve_playerInvul += DM_playerInvul;
 
-        }
-#endif
+//        }
+//#endif
     }
     /// Called when Debug Manager's playerInvul event invoke
     private void DM_playerInvul(object sender, bool e)

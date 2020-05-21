@@ -20,10 +20,10 @@ public class Damage : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<EnemyHealth>())
+        if (other.GetComponent<Health>())
         {
             Debug.LogError(other.name + " Was Hit");
-            other.GetComponent<EnemyHealth>().TakeDamage(damage);
+            other.GetComponent<Health>().TakeDamage(damage);
             if (gameObject.tag == "Projectile")
             {
                 gameObject.SetActive(false);

@@ -26,12 +26,19 @@ public class WeaponShooting : MonoBehaviour
         if (transform.parent.tag == "Player")
         {
             equipped = true;
-            PlayerAim.aim.UpdateCurrentWeaponStats(rate, damage);
             return;
         }
         else
         {
             equipped = false;
+        }
+    }
+
+    void Start()
+    {
+        if (equipped)
+        {
+            PlayerAim.aim.UpdateCurrentWeaponStats(rate, damage);
         }
     }
 
@@ -57,6 +64,7 @@ public class WeaponShooting : MonoBehaviour
 
             if(thrown == true && Input.GetKeyDown(KeyCode.Alpha3) && WeaponThrow.weaponThrow.isReturning == false)
             {
+                Debug.Log("Pressed");
                 CameraManager.cameraManager.ActivateWeaponCamera();
                 CameraManager.cameraManager.cameraController.target = transform;
                 rb.isKinematic = true;

@@ -11,6 +11,7 @@ public class EnemyHealth : Health
         popup = Resources.Load<GameObject>("Prefabs/UIAssets/DamageFloatingText");
         onHurt.BindToEvent(Hurt);
         onDeath.BindToEvent(Death);
+        gameObject.layer = 10;
     }
 
     void Hurt(float param)
