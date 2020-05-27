@@ -85,14 +85,16 @@ public class PlayerMovement : MonoBehaviour
 
     void ObjectHandlers()
     {
-        if (Input.GetKey(KeyCode.Alpha9))
+        if (Input.GetKeyDown(KeyCode.Alpha9))
         {
-            GetComponent<PlayerAim>().ObjectPickUP();
-        }
-
-        if (Input.GetKey(KeyCode.Alpha0))
-        {
-            GetComponent<PlayerAim>().ThrowObject();
+            if (!PlayerAim.aim.isCarryingObject)
+            {
+                PlayerAim.aim.ObjectPickUP();
+            }
+            else
+            {
+                PlayerAim.aim.ThrowObject();
+            }
         }
     }
 }

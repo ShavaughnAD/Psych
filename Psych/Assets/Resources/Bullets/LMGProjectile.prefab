@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4395307962467627157}
   - component: {fileID: 8445373427452840175}
   - component: {fileID: 443004520049985720}
-  - component: {fileID: 404747846559716592}
   - component: {fileID: 588953195970728315}
   m_Layer: 2
   m_Name: LMGProjectile
@@ -64,18 +63,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 25
---- !u!114 &404747846559716592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1379084392430245139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79172ba8ef4fae14db98f2d163f9adb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   damage: 5
 --- !u!135 &588953195970728315
 SphereCollider:

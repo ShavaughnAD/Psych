@@ -15,7 +15,6 @@ public class PlayerAim : MonoBehaviour
     private Transform _selection;
     [HideInInspector] public Rigidbody selectedObjectRB = null;
 
-    GameObject gameManager;
     GameObject attractTarget;
     Vector3 targetPosition;
     Vector3 objectRBPosition;
@@ -24,17 +23,16 @@ public class PlayerAim : MonoBehaviour
     bool isPowerSufficient = false;
     [SerializeField] float attractSpeed = 7f;
     [SerializeField] float throwSpeed = 30f;
-    [SerializeField] bool isCarryingObject = false;
-    [SerializeField] bool isAttracting = false;
+    public bool isCarryingObject = false;
+    public bool isAttracting = false;
 
     void Awake()
     {
         aim = this;
     }
 
-    private void Start()
+    void Start()
     {
-        gameManager = GameObject.Find("Game Manager");
         attractTarget = GameObject.Find("Target Left");
     }
 
@@ -101,7 +99,7 @@ public class PlayerAim : MonoBehaviour
 
         if (objectRB != null && isCarryingObject != true)
         {
-            isPowerSufficient = gameManager.GetComponent<PowerManager>().DecrementPower(5f);
+            isPowerSufficient = PowerManager.powerManager.DecrementPower(5f);
             if (!isPowerSufficient)
             {
                 return;

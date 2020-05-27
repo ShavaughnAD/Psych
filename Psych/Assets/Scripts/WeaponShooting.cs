@@ -26,6 +26,7 @@ public class WeaponShooting : MonoBehaviour
         if (transform.parent.tag == "Player")
         {
             equipped = true;
+            GetComponent<Collider>().enabled = false;
             return;
         }
         else
