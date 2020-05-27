@@ -11,10 +11,10 @@ public class WeaponThrow : MonoBehaviour
     public Transform target = null;
     public Transform curvePoint = null;
     public bool isThrown = false;
+    public bool isReturning = false;
     #endregion
     #region Private Variables
     Transform player;
-    bool isReturning = false;
     float time = 0;
     Vector3 prevPos = Vector3.zero;
 
@@ -41,11 +41,7 @@ public class WeaponThrow : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (isThrown)
-            {
-                Camera.main.GetComponent<CameraController>().focusPlayer = true;
-                ReturnWeapon();
-            }
+            ReturnWeapon();
         }
 
         #endregion
@@ -74,6 +70,8 @@ public class WeaponThrow : MonoBehaviour
         weaponRB.isKinematic = false;
         weaponRB.AddForce(Camera.main.transform.TransformDirection(Vector3.forward) * throwForce, ForceMode.Impulse);
         weaponRB.AddTorque(weaponRB.transform.TransformDirection(Vector3.right) * 100, ForceMode.Impulse);
+        weapon.GetComponent<Collider>().enabled = true;
+        CameraManager.cameraManager.playerMovement.isBeingControlled = true;
     }
 
     public void ReturnWeapon()
@@ -83,18 +81,21 @@ public class WeaponThrow : MonoBehaviour
         isReturning = true;
         weaponRB.velocity = Vector3.zero;
         weaponRB.isKinematic = true;
-        Camera.main.GetComponent<CameraController>().target = player;
+        weapon.GetComponent<Collider>().enabled = false;
+        CameraManager.cameraManager.ActivatePlayerCamera();
+        CameraManager.cameraManager.playerMovement.isBeingControlled = true;
     }
 
     void ResetWeapon()
     {
         isReturning = false;
         isThrown = false;
-        weapon.GetComponent<WeaponShooting>().controlling = false;
         weaponRB.transform.parent = transform;
         weaponRB.position = target.position;
         weaponRB.rotation = target.rotation;
         Debug.LogError("Weapon Returned");
+        weapon.GetComponent<WeaponShooting>().thrown = false;
+        CameraManager.cameraManager.playerMovement.isBeingControlled = false;
     }
 
     Vector3 BezierQCP(float t, Vector3 p0, Vector3 p1, Vector3 p2)

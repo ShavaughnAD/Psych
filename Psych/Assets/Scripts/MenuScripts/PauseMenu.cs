@@ -5,18 +5,11 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuBackground;
     public GameObject pauseMenu;
     public GameObject settingsMenu;
-    public CameraController cameraController;
-
-    void Start()
-    {
-        cameraController = Camera.main.GetComponent<CameraController>();
-    }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            cameraController.enabled = false;
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -26,7 +19,6 @@ public class PauseMenu : MonoBehaviour
 
     public void ResumeButon()
     {
-        cameraController.enabled = true;
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

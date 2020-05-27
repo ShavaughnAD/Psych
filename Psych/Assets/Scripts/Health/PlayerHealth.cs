@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class PlayerHealth : Health
 {
@@ -14,10 +15,25 @@ public class PlayerHealth : Health
     public override void Awake()
     {
         base.Awake();
-        popup = Resources.Load<GameObject>("Prefabs/HealingFloatingText");
+        popup = Resources.Load<GameObject>("Resources/Prefabs/UIAssets/HealingFloatingText");
         //onHurt.BindToEvent(Hurt);
         onHeal.BindToEvent(Heal);
         onDeath.BindToEvent(Death);
+
+//#if DEBUG
+//        //DEBUG
+//        DebugManager dm = GameObject.Find("DebugManager").GetComponent<DebugManager>();
+//        if(dm)
+//        {
+//            dm.eve_playerInvul += DM_playerInvul;
+
+//        }
+//#endif
+    }
+    /// Called when Debug Manager's playerInvul event invoke
+    private void DM_playerInvul(object sender, bool e)
+    {
+        immune = e;
     }
 
     void Update()

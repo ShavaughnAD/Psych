@@ -18,4 +18,17 @@ public class Damage : MonoBehaviour
             }
         }
     }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Health>())
+        {
+            Debug.LogError(other.name + " Was Hit");
+            other.GetComponent<Health>().TakeDamage(damage);
+            if (gameObject.tag == "Projectile")
+            {
+                gameObject.SetActive(false);
+                //Destroy(gameObject);
+            }
+        }
+    }
 }

@@ -8,10 +8,14 @@ public class CameraController : MonoBehaviour
     public Vector3 offset;
     public bool useOffsetValues;
     public float rotSpeed;
-    public bool focusPlayer = true;
+    public float inAirMoveSpeed;
+    public float moveSpeed;
+
+    WeaponThrow weaponThrow;
 
     void Start()
     {
+        weaponThrow = FindObjectOfType<WeaponThrow>();
         if (!useOffsetValues)
         {
             offset = target.position - transform.position;
@@ -33,20 +37,15 @@ public class CameraController : MonoBehaviour
         float desiredXAngle = pivot.eulerAngles.x;
         Quaternion rot = Quaternion.Euler(desiredXAngle, desiredYAngle, 0);
         transform.position = target.position - (rot * offset);
-        if (focusPlayer)
+        var d = Input.GetAxis("Mouse ScrollWheel");
+        if (CameraManager.cameraManager.playerMovement.isBeingControlled && weaponThrow.isReturning == false)
         {
             target.Rotate(0, horizontal, 0);
-            pivot.Rotate(-vertical, 0, 0);
+            //target.Rotate(-vertical, 0, 0);
+            //pivot.Rotate(vertical, 0, 0);
+            //pivot.Rotate(0, horizontal, 0);
             transform.LookAt(target);
-        }
-        else
-        {
-            target.Rotate(0, horizontal, 0);
-            target.Rotate(-vertical, 0, 0);
-            pivot.Rotate(vertical, 0, 0);
-            pivot.Rotate(0, horizontal, 0);
-            transform.LookAt(target);
-            //pivot.Rotate(-vertical, 0, 0);
-        }
+            //pivot.Rotate(-vertical, 0, 0)
+        };
     }
 }

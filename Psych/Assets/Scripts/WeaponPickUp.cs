@@ -49,6 +49,7 @@ public class WeaponPickUp : MonoBehaviour
         gameObject.transform.parent = playerWeapon.transform;
         playerWeapon.weaponRB = weaponRB;
         playerWeapon.ReturnWeapon();
+        PlayerAim.aim.UpdateCurrentWeaponStats(weaponShooting.rate, weaponShooting.damage);
     }
 
     void PickUp()

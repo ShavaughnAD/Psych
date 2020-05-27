@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Projectile
   - Enemy
+  - Selectable
+  - NotSelectable
+  - PowerBar
+  - HealthBar
   layers:
   - Default
   - TransparentFX
@@ -17,8 +21,8 @@ TagManager:
   - 
   - Player
   - PostProcessing
-  - 
-  - 
+  - Enemy
+  - PickUp
   - 
   - 
   - 
