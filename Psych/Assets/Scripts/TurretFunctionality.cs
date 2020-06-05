@@ -27,6 +27,8 @@ public class TurretFunctionality : MonoBehaviour
     [SerializeField] private float oscillateSpeed = 0.7f;
     [SerializeField] private float oscillateAngle = 60;
 
+    public ParticleSystem muzzleFlash;
+
     void Update()
     {
         if (target == null)
@@ -137,6 +139,7 @@ public class TurretFunctionality : MonoBehaviour
         {
             GameObject bullet = Instantiate(ammo, turretMuzzle.position, turretMuzzle.rotation);
             bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * force;
+            muzzleFlash.Play();
             shootTimer = 0;
         }
     }
