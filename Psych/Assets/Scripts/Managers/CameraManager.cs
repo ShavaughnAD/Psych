@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
@@ -27,12 +25,17 @@ public class CameraManager : MonoBehaviour
     {
         playerCam.enabled = true;
         weaponCam.enabled = false;
+        playerMovement.isBeingControlled = false;
+        playerMovement.enabled = true;
+        PowerManager.powerManager.drainPower = false;
     }
 
     public void ActivateWeaponCamera()
     {
         cameraController.enabled = true;
         weaponCam.enabled = true;
-
+        playerMovement.isBeingControlled = true;
+        playerMovement.enabled = false;
+        PowerManager.powerManager.drainPower = true;
     }
 }

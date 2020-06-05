@@ -2063,6 +2063,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8909588710386412146}
+  - component: {fileID: 4173986844470128358}
   m_Layer: 0
   m_Name: Psych
   m_TagString: Untagged
@@ -2121,6 +2122,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 194.43, z: 0}
+--- !u!136 &4173986844470128358
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5620050755663648865}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.12545301
+  m_Height: 0.6928528
+  m_Direction: 1
+  m_Center: {x: -0.19141142, y: -0.15357399, z: 0.18313731}
 --- !u!1 &6116988202193895639
 GameObject:
   m_ObjectHideFlags: 0

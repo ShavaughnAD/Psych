@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using System;
 
 public class PlayerHealth : Health
 {
     public Image healthBar;
     public Text healthText;
+    public Renderer[] orbs;
     public float maxPower = 50;
     public float currentPower = 0;
     public float healthRegenAmount = 1;
@@ -31,6 +30,7 @@ public class PlayerHealth : Health
 //#endif
     }
     /// Called when Debug Manager's playerInvul event invoke
+    /// 
     private void DM_playerInvul(object sender, bool e)
     {
         immune = e;
@@ -41,6 +41,28 @@ public class PlayerHealth : Health
         healthBar.fillAmount = currentHealth / maxHealth;
         healthText.text = currentHealth.ToString("0") + " / " + maxHealth.ToString("0");
         HealthRegen();
+        foreach(Renderer rend in orbs)
+        {
+            if (currentHealth == maxHealth || currentHealth >= maxHealth * 0.51f)
+            {
+                rend.material.SetColor("_EmissionColor", Color.blue);
+                healthBar.color = Color.blue;
+                damageReduction = 1;
+            }
+            else if (currentHealth <= maxHealth * 0.50f && currentHealth >= maxHealth * 0.31f)
+            {
+                rend.material.SetColor("_EmissionColor", Color.yellow);
+                healthBar.color = Color.yellow;
+                damageReduction = 1;
+            }
+            else if (currentHealth <= maxHealth * 0.30f)
+            {
+                rend.material.SetColor("_EmissionColor", Color.red);
+                healthBar.color = Color.red;
+                //We can reduce incoming damage here to give the player a fighting chance if need be
+                damageReduction = 2;
+            }
+        }
     }
 
     void Start()
@@ -77,7 +99,6 @@ public class PlayerHealth : Health
     void Death(float param)
     {
         Respawn();
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void Respawn()

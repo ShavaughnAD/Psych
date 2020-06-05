@@ -18,12 +18,12 @@ GameObject:
   - component: {fileID: 5433572648717664341}
   - component: {fileID: 1227734584809087308}
   - component: {fileID: 7709701456718373698}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Door_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6856372128807245972
 Transform:
@@ -97,7 +97,7 @@ BoxCollider:
   m_GameObject: {fileID: 7601482190159293063}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.006266422, y: 0.016772717, z: 0.061776917}
   m_Center: {x: 0.047348566, y: -0.023077885, z: 0.030888457}
@@ -125,8 +125,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.08721384, y: 0.016772717, z: 0.002178023}
-  m_Center: {x: 0.0004873371, y: -0.023077821, z: 0.0010890403}
+  m_Size: {x: 0.08721384, y: 0.016772715, z: 0.00022383034}
+  m_Center: {x: 0.00048733715, y: -0.023077821, z: 0.0001119438}
 --- !u!65 &204445893884857192
 BoxCollider:
   m_ObjectHideFlags: 0

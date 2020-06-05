@@ -6,7 +6,9 @@ public class PowerManager : MonoBehaviour
     public static PowerManager powerManager;
     public float power = 50f;
     float maxPower = 50;
+    public bool drainPower = false;
     public Image powerBar;
+    public Text powerText;
     bool isStasis = false;
     float timer = 0f;
     float secondCount = 1f;
@@ -31,17 +33,23 @@ public class PowerManager : MonoBehaviour
         if (power <= 0)
         {
             isStasis = true;
+            WeaponThrow.weaponThrow.ReturnWeapon();
             powerBar.color = stasisMode;
         }
 
         timer += Time.deltaTime;
-        if (timer > secondCount)
+        if (timer > secondCount && drainPower == false)
             PowerUp();
+
+        if (drainPower)
+        {
+            DecrementPower(5 * Time.deltaTime);
+        }
     }
 
     public bool DecrementPower(float valueDeducted)
     {
-        power = (power - valueDeducted);
+        power = Mathf.Clamp(power - valueDeducted, 0, maxPower);
         if (power >= 0)
         {
             powerBar.fillAmount = power / maxPower;

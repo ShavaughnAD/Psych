@@ -41,6 +41,22 @@ public class CameraController : MonoBehaviour
         if (CameraManager.cameraManager.playerMovement.isBeingControlled && weaponThrow.isReturning == false)
         {
             target.Rotate(0, horizontal, 0);
+            if (Input.GetKey(KeyCode.W))
+            {
+                target.transform.Translate(Vector3.up * 1 * Time.deltaTime);
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                target.transform.Translate(Vector3.down * 1 * Time.deltaTime);
+            }
+            //if (Input.GetKey(KeyCode.A))
+            //{
+            //    target.transform.Translate(Vector3.left * 1 * Time.deltaTime);
+            //}
+            //if (Input.GetKey(KeyCode.D))
+            //{
+            //    target.transform.Translate(Vector3.right * 1 * Time.deltaTime);
+            //}
             //target.Rotate(-vertical, 0, 0);
             //pivot.Rotate(vertical, 0, 0);
             //pivot.Rotate(0, horizontal, 0);

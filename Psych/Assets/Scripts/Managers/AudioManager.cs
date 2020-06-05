@@ -8,6 +8,9 @@ public class AudioManager : MonoBehaviour
     public static AudioManager audioManager;
     public Sound[] sounds;
 
+    AudioClip clipToGive;
+    AudioMixer mixerToGive;
+
     void Awake()
     {
         if(audioManager == null)
@@ -45,10 +48,10 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void Play(string name)
+    public void Play(string name, AudioSource playFrom)
     {
         //When playing sounds, call this function
-        //Syntax is FindObjectOfType<AudioManager>().Play("INSERT NAME");
+        //AudioManager.audioManager.Play("INSERT NAME", Insert AudioSource To PlayFrom);
 
         Sound s = Array.Find(sounds, sound => sound.soundName == name);
         if(s == null)
@@ -56,6 +59,13 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Sound: " + name + "not found!" + ". Check spelling maybe???");
             return;
         }
-        s.soundSource.Play();
+        //s.soundSource.Play();
+        playFrom.outputAudioMixerGroup = s.soundSource.outputAudioMixerGroup;
+        playFrom.clip = s.soundSource.clip;
+        playFrom.volume = s.soundSource.volume;
+        playFrom.pitch = s.soundSource.pitch;
+        playFrom.loop = s.soundSource.loop;
+        playFrom.spatialBlend = 1;
+        playFrom.Play();
     }
 }

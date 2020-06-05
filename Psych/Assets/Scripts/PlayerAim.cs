@@ -9,11 +9,14 @@ public class PlayerAim : MonoBehaviour
     float shootTimer = 0;
     float rate = 0;
     float damage;
+    public int ammo;
+    Vector3 centerScreen;
 
     [SerializeField] private Material highlightMaterial;
     [SerializeField] private Material defaultMaterial;
     private Transform _selection;
-    [HideInInspector] public Rigidbody selectedObjectRB = null;
+    public Rigidbody selectedObjectRB = null;
+    public AudioSource shootingAudio;
 
     GameObject attractTarget;
     Vector3 targetPosition;
@@ -29,6 +32,7 @@ public class PlayerAim : MonoBehaviour
     void Awake()
     {
         aim = this;
+        //shootingAudio = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -41,26 +45,28 @@ public class PlayerAim : MonoBehaviour
         if (isAttracting)
             MoveToTarget();
 
-        Vector3 centerScreen = new Vector3(0.5f, 0.5f, 100);
+        centerScreen = new Vector3(0.5f, 0.5f, 100);
         Ray ray = Camera.main.ViewportPointToRay(centerScreen);
         RaycastHit hit;
 
         shootTimer += Time.deltaTime;
-
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, enemyMask))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
-            if (Input.GetKey(KeyCode.Mouse0))
+            if (shootTimer >= rate  && ammo  > 0)
             {
-                if(shootTimer >= rate)
+                ammo--;
+                shootTimer = 0;
+                AudioManager.audioManager.Play("GunShot", shootingAudio);
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, enemyMask))
                 {
                     Debug.LogError(WeaponThrow.weaponThrow.weapon.GetComponent<WeaponShooting>().damage);
                     hit.collider.GetComponent<Health>().TakeDamage(damage);
-                    shootTimer = 0;
-
                     //AudioManager.audioManager.Play("GunShot");
+
                 }
             }
         }
+
 
         if (_selection != null)
         {
@@ -73,7 +79,7 @@ public class PlayerAim : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, pickUpMask))
         {
             var selection = hit.transform;
-            if (selection.CompareTag("Selectable"))
+            if (selection.CompareTag("Selectable") || selection.CompareTag("Enemy"))
             {
                 var selectionRenderer = selection.GetComponent<Renderer>();
                 if (selectionRenderer != null)
@@ -87,44 +93,52 @@ public class PlayerAim : MonoBehaviour
         }
     }
 
-    public void UpdateCurrentWeaponStats(float weaponRateOfFire, float weaponDamage)
+    public void UpdateCurrentWeaponStats(float weaponRateOfFire, float weaponDamage, int ammoAmount)
     {
         damage = weaponDamage;
         rate = weaponRateOfFire;
+        ammo = ammoAmount;
     }
 
     public void ObjectPickUP()
     {
-        objectRB = selectedObjectRB;
-
-        if (objectRB != null && isCarryingObject != true)
+        if(selectedObjectRB != null)
         {
-            isPowerSufficient = PowerManager.powerManager.DecrementPower(5f);
-            if (!isPowerSufficient)
+            objectRB = selectedObjectRB;
+            objectRB.GetComponent<Collider>().enabled = true; //Make the Collider a variable later to save the Frames :D
+            objectRB.rotation = Quaternion.Euler(Vector3.zero);
+
+            if (objectRB != null && isCarryingObject != true)
             {
-                return;
+                isPowerSufficient = PowerManager.powerManager.DecrementPower(5f);
+                if (!isPowerSufficient)
+                {
+                    return;
+                }
+                objectRBinHand = objectRB;
+                objectRBinHand.isKinematic = true;
+                isCarryingObject = true;
+                isAttracting = true;
             }
-            objectRBinHand = objectRB;
-            objectRBinHand.isKinematic = true;
-            isCarryingObject = true;
-            isAttracting = true;
         }
     }
 
     public void ThrowObject()
     {
-        Vector3 targetPoint = selectedObjectRB.transform.position;
+        //Vector3 targetPoint = selectedObjectRB.transform.position;
         if (isCarryingObject == true)
         {
             isCarryingObject = false;
             objectRBinHand.transform.parent = null;
             objectRBinHand.isKinematic = false;
-            objectRBinHand.tag = ("Selectable");
+            objectRBinHand.tag = "Selectable";
 
-            Vector3 velocity = SetThrowVelocity(objectRBinHand, targetPoint, throwSpeed);
+            //Vector3 velocity = SetThrowVelocity(objectRBinHand, targetPoint, throwSpeed);
+            Vector3 velocity = SetThrowVelocity(objectRBinHand, centerScreen, throwSpeed);
             if (velocity != Vector3.zero)
             {
-                objectRBinHand.AddForce(velocity, ForceMode.VelocityChange);
+                //objectRBinHand.AddForce(velocity, ForceMode.VelocityChange);
+                objectRBinHand.AddForce(Camera.main.ViewportPointToRay(centerScreen).direction * throwSpeed, ForceMode.Impulse);
             }
         }
     }

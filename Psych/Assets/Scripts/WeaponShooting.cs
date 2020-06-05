@@ -11,6 +11,7 @@ public class WeaponShooting : MonoBehaviour
     public float rate = 0;
     public float force = 50;
     public float distance = 20;
+    public int ammoAmount = 30;
     public Transform spawnPoint = null;
     public bool equipped = false;
     public bool thrown = false;
@@ -39,7 +40,7 @@ public class WeaponShooting : MonoBehaviour
     {
         if (equipped)
         {
-            PlayerAim.aim.UpdateCurrentWeaponStats(rate, damage);
+            PlayerAim.aim.UpdateCurrentWeaponStats(rate, damage, ammoAmount);
         }
     }
 
@@ -65,7 +66,6 @@ public class WeaponShooting : MonoBehaviour
 
             if(thrown == true && Input.GetKeyDown(KeyCode.Alpha3) && WeaponThrow.weaponThrow.isReturning == false)
             {
-                Debug.Log("Pressed");
                 CameraManager.cameraManager.ActivateWeaponCamera();
                 CameraManager.cameraManager.cameraController.target = transform;
                 rb.isKinematic = true;
@@ -83,7 +83,7 @@ public class WeaponShooting : MonoBehaviour
             {
                 GameObject bullet = objectpooler.SpawnFromPool("Bullet", spawnPoint.position, spawnPoint.rotation);
                 //GameObject bullet = Instantiate(ammo, spawnPoint.position, spawnPoint.rotation);
-                bullet.GetComponent<Damage>().damage = damage;
+                bullet.GetComponent<Damage>().weightDamage = damage;
                 bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * force;
                 shootTimer = 0;
                 //AudioManager.audioManager.Play("GunShot");
