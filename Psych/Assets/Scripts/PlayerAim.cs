@@ -16,6 +16,7 @@ public class PlayerAim : MonoBehaviour
     [SerializeField] private Material defaultMaterial;
     private Transform _selection;
     public Rigidbody selectedObjectRB = null;
+    public Collider selectedObjectCol = null;
     public AudioSource shootingAudio;
 
     GameObject attractTarget;
@@ -23,6 +24,7 @@ public class PlayerAim : MonoBehaviour
     Vector3 objectRBPosition;
     Rigidbody objectRB = null;
     Rigidbody objectRBinHand = null;
+    Collider objectColinHand = null;
     bool isPowerSufficient = false;
     [SerializeField] float attractSpeed = 7f;
     [SerializeField] float throwSpeed = 30f;
@@ -76,6 +78,8 @@ public class PlayerAim : MonoBehaviour
             _selection = null;
         }
 
+        
+
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, pickUpMask))
         {
             var selection = hit.transform;
@@ -86,10 +90,20 @@ public class PlayerAim : MonoBehaviour
                 {
                     selectionRenderer.material = highlightMaterial;
                     selectedObjectRB = selectionRenderer.GetComponent<Rigidbody>();
+                    selectedObjectCol = selectionRenderer.GetComponent<Collider>();
                 }
 
                 _selection = selection;
             }
+        }
+
+        if (Input.GetKey(KeyCode.Alpha9))
+        {
+            ObjectPickUP();
+        }
+        if (Input.GetKey(KeyCode.Alpha0))
+        {
+            ThrowObject();
         }
     }
 
@@ -105,7 +119,7 @@ public class PlayerAim : MonoBehaviour
         if(selectedObjectRB != null)
         {
             objectRB = selectedObjectRB;
-            objectRB.GetComponent<Collider>().enabled = true; //Make the Collider a variable later to save the Frames :D
+            //selectedObjectCol.enabled = true; //Make the Collider a variable later to save the Frames :D
             objectRB.rotation = Quaternion.Euler(Vector3.zero);
 
             if (objectRB != null && isCarryingObject != true)
@@ -115,6 +129,8 @@ public class PlayerAim : MonoBehaviour
                 {
                     return;
                 }
+                objectColinHand = selectedObjectCol;
+                selectedObjectCol.enabled = false;
                 objectRBinHand = objectRB;
                 objectRBinHand.isKinematic = true;
                 isCarryingObject = true;
@@ -131,6 +147,7 @@ public class PlayerAim : MonoBehaviour
             isCarryingObject = false;
             objectRBinHand.transform.parent = null;
             objectRBinHand.isKinematic = false;
+            objectColinHand.enabled = true;
             objectRBinHand.tag = "Selectable";
 
             //Vector3 velocity = SetThrowVelocity(objectRBinHand, targetPoint, throwSpeed);
