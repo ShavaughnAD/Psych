@@ -96,15 +96,6 @@ public class PlayerAim : MonoBehaviour
                 _selection = selection;
             }
         }
-
-        if (Input.GetKey(KeyCode.Alpha9))
-        {
-            ObjectPickUP();
-        }
-        if (Input.GetKey(KeyCode.Alpha0))
-        {
-            ThrowObject();
-        }
     }
 
     public void UpdateCurrentWeaponStats(float weaponRateOfFire, float weaponDamage, int ammoAmount)
