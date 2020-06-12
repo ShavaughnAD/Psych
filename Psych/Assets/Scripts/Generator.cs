@@ -6,11 +6,12 @@ public class Generator : MonoBehaviour
 {
     public Collider powercell;
     public bool isHoldingBattery;
+    public int cells;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        cells = 0;
     }
 
     // Update is called once per frame
@@ -25,10 +26,14 @@ public class Generator : MonoBehaviour
             Debug.Log("Player is holding cell");
             isHoldingBattery = true;
         }
-        if(other.tag == "Cell" && isHoldingBattery)
-        {
-            other.gameObject.SetActive(true);
-
+        if(other.tag == "Generator" && isHoldingBattery /*&& Input.GetKeyDown(KeyCode.Alpha5)*/)
+        {          
+            Debug.Log("Cell Added");
+            cells++;
+            
+            
+            /*ther.gameObject.SetActive(true);*/
+            
         }
     }
 }
