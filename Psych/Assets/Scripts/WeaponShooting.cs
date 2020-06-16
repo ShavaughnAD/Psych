@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class WeaponShooting : MonoBehaviour
 {
@@ -15,6 +16,13 @@ public class WeaponShooting : MonoBehaviour
     public Transform spawnPoint = null;
     public bool equipped = false;
     public bool thrown = false;
+    public int pelletCount;
+    public float spreadAngle;
+    public float pelletTravelSpeed = 5f;
+    float delayTime = 5f;
+    public GameObject pellet;
+    public GameObject BarrelExit;
+    List<Quaternion> pellets = null;
 
     Rigidbody rb;
     ObjectPooler objectpooler;
@@ -23,6 +31,7 @@ public class WeaponShooting : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         objectpooler = ObjectPooler.instance;
+        pellets = new List<Quaternion>(new Quaternion[pelletCount]);
 
         if (transform.parent.tag == "Player")
         {
@@ -62,8 +71,16 @@ public class WeaponShooting : MonoBehaviour
             {
                 transform.LookAt(target.transform);
             }
-            //ShootProjectile();
 
+            shootTimer += Time.deltaTime;
+            if (Input.GetKey(KeyCode.Mouse0) && shootTimer >= rate)
+            {
+                if (this.tag.Equals("Shotgun"))
+                    ShotgunFire();
+                else
+                    ShootProjectile();
+            }
+            
             if(thrown == true && Input.GetKeyDown(KeyCode.Alpha3) && WeaponThrow.weaponThrow.isReturning == false)
             {
                 CameraManager.cameraManager.ActivateWeaponCamera();
@@ -75,19 +92,29 @@ public class WeaponShooting : MonoBehaviour
     }
 
     public void ShootProjectile()
+    {    
+        GameObject bullet = objectpooler.SpawnFromPool("Bullet", spawnPoint.position, spawnPoint.rotation);
+        //GameObject bullet = Instantiate(ammo, spawnPoint.position, spawnPoint.rotation);
+        bullet.GetComponent<Damage>().weightDamage = damage;
+        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * force;
+        shootTimer = 0;
+        //AudioManager.audioManager.Play("GunShot   
+    }
+
+    public void ShotgunFire()
     {
-        shootTimer += Time.deltaTime;
-        if (Input.GetKey(KeyCode.Mouse0))
+        int i = 0;
+        Debug.Log("Pellets count:" + pellets.Count);
+        foreach (Quaternion quat in pellets)
         {
-            if (shootTimer >= rate)
-            {
-                GameObject bullet = objectpooler.SpawnFromPool("Bullet", spawnPoint.position, spawnPoint.rotation);
-                //GameObject bullet = Instantiate(ammo, spawnPoint.position, spawnPoint.rotation);
-                bullet.GetComponent<Damage>().weightDamage = damage;
-                bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * force;
-                shootTimer = 0;
-                //AudioManager.audioManager.Play("GunShot");
-            }
+            //pellets[i] = Random.rotation;
+            Debug.Log("Pellets: " + pellets.IndexOf(quat));
+            GameObject p = Instantiate(pellet, BarrelExit.transform.position, BarrelExit.transform.rotation);
+            p.transform.rotation = Quaternion.RotateTowards(p.transform.rotation, pellets[i], spreadAngle);
+            p.GetComponent<Rigidbody>().AddForce(p.transform.forward * pelletTravelSpeed);
+            Destroy(p, delayTime);
+            i++;
         }
+        shootTimer = 0;
     }
 }
