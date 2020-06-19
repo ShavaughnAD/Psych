@@ -344,6 +344,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1834040661}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &309256549 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6977972491374023200, guid: 39f555063808e20409df1c5125fee58b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1834040661}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &328626042
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,6 +771,40 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1181620443 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6977972492367185429, guid: 39f555063808e20409df1c5125fee58b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1834040661}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1181620445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181620443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50f9851ca2d313941892e63a101559d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammo: {fileID: 0}
+  target: {fileID: 0}
+  weaponCam: {fileID: 0}
+  playerCam: {fileID: 0}
+  damage: 6
+  rate: 0.5
+  force: 90
+  distance: 20
+  ammoAmount: 30
+  spawnPoint: {fileID: 309256549}
+  equipped: 0
+  thrown: 0
+  pelletCount: 5
+  spreadAngle: 10
+  pelletTravelSpeed: 1000
+  pellet: {fileID: 511991754543892742, guid: 4789b283dbf7cfe41946e2fe04b23440, type: 3}
 --- !u!114 &1241407354 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3562108900980158788, guid: af7a2305c0d5d9f4f8c0ebff1e054e76,
@@ -1206,7 +1246,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents:
+    - {fileID: 0}
+    - {fileID: 0}
     - {fileID: 2781320505526815235, guid: 39f555063808e20409df1c5125fee58b, type: 3}
+    - {fileID: 3673439597508311985, guid: 39f555063808e20409df1c5125fee58b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 39f555063808e20409df1c5125fee58b, type: 3}
 --- !u!1 &1834040662 stripped
 GameObject:

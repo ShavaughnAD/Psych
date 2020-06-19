@@ -20,17 +20,15 @@ public class WeaponShooting : MonoBehaviour
     public float spreadAngle;
     public float pelletTravelSpeed = 5f;
     public GameObject pellet;
-    public GameObject BarrelExit;
-    List<Quaternion> pellets = null;
+    ShotgunHandler shotgunHandler;
 
     Rigidbody rb;
     ObjectPooler objectpooler;
 
-    void Awake()
+    protected void Awake()
     {
         rb = GetComponent<Rigidbody>();
         objectpooler = ObjectPooler.instance;
-        pellets = new List<Quaternion>(new Quaternion[pelletCount]);
 
         if (transform.parent.tag == "Player")
         {
@@ -44,29 +42,30 @@ public class WeaponShooting : MonoBehaviour
         }
     }
 
-    void Start()
+    protected void Start()
     {
+        shotgunHandler = GetComponent<ShotgunHandler>();
         if (equipped)
         {
             PlayerAim.aim.UpdateCurrentWeaponStats(rate, damage, ammoAmount);
         }
     }
 
-    public void Update()
+    protected void Update()
     {
         if (equipped)
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray, out hit, distance))
+            if (Physics.Raycast(ray, out hit, distance))
             {
-                if(Input.GetKey(KeyCode.Alpha2) && hit.collider.tag == "Enemy")
+                if (Input.GetKey(KeyCode.Alpha2) && hit.collider.tag == "Enemy")
                 {
                     target = hit.collider.gameObject;
                 }
             }
 
-            if(target != null)
+            if (target != null)
             {
                 transform.LookAt(target.transform);
             }
@@ -75,12 +74,13 @@ public class WeaponShooting : MonoBehaviour
             if (Input.GetKey(KeyCode.Mouse0) && shootTimer >= rate)
             {
                 if (this.tag.Equals("Shotgun"))
-                    ShotgunFire();
+                    shotgunHandler.ShotgunFire();
                 else
                     ShootProjectile();
+                shootTimer = 0;
             }
-            
-            if(thrown == true && Input.GetKeyDown(KeyCode.Alpha3) && WeaponThrow.weaponThrow.isReturning == false)
+
+            if (thrown == true && Input.GetKeyDown(KeyCode.Alpha3) && WeaponThrow.weaponThrow.isReturning == false)
             {
                 CameraManager.cameraManager.ActivateWeaponCamera();
                 CameraManager.cameraManager.cameraController.target = transform;
@@ -91,26 +91,11 @@ public class WeaponShooting : MonoBehaviour
     }
 
     public void ShootProjectile()
-    {    
+    {
         GameObject bullet = objectpooler.SpawnFromPool("Bullet", spawnPoint.position, spawnPoint.rotation);
         //GameObject bullet = Instantiate(ammo, spawnPoint.position, spawnPoint.rotation);
         bullet.GetComponent<Damage>().weightDamage = damage;
         bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * force;
-        shootTimer = 0;
         //AudioManager.audioManager.Play("GunShot   
-    }
-
-    public void ShotgunFire()
-    {
-        int i = 0;
-        foreach (Quaternion quat in pellets)
-        {
-            //GameObject pellet = objectpooler.SpawnFromPool("Pellet", BarrelExit.transform.position, BarrelExit.transform.rotation);
-            GameObject p = Instantiate(pellet, BarrelExit.transform.position, BarrelExit.transform.rotation);
-            p.transform.rotation = Quaternion.RotateTowards(p.transform.rotation, Random.rotation, spreadAngle);
-            p.GetComponent<Rigidbody>().AddForce(p.transform.forward * pelletTravelSpeed);
-            i++;
-        }
-        shootTimer = 0;
     }
 }
