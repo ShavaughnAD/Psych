@@ -66,6 +66,8 @@ public class ObjectPooler : MonoBehaviour
 
         poolDictionary[tag].Enqueue(objectToSpawn);
 
+        Debug.Log("object To Spawn from Pool: " + objectToSpawn);
+
         return objectToSpawn;
     }
 }

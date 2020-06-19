@@ -19,7 +19,6 @@ public class WeaponShooting : MonoBehaviour
     public int pelletCount;
     public float spreadAngle;
     public float pelletTravelSpeed = 5f;
-    float delayTime = 5f;
     public GameObject pellet;
     public GameObject BarrelExit;
     List<Quaternion> pellets = null;
@@ -104,15 +103,12 @@ public class WeaponShooting : MonoBehaviour
     public void ShotgunFire()
     {
         int i = 0;
-        Debug.Log("Pellets count:" + pellets.Count);
         foreach (Quaternion quat in pellets)
         {
-            //pellets[i] = Random.rotation;
-            Debug.Log("Pellets: " + pellets.IndexOf(quat));
+            //GameObject pellet = objectpooler.SpawnFromPool("Pellet", BarrelExit.transform.position, BarrelExit.transform.rotation);
             GameObject p = Instantiate(pellet, BarrelExit.transform.position, BarrelExit.transform.rotation);
-            p.transform.rotation = Quaternion.RotateTowards(p.transform.rotation, pellets[i], spreadAngle);
+            p.transform.rotation = Quaternion.RotateTowards(p.transform.rotation, Random.rotation, spreadAngle);
             p.GetComponent<Rigidbody>().AddForce(p.transform.forward * pelletTravelSpeed);
-            Destroy(p, delayTime);
             i++;
         }
         shootTimer = 0;

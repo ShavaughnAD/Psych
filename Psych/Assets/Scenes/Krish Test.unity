@@ -563,7 +563,7 @@ PrefabInstance:
     - target: {fileID: 900072470394994293, guid: c29a0254780de444d8026e732f51c3f4,
         type: 3}
       propertyPath: pools.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 900072470394994293, guid: c29a0254780de444d8026e732f51c3f4,
         type: 3}
@@ -579,6 +579,22 @@ PrefabInstance:
     - target: {fileID: 900072470394994293, guid: c29a0254780de444d8026e732f51c3f4,
         type: 3}
       propertyPath: pools.Array.data[0].size
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 900072470394994293, guid: c29a0254780de444d8026e732f51c3f4,
+        type: 3}
+      propertyPath: pools.Array.data[1].tag
+      value: Pellet
+      objectReference: {fileID: 0}
+    - target: {fileID: 900072470394994293, guid: c29a0254780de444d8026e732f51c3f4,
+        type: 3}
+      propertyPath: pools.Array.data[1].prefab
+      value: 
+      objectReference: {fileID: 511991754543892742, guid: 4789b283dbf7cfe41946e2fe04b23440,
+        type: 3}
+    - target: {fileID: 900072470394994293, guid: c29a0254780de444d8026e732f51c3f4,
+        type: 3}
+      propertyPath: pools.Array.data[1].size
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 900072470394994294, guid: c29a0254780de444d8026e732f51c3f4,
@@ -986,7 +1002,7 @@ PrefabInstance:
     - target: {fileID: 3673439597508311985, guid: 39f555063808e20409df1c5125fee58b,
         type: 3}
       propertyPath: spreadAngle
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3673439597508311985, guid: 39f555063808e20409df1c5125fee58b,
         type: 3}
@@ -1012,7 +1028,7 @@ PrefabInstance:
     - target: {fileID: 3673439597508311985, guid: 39f555063808e20409df1c5125fee58b,
         type: 3}
       propertyPath: rate
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4322808051812234521, guid: 39f555063808e20409df1c5125fee58b,
         type: 3}
