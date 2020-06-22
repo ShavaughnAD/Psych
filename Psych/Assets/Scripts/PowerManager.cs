@@ -5,7 +5,7 @@ public class PowerManager : MonoBehaviour
 {
     public static PowerManager powerManager;
     public float power = 50f;
-    float maxPower = 50;
+    public float maxPower = 50;
     public bool drainPower = false;
     public Image powerBar;
     public Text powerText;
