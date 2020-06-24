@@ -22,8 +22,8 @@ public class PlayerAim : MonoBehaviour
     GameObject attractTarget;
     Vector3 targetPosition;
     Vector3 objectRBPosition;
-    Rigidbody objectRB = null;
-    Rigidbody objectRBinHand = null;
+    public Rigidbody objectRB = null;
+    public Rigidbody objectRBinHand = null;
     Collider objectColinHand = null;
     bool isPowerSufficient = false;
     [SerializeField] float attractSpeed = 7f;

@@ -3051,6 +3051,7 @@ GameObject:
   - component: {fileID: 541867065}
   - component: {fileID: 541867064}
   - component: {fileID: 541867063}
+  - component: {fileID: 541867068}
   m_Layer: 11
   m_Name: Cell (1)
   m_TagString: Selectable
@@ -3150,6 +3151,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &541867068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541867062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51fcbe381e6e12a4e84e868146488104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHoldingACell: 0
 --- !u!1001 &553746769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3750,19 +3764,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 613993092}
   m_PrefabAsset: {fileID: 0}
---- !u!135 &588459130
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 588459122}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.5404404
-  m_Center: {x: 0.26, y: 0.0804261, z: 1.118339}
 --- !u!114 &588459131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3775,7 +3776,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19dff0be8193fc2489056830b0507382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powercell: {fileID: 588459130}
   isHoldingBattery: 0
   cells: 0
 --- !u!1 &600962417 stripped
@@ -5422,6 +5422,7 @@ GameObject:
   - component: {fileID: 896554791}
   - component: {fileID: 896554794}
   - component: {fileID: 896554793}
+  - component: {fileID: 896554795}
   m_Layer: 11
   m_Name: Cell
   m_TagString: Selectable
@@ -5521,6 +5522,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07063353, y: 0.030339029, z: 0.07186149}
   m_Center: {x: -0.027866846, y: 0.005169489, z: 0.028667577}
+--- !u!114 &896554795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896554789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51fcbe381e6e12a4e84e868146488104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHoldingACell: 0
 --- !u!4 &900756356 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6856372128807245972, guid: 33a63d37fe9b29945903d1750d19d846,
