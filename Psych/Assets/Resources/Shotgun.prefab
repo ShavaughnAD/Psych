@@ -118,8 +118,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4053109313341818724}
-  m_LocalRotation: {x: -0, y: -0, z: -2.0774774e-20, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.0739999}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 1.074}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4053109312634984985}
@@ -139,9 +139,10 @@ GameObject:
   - component: {fileID: 4053109314030965596}
   - component: {fileID: 4053109314030965597}
   - component: {fileID: -1579750092073799946}
+  - component: {fileID: 9110791062031785796}
   m_Layer: 0
-  m_Name: 44Magnum
-  m_TagString: Weapon
+  m_Name: Shotgun
+  m_TagString: Shotgun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -234,19 +235,31 @@ MonoBehaviour:
   target: {fileID: 0}
   weaponCam: {fileID: 0}
   playerCam: {fileID: 0}
-  damage: 10
-  rate: 1
+  damage: 6
+  rate: 0.15
   force: 90
   distance: 20
   ammoAmount: 30
   spawnPoint: {fileID: 4053109313341818727}
   equipped: 0
   thrown: 0
-  pelletCount: 0
-  spreadAngle: 0
-  pelletTravelSpeed: 5
-  pellet: {fileID: 0}
-  BarrelExit: {fileID: 0}
+--- !u!114 &9110791062031785796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4053109314030965586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97052e8a99cabd540b0876de83769a56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pelletCount: 5
+  spreadAngle: 10
+  pelletTravelSpeed: 1000
+  pellet: {fileID: 511991754543892742, guid: 4789b283dbf7cfe41946e2fe04b23440, type: 3}
+  BarrelExit: {fileID: 4053109313341818724}
 --- !u!1 &4053109314312239707
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,9 +286,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4053109314312239707}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: 5.7338707e-22, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.61800003}
-  m_LocalScale: {x: 0.5, y: 0.20000002, z: 0.5}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 0, z: 0.618}
+  m_LocalScale: {x: 0.5, y: 0.2, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4053109312634984985}
   m_RootOrder: 0

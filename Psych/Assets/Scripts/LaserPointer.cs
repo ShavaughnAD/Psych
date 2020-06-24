@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LaserPointer : MonoBehaviour
 {
@@ -11,7 +9,7 @@ public class LaserPointer : MonoBehaviour
         laserPointer = GetComponent<LineRenderer>();
     }
 
-    void Update()
+    void LateUpdate()
     {
         laserPointer.SetPosition(0, transform.position);
         RaycastHit hit;
@@ -24,7 +22,7 @@ public class LaserPointer : MonoBehaviour
         }
         else
         {
-            laserPointer.SetPosition(1, transform.forward * 5000);
+            laserPointer.SetPosition(1, transform.position + (transform.forward * 5000));
         }
     }
 }

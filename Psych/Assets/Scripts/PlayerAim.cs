@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+//Reference: Brackeys. (2017). Shooting with Raycasts - Unity Tutorial. Retrieved from https://www.youtube.com/watch?v=THnivyG0Mvo
 public class PlayerAim : MonoBehaviour
 {
     public static PlayerAim aim;
@@ -9,27 +10,35 @@ public class PlayerAim : MonoBehaviour
     float shootTimer = 0;
     float rate = 0;
     float damage;
+    public float bulletForce = 30;
     public int ammo;
+    public ParticleSystem muzzleFlash;
+    public GameObject impactEffect;
+    public Camera cam;
     Vector3 centerScreen;
 
     [SerializeField] private Material highlightMaterial;
     [SerializeField] private Material defaultMaterial;
+    public AudioSource shootingAudio;
+
+    #region Picking Up Objects Variables
+
     private Transform _selection;
     public Rigidbody selectedObjectRB = null;
     public Collider selectedObjectCol = null;
-    public AudioSource shootingAudio;
-
     GameObject attractTarget;
     Vector3 targetPosition;
     Vector3 objectRBPosition;
-    public Rigidbody objectRB = null;
-    public Rigidbody objectRBinHand = null;
+    Rigidbody objectRB = null;
+    Rigidbody objectRBinHand = null;
     Collider objectColinHand = null;
     bool isPowerSufficient = false;
     [SerializeField] float attractSpeed = 7f;
     [SerializeField] float throwSpeed = 30f;
     public bool isCarryingObject = false;
     public bool isAttracting = false;
+
+    #endregion
 
     void Awake()
     {
@@ -48,7 +57,7 @@ public class PlayerAim : MonoBehaviour
             MoveToTarget();
 
         centerScreen = new Vector3(0.5f, 0.5f, 100);
-        Ray ray = Camera.main.ViewportPointToRay(centerScreen);
+        Ray ray = cam.ViewportPointToRay(centerScreen);
         RaycastHit hit;
 
         shootTimer += Time.deltaTime;
@@ -56,16 +65,23 @@ public class PlayerAim : MonoBehaviour
         {
             if (shootTimer >= rate  && ammo  > 0)
             {
+                muzzleFlash.Play();
                 ammo--;
                 shootTimer = 0;
-                AudioManager.audioManager.Play("GunShot", shootingAudio);
+                //AudioManager.audioManager.Play("GunShot", shootingAudio);
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, enemyMask))
                 {
-                    Debug.LogError(WeaponThrow.weaponThrow.weapon.GetComponent<WeaponShooting>().damage);
+                    Debug.Log(hit.collider.name);
                     hit.collider.GetComponent<Health>().TakeDamage(damage);
-                    //AudioManager.audioManager.Play("GunShot");
-
                 }
+                if(hit.rigidbody != null)
+                {
+                    hit.rigidbody.AddForce(-hit.normal * bulletForce);
+                }
+                //The line below doesn't work ;(
+                //Returning Null Reference for Some Strange Reason. Check for Duplicate Script or Debug
+                // GameObject impact = Instantiate(impactEffect, hit.collider.transform.position, hit.collider.transform.rotation);
+                //Destroy(impact, 2);
             }
         }
 
@@ -77,8 +93,6 @@ public class PlayerAim : MonoBehaviour
             selectedObjectRB = null;
             _selection = null;
         }
-
-        
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, pickUpMask))
         {
@@ -100,10 +114,14 @@ public class PlayerAim : MonoBehaviour
 
     public void UpdateCurrentWeaponStats(float weaponRateOfFire, float weaponDamage, int ammoAmount)
     {
+        //Need to Add Camera
+        //Need to add ParticleSystem
         damage = weaponDamage;
         rate = weaponRateOfFire;
         ammo = ammoAmount;
     }
+
+    #region Pick Up & Throw Objects
 
     public void ObjectPickUP()
     {
@@ -191,4 +209,6 @@ public class PlayerAim : MonoBehaviour
         Vector3 velocity = new Vector3(vx, vy, vz);
         return velocity;
     }
+
+    #endregion
 }
