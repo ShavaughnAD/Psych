@@ -17,13 +17,13 @@ public class PlayerAim : MonoBehaviour
     public Camera cam;
     Vector3 centerScreen;
 
-    [SerializeField] private Material highlightMaterial;
-    [SerializeField] private Material defaultMaterial;
+    //[SerializeField] Material highlightMaterial;
+    //[SerializeField] Material defaultMaterial;
     public AudioSource shootingAudio;
 
     #region Picking Up Objects Variables
 
-    private Transform _selection;
+    public Transform _selection;
     public Rigidbody selectedObjectRB = null;
     public Collider selectedObjectCol = null;
     GameObject attractTarget;
@@ -88,8 +88,8 @@ public class PlayerAim : MonoBehaviour
 
         if (_selection != null)
         {
-            var selectionRenderer = _selection.GetComponent<Renderer>();
-            selectionRenderer.material = defaultMaterial;
+            //var selectionRenderer = _selection.GetComponent<Renderer>();
+            //selectionRenderer.material = defaultMaterial;
             selectedObjectRB = null;
             _selection = null;
         }
@@ -99,13 +99,15 @@ public class PlayerAim : MonoBehaviour
             var selection = hit.transform;
             if (selection.CompareTag("Selectable") || selection.CompareTag("Enemy"))
             {
-                var selectionRenderer = selection.GetComponent<Renderer>();
-                if (selectionRenderer != null)
-                {
-                    selectionRenderer.material = highlightMaterial;
-                    selectedObjectRB = selectionRenderer.GetComponent<Rigidbody>();
-                    selectedObjectCol = selectionRenderer.GetComponent<Collider>();
-                }
+                selectedObjectRB = selection.GetComponent<Rigidbody>();
+                selectedObjectCol = selection.GetComponent<Collider>();
+                //var selectionRenderer = selection.GetComponent<Renderer>();
+                //if (selectionRenderer != null)
+                //{
+                //    selectionRenderer.material = highlightMaterial;
+                //    selectedObjectRB = selectionRenderer.GetComponent<Rigidbody>();
+                //    selectedObjectCol = selectionRenderer.GetComponent<Collider>();
+                //}
 
                 _selection = selection;
             }
@@ -159,13 +161,15 @@ public class PlayerAim : MonoBehaviour
             objectColinHand.enabled = true;
             objectRBinHand.tag = "Selectable";
 
+            objectRBinHand.AddForce(Camera.main.ViewportPointToRay(centerScreen).direction * throwSpeed, ForceMode.Impulse);
+
             //Vector3 velocity = SetThrowVelocity(objectRBinHand, targetPoint, throwSpeed);
-            Vector3 velocity = SetThrowVelocity(objectRBinHand, centerScreen, throwSpeed);
-            if (velocity != Vector3.zero)
-            {
+            //Vector3 velocity = SetThrowVelocity(objectRBinHand, centerScreen, throwSpeed);
+            //if (velocity != Vector3.zero)
+            //{
                 //objectRBinHand.AddForce(velocity, ForceMode.VelocityChange);
-                objectRBinHand.AddForce(Camera.main.ViewportPointToRay(centerScreen).direction * throwSpeed, ForceMode.Impulse);
-            }
+            //    objectRBinHand.velocity = (centerScreen - Camera.main.transform.position) * throwSpeed;
+            //}
         }
     }
 
