@@ -20,7 +20,6 @@ public class InteractableObject : MonoBehaviour
         objRend = GetComponent<Renderer>();
         if(objRend == null) // Checking if its still null after the parent assignment, if yes. Use the child renderererer
         {
-            Debug.Log("Child Rend Found");
             objRend = GetComponentInChildren<Renderer>();
         }
         startColor = objRend.material.color;

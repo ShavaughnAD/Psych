@@ -46,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
         moveDir = new Vector3(horizontal, 0, vertical);
         moveDir *= speed;
         moveDir = transform.TransformDirection(moveDir);
+
+        moveDir.y = moveDir.y + Physics.gravity.y;
         characterController.Move(moveDir * Time.deltaTime);
     }
 

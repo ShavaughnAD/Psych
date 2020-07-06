@@ -17,8 +17,6 @@ public class PlayerAim : MonoBehaviour
     public Camera cam;
     Vector3 centerScreen;
 
-    //[SerializeField] Material highlightMaterial;
-    //[SerializeField] Material defaultMaterial;
     public AudioSource shootingAudio;
 
     #region Picking Up Objects Variables
@@ -68,15 +66,20 @@ public class PlayerAim : MonoBehaviour
                 muzzleFlash.Play();
                 ammo--;
                 shootTimer = 0;
+
                 //AudioManager.audioManager.Play("GunShot", shootingAudio);
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, enemyMask))
                 {
                     Debug.Log(hit.collider.name);
-                    hit.collider.GetComponent<Health>().TakeDamage(damage);
-                }
-                if(hit.rigidbody != null)
-                {
-                    hit.rigidbody.AddForce(-hit.normal * bulletForce);
+                    if (hit.collider.GetComponent<Health>() != null)
+                    {
+                        hit.collider.GetComponent<Health>().TakeDamage(damage);
+                    }
+                    if (hit.collider.GetComponent<Rigidbody>() != null)
+                    {
+                        Debug.Log("Rigidbody Detected");
+                        hit.collider.GetComponent<Rigidbody>().AddForce(-hit.normal * bulletForce);
+                    }
                 }
                 //The line below doesn't work ;(
                 //Returning Null Reference for Some Strange Reason. Check for Duplicate Script or Debug
@@ -111,6 +114,12 @@ public class PlayerAim : MonoBehaviour
 
                 _selection = selection;
             }
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            EmptyHand();
         }
     }
 
@@ -212,6 +221,16 @@ public class PlayerAim : MonoBehaviour
         float vz = z / time;
         Vector3 velocity = new Vector3(vx, vy, vz);
         return velocity;
+    }
+
+    public void EmptyHand()
+    {
+        isCarryingObject = false;
+        objectRBinHand.isKinematic = false;
+        objectRBinHand.transform.parent = null;
+        objectColinHand.enabled = true;
+        objectRBinHand.tag = "Selectable";
+        _selection = null;
     }
 
     #endregion

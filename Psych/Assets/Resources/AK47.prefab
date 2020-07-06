@@ -135,6 +135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4053109314030965593}
   - component: {fileID: 4053109314030965598}
+  - component: {fileID: 6962017860869513596}
   - component: {fileID: 4053109314030965599}
   - component: {fileID: 4053109314030965596}
   - component: {fileID: 4053109314030965597}
@@ -174,6 +175,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &6962017860869513596
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4053109314030965586}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4053109314030965599
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -202,7 +216,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79172ba8ef4fae14db98f2d163f9adb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  weaponSize: 0
+  weightDamage: 5
 --- !u!114 &4053109314030965597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,14 +246,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammo: {fileID: 2397510304093750175, guid: f8fc3bea0ca001446ab145eb4a786908, type: 3}
   target: {fileID: 0}
+  weaponCam: {fileID: 0}
+  playerCam: {fileID: 0}
   damage: 6
   rate: 0.15
   force: 90
   distance: 20
+  ammoAmount: 30
   spawnPoint: {fileID: 4053109313341818727}
   equipped: 0
   thrown: 0
-  controlling: 0
+  pelletCount: 0
+  spreadAngle: 0
+  pelletTravelSpeed: 5
+  pellet: {fileID: 0}
 --- !u!1 &4053109314312239707
 GameObject:
   m_ObjectHideFlags: 0

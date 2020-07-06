@@ -73,10 +73,10 @@ public class WeaponShooting : MonoBehaviour
             shootTimer += Time.deltaTime;
             if (Input.GetKey(KeyCode.Mouse0) && shootTimer >= rate)
             {
-                if (this.tag.Equals("Shotgun"))
-                    shotgunHandler.ShotgunFire();
-                else
-                    ShootProjectile();
+                //if (this.tag.Equals("Shotgun"))
+                //    shotgunHandler.ShotgunFire();
+                //else
+                //    ShootProjectile();
                 shootTimer = 0;
             }
 
