@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeesPlayer : MonoBehaviour
+public class SeesPlayer : FsmCondition
 {
     [SerializeField]
     private Transform targetObject = null;
@@ -11,16 +11,18 @@ public class SeesPlayer : MonoBehaviour
     [SerializeField]
     private float maxVisionDistance = 15.0f;
 
+    private bool isAlerted = false;
+
     private void Update() {
-        if(CheckIfTargetIsWithinVision()){
-            
-        Debug.Log("Enemy can see the player" );
-        }else{
-        Debug.Log("Player Out of sight" );
-        }
+        AlertOtherMinionsOfTargetWithinVision();
+        
     }
 
-    private bool CheckIfTargetIsWithinVision(){
+    public Transform getTargetObjectTransform(){
+        return targetObject;
+    }
+
+    public bool CheckIfTargetIsWithinVision(){
         Vector3 targetDirection = targetObject.position - transform.position;
         float angle = Vector3.Angle(targetDirection, transform.forward);
 
@@ -28,8 +30,33 @@ public class SeesPlayer : MonoBehaviour
         //Debug.Log("angle: " + angle);
         //Debug.Log("Vector3 Distance between player and Enemy: " + targetDirection.magnitude);
 
+        
 
-        return angle < visionRange && ( targetDirection.magnitude < maxVisionDistance && targetDirection.magnitude >= 0)  ;
+        return angle < visionRange && ( targetDirection.magnitude < maxVisionDistance && targetDirection.magnitude >= 0);
+
     }
 
+    public override bool IsSatisfied(FsmState curr, FsmState next){
+
+        return CheckIfTargetIsWithinVision();
+    }
+
+
+
+
+    public void AlertOtherMinionsOfTargetWithinVision(){
+        
+        if(CheckIfTargetIsWithinVision()){
+            
+            foreach(Transform currentEnemyInRoom in this.transform.parent.transform){
+                WasAlerted enemyAlerted = currentEnemyInRoom.gameObject.GetComponent<WasAlerted>();
+                if(enemyAlerted != null && !currentEnemyInRoom.gameObject.Equals(this.gameObject))
+                {
+                    Debug.Log(this.gameObject.name + ": Alerting " + currentEnemyInRoom.gameObject.name + " with target position " + targetObject.position );
+                    enemyAlerted.AlertWithTargetLastKnownPosition(targetObject.position);
+                }
+            }
+        }
+        
+    } 
 }

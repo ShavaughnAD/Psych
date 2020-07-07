@@ -67,18 +67,40 @@ public class WeaponShooting : MonoBehaviour
 
     public void ShootProjectile()
     {
+        Debug.Log("Firing - (⌐■_■)–︻╦╤─<<- - -");
+
         shootTimer += Time.deltaTime;
         if (Input.GetKey(KeyCode.Mouse0))
         {
             if (shootTimer >= rate)
             {
-                GameObject bullet = objectpooler.SpawnFromPool("Bullet", spawnPoint.position, spawnPoint.rotation);
-                //GameObject bullet = Instantiate(ammo, spawnPoint.position, spawnPoint.rotation);
+               // GameObject bullet = objectpooler.SpawnFromPool("Bullet", spawnPoint.position, spawnPoint.rotation);
+                GameObject bullet = Instantiate(ammo, spawnPoint.position, spawnPoint.rotation);
                 bullet.GetComponent<Damage>().damage = damage;
                 bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * force;
                 shootTimer = 0;
                 //AudioManager.audioManager.Play("GunShot");
             }
         }
+    }
+
+    
+
+    public void EnemyShootProjectile()
+    {
+        
+        shootTimer += Time.deltaTime;
+    
+        if (shootTimer >= rate)
+        {
+            Debug.Log("Firing - (⌐■_■)–︻╦╤─<<- - -");
+            // GameObject bullet = objectpooler.SpawnFromPool("Bullet", spawnPoint.position, spawnPoint.rotation);
+            GameObject bullet = Instantiate(ammo, spawnPoint.position, spawnPoint.rotation);
+            bullet.GetComponent<Damage>().damage = damage;
+            bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * force;
+            shootTimer = 0;
+            //AudioManager.audioManager.Play("GunShot");
+        }
+        
     }
 }
