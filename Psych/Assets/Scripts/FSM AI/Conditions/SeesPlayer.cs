@@ -41,9 +41,6 @@ public class SeesPlayer : FsmCondition
         return CheckIfTargetIsWithinVision();
     }
 
-
-
-
     public void AlertOtherMinionsOfTargetWithinVision(){
         
         if(CheckIfTargetIsWithinVision()){
