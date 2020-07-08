@@ -6,6 +6,7 @@ public class Health : MonoBehaviour
     public float currentHealth = 0;
     public float damageTaken = 0;
     public float healingRecieved = 0;
+    public float damageReduction = 1; //Will be used to divide the damageAmount. Example, if the player gets hit with 5 damage, they will instead take 2.5
 
     public GameObject popup;
     public GameObject healingpopup;
@@ -26,7 +27,7 @@ public class Health : MonoBehaviour
     {
         if (immune) return;
         if (currentHealth <= 0) return;
-        currentHealth = Mathf.Clamp(currentHealth - damageAmount, 0, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth - Mathf.Round(damageAmount / damageReduction), 0, maxHealth);
         if (currentHealth == 0)
         {
             onDeath.CallEvent(0);
@@ -35,12 +36,7 @@ public class Health : MonoBehaviour
         {
             damageTaken = damageAmount;
             onHurt.CallEvent(currentHealth / maxHealth);
-            fullHealth = false;
-            if (popup)
-            {
-                DamageFloatingText();
-            }
-            
+            fullHealth = false;            
         }
     }
 

@@ -70,6 +70,7 @@ public class WeaponThrow : MonoBehaviour
         weaponRB.isKinematic = false;
         weaponRB.AddForce(Camera.main.transform.TransformDirection(Vector3.forward) * throwForce, ForceMode.Impulse);
         weaponRB.AddTorque(weaponRB.transform.TransformDirection(Vector3.right) * 100, ForceMode.Impulse);
+        weapon.GetComponent<Collider>().enabled = true;
         CameraManager.cameraManager.playerMovement.isBeingControlled = true;
     }
 
@@ -80,6 +81,7 @@ public class WeaponThrow : MonoBehaviour
         isReturning = true;
         weaponRB.velocity = Vector3.zero;
         weaponRB.isKinematic = true;
+        weapon.GetComponent<Collider>().enabled = false;
         CameraManager.cameraManager.ActivatePlayerCamera();
         CameraManager.cameraManager.playerMovement.isBeingControlled = true;
     }

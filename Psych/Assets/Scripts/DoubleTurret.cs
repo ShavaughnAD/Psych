@@ -4,76 +4,162 @@ using UnityEngine;
 
 public class DoubleTurret : MonoBehaviour
 {
+    private float disengageTimer = 0;
+    private Transform target = null;
+    private bool realigning = false;
+    private bool shotReady = true;
+    private bool firing1 = false;
 
-    private GameObject target;
-    public GameObject TurretHead1;
-    public GameObject TurretHead2;
-    public GameObject Bullet;
-    /*public GameObject BulletRotation;*/
-    public GameObject BulletSpawnPoint1;
-    public GameObject BulletSpawnPoint2;
+    [Header("Targeting Variables")]
+    [SerializeField] private LayerMask mask;
+    [SerializeField] private float distance = 15;
+    [SerializeField] private float speed = 100;
+    [SerializeField] private float cancelTime = 0.4f;
 
-    private bool targetIsLocked;
-    public float fireTimer;
-    private bool shotReady;
-    public float bulletSpeed = 50f;
-    private bool firing1;
+    [Header("Shooting Variables")]
+    [SerializeField] private GameObject ammo = null;
+    [SerializeField] private float rate = 0.75f;
 
-    void Start()
-    {
-        shotReady = true;
-        firing1 = false;
-    }
+    [Header("Turret Parts")]
+    [SerializeField] private Transform turretPivot = null;
+    [SerializeField] private Transform turretSight = null;
+    [SerializeField] private Transform turretLeftMuzzle = null;
+    [SerializeField] private Transform turretRightMuzzle = null;
+    [SerializeField] private ParticleSystem leftMuzzleFlash;
+    [SerializeField] private ParticleSystem rightMuzzleFlash;
+
+    [Header("Oscillation Variables")]
+    [SerializeField] private float oscillateSpeed = 0.7f;
+    [SerializeField] private float oscillateAngle = 60;
 
     void Update()
     {
-        if (targetIsLocked)
+        if (target == null)
         {
-            TurretHead1.transform.LookAt(target.transform);
-            TurretHead2.transform.LookAt(target.transform);
-
-            if (shotReady)
+            if (realigning)
             {
-                Shoot();
+                Realignment();
+            }
+            else
+            {
+                Oscillate();
+            }
+        }
+        else
+        {
+            Targeting();
+        }
+    }
+
+    void Targeting()
+    {
+        Vector3 targetPosition = new Vector3(target.position.x, turretPivot.position.y, target.position.z);
+        Vector3 targetDirection = targetPosition - turretPivot.position;
+        Vector3 newDirection = Vector3.RotateTowards(turretPivot.forward, targetDirection, speed * Time.deltaTime, 0f);
+        turretPivot.rotation = Quaternion.LookRotation(newDirection);
+
+        float half = (360f - (oscillateAngle * 2f)) / 2f;
+
+        if (turretPivot.localRotation.eulerAngles.y > oscillateAngle && turretPivot.localRotation.eulerAngles.y < oscillateAngle + half)
+        {
+            turretPivot.localRotation = Quaternion.Euler(new Vector3(0, oscillateAngle, 0));
+        }
+        else if (turretPivot.localRotation.eulerAngles.y < 360 - oscillateAngle && turretPivot.localRotation.eulerAngles.y >= oscillateAngle + half)
+        {
+            turretPivot.localRotation = Quaternion.Euler(new Vector3(0, 360 - oscillateAngle, 0));
+        }
+
+        ShootProjectile();
+        DisengageCheck();
+    }
+
+    void Oscillate()
+    {
+        float Y = Mathf.Cos(oscillateSpeed * Time.time) * oscillateAngle;
+        turretPivot.localRotation = Quaternion.Euler(0, Y, 0);
+        TargetSearch();
+    }
+
+    void TargetSearch()
+    {
+        RaycastHit hit;
+        Ray ray = new Ray(turretSight.position, turretSight.forward);
+        if (Physics.Raycast(ray, out hit, distance, mask))
+        {
+            if (hit.collider.tag == "Player")
+            {
+                target = hit.transform;
             }
         }
     }
 
-    void Shoot()
+    void DisengageCheck()
     {
-        if (!firing1)
+        RaycastHit contact;
+        Ray rc = new Ray(turretSight.position, turretSight.forward);
+        if (Physics.Raycast(rc, out contact, distance, mask))
         {
-            Transform _bullet = Instantiate(Bullet.transform, BulletSpawnPoint1.transform.position, BulletSpawnPoint1.transform.rotation);
-            _bullet.transform.rotation = BulletSpawnPoint1.transform.rotation;
-            _bullet.transform.Rotate(-90, 0, 0);
-            firing1 = true;
+            if (contact.collider.tag == "Player`")
+            {
+                disengageTimer = 0;
+            }
+            else
+            {
+                disengageTimer += Time.deltaTime;
+            }
         }
         else
         {
-            Transform _bullet = Instantiate(Bullet.transform, BulletSpawnPoint2.transform.position, BulletSpawnPoint2.transform.rotation);
-            _bullet.transform.rotation = BulletSpawnPoint2.transform.rotation;
-            /*_bullet.transform.Rotate(-90, 0, 0);*/
-            firing1 = false;
+            disengageTimer += Time.deltaTime;
         }
-       
 
-        shotReady = false;
-        StartCoroutine(FireRate());
+        if (disengageTimer >= cancelTime)
+        {
+            realigning = true;
+            target = null;
+        }
+    }
+    void Realignment()
+    {
+        float Y = Mathf.Cos(oscillateSpeed * Time.time) * oscillateAngle;
+        if (Y < 0)
+        {
+            Y = 360 + Y;
+        }
+        float difference = Mathf.Abs(Y - turretPivot.localRotation.eulerAngles.y);
+
+        if (difference <= 10f)
+        {
+            realigning = false;
+        }
+        TargetSearch();
+    }
+
+    void ShootProjectile()
+    {
+        if (shotReady)
+        {
+            if (!firing1)
+            {
+                GameObject bullet = Instantiate(ammo, turretLeftMuzzle.position, turretLeftMuzzle.rotation);
+                leftMuzzleFlash.Play();
+                firing1 = true;
+            }
+            else
+            {
+                GameObject shot = Instantiate(ammo, turretRightMuzzle.position, turretRightMuzzle.rotation);
+                rightMuzzleFlash.Play();
+                firing1 = false;
+            }
+            shotReady = false;
+            StartCoroutine(FireRate());
+
+        }
     }
 
     IEnumerator FireRate()
     {
-        yield return new WaitForSeconds(fireTimer);
+        yield return new WaitForSeconds(rate);
         shotReady = true;
     }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Player")
-        {
-            target = other.gameObject;
-            targetIsLocked = true;
-        }
-    }
-
 }

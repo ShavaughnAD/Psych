@@ -1,14 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PowerManager : MonoBehaviour
 {
-
-    [SerializeField] float power = 50f;
-    GameObject bar;
-    GameObject powerRadar;
+    public static PowerManager powerManager;
+    public float power = 50f;
+    public float maxPower = 50;
+    public bool drainPower = false;
+    public Image powerBar;
+    public Text powerText;
     bool isStasis = false;
     float timer = 0f;
     float secondCount = 1f;
@@ -16,32 +16,43 @@ public class PowerManager : MonoBehaviour
     Color normalMode = new Color(0f, 0.2878585f, 1f, 1f);
     Color stasisMode = new Color(0.7137255f, 0.2313726f, 1f, 1f);
 
-    private void Start()
+    void Awake()
     {
-        bar = GameObject.Find("Bar");
-        powerRadar = GameObject.Find("PowerRadar");
-        powerRadar.GetComponent<Image>().color = normalMode;
+        powerManager = this;
+        power = maxPower;
     }
 
-    private void Update()
+    private void Start()
+    {
+        powerBar = GameObject.FindGameObjectWithTag("PowerBar").GetComponent<Image>();
+        powerBar.color = normalMode;
+    }
+
+    void Update()
     {
         if (power <= 0)
         {
             isStasis = true;
-            powerRadar.GetComponent<Image>().color = stasisMode;
+            WeaponThrow.weaponThrow.ReturnWeapon();
+            powerBar.color = stasisMode;
         }
 
         timer += Time.deltaTime;
-        if (timer > secondCount)
+        if (timer > secondCount && drainPower == false)
             PowerUp();
+
+        if (drainPower)
+        {
+            DecrementPower(5 * Time.deltaTime);
+        }
     }
 
     public bool DecrementPower(float valueDeducted)
     {
-        power = (power - valueDeducted);
+        power = Mathf.Clamp(power - valueDeducted, 0, maxPower);
         if (power >= 0)
         {
-            bar.transform.localScale = new Vector3(power * 0.02f, 1f);
+            powerBar.fillAmount = power / maxPower;
             return true;
         }
         else
@@ -54,20 +65,19 @@ public class PowerManager : MonoBehaviour
     void PowerUp()
     {
         timer -= secondCount;
-        if(power < 50)
+        if(power < maxPower)
         {
             if(isStasis)
                 power += 0.5f;
             else
                 power += 1;
 
-            bar.transform.localScale = new Vector3(power * 0.02f, 1f);
+            powerBar.fillAmount = power / maxPower;
         }
         else
         {
-            powerRadar.GetComponent<Image>().color = normalMode;
+            powerBar.color = normalMode;
             isStasis = false;
         }
     }
-
 }

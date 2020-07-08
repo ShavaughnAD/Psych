@@ -5,10 +5,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public GameObject weapon;
     CharacterController characterController;
-    WeaponThrow weaponThrow;
+    public Light flashlight;
 
     public float speed = 6;
-    public float jumpHeight = 8;
     public float gravity = 20;
 
     Vector3 moveDir = Vector3.zero;
@@ -18,34 +17,37 @@ public class PlayerMovement : MonoBehaviour
     public float camYSensitivity = 1;
 
     public bool isBeingControlled = false;
+    bool isFlashlightOn = false;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        weaponThrow = GetComponent<WeaponThrow>();
+        flashlight = GameObject.FindGameObjectWithTag("Flashlight").GetComponent<Light>();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
     {
-        Movement();
-        CamControls();
+        CharacterControllerMovement();
+        Flashlight();
         WeaponMovement();
-        GetCursor();
         ObjectHandlers();
     }
 
-    void Movement()
+    void LateUpdate()
     {
-        if (characterController.isGrounded)
-        {
-            float horizontal = Input.GetAxis("Horizontal");
-            float vertical = Input.GetAxis("Vertical");
-            moveDir = new Vector3(horizontal, 0, vertical);
-            moveDir *= speed;
-        }
-        moveDir.y -= gravity * Time.deltaTime;
+        CamControls();
+    }
+
+    void CharacterControllerMovement()
+    {
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+        moveDir = new Vector3(horizontal, 0, vertical);
+        moveDir *= speed;
         moveDir = transform.TransformDirection(moveDir);
+
+        moveDir.y = moveDir.y + Physics.gravity.y;
         characterController.Move(moveDir * Time.deltaTime);
     }
 
@@ -64,6 +66,22 @@ public class PlayerMovement : MonoBehaviour
         playerCam.gameObject.transform.localRotation = Quaternion.AngleAxis(rotationX.x, Vector3.right);
     }
 
+    void Flashlight()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (!isFlashlightOn)
+            {
+                flashlight.enabled = true;
+            }
+            else
+            {
+                flashlight.enabled = false;
+            }
+            isFlashlightOn = !isFlashlightOn;
+        }
+    }
+
     void WeaponMovement()
     {
         if (isBeingControlled == false)
@@ -75,24 +93,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void GetCursor()
-    {
-        if (Input.GetKeyDown("escape"))
-        {
-            Cursor.lockState = CursorLockMode.None;
-        }
-    }
-
     void ObjectHandlers()
     {
-        if (Input.GetKey(KeyCode.Alpha9))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            GetComponent<ObjectHandler>().ObjectPickUP();
-        }
-
-        if (Input.GetKey(KeyCode.Alpha0))
-        {
-            GetComponent<ObjectHandler>().ThrowObject();
+            if (!PlayerAim.aim.isCarryingObject)
+            {
+                PlayerAim.aim.ObjectPickUP();
+            }
+            else
+            {
+                PlayerAim.aim.ThrowObject();
+            }
         }
     }
 }
