@@ -363,6 +363,7 @@ GameObject:
   - component: {fileID: 328626044}
   - component: {fileID: 328626043}
   - component: {fileID: 328626047}
+  - component: {fileID: 328626048}
   m_Layer: 11
   m_Name: Object 2
   m_TagString: Selectable
@@ -460,6 +461,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &328626048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328626042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade7577558dae0b47955afd647f6241e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useMaterial: 0
 --- !u!1 &436302868
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,6 +687,7 @@ GameObject:
   - component: {fileID: 815212885}
   - component: {fileID: 815212884}
   - component: {fileID: 815212888}
+  - component: {fileID: 815212889}
   m_Layer: 11
   m_Name: Object 3
   m_TagString: Selectable
@@ -771,6 +786,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &815212889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815212883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade7577558dae0b47955afd647f6241e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useMaterial: 0
 --- !u!1 &1181620443 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6977972492367185429, guid: 39f555063808e20409df1c5125fee58b,
@@ -1019,6 +1047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 50
+  maxPower: 50
   drainPower: 0
   powerBar: {fileID: 1241407354}
   powerText: {fileID: 0}
@@ -1275,12 +1304,16 @@ MonoBehaviour:
   pickUpMask:
     serializedVersion: 2
     m_Bits: 2048
+  bulletForce: 30
   ammo: 0
-  highlightMaterial: {fileID: 2100000, guid: 0e146bcc86aa80146b24006bf57a6fcf, type: 2}
-  defaultMaterial: {fileID: 2100000, guid: 632477125d4cb62429d84745cd498c0a, type: 2}
+  muzzleFlash: {fileID: 0}
+  impactEffect: {fileID: 0}
+  cam: {fileID: 0}
+  shootingAudio: {fileID: 0}
+  _selection: {fileID: 0}
   selectedObjectRB: {fileID: 0}
   selectedObjectCol: {fileID: 0}
-  shootingAudio: {fileID: 0}
+  objectRBinHand: {fileID: 0}
   attractSpeed: 7
   throwSpeed: 30
   isCarryingObject: 0
@@ -1316,6 +1349,7 @@ GameObject:
   - component: {fileID: 1946015182}
   - component: {fileID: 1946015181}
   - component: {fileID: 1946015185}
+  - component: {fileID: 1946015186}
   m_Layer: 11
   m_Name: Object 1
   m_TagString: Selectable
@@ -1413,3 +1447,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1946015186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946015180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade7577558dae0b47955afd647f6241e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useMaterial: 0

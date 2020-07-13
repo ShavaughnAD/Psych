@@ -249,8 +249,8 @@ GameObject:
   - component: {fileID: 567958591068985420}
   - component: {fileID: 2953775156243391320}
   - component: {fileID: 2563851672228214090}
-  - component: {fileID: 1212044846073306356}
   - component: {fileID: 2087527863506578128}
+  - component: {fileID: 8072652272492954361}
   m_Layer: 11
   m_Name: HotPlate
   m_TagString: Selectable
@@ -346,21 +346,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.166845, y: 0.13513312, z: 0.2643291}
-  m_Center: {x: -0.0043245004, y: 0.03171181, z: 0.0033818302}
---- !u!65 &1212044846073306356
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5961388704014088426}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.14966288, y: 0.13513312, z: 0.21614778}
-  m_Center: {x: -0.0043245004, y: 0.03171181, z: 0.0033818302}
+  m_Size: {x: 0.11978317, y: 0.05368047, z: 0.21956526}
+  m_Center: {x: -0.0013558452, y: 0.03820916, z: -0.0010850666}
 --- !u!114 &2087527863506578128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +362,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponSize: 0
   weightDamage: 5
+--- !u!65 &8072652272492954361
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5961388704014088426}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.11978317, y: 0.05368047, z: 0.21956526}
+  m_Center: {x: -0.0013558452, y: 0.03820916, z: -0.0010850666}
 --- !u!1 &6396909823065878627
 GameObject:
   m_ObjectHideFlags: 0

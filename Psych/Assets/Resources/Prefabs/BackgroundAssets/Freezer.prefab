@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2179864701898926591}
   - component: {fileID: 6260983747924133098}
   - component: {fileID: 4867200296245351056}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: bolt1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 5651378411294389804}
   - component: {fileID: 150514263645043082}
   - component: {fileID: 1068645214982753935}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Insulation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,9 +167,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3103859668798622914}
-  m_Layer: 0
+  - component: {fileID: -4509406617774935616}
+  - component: {fileID: -7518808803566289938}
+  - component: {fileID: 5618740578047963042}
+  - component: {fileID: 6516057589497495434}
+  m_Layer: 11
   m_Name: Freezer
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,6 +197,62 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &-4509406617774935616
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110013617007083217}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &-7518808803566289938
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110013617007083217}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.37325457, y: 0.42941004, z: 0.38973528}
+  m_Center: {x: -0.003907466, y: 0.21464083, z: 0.0040138923}
+--- !u!65 &5618740578047963042
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110013617007083217}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.37325457, y: 0.42941004, z: 0.38973528}
+  m_Center: {x: -0.003907466, y: 0.21464083, z: 0.0040138923}
+--- !u!114 &6516057589497495434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110013617007083217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79172ba8ef4fae14db98f2d163f9adb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponSize: 0
+  weightDamage: 5
 --- !u!1 &2794800694815231658
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1331421761189736835}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +301,7 @@ GameObject:
   - component: {fileID: 2536795942948735585}
   - component: {fileID: 8181279176259988378}
   - component: {fileID: 5688348472217279782}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +380,7 @@ GameObject:
   - component: {fileID: 4706071281809885483}
   - component: {fileID: 5193046206583062902}
   - component: {fileID: 4684550259082020685}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: hinge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,7 +459,7 @@ GameObject:
   - component: {fileID: 743331975494013608}
   - component: {fileID: 395746813681103589}
   - component: {fileID: 2856248219101046969}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: knob2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -478,7 +538,7 @@ GameObject:
   - component: {fileID: 5210318484725533671}
   - component: {fileID: 5290557653204611651}
   - component: {fileID: 6469362756498295445}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: knob1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -557,7 +617,7 @@ GameObject:
   - component: {fileID: 1758369082991747536}
   - component: {fileID: 96852432848041248}
   - component: {fileID: 4552376278651192396}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -636,7 +696,7 @@ GameObject:
   - component: {fileID: 9196479298581204656}
   - component: {fileID: 6505095662300626557}
   - component: {fileID: 4631126690687013455}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: bolt2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -715,7 +775,7 @@ GameObject:
   - component: {fileID: 1555460067098635136}
   - component: {fileID: 2676231914124163574}
   - component: {fileID: 5478441548203129260}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -794,7 +854,7 @@ GameObject:
   - component: {fileID: 2425664989607591753}
   - component: {fileID: 3092648978801091299}
   - component: {fileID: 1050264406561658085}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -873,7 +933,7 @@ GameObject:
   - component: {fileID: 4499183462166173651}
   - component: {fileID: 8939729972017102838}
   - component: {fileID: 3531209274651273862}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Grill
   m_TagString: Untagged
   m_Icon: {fileID: 0}

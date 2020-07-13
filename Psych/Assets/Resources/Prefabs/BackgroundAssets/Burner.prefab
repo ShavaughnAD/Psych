@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7709355253977585315}
   - component: {fileID: 4569544584804230599}
   - component: {fileID: 2944231070777766907}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: StopCock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,9 +88,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3797103965812819176}
-  m_Layer: 0
-  m_Name: Burner 1
-  m_TagString: Untagged
+  - component: {fileID: 2177996478597055600}
+  - component: {fileID: 3320444252548240882}
+  - component: {fileID: 101403497580089148}
+  - component: {fileID: 7038399589080847473}
+  m_Layer: 11
+  m_Name: Burner
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,6 +119,62 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &2177996478597055600
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209800186901755643}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &3320444252548240882
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209800186901755643}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.11482621, y: 0.13737892, z: 0.08058087}
+  m_Center: {x: 0.015954785, y: 0.06476401, z: -0.00075919164}
+--- !u!65 &101403497580089148
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209800186901755643}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.116439424, y: 0.13726762, z: 0.08077661}
+  m_Center: {x: 0.0158393, y: 0.064609, z: -0.0003895015}
+--- !u!114 &7038399589080847473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209800186901755643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79172ba8ef4fae14db98f2d163f9adb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponSize: 0
+  weightDamage: 5
 --- !u!1 &2009941326480513338
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +186,7 @@ GameObject:
   - component: {fileID: 8809360256636943667}
   - component: {fileID: 867477250521540098}
   - component: {fileID: 6610737087953731734}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,7 +265,7 @@ GameObject:
   - component: {fileID: 1888348310942971131}
   - component: {fileID: 3165915597078398406}
   - component: {fileID: 1461707888411022647}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Shift
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,7 +344,7 @@ GameObject:
   - component: {fileID: 3494641969501660773}
   - component: {fileID: 4722509310187348948}
   - component: {fileID: 2944148710911976171}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +423,7 @@ GameObject:
   - component: {fileID: 4995577324079889625}
   - component: {fileID: 3292614872312952935}
   - component: {fileID: 6349689648580648553}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -442,7 +502,7 @@ GameObject:
   - component: {fileID: 6580946482435366942}
   - component: {fileID: 304814826198913409}
   - component: {fileID: 6865443820144319273}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Snoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
