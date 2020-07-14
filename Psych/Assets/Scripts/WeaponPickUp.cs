@@ -1,20 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WeaponPickUp : MonoBehaviour
 {
     public WeaponThrow playerWeapon;
-    BoxCollider boxCollider;
     WeaponShooting weaponShooting;
     Rigidbody weaponRB = null;
     public bool pickedUp = false;
+
+    bool isPlayerHere = false;
+
     void Start()
     {
         playerWeapon = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponThrow>();
         weaponRB = GetComponent<Rigidbody>();
         weaponShooting = GetComponent<WeaponShooting>();
-        boxCollider = GetComponent<BoxCollider>();
         if (weaponShooting.equipped)
         {
             pickedUp = true;
@@ -27,17 +26,30 @@ public class WeaponPickUp : MonoBehaviour
         }
     }
 
-    void OnTriggerStay(Collider other)
+    void Update()
     {
-        if (other.tag == "Player" && pickedUp == false)
+        if (isPlayerHere == true && pickedUp == false)
         {
-            Debug.LogError("Player Here");
-
             if (Input.GetKeyDown(KeyCode.E))
             {
                 PickUp();
-                boxCollider.isTrigger = false;
             }
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            isPlayerHere = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            isPlayerHere = false;
         }
     }
 
@@ -61,7 +73,6 @@ public class WeaponPickUp : MonoBehaviour
         playerWeapon.weapon = null;
         playerWeapon.weaponRB.isKinematic = false;
         playerWeapon.weaponRB = null;
-        boxCollider.isTrigger = true;
 
         //Assign new variables
         Equip();

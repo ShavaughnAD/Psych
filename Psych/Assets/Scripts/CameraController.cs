@@ -1,17 +1,22 @@
 ﻿using UnityEngine;
 
-//Reference: gamesplusjames. (20170. Make A 3D Platformer in Unity #6: Moving With Camera Rotation
 public class CameraController : MonoBehaviour
 {
+    #region Variables
+
     public Transform target;
     public Transform pivot;
     public Vector3 offset;
     public bool useOffsetValues;
     public float rotSpeed;
-    public float inAirMoveSpeed;
     public float moveSpeed;
 
     WeaponThrow weaponThrow;
+
+    public float rotationSpeed = 1f;
+    float mouseX, mouseY;
+
+    #endregion
 
     void Start()
     {
@@ -30,38 +35,35 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        float vertical = Input.GetAxis("Mouse Y") * rotSpeed;
-        float horizontal = Input.GetAxis("Mouse X") * rotSpeed;
-        vertical = Mathf.Clamp(vertical, -35, 60);
-        float desiredYAngle = target.eulerAngles.y;
-        float desiredXAngle = pivot.eulerAngles.x;
-        Quaternion rot = Quaternion.Euler(desiredXAngle, desiredYAngle, 0);
-        transform.position = target.position - (rot * offset);
-        var d = Input.GetAxis("Mouse ScrollWheel");
+        mouseX += Input.GetAxis("Mouse X") * rotationSpeed;
+        mouseY -= Input.GetAxis("Mouse Y") * rotationSpeed;
+
         if (CameraManager.cameraManager.playerMovement.isBeingControlled && weaponThrow.isReturning == false)
         {
-            target.Rotate(0, horizontal, 0);
+            target.rotation = Quaternion.Euler(mouseY, mouseX, 0);
+            target.rotation = Quaternion.Euler(0, mouseX, 0);
+
+            #region Weapon Movement
+
             if (Input.GetKey(KeyCode.W))
             {
+                target.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 target.transform.Translate(Vector3.up * 1 * Time.deltaTime);
             }
             if (Input.GetKey(KeyCode.S))
             {
                 target.transform.Translate(Vector3.down * 1 * Time.deltaTime);
             }
-            //if (Input.GetKey(KeyCode.A))
-            //{
-            //    target.transform.Translate(Vector3.left * 1 * Time.deltaTime);
-            //}
-            //if (Input.GetKey(KeyCode.D))
-            //{
-            //    target.transform.Translate(Vector3.right * 1 * Time.deltaTime);
-            //}
-            //target.Rotate(-vertical, 0, 0);
-            //pivot.Rotate(vertical, 0, 0);
-            //pivot.Rotate(0, horizontal, 0);
-            transform.LookAt(target);
-            //pivot.Rotate(-vertical, 0, 0)
+            if (Input.GetKey(KeyCode.A))
+            {
+                target.transform.Translate(Vector3.left * 1 * Time.deltaTime);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                target.transform.Translate(Vector3.right * 1 * Time.deltaTime);
+            }
         };
+
+        #endregion
     }
 }

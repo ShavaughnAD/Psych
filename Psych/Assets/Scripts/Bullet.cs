@@ -19,7 +19,6 @@ public class Bullet : MonoBehaviour
             other.GetComponent<Health>().TakeDamage(damage);
             gameObject.SetActive(false);
         }
-        Debug.Log(other.name + " was Hit");
         gameObject.SetActive(false);
     }
 }

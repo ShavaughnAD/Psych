@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+//Reference: Brackeys. (2017). Shooting with Raycasts - Unity Tutorial. Retrieved from https://www.youtube.com/watch?v=THnivyG0Mvo
 public class PlayerAim : MonoBehaviour
 {
     public static PlayerAim aim;
@@ -9,25 +10,33 @@ public class PlayerAim : MonoBehaviour
     float shootTimer = 0;
     float rate = 0;
     float damage;
+    public float bulletForce = 30;
     public int ammo;
+    public ParticleSystem muzzleFlash;
+    public GameObject impactEffect;
+    public Camera cam;
     Vector3 centerScreen;
 
-    [SerializeField] private Material highlightMaterial;
-    [SerializeField] private Material defaultMaterial;
-    private Transform _selection;
-    public Rigidbody selectedObjectRB = null;
     public AudioSource shootingAudio;
 
+    #region Picking Up Objects Variables
+
+    public Transform _selection;
+    public Rigidbody selectedObjectRB = null;
+    public Collider selectedObjectCol = null;
     GameObject attractTarget;
     Vector3 targetPosition;
     Vector3 objectRBPosition;
     Rigidbody objectRB = null;
     Rigidbody objectRBinHand = null;
+    Collider objectColinHand = null;
     bool isPowerSufficient = false;
     [SerializeField] float attractSpeed = 7f;
     [SerializeField] float throwSpeed = 30f;
     public bool isCarryingObject = false;
     public bool isAttracting = false;
+
+    #endregion
 
     void Awake()
     {
@@ -46,7 +55,7 @@ public class PlayerAim : MonoBehaviour
             MoveToTarget();
 
         centerScreen = new Vector3(0.5f, 0.5f, 100);
-        Ray ray = Camera.main.ViewportPointToRay(centerScreen);
+        Ray ray = cam.ViewportPointToRay(centerScreen);
         RaycastHit hit;
 
         shootTimer += Time.deltaTime;
@@ -54,24 +63,36 @@ public class PlayerAim : MonoBehaviour
         {
             if (shootTimer >= rate  && ammo  > 0)
             {
+                muzzleFlash.Play();
                 ammo--;
                 shootTimer = 0;
-                AudioManager.audioManager.Play("GunShot", shootingAudio);
+
+                //AudioManager.audioManager.Play("GunShot", shootingAudio);
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, enemyMask))
                 {
-                    Debug.LogError(WeaponThrow.weaponThrow.weapon.GetComponent<WeaponShooting>().damage);
-                    hit.collider.GetComponent<Health>().TakeDamage(damage);
-                    //AudioManager.audioManager.Play("GunShot");
-
+                    Debug.Log(hit.collider.name);
+                    if (hit.collider.GetComponent<Health>() != null)
+                    {
+                        hit.collider.GetComponent<Health>().TakeDamage(damage);
+                    }
+                    if (hit.collider.GetComponent<Rigidbody>() != null)
+                    {
+                        Debug.Log("Rigidbody Detected");
+                        hit.collider.GetComponent<Rigidbody>().AddForce(-hit.normal * bulletForce);
+                    }
                 }
+                //The line below doesn't work ;(
+                //Returning Null Reference for Some Strange Reason. Check for Duplicate Script or Debug
+                // GameObject impact = Instantiate(impactEffect, hit.collider.transform.position, hit.collider.transform.rotation);
+                //Destroy(impact, 2);
             }
         }
 
 
         if (_selection != null)
         {
-            var selectionRenderer = _selection.GetComponent<Renderer>();
-            selectionRenderer.material = defaultMaterial;
+            //var selectionRenderer = _selection.GetComponent<Renderer>();
+            //selectionRenderer.material = defaultMaterial;
             selectedObjectRB = null;
             _selection = null;
         }
@@ -81,31 +102,44 @@ public class PlayerAim : MonoBehaviour
             var selection = hit.transform;
             if (selection.CompareTag("Selectable") || selection.CompareTag("Enemy"))
             {
-                var selectionRenderer = selection.GetComponent<Renderer>();
-                if (selectionRenderer != null)
-                {
-                    selectionRenderer.material = highlightMaterial;
-                    selectedObjectRB = selectionRenderer.GetComponent<Rigidbody>();
-                }
+                selectedObjectRB = selection.GetComponent<Rigidbody>();
+                selectedObjectCol = selection.GetComponent<Collider>();
+                //var selectionRenderer = selection.GetComponent<Renderer>();
+                //if (selectionRenderer != null)
+                //{
+                //    selectionRenderer.material = highlightMaterial;
+                //    selectedObjectRB = selectionRenderer.GetComponent<Rigidbody>();
+                //    selectedObjectCol = selectionRenderer.GetComponent<Collider>();
+                //}
 
                 _selection = selection;
             }
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            EmptyHand();
         }
     }
 
     public void UpdateCurrentWeaponStats(float weaponRateOfFire, float weaponDamage, int ammoAmount)
     {
+        //Need to Add Camera
+        //Need to add ParticleSystem
         damage = weaponDamage;
         rate = weaponRateOfFire;
         ammo = ammoAmount;
     }
+
+    #region Pick Up & Throw Objects
 
     public void ObjectPickUP()
     {
         if(selectedObjectRB != null)
         {
             objectRB = selectedObjectRB;
-            objectRB.GetComponent<Collider>().enabled = true; //Make the Collider a variable later to save the Frames :D
+            //selectedObjectCol.enabled = true; //Make the Collider a variable later to save the Frames :D
             objectRB.rotation = Quaternion.Euler(Vector3.zero);
 
             if (objectRB != null && isCarryingObject != true)
@@ -115,6 +149,8 @@ public class PlayerAim : MonoBehaviour
                 {
                     return;
                 }
+                objectColinHand = selectedObjectCol;
+                selectedObjectCol.enabled = false;
                 objectRBinHand = objectRB;
                 objectRBinHand.isKinematic = true;
                 isCarryingObject = true;
@@ -131,15 +167,18 @@ public class PlayerAim : MonoBehaviour
             isCarryingObject = false;
             objectRBinHand.transform.parent = null;
             objectRBinHand.isKinematic = false;
+            objectColinHand.enabled = true;
             objectRBinHand.tag = "Selectable";
 
+            objectRBinHand.AddForce(Camera.main.ViewportPointToRay(centerScreen).direction * throwSpeed, ForceMode.Impulse);
+
             //Vector3 velocity = SetThrowVelocity(objectRBinHand, targetPoint, throwSpeed);
-            Vector3 velocity = SetThrowVelocity(objectRBinHand, centerScreen, throwSpeed);
-            if (velocity != Vector3.zero)
-            {
+            //Vector3 velocity = SetThrowVelocity(objectRBinHand, centerScreen, throwSpeed);
+            //if (velocity != Vector3.zero)
+            //{
                 //objectRBinHand.AddForce(velocity, ForceMode.VelocityChange);
-                objectRBinHand.AddForce(Camera.main.ViewportPointToRay(centerScreen).direction * throwSpeed, ForceMode.Impulse);
-            }
+            //    objectRBinHand.velocity = (centerScreen - Camera.main.transform.position) * throwSpeed;
+            //}
         }
     }
 
@@ -183,4 +222,16 @@ public class PlayerAim : MonoBehaviour
         Vector3 velocity = new Vector3(vx, vy, vz);
         return velocity;
     }
+
+    public void EmptyHand()
+    {
+        isCarryingObject = false;
+        objectRBinHand.isKinematic = false;
+        objectRBinHand.transform.parent = null;
+        objectColinHand.enabled = true;
+        objectRBinHand.tag = "Selectable";
+        _selection = null;
+    }
+
+    #endregion
 }
