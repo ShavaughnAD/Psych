@@ -11,12 +11,10 @@ public class PauseMenu : MonoBehaviour
     public bool isPaused = false;
 
     PlayerMovement playerMovement;
-    CameraController weaponCam;
 
     void Start()
     {
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        weaponCam = CameraManager.cameraManager.cameraController;
         crosshair = GameObject.FindGameObjectWithTag("Crosshair");
     }
 
@@ -32,7 +30,7 @@ public class PauseMenu : MonoBehaviour
                 Cursor.visible = true;
                 pauseMenuBackground.SetActive(true);
                 playerMovement.enabled = false;
-                weaponCam.enabled = false;
+                CameraManager.cameraManager.cameraController.enabled = false;
                 crosshair.SetActive(false);
             }
             else
@@ -55,7 +53,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = false;
         pauseMenuBackground.SetActive(false);
         playerMovement.enabled = true;
-        weaponCam.enabled = true;
+        CameraManager.cameraManager.cameraController.enabled = true;
         crosshair.SetActive(true);
     }
 

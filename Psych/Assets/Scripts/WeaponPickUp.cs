@@ -3,6 +3,9 @@
 public class WeaponPickUp : MonoBehaviour
 {
     public WeaponThrow playerWeapon;
+    public CameraController camController;
+    public Camera weaponCamera;
+    public Sprite weaponIcon;
     WeaponShooting weaponShooting;
     Rigidbody weaponRB = null;
     public bool pickedUp = false;
@@ -56,24 +59,30 @@ public class WeaponPickUp : MonoBehaviour
     void Equip()
     {
         playerWeapon.weapon = gameObject;
+        playerWeapon.weapon.GetComponent<WeaponShooting>().enabled = true;
         weaponShooting.equipped = true;
         pickedUp = true;
         gameObject.transform.parent = playerWeapon.transform;
         playerWeapon.weaponRB = weaponRB;
         playerWeapon.ReturnWeapon();
-        PlayerAim.aim.UpdateCurrentWeaponStats(weaponShooting.rate, weaponShooting.damage, weaponShooting.ammoAmount);
+        PlayerAim.aim.UpdateCurrentWeaponStats(weaponShooting.rate, weaponShooting.damage, weaponShooting.ammoAmount, weaponShooting.bulletTracer);
     }
 
     void PickUp()
     {
         //Unassign the current variables in player is using
-        playerWeapon.weapon.GetComponent<WeaponPickUp>().pickedUp = false;
-        playerWeapon.weapon.GetComponent<WeaponShooting>().equipped = false;
-        playerWeapon.weapon.transform.parent = null;
-        playerWeapon.weapon = null;
-        playerWeapon.weaponRB.isKinematic = false;
-        playerWeapon.weaponRB = null;
-
+        if (playerWeapon != null)
+        {
+            playerWeapon.weapon.GetComponent<BoxCollider>().enabled = true;
+            playerWeapon.weapon.GetComponent<WeaponPickUp>().pickedUp = false;
+            playerWeapon.weapon.GetComponent<WeaponShooting>().equipped = false;
+            CameraManager.cameraManager.cameraController.enabled = false;
+            playerWeapon.weapon.transform.parent = null;
+            playerWeapon.weapon = null;
+            playerWeapon.weaponRB.isKinematic = false;
+            playerWeapon.weaponRB = null;
+        }
+        CameraManager.cameraManager.AssignNewWeaponCam(camController, weaponCamera);
         //Assign new variables
         Equip();
     }
