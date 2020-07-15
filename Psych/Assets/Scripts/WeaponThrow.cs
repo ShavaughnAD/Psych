@@ -27,6 +27,9 @@ public class WeaponThrow : MonoBehaviour
     #endregion
     void Update()
     {
+        Vector3 centerScreen = new Vector3(0.5f, 0.5f, 100);
+        Ray ray = CameraManager.cameraManager.playerCam.ViewportPointToRay(centerScreen);
+        RaycastHit hit;
         #region Input
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
@@ -59,19 +62,27 @@ public class WeaponThrow : MonoBehaviour
                 ResetWeapon();
             }
         }
+
+        if (isThrown == false)
+        {
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            {
+                weapon.transform.LookAt(hit.point);
+            }
+        }
     }
 
     void ThrowWeapon()
     {
-        isReturning = false;
         isThrown = true;
         weapon.GetComponent<WeaponShooting>().thrown = true;
+        isReturning = false;
         weaponRB.transform.parent = null;
         weaponRB.isKinematic = false;
         weaponRB.AddForce(Camera.main.transform.TransformDirection(Vector3.forward) * throwForce, ForceMode.Impulse);
         weaponRB.AddTorque(weaponRB.transform.TransformDirection(Vector3.right) * 100, ForceMode.Impulse);
         weapon.GetComponent<Collider>().enabled = true;
-        CameraManager.cameraManager.playerMovement.isBeingControlled = true;
+        //CameraManager.cameraManager.playerMovement.isBeingControlled = true;
     }
 
     public void ReturnWeapon()
@@ -83,7 +94,7 @@ public class WeaponThrow : MonoBehaviour
         weaponRB.isKinematic = true;
         weapon.GetComponent<Collider>().enabled = false;
         CameraManager.cameraManager.ActivatePlayerCamera();
-        CameraManager.cameraManager.playerMovement.isBeingControlled = true;
+        //CameraManager.cameraManager.playerMovement.isBeingControlled = true;
     }
 
     void ResetWeapon()
@@ -93,7 +104,6 @@ public class WeaponThrow : MonoBehaviour
         weaponRB.transform.parent = transform;
         weaponRB.position = target.position;
         weaponRB.rotation = target.rotation;
-        Debug.LogError("Weapon Returned");
         weapon.GetComponent<WeaponShooting>().thrown = false;
         CameraManager.cameraManager.playerMovement.isBeingControlled = false;
     }

@@ -3,7 +3,6 @@
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameObject weapon;
     CharacterController characterController;
     public Light flashlight;
 
@@ -30,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
     {
         CharacterControllerMovement();
         Flashlight();
-        WeaponMovement();
         ObjectHandlers();
     }
 
@@ -82,16 +80,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void WeaponMovement()
-    {
-        if (isBeingControlled == false)
-        {
-            float x = Screen.width / 2;
-            float y = Screen.height / 2;
-            var ray = playerCam.ScreenPointToRay(new Vector3(x, y, 0));
-            weapon.transform.LookAt(playerCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 100)));
-        }
-    }
 
     void ObjectHandlers()
     {

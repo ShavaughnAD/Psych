@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 //Reference: Brackeys. (2017). Shooting with Raycasts - Unity Tutorial. Retrieved from https://www.youtube.com/watch?v=THnivyG0Mvo
 public class PlayerAim : MonoBehaviour
@@ -16,8 +17,10 @@ public class PlayerAim : MonoBehaviour
     public GameObject impactEffect;
     public Camera cam;
     Vector3 centerScreen;
-
+    public Sprite weaponIcon;
     public AudioSource shootingAudio;
+
+    public Text ammoText;
 
     #region Picking Up Objects Variables
 
@@ -41,7 +44,7 @@ public class PlayerAim : MonoBehaviour
     void Awake()
     {
         aim = this;
-        //shootingAudio = GetComponent<AudioSource>();
+        shootingAudio = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -51,6 +54,11 @@ public class PlayerAim : MonoBehaviour
 
     void Update()
     {
+        if (ammoText != null)
+        {
+            ammoText.text = ammo.ToString();
+        }
+
         if (isAttracting)
             MoveToTarget();
 
@@ -66,7 +74,6 @@ public class PlayerAim : MonoBehaviour
                 muzzleFlash.Play();
                 ammo--;
                 shootTimer = 0;
-
                 //AudioManager.audioManager.Play("GunShot", shootingAudio);
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, enemyMask))
                 {
@@ -123,10 +130,10 @@ public class PlayerAim : MonoBehaviour
         }
     }
 
-    public void UpdateCurrentWeaponStats(float weaponRateOfFire, float weaponDamage, int ammoAmount)
+    public void UpdateCurrentWeaponStats(float weaponRateOfFire, float weaponDamage, int ammoAmount, ParticleSystem bulletParticle)
     {
         //Need to Add Camera
-        //Need to add ParticleSystem
+        muzzleFlash = bulletParticle;
         damage = weaponDamage;
         rate = weaponRateOfFire;
         ammo = ammoAmount;
@@ -170,14 +177,15 @@ public class PlayerAim : MonoBehaviour
             objectColinHand.enabled = true;
             objectRBinHand.tag = "Selectable";
 
-            objectRBinHand.AddForce(Camera.main.ViewportPointToRay(centerScreen).direction * throwSpeed, ForceMode.Impulse);
+            //objectRBinHand.AddForce(Camera.main.transform.forward * throwSpeed, ForceMode.Impulse);
+            objectRBinHand.AddForce(CameraManager.cameraManager.playerCam.transform.TransformDirection(Vector3.forward) * throwSpeed, ForceMode.Impulse);
 
             //Vector3 velocity = SetThrowVelocity(objectRBinHand, targetPoint, throwSpeed);
             //Vector3 velocity = SetThrowVelocity(objectRBinHand, centerScreen, throwSpeed);
             //if (velocity != Vector3.zero)
             //{
-                //objectRBinHand.AddForce(velocity, ForceMode.VelocityChange);
-            //    objectRBinHand.velocity = (centerScreen - Camera.main.transform.position) * throwSpeed;
+            //    objectRBinHand.AddForce(velocity, ForceMode.VelocityChange);
+            //    objectRBinHand.velocity = Camera.main.transform.forward * throwSpeed;
             //}
         }
     }
@@ -225,12 +233,15 @@ public class PlayerAim : MonoBehaviour
 
     public void EmptyHand()
     {
-        isCarryingObject = false;
-        objectRBinHand.isKinematic = false;
-        objectRBinHand.transform.parent = null;
-        objectColinHand.enabled = true;
-        objectRBinHand.tag = "Selectable";
-        _selection = null;
+        if(isCarryingObject == true)
+        {
+            isCarryingObject = false;
+            objectRBinHand.isKinematic = false;
+            objectRBinHand.transform.parent = null;
+            objectColinHand.enabled = true;
+            objectRBinHand.tag = "Selectable";
+            _selection = null;
+        }
     }
 
     #endregion
