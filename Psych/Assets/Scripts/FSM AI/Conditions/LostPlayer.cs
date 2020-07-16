@@ -18,10 +18,15 @@ public class LostPlayer : FsmCondition
     private float waitTimeToLookForTarget;
     
     private SeesPlayer lineOfSight;
+    public Animator Anim;
 
     private void Awake() {
         lineOfSight = this.GetComponent<SeesPlayer>();
         float waitTimeToLookForTarget = maxWaitTimeToLookForTarget;
+    }
+     void Start()
+    {
+        Anim = GetComponent<Animator>();
     }
 
     private void Update() {
@@ -41,7 +46,7 @@ public class LostPlayer : FsmCondition
 
             if(waitTimeToLookForTarget <= 0){
                 Debug.Log("Gave up on the target - v( ･_･)v ???");
-
+                Anim.SetBool("CanAttack", false);
                 return true;
 
             }else{

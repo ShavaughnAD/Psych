@@ -14,12 +14,14 @@ public class AttackState : FsmState
     private Vector3 targetLastPosition;
     
     private NavMeshAgent enemyAgent;
+    public Animator Anim;
 
     
     private void Start() {
         enemyVision = this.GetComponent<SeesPlayer>();
         Debug.Log("ENTERING ATTACK STATE.");
         enemyAgent = this.GetComponent<NavMeshAgent>();
+        Anim = GetComponent<Animator>();
     }
 
     private void Update() {
@@ -47,7 +49,7 @@ public class AttackState : FsmState
 
     private void GetInAttackingRangeOfTarget(){
         if(enemyVision.CheckIfTargetIsWithinVision() ){
-            
+            Anim.SetBool("CanAttack", true);
             AttackTarget();
         }else{
 
@@ -56,6 +58,7 @@ public class AttackState : FsmState
     }
 
     private void AttackTarget(){
+        
         AimWeaponAtTarget();
         UseWeaponAtTarget();
     }
@@ -76,6 +79,7 @@ public class AttackState : FsmState
     
     private void UseWeaponAtTarget(){
         Debug.Log("Using weapon!");
+        
         currentWeapon.GetComponent<WeaponShooting>().EnemyShootProjectile();
     }
 
