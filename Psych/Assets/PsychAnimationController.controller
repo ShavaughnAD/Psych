@@ -170,11 +170,11 @@ AnimatorStateMachine:
     m_State: {fileID: -3272283153391395796}
     m_Position: {x: 210, y: 190, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 3267032367035858774}
-    m_Position: {x: 650, y: 30, z: 0}
-  - serializedVersion: 1
     m_State: {fileID: 9144984508614929351}
-    m_Position: {x: 665.7699, y: -55.87448, z: 0}
+    m_Position: {x: 410, y: -90, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 3212312904280303519}
+    m_Position: {x: 630, y: -10, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -185,14 +185,14 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -3161715534218855953}
---- !u!1102 &3267032367035858774
+--- !u!1102 &3212312904280303519
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PsychMeleeTailThrust2
+  m_Name: PsychMeleeTailThrust2Anim
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -205,7 +205,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8b0e92ec53ef35d48b1fdb76a9927bc5, type: 2}
+  m_Motion: {fileID: 7400000, guid: 3c4deb0626b985e4f813a7205ba9f560, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
