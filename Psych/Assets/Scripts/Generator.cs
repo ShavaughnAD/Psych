@@ -1,39 +1,70 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Generator : MonoBehaviour
 {
-    public Collider powercell;
-    public bool isHoldingBattery;
-    public int cells;
+    #region Variables
 
-    // Start is called before the first frame update
+    public int cells;
+    public GameObject[] cellInGenerator;
+
+    public GameObject  doorToOpen;
+    public GameObject lights;
+    GameObject cell;
+    PlayerAim playerAim;
+
+    #endregion
+
     void Start()
     {
-        cells = 0;
+        playerAim = FindObjectOfType<PlayerAim>();
+        foreach(GameObject _cell in cellInGenerator)
+        {
+            _cell.SetActive(false);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.name == "Cell" && Input.GetKey(KeyCode.Alpha1))
+        if (other.GetComponent<IsACell>())
         {
-            Debug.Log("Player is holding cell");
-            isHoldingBattery = true;
+            cell = other.gameObject;
+            if(cells < 4)
+            {
+                GeneratorState();
+            }
         }
-        if(other.tag == "Generator" && isHoldingBattery /*&& Input.GetKeyDown(KeyCode.Alpha5)*/)
-        {          
-            Debug.Log("Cell Added");
-            cells++;
-            
-            
-            /*ther.gameObject.SetActive(true);*/
-            
+    }
+
+    void GeneratorState()
+    {
+        cells++;
+        switch (cells)
+         {
+            case 1:
+                cellInGenerator[0].SetActive(true);
+                break;
+
+            case 2:
+                cellInGenerator[1].SetActive(true);
+                break;
+
+            case 3:
+                cellInGenerator[2].SetActive(true);
+                break;
+
+            case 4:
+                if(lights != null)
+                {
+                    lights.SetActive(true);
+                }
+                if(doorToOpen != null)
+                {
+                    doorToOpen.GetComponent<doorCollider>().enabled = true;
+                }
+                cellInGenerator[3].SetActive(true);
+                break;
         }
+        playerAim.EmptyHand();
+        cell.SetActive(false);
     }
 }

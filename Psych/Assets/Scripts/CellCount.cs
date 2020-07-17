@@ -5,13 +5,7 @@ using UnityEngine;
 public class CellCount : MonoBehaviour
 {
     public int numberOfCells;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         GameObject Player = GameObject.Find("Player");

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyHealth : Health
 {
     public int killScore;
+    public bool isSlug = false;
     public override void Awake()
     {
         base.Awake();
@@ -22,6 +23,14 @@ public class EnemyHealth : Health
     void Death(float param)
     {
         //ScoreSystem.Instance.AddScore(killScore);
-        Destroy(gameObject);
+        if (isSlug)
+        {
+            GetComponent<Animator>().SetBool("isDead", true);
+            Destroy(gameObject, 2);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

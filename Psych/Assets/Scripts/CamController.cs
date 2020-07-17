@@ -5,7 +5,8 @@ using UnityEngine;
 public class CamController : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Transform LookAt, player;
+    public Transform lookAt;
+    public Transform player;
     public float rotationSpeed = 1f;
     float mouseX, mouseY;
 
@@ -26,9 +27,9 @@ public class CamController : MonoBehaviour
         mouseY -= Input.GetAxis("Mouse Y") * rotationSpeed;
         mouseY = Mathf.Clamp(mouseY, -35, 60);
 
-        transform.LookAt(LookAt);
+        //transform.LookAt(LookAt);
 
-        LookAt.rotation = Quaternion.Euler(mouseY, mouseX, 0);
+        lookAt.rotation = Quaternion.Euler(mouseY, mouseX, 0);
         player.rotation = Quaternion.Euler(0, mouseX, 0);
 
     }

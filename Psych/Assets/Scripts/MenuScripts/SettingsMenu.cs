@@ -11,6 +11,9 @@ public class SettingsMenu : MonoBehaviour
     public AudioMixer musicMixer;
     public AudioMixer soundEffectsMixer;
     public Dropdown resolutionDropdown;
+    public Slider MasterSlider;
+    public Slider BGMSlider;
+    public Slider SFxSlider;
     #endregion
 
     #region Private Variables
@@ -37,7 +40,7 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
-        masterMixer = Resources.Load("MainMixer") as AudioMixer;
+        InitAudio();
     }
 
     public void SetReolution(int resolutionIndex)
@@ -49,17 +52,20 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetMasterVolume(float volume)
     {
-        masterMixer.SetFloat("volume", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("Master_Vol", volume);
+        masterMixer.SetFloat("volume", volume);
     }
 
     public void SetMusicVolume(float volume)
     {
-        masterMixer.SetFloat("musicVolume", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("BGM_Vol", volume);
+        masterMixer.SetFloat("musicVolume", volume);
     }
 
     public void SetSFXVolume(float volume)
     {
-        masterMixer.SetFloat("soundEffectsVolume", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("SFx_Vol", volume);
+        masterMixer.SetFloat("soundEffectsVolume", volume);
     }
 
     public void SetQuality(int qualityIndex)
@@ -70,5 +76,31 @@ public class SettingsMenu : MonoBehaviour
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
+    }
+
+    public void InitAudio()
+    {
+        masterMixer = Resources.Load("MainMixer") as AudioMixer;
+        if (masterMixer == null)
+            Debug.LogError("SettingMenu Cant find MasterMixer!");
+
+        masterMixer.SetFloat("volume", PlayerPrefs.GetFloat("Master_Vol"));
+        masterMixer.SetFloat("musicVolume", PlayerPrefs.GetFloat("BGM_Vol"));
+        masterMixer.SetFloat("soundEffectsVolume", PlayerPrefs.GetFloat("SFx_Vol"));
+
+        MasterSlider.value = PlayerPrefs.GetFloat("Master_Vol");
+        BGMSlider.value = PlayerPrefs.GetFloat("BGM_Vol");
+        SFxSlider.value = PlayerPrefs.GetFloat("SFx_Vol");
+    }
+
+    public void ResetAudioSetting()
+    {
+        PlayerPrefs.SetFloat("Master_Vol", 0);
+        PlayerPrefs.SetFloat("SFx_Vol", 0);
+        PlayerPrefs.SetFloat("BGM_Vol", 0);
+
+        masterMixer.SetFloat("volume", 0);
+        masterMixer.SetFloat("musicVolume", 0);
+        masterMixer.SetFloat("soundEffectsVolume", 0);
     }
 }

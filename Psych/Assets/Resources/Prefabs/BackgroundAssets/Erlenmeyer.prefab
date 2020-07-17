@@ -9,9 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3877846092996917717}
-  m_Layer: 0
+  - component: {fileID: -8141844200884401522}
+  - component: {fileID: 7376770876556646121}
+  - component: {fileID: 4356291371734753909}
+  - component: {fileID: 7156443416149205581}
+  m_Layer: 11
   m_Name: Erlenmeyer
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,6 +35,62 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &-8141844200884401522
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255501906043030470}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &7376770876556646121
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255501906043030470}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.023911737, y: 0.03894988, z: 0.02447871}
+  m_Center: {x: 0.02792354, y: 0.019144362, z: 0.00007551403}
+--- !u!65 &4356291371734753909
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255501906043030470}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.023911737, y: 0.03894988, z: 0.02447871}
+  m_Center: {x: 0.02792354, y: 0.019144362, z: 0.00007551403}
+--- !u!114 &7156443416149205581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255501906043030470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79172ba8ef4fae14db98f2d163f9adb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponSize: 0
+  weightDamage: 5
 --- !u!1 &9014691130393779163
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,7 +102,7 @@ GameObject:
   - component: {fileID: 5587939755311149819}
   - component: {fileID: 3951459531491064746}
   - component: {fileID: 8050115673659719416}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Erlenmeyer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,12 +14,11 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.tag == "Player" || other.tag == "Enemy")
         {
             other.GetComponent<Health>().TakeDamage(damage);
             gameObject.SetActive(false);
         }
-        Debug.Log(other.name + " was Hit");
         gameObject.SetActive(false);
     }
 }
