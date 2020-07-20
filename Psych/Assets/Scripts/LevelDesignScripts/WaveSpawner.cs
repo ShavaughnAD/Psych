@@ -24,6 +24,7 @@ public class WaveSpawner : MonoBehaviour
     private float searchCountdown = 1f;
     public Transform spawnPoint1;
     public Transform spawnPoint2;
+    public GameObject waveCompleteCanvas;
 
     private SpawnState state = SpawnState.COUNTING;
 
@@ -39,6 +40,7 @@ public class WaveSpawner : MonoBehaviour
             if (!IsEnemyAlive())
             {
                 Debug.Log("Wave Completed!");
+                waveCompleteCanvas.SetActive(true);
                 return;
             }
             else
