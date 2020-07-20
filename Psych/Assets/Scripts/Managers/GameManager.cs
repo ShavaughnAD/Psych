@@ -1,18 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static GameManager gameManager;
+    public GameObject displayWeapon;
+    public Image displayWeaponImage;
+
+    void Awake()
     {
-        
+        gameManager = this;
+        displayWeapon = GameObject.FindGameObjectWithTag("DisplayWeapon");
+        displayWeaponImage = displayWeapon.GetComponent<Image>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
+        displayWeapon.SetActive(false);
     }
 }

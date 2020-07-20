@@ -12,6 +12,7 @@ public class WeaponThrow : MonoBehaviour
     public Transform curvePoint = null;
     public bool isThrown = false;
     public bool isReturning = false;
+    public ParticleSystem controlledParticle;
     #endregion
     #region Private Variables
     Transform player;
@@ -63,7 +64,7 @@ public class WeaponThrow : MonoBehaviour
             }
         }
 
-        if (isThrown == false)
+        if (isThrown == false && isReturning == false)
         {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
@@ -82,6 +83,10 @@ public class WeaponThrow : MonoBehaviour
         weaponRB.AddForce(Camera.main.transform.TransformDirection(Vector3.forward) * throwForce, ForceMode.Impulse);
         weaponRB.AddTorque(weaponRB.transform.TransformDirection(Vector3.right) * 100, ForceMode.Impulse);
         weapon.GetComponent<Collider>().enabled = true;
+        //if (controlledParticle != null)
+        //{
+        //    controlledParticle.Play();
+        //}
         //CameraManager.cameraManager.playerMovement.isBeingControlled = true;
     }
 
@@ -94,6 +99,10 @@ public class WeaponThrow : MonoBehaviour
         weaponRB.isKinematic = true;
         weapon.GetComponent<Collider>().enabled = false;
         CameraManager.cameraManager.ActivatePlayerCamera();
+        if(controlledParticle != null)
+        {
+            controlledParticle.Play();
+        }
         //CameraManager.cameraManager.playerMovement.isBeingControlled = true;
     }
 
@@ -106,6 +115,10 @@ public class WeaponThrow : MonoBehaviour
         weaponRB.rotation = target.rotation;
         weapon.GetComponent<WeaponShooting>().thrown = false;
         CameraManager.cameraManager.playerMovement.isBeingControlled = false;
+        if(controlledParticle != null)
+        {
+            controlledParticle.Stop();
+        }
     }
 
     Vector3 BezierQCP(float t, Vector3 p0, Vector3 p1, Vector3 p2)

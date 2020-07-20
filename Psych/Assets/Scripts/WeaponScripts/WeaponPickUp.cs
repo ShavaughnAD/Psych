@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-
 public class WeaponPickUp : MonoBehaviour
 {
     public WeaponThrow playerWeapon;
     public CameraController camController;
     public Camera weaponCamera;
+    public ParticleSystem weaponControlledParticle;
     public Sprite weaponIcon;
     WeaponShooting weaponShooting;
     Rigidbody weaponRB = null;
@@ -26,6 +26,7 @@ public class WeaponPickUp : MonoBehaviour
         else
         {
             pickedUp = false;
+            weaponControlledParticle.gameObject.SetActive(false);
         }
     }
 
@@ -36,6 +37,7 @@ public class WeaponPickUp : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 PickUp();
+                GameManager.gameManager.displayWeapon.SetActive(true);
             }
         }
     }
@@ -45,6 +47,8 @@ public class WeaponPickUp : MonoBehaviour
         if(other.tag == "Player")
         {
             isPlayerHere = true;
+            GameManager.gameManager.displayWeaponImage.sprite = weaponIcon;
+            GameManager.gameManager.displayWeapon.SetActive(true);
         }
     }
 
@@ -53,6 +57,7 @@ public class WeaponPickUp : MonoBehaviour
         if(other.tag == "Player")
         {
             isPlayerHere = false;
+            GameManager.gameManager.displayWeapon.SetActive(false);
         }
     }
 
@@ -64,8 +69,10 @@ public class WeaponPickUp : MonoBehaviour
         pickedUp = true;
         gameObject.transform.parent = playerWeapon.transform;
         playerWeapon.weaponRB = weaponRB;
-        playerWeapon.ReturnWeapon();
         PlayerAim.aim.UpdateCurrentWeaponStats(weaponShooting.rate, weaponShooting.damage, weaponShooting.ammoAmount, weaponShooting.bulletTracer);
+        WeaponThrow.weaponThrow.controlledParticle = weaponControlledParticle;
+        weaponControlledParticle.gameObject.SetActive(true);
+        playerWeapon.ReturnWeapon();
     }
 
     void PickUp()
@@ -81,6 +88,7 @@ public class WeaponPickUp : MonoBehaviour
             playerWeapon.weapon = null;
             playerWeapon.weaponRB.isKinematic = false;
             playerWeapon.weaponRB = null;
+            playerWeapon.controlledParticle.gameObject.SetActive(false);
         }
         CameraManager.cameraManager.AssignNewWeaponCam(camController, weaponCamera);
         //Assign new variables

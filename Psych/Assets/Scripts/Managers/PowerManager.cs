@@ -6,6 +6,7 @@ public class PowerManager : MonoBehaviour
     public static PowerManager powerManager;
     public float power = 50f;
     public float maxPower = 50;
+    public float regenRate = 5;
     public bool drainPower = false;
     public Image powerBar;
     public Text powerText;
@@ -13,8 +14,8 @@ public class PowerManager : MonoBehaviour
     float timer = 0f;
     float secondCount = 1f;
 
-    Color normalMode = new Color(0f, 0.2878585f, 1f, 1f);
-    Color stasisMode = new Color(0.7137255f, 0.2313726f, 1f, 1f);
+    Color normalMode = new Color(255f, 255, 255);
+    Color stasisMode = Color.magenta;
 
     void Awake()
     {
@@ -22,10 +23,11 @@ public class PowerManager : MonoBehaviour
         power = maxPower;
     }
 
-    private void Start()
+    void Start()
     {
         powerBar = GameObject.FindGameObjectWithTag("PowerBar").GetComponent<Image>();
         powerBar.color = normalMode;
+        powerText = GameObject.FindGameObjectWithTag("PowerText").GetComponent<Text>();
     }
 
     void Update()
@@ -36,15 +38,15 @@ public class PowerManager : MonoBehaviour
             WeaponThrow.weaponThrow.ReturnWeapon();
             powerBar.color = stasisMode;
         }
-
-        timer += Time.deltaTime;
-        if (timer > secondCount && drainPower == false)
-            PowerUp();
-
         if (drainPower)
         {
             DecrementPower(5 * Time.deltaTime);
         }
+        timer += Time.deltaTime;
+        if (timer > secondCount && drainPower == false)
+            PowerUp();
+
+        powerText.text = power.ToString("F0") + " / " + maxPower.ToString("F0");
     }
 
     public bool DecrementPower(float valueDeducted)
@@ -68,9 +70,9 @@ public class PowerManager : MonoBehaviour
         if(power < maxPower)
         {
             if(isStasis)
-                power += 0.5f;
+                power += (regenRate/2);
             else
-                power += 1;
+                power += regenRate;
 
             powerBar.fillAmount = power / maxPower;
         }

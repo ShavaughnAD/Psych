@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class WaveSpawner : MonoBehaviour
 {
-    public enum SpawnState { SPAWNING, WAITING, COUNTING};
+    public enum SpawnState { SPAWNING, WAITING, COUNTING };
 
     [System.Serializable]
     public class Wave
@@ -22,6 +22,9 @@ public class WaveSpawner : MonoBehaviour
     public float timeBetweenWaves = 5f;
     public float waveCountdown;
     private float searchCountdown = 1f;
+    public Transform spawnPoint1;
+    public Transform spawnPoint2;
+    public GameObject waveCompleteCanvas;
 
     private SpawnState state = SpawnState.COUNTING;
 
@@ -37,6 +40,7 @@ public class WaveSpawner : MonoBehaviour
             if (!IsEnemyAlive())
             {
                 Debug.Log("Wave Completed!");
+                waveCompleteCanvas.SetActive(true);
                 return;
             }
             else
@@ -46,7 +50,7 @@ public class WaveSpawner : MonoBehaviour
         }
         if (waveCountdown <= 0)
         {
-            if(state != SpawnState.SPAWNING)
+            if (state != SpawnState.SPAWNING)
             {
                 StartCoroutine(SpawnWave(waves[nextWave]));
             }
@@ -75,7 +79,7 @@ public class WaveSpawner : MonoBehaviour
         Debug.Log("Spawning Wave:" + _wave.name);
         state = SpawnState.SPAWNING;
 
-        for(int i =0; i<_wave.count; i++)
+        for (int i = 0; i < _wave.count; i++)
         {
             SpawnEnemy(_wave.enemy);
             yield return new WaitForSeconds(1f / _wave.rate);
@@ -88,9 +92,20 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy(Transform _enemy)
     {
+        Transform spawn;
+        float randomChance = Random.Range(0.0f, 1.0f);
+        if (randomChance < 0.5f)
+        {
+            spawn = spawnPoint1;
+        }
+        else
+        {
+            spawn = spawnPoint2;
+
+        }
         //spawn enemy here
         Debug.Log("Spawning Enemy:" + _enemy.name);
-        Instantiate(_enemy, Vector3.zero, Quaternion.identity);
-        
+        Instantiate(_enemy, spawn.position, Quaternion.identity);
+
     }
 }
