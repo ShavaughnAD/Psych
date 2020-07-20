@@ -5,6 +5,7 @@ public class PlayerMovement : MonoBehaviour
 {
     CharacterController characterController;
     public Light flashlight;
+    public Animator Anim;
 
     public float speed = 6;
     public float gravity = 20;
@@ -14,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public Camera playerCam;
     public float camXSensitivity = 1.5f;
     public float camYSensitivity = 1;
+    public float sprintSpeed = 10f;
+    float baseSpeed = 6;
 
     public bool isBeingControlled = false;
     bool isFlashlightOn = false;
@@ -23,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         flashlight = GameObject.FindGameObjectWithTag("Flashlight").GetComponent<Light>();
         Cursor.lockState = CursorLockMode.Locked;
+        //baseSpeed = speed;
+       
     }
 
     void Update()
@@ -47,6 +52,30 @@ public class PlayerMovement : MonoBehaviour
 
         moveDir.y = moveDir.y + Physics.gravity.y;
         characterController.Move(moveDir * Time.deltaTime);
+        if(horizontal != 0 || vertical != 0)//if player moves play walk animation
+        {
+            Anim.SetBool("isWalking", true);
+            Anim.SetBool("isIdle", false);
+
+        }
+        else //is player is not moving go back to idle animation
+        {
+            Anim.SetBool("isWalking", false);
+            Anim.SetBool("isIdle", true);
+            
+        }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = sprintSpeed;
+            Anim.SetBool("isWalking", false);
+            Anim.SetBool("isRunning", true);
+        }
+        else
+        {
+            speed = baseSpeed;
+            Anim.SetBool("isRunning", false);
+           // Anim.SetBool("isWalking", true);
+        }
     }
 
     void CamControls()
