@@ -52,30 +52,23 @@ public class PlayerMovement : MonoBehaviour
 
         moveDir.y = moveDir.y + Physics.gravity.y;
         characterController.Move(moveDir * Time.deltaTime);
-        if(horizontal != 0 || vertical != 0)//if player moves play walk animation
-        {
-            Anim.SetBool("isWalking", true);
-            Anim.SetBool("isIdle", false);
 
-        }
-        else //is player is not moving go back to idle animation
-        {
-            Anim.SetBool("isWalking", false);
-            Anim.SetBool("isIdle", true);
-            
-        }
-        if (Input.GetKey(KeyCode.LeftShift))
+        Anim.SetFloat("HorizontalMovement",Input.GetAxis("Horizontal"));
+        Anim.SetFloat("VerticalMovement", Input.GetAxis("Vertical"));
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             speed = sprintSpeed;
-            Anim.SetBool("isWalking", false);
+         
             Anim.SetBool("isRunning", true);
         }
-        else
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             speed = baseSpeed;
             Anim.SetBool("isRunning", false);
-           // Anim.SetBool("isWalking", true);
+           
         }
+        
     }
 
     void CamControls()
