@@ -7,6 +7,7 @@ public class MeleeAttack : MonoBehaviour
     public float damage;
     public float healthGain;
     BoxCollider volume;
+    public Animator Anim;
     bool attacking;
     PlayerHealth playerHealth;
     // Start is called before the first frame update
@@ -16,14 +17,16 @@ public class MeleeAttack : MonoBehaviour
         volume.enabled = false;
         playerHealth = transform.parent.gameObject.GetComponent<PlayerHealth>();
     }
-
+   
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && !attacking)
+        if (Input.GetKeyDown(KeyCode.Q) )
         {
+            Anim.SetBool("canAttack", true);
             VolumeOn();
         }
+        Anim.SetBool("canAttack", false);
     }
 
     void VolumeOn()
@@ -41,6 +44,7 @@ public class MeleeAttack : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
+            
             other.GetComponent<EnemyHealth>().TakeDamage(damage);
             playerHealth.Healing(healthGain);
             VolumeOff();
