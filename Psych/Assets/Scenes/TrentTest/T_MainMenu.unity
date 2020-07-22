@@ -1641,6 +1641,7 @@ GameObject:
   m_Component:
   - component: {fileID: 309384840}
   - component: {fileID: 309384841}
+  - component: {fileID: 309384842}
   m_Layer: 5
   m_Name: MenuButtons
   m_TagString: Untagged
@@ -1696,6 +1697,23 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!114 &309384842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309384839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11ca73ec43995e64cb64a484603d9465, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenu: {fileID: 0}
+  levelSelect: {fileID: 0}
+  settings: {fileID: 0}
+  credits: {fileID: 0}
+  quitPrompt: {fileID: 0}
 --- !u!1 &320409904
 GameObject:
   m_ObjectHideFlags: 0
@@ -17003,7 +17021,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1395347279}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 309384842}
+        m_MethodName: PlayGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1395347279
 MonoBehaviour:
   m_ObjectHideFlags: 0
