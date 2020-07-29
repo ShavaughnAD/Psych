@@ -13,6 +13,10 @@ public class SeesPlayer : FsmCondition
 
     private bool isAlerted = false;
 
+    public void Start()
+    {
+        targetObject = GameObject.FindWithTag("Player").transform;
+    }
     private void Update() {
         AlertOtherMinionsOfTargetWithinVision();
         
