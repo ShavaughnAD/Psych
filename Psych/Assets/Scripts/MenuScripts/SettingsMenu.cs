@@ -43,7 +43,7 @@ public class SettingsMenu : MonoBehaviour
         InitAudio();
     }
 
-    public void SetReolution(int resolutionIndex)
+    public void SetResolution(int resolutionIndex)
     {
         Resolution _resolution = resolutions[resolutionIndex];
         Screen.SetResolution(_resolution.width, _resolution.height, Screen.fullScreen);

@@ -31,16 +31,21 @@ public class WeaponThrow : MonoBehaviour
         Vector3 centerScreen = new Vector3(0.5f, 0.5f, 100);
         Ray ray = CameraManager.cameraManager.playerCam.ViewportPointToRay(centerScreen);
         RaycastHit hit;
+
         #region Input
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            if(isReturning || isThrown)
+            if(isReturning)
             {
                 return;
             }
-            else
+            if (isThrown == false)
             {
                 ThrowWeapon();
+            }
+            else
+            {
+                ReturnWeapon();
             }
         }
         if (Input.GetKeyDown(KeyCode.Space))
@@ -68,7 +73,10 @@ public class WeaponThrow : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                weapon.transform.LookAt(hit.point);
+                if(weapon != null)
+                {
+                    weapon.transform.LookAt(hit.point);
+                }
             }
         }
     }

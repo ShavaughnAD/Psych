@@ -81,6 +81,7 @@ GameObject:
   - component: {fileID: 8511166130075840266}
   - component: {fileID: 8511166130075840267}
   - component: {fileID: 8511166130075840264}
+  - component: {fileID: -8487053041249968344}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
@@ -217,6 +218,12 @@ MonoBehaviour:
       Cond: {fileID: 8511166130075840267}
       Priority: 0
       Not: 0
+  - State: {fileID: 8511166130075840271}
+    Transitions:
+    - Next: {fileID: 8511166130075840270}
+      Cond: {fileID: 8511166130075840267}
+      Priority: 0
+      Not: 0
 --- !u!114 &8511166130075840270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,13 +249,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8511166130075840375}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1795e0e61f9970e4fb847f9a25c412fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 5630121798525579488}
   movementSpeed: 15
+  Anim: {fileID: 0}
 --- !u!114 &8511166130075840268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,7 +264,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8511166130075840375}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a66ee400c8ef1ab4992db59741b56c8c, type: 3}
   m_Name: 
@@ -302,6 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxWaitTimeToLookForTarget: 500
+  Anim: {fileID: 0}
 --- !u!195 &8511166130075840264
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -324,6 +333,18 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-8487053041249968344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8511166130075840375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bf09b154e0c1e141afb9dea3a54e947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8511166130116125618
 PrefabInstance:
   m_ObjectHideFlags: 0

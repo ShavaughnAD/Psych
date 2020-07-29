@@ -5,8 +5,7 @@ using UnityEngine.AI;
 
 public class AttackState : FsmState
 {
-    [SerializeField]
-    private GameObject currentWeapon;
+    public GameObject currentWeapon;
     [SerializeField]
     private float movementSpeed = 7f;
 
@@ -19,7 +18,6 @@ public class AttackState : FsmState
     
     private void Start() {
         enemyVision = this.GetComponent<SeesPlayer>();
-        Debug.Log("ENTERING ATTACK STATE.");
         enemyAgent = this.GetComponent<NavMeshAgent>();
         Anim = GetComponent<Animator>();
     }
@@ -78,8 +76,6 @@ public class AttackState : FsmState
     }
     
     private void UseWeaponAtTarget(){
-        Debug.Log("Using weapon!");
-        
         currentWeapon.GetComponent<WeaponShooting>().EnemyShootProjectile();
     }
 

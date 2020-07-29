@@ -5,6 +5,7 @@ public class Generator : MonoBehaviour
     #region Variables
 
     public int cells;
+    public bool startFull = false;
     public GameObject[] cellInGenerator;
 
     public GameObject  doorToOpen;
@@ -17,9 +18,21 @@ public class Generator : MonoBehaviour
     void Start()
     {
         playerAim = FindObjectOfType<PlayerAim>();
-        foreach(GameObject _cell in cellInGenerator)
+        if (startFull == true)
         {
-            _cell.SetActive(false);
+            cells = 4;
+            foreach (GameObject _cell in cellInGenerator)
+            {
+                _cell.SetActive(true);
+            }
+        }
+        else
+        {
+            cells = 0;
+            foreach (GameObject _cell in cellInGenerator)
+            {
+                _cell.SetActive(false);
+            }
         }
     }
 

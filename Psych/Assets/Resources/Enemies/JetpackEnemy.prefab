@@ -224,7 +224,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4451518435474829642}
   - component: {fileID: 8699912831636415904}
-  - component: {fileID: 8699912831636415918}
   - component: {fileID: 8699912831636415916}
   - component: {fileID: 8699912831636415917}
   - component: {fileID: 8699912831636415919}
@@ -234,8 +233,9 @@ GameObject:
   - component: {fileID: 8699912831636415908}
   - component: {fileID: 8699912831636415909}
   - component: {fileID: 8699912831636415910}
+  - component: {fileID: 8720000030751988975}
   m_Layer: 0
-  m_Name: Slut_Jetpack_Enemy
+  m_Name: JetpackEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -303,19 +303,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!135 &8699912831636415918
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 837002910930994009}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &8699912831636415916
 Animator:
   serializedVersion: 3
@@ -479,6 +466,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxWaitTimeToLookForTarget: 500
   Anim: {fileID: 0}
+--- !u!136 &8720000030751988975
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837002910930994009}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.039585114
+  m_Height: 0.17994332
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.0050691366, z: 0.03183365}
 --- !u!1 &884762771268072523
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 public class WeaponPickUp : MonoBehaviour
 {
-    public WeaponThrow playerWeapon;
     public CameraController camController;
     public Camera weaponCamera;
     public ParticleSystem weaponControlledParticle;
@@ -9,12 +8,13 @@ public class WeaponPickUp : MonoBehaviour
     WeaponShooting weaponShooting;
     Rigidbody weaponRB = null;
     public bool pickedUp = false;
-
+    public bool canBeStolen = true;
+    public bool wasStolen;
+    AttackState enemyAttackState;
     bool isPlayerHere = false;
 
     void Start()
     {
-        playerWeapon = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponThrow>();
         weaponRB = GetComponent<Rigidbody>();
         weaponShooting = GetComponent<WeaponShooting>();
         if (weaponShooting.equipped)
@@ -27,6 +27,11 @@ public class WeaponPickUp : MonoBehaviour
         {
             pickedUp = false;
             weaponControlledParticle.gameObject.SetActive(false);
+        }
+
+        if(transform.parent.tag == "Enemy")
+        {
+            enemyAttackState = transform.parent.GetComponent<AttackState>();
         }
     }
 
@@ -61,36 +66,44 @@ public class WeaponPickUp : MonoBehaviour
         }
     }
 
-    void Equip()
+    public void Equip()
     {
-        playerWeapon.weapon = gameObject;
-        playerWeapon.weapon.GetComponent<WeaponShooting>().enabled = true;
+        WeaponThrow.weaponThrow.weapon = gameObject;
+        WeaponThrow.weaponThrow.weapon.GetComponent<WeaponShooting>().enabled = true;
         weaponShooting.equipped = true;
         pickedUp = true;
-        gameObject.transform.parent = playerWeapon.transform;
-        playerWeapon.weaponRB = weaponRB;
+        gameObject.transform.parent = WeaponThrow.weaponThrow.transform;
+        WeaponThrow.weaponThrow.weaponRB = weaponRB;
         PlayerAim.aim.UpdateCurrentWeaponStats(weaponShooting.rate, weaponShooting.damage, weaponShooting.ammoAmount, weaponShooting.bulletTracer);
         WeaponThrow.weaponThrow.controlledParticle = weaponControlledParticle;
         weaponControlledParticle.gameObject.SetActive(true);
-        playerWeapon.ReturnWeapon();
+        WeaponThrow.weaponThrow.ReturnWeapon();
     }
 
-    void PickUp()
+    public void PickUp()
     {
         //Unassign the current variables in player is using
-        if (playerWeapon != null)
+        if (WeaponThrow.weaponThrow.weapon != null)
         {
-            playerWeapon.weapon.GetComponent<BoxCollider>().enabled = true;
-            playerWeapon.weapon.GetComponent<WeaponPickUp>().pickedUp = false;
-            playerWeapon.weapon.GetComponent<WeaponShooting>().equipped = false;
+            WeaponThrow.weaponThrow.weapon.GetComponent<BoxCollider>().enabled = true;
+            WeaponThrow.weaponThrow.weapon.GetComponent<WeaponPickUp>().pickedUp = false;
+            WeaponThrow.weaponThrow.weapon.GetComponent<WeaponShooting>().equipped = false;
             CameraManager.cameraManager.cameraController.enabled = false;
-            playerWeapon.weapon.transform.parent = null;
-            playerWeapon.weapon = null;
-            playerWeapon.weaponRB.isKinematic = false;
-            playerWeapon.weaponRB = null;
-            playerWeapon.controlledParticle.gameObject.SetActive(false);
+            WeaponThrow.weaponThrow.weapon.transform.parent = null;
+            WeaponThrow.weaponThrow.weapon = null;
+            WeaponThrow.weaponThrow.weaponRB.useGravity = true;
+            WeaponThrow.weaponThrow.weaponRB.isKinematic = false;
+            WeaponThrow.weaponThrow.controlledParticle.gameObject.SetActive(false);
+        }
+        else
+        {
+            Equip();
         }
         CameraManager.cameraManager.AssignNewWeaponCam(camController, weaponCamera);
+        if(enemyAttackState != null)
+        {
+            enemyAttackState.currentWeapon = null;
+        }
         //Assign new variables
         Equip();
     }

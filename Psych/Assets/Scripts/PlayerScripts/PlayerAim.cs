@@ -7,6 +7,7 @@ public class PlayerAim : MonoBehaviour
     public static PlayerAim aim;
     public LayerMask enemyMask;
     public LayerMask pickUpMask;
+    public LayerMask weaponMask;
 
     float shootTimer = 0;
     float rate = 0;
@@ -66,6 +67,8 @@ public class PlayerAim : MonoBehaviour
         Ray ray = cam.ViewportPointToRay(centerScreen);
         RaycastHit hit;
 
+        #region ShootingWeapon
+
         shootTimer += Time.deltaTime;
         if (Input.GetKey(KeyCode.Mouse0))
         {
@@ -95,6 +98,7 @@ public class PlayerAim : MonoBehaviour
             }
         }
 
+        #endregion
 
         if (_selection != null)
         {
@@ -123,6 +127,25 @@ public class PlayerAim : MonoBehaviour
             }
         }
 
+        #region StealWeapon
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, weaponMask))
+            {
+                if (hit.transform.GetComponent<WeaponPickUp>().canBeStolen)
+                {
+                    hit.transform.GetComponent<WeaponPickUp>().wasStolen = true;
+                    hit.transform.GetComponent<WeaponPickUp>().PickUp();
+                }
+                else
+                {
+                    Debug.LogError("Weapon cannot be stolen mad dog");
+                }
+            }
+        }
+
+        #endregion
 
         if (Input.GetKeyDown(KeyCode.Backspace))
         {

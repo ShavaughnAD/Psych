@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WeaponSteal : MonoBehaviour
 {
@@ -27,8 +25,10 @@ public class WeaponSteal : MonoBehaviour
          * Weapon goes back into player's possession (player is holding the weapon)
     */
 
-    private void Update(){
-        if(Input.GetKeyDown(KeyCode.Z)){
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
             
             ShootPsychicRay();
         }

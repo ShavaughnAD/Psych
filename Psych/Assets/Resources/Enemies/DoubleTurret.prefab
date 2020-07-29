@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3550596000662500491}
   - component: {fileID: 286886493845369688}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DoubleTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   distance: 15
   speed: 100
   cancelTime: 0.4
@@ -54,10 +54,41 @@ MonoBehaviour:
   rate: 0.8
   force: 80
   turretPivot: {fileID: 2077464216947399973}
-  turretSight: {fileID: 5824776987863015950}
+  turretSight: {fileID: 6999025118880692407}
   turretMuzzle: {fileID: 5824776987863015950}
   oscillateSpeed: 0.7
   oscillateAngle: 60
+  muzzleFlash: {fileID: 0}
+--- !u!1 &4180794981097582857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6999025118880692407}
+  m_Layer: 0
+  m_Name: TurretSight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6999025118880692407
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4180794981097582857}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -704, y: 101, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2077464216947399973}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &551209726286472383
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65,6 +96,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3550596000662500491}
     m_Modifications:
+    - target: {fileID: -6967278042759463996, guid: 08486f5a7fff64b80b3b73849a05d2c7,
+        type: 3}
+      propertyPath: m_Name
+      value: TurretPivot
+      objectReference: {fileID: 0}
     - target: {fileID: -4812954267064555599, guid: 08486f5a7fff64b80b3b73849a05d2c7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -125,6 +161,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 08486f5a7fff64b80b3b73849a05d2c7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.0015
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 08486f5a7fff64b80b3b73849a05d2c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0015
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 08486f5a7fff64b80b3b73849a05d2c7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.0015
+      objectReference: {fileID: 0}
     - target: {fileID: -2583067651683098966, guid: 08486f5a7fff64b80b3b73849a05d2c7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -134,6 +185,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: double turret
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470746425311696228, guid: 08486f5a7fff64b80b3b73849a05d2c7,
+        type: 3}
+      propertyPath: m_Name
+      value: TurretBase
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08486f5a7fff64b80b3b73849a05d2c7, type: 3}

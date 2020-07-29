@@ -6,17 +6,6 @@ public class BombScript : MonoBehaviour
 {
     public float damage;
     public float radius;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
