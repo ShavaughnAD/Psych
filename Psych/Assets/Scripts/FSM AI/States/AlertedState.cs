@@ -15,7 +15,6 @@ using UnityEngine.AI;
 public class AlertedState : FsmState
 {
 
-    private SeesPlayer lineOfSight;
     private WasAlerted wasAlerted;
     private Vector3 targetLastKnownPosition;
 
@@ -33,9 +32,8 @@ public class AlertedState : FsmState
 
     private void OnEnable()
     {
-        this.lineOfSight = this.GetComponent<SeesPlayer>();
         SetTargetLastKnownPosition();
-        Debug.Log("I've been alerted - (O_O)!");
+        //Debug.Log("I've been alerted - (O_O)!");
     }
 
     private void SetTargetLastKnownPosition()

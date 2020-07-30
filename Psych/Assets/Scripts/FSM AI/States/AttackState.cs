@@ -10,21 +10,21 @@ public class AttackState : FsmState
     [SerializeField]
     private float movementSpeed = 7f;
 
-    private SeesPlayer enemyVision;
+    private PlayerVision enemyVision;
     private Vector3 targetLastPosition;
     
     private NavMeshAgent enemyAgent;
 
     
     private void Start() {
-        enemyVision = this.GetComponent<SeesPlayer>();
-        Debug.Log("ENTERING ATTACK STATE.");
+        enemyVision = this.GetComponent<PlayerVision>();
+        //Debug.Log("ENTERING ATTACK STATE.");
         enemyAgent = this.GetComponent<NavMeshAgent>();
     }
 
     private void Update() {
         //If the enemy can see the target
-        if(enemyVision.CheckIfTargetIsWithinVision()){
+        if(enemyVision.GetTargetInSight()){
             
             this.transform.LookAt(enemyVision.getTargetObjectTransform());
             RememberTargetLastPosition(true);
@@ -46,7 +46,7 @@ public class AttackState : FsmState
     }
 
     private void GetInAttackingRangeOfTarget(){
-        if(enemyVision.CheckIfTargetIsWithinVision() ){
+        if(enemyVision.GetTargetInSight() ){
             
             AttackTarget();
         }else{

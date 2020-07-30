@@ -7,7 +7,6 @@ public class PatrolState : FsmState
 {
 
     public GameObject[] arrayOfPatrolPoints;
-    public GameObject patrollerGameObject;
     public float patrolSpeed = 5f;
 
     private GameObject currentPatrolPoint;
@@ -47,6 +46,8 @@ public class PatrolState : FsmState
             currentPatrolPointIndex = (currentPatrolPointIndex + 1) % arrayOfPatrolPoints.Length;
             currentPatrolPoint = arrayOfPatrolPoints[currentPatrolPointIndex];
             // Debug.Log("Current Patrol Point Index: " + currentPatrolPointIndex);
+
+            //If hits patrol point, it could be resetting back to the patrol state
         }
     }
         
@@ -60,5 +61,6 @@ public class PatrolState : FsmState
         //     this.transform.LookAt(currentPatrolPoint.transform);
 
         enemyAgent.SetDestination(currentPatrolPoint.transform.position);
+        enemyAgent.speed = patrolSpeed;
     }
 }

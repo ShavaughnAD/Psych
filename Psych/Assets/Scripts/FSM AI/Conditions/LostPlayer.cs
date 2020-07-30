@@ -16,31 +16,33 @@ public class LostPlayer : FsmCondition
     [SerializeField]
     private float maxWaitTimeToLookForTarget = 5f;
     private float waitTimeToLookForTarget;
+    private bool lostSightOfTarget = false;
     
-    private SeesPlayer lineOfSight;
+    private PlayerVision lineOfSight;
 
     private void Awake() {
-        lineOfSight = this.GetComponent<SeesPlayer>();
+        lineOfSight = this.GetComponent<PlayerVision>();
         float waitTimeToLookForTarget = maxWaitTimeToLookForTarget;
     }
 
     private void Update() {
-        LostSightOfTarget();
+        this.lostSightOfTarget = LostSightOfTarget();
     }
 
     public bool LostSightOfTarget(){
 
         //If I can see the target, then I haven't lost sight of it.  
-        if(lineOfSight.CheckIfTargetIsWithinVision()){
+        if(lineOfSight.GetTargetInSight()){
             ResetWaitTime();
             return false;
         
         }else{//If I can't see the player...
-            //...and I ran out of time to look for the target, 
-            //  then I lost sight of the target
 
-            if(waitTimeToLookForTarget <= 0){
-                Debug.Log("Gave up on the target - v( ･_･)v ???");
+            if(waitTimeToLookForTarget <= 0)
+            {
+                //...and I ran out of time to look for the target, 
+                //  then I lost sight of the target
+                //Debug.Log("Gave up on the target - v( ･_･)v ???");
 
                 return true;
 
@@ -63,6 +65,6 @@ public class LostPlayer : FsmCondition
     
     public override bool IsSatisfied(FsmState curr, FsmState next){
 
-        return LostSightOfTarget();
+        return this.lostSightOfTarget;
     }
 }
