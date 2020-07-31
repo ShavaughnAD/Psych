@@ -6,7 +6,6 @@ public class WeaponShooting : MonoBehaviour
     public GameObject ammo = null;
     public GameObject target;
     public CameraController weaponCam;
-    public PlayerMovement playerCam;
     public float damage = 5;
     float shootTimer = 0;
     public float rate = 0;
@@ -30,15 +29,15 @@ public class WeaponShooting : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         objectpooler = ObjectPooler.instance;
-        if (transform.parent.tag == "Player")
-        {
-            equipped = true;
-            GetComponent<Collider>().enabled = false;
-        }
-        else
+        if(transform.parent == null)
         {
             equipped = false;
             return;
+        }
+        else if (transform.parent.tag == "Player")
+        {
+            equipped = true;
+            GetComponent<Collider>().enabled = false;
         }
     }
 

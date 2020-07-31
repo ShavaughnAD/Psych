@@ -129,19 +129,33 @@ public class PlayerAim : MonoBehaviour
 
         #region StealWeapon
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    if (Physics.Raycast(ray, out hit, Mathf.Infinity, weaponMask))
+        //    {
+        //        if (hit.transform.GetComponent<WeaponPickUp>().canBeStolen)
+        //        {
+        //            hit.transform.GetComponent<WeaponPickUp>().wasStolen = true;
+        //            hit.transform.GetComponent<WeaponPickUp>().PickUp();
+        //        }
+        //        else
+        //        {
+        //            Debug.LogError("Weapon cannot be stolen mad dog");
+        //        }
+        //    }
+        //}
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, weaponMask))
         {
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, weaponMask))
+            if(hit.transform.GetComponent<AttackState>().currentWeapon.GetComponent<WeaponPickUp>().canBeStolen)
             {
-                if (hit.transform.GetComponent<WeaponPickUp>().canBeStolen)
+                if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    hit.transform.GetComponent<WeaponPickUp>().wasStolen = true;
-                    hit.transform.GetComponent<WeaponPickUp>().PickUp();
+                    hit.transform.GetComponent<AttackState>().currentWeapon.GetComponent<WeaponPickUp>().PickUp();
                 }
-                else
-                {
-                    Debug.LogError("Weapon cannot be stolen mad dog");
-                }
+            }
+            else
+            {
+                return;
             }
         }
 

@@ -25,8 +25,8 @@ public class DoubleTurret : MonoBehaviour
     [SerializeField] private Transform turretSight = null;
     [SerializeField] private Transform turretLeftMuzzle = null;
     [SerializeField] private Transform turretRightMuzzle = null;
-    [SerializeField] private ParticleSystem leftMuzzleFlash;
-    [SerializeField] private ParticleSystem rightMuzzleFlash;
+    //[SerializeField] private ParticleSystem leftMuzzleFlash;
+    //[SerializeField] private ParticleSystem rightMuzzleFlash;
 
     [Header("Oscillation Variables")]
     [SerializeField] private float oscillateSpeed = 0.7f;
@@ -142,13 +142,13 @@ public class DoubleTurret : MonoBehaviour
             if (!firing1)
             {
                 GameObject bullet = Instantiate(ammo, turretLeftMuzzle.position, turretLeftMuzzle.rotation);
-                leftMuzzleFlash.Play();
+                //leftMuzzleFlash.Play();
                 firing1 = true;
             }
             else
             {
                 GameObject shot = Instantiate(ammo, turretRightMuzzle.position, turretRightMuzzle.rotation);
-                rightMuzzleFlash.Play();
+                //rightMuzzleFlash.Play();
                 firing1 = false;
             }
             shotReady = false;

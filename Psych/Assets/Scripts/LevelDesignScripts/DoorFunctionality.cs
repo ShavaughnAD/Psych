@@ -1,29 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DoorFunctionality : MonoBehaviour
 {
-    public GameObject doorObj;
-    Transform startingPoint;
-    public Transform endPoint;
-    public float speed;
+    public Animator doorAnimator;
+    public bool shouldOpen = false;
 
-    float startTime;
-    float journeyLength;
-
-    void Start()
+    void Awake()
     {
-        startingPoint = doorObj.transform;
-        startTime = Time.time;
-        journeyLength = Vector3.Distance(startingPoint.position, endPoint.position);
-        enabled = false;
+        if(doorAnimator == null)
+        {
+            doorAnimator = GetComponent<Animator>();
+        }
     }
 
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        float distCovered = (Time.time - startTime) * speed;
-        float fractionOfJourney = distCovered / journeyLength;
-        doorObj.transform.position = Vector3.Lerp(startingPoint.position, endPoint.position, fractionOfJourney);
+        if(other.tag == "Player")
+        {
+            shouldOpen = !shouldOpen;
+            doorAnimator.SetBool("open", shouldOpen);
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            shouldOpen = !shouldOpen;
+            doorAnimator.SetBool("open", shouldOpen);
+        }
     }
 }
