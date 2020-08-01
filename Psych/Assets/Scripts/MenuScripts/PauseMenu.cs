@@ -1,21 +1,34 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
+    public static PauseMenu pauseMenuRef;
     public GameObject pauseMenuBackground;
     public GameObject pauseMenu;
     public GameObject settingsMenu;
 
     public GameObject crosshair;
+    public Image crosshairImage;
+    public Image weaponIconDisplay;
 
     public bool isPaused = false;
 
     PlayerMovement playerMovement;
 
+    void Awake()
+    {
+        pauseMenuRef = this;
+    }
+
     void Start()
     {
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         crosshair = GameObject.FindGameObjectWithTag("Crosshair");
+        if(crosshair != null)
+        {
+            crosshairImage = crosshair.GetComponent<Image>();
+        }
     }
 
     void Update()

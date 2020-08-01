@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 public class WeaponPickUp : MonoBehaviour
 {
     public CameraController camController;
     public Camera weaponCamera;
     public ParticleSystem weaponControlledParticle;
     public Sprite weaponIcon;
+    public Sprite weaponCrosshair;
     WeaponShooting weaponShooting;
     Rigidbody weaponRB = null;
     public bool pickedUp = false;
@@ -13,26 +15,52 @@ public class WeaponPickUp : MonoBehaviour
     AttackState enemyAttackState;
     bool isPlayerHere = false;
 
-    void Start()
+    void Awake()
     {
         weaponRB = GetComponent<Rigidbody>();
         weaponShooting = GetComponent<WeaponShooting>();
-        if (weaponShooting.equipped)
-        {
-            pickedUp = true;
-            Equip();
 
+        if(transform.parent == null)
+        {
+            GetComponent<BoxCollider>().enabled = true;
+            pickedUp = false;
+            weaponControlledParticle.gameObject.SetActive(false);
+            return;
         }
         else
         {
-            pickedUp = false;
-            weaponControlledParticle.gameObject.SetActive(false);
-        }
+            switch (transform.parent.tag)
+            {
+                case "Player":
+                    pickedUp = true;
+                    Equip();
+                    break;
 
-        if(transform.parent.tag == "Enemy")
-        {
-            enemyAttackState = transform.parent.GetComponent<AttackState>();
+                case "Enemy":
+                    pickedUp = false;
+                    GetComponent<BoxCollider>().enabled = false;
+                    GetComponent<Rigidbody>().useGravity = false;
+                    weaponControlledParticle.gameObject.SetActive(false);
+                    enemyAttackState = transform.parent.GetComponent<AttackState>();
+                    break;
+            }
         }
+        //if (weaponShooting.equipped)
+        //{
+        //    pickedUp = true;
+        //    Equip();
+
+        //}
+        //else
+        //{
+        //    pickedUp = false;
+        //    weaponControlledParticle.gameObject.SetActive(false);
+        //}
+
+        //if(transform.parent.tag == "Enemy")
+        //{
+        //    enemyAttackState = transform.parent.GetComponent<AttackState>();
+        //}
     }
 
     void Update()
@@ -78,6 +106,9 @@ public class WeaponPickUp : MonoBehaviour
         WeaponThrow.weaponThrow.controlledParticle = weaponControlledParticle;
         weaponControlledParticle.gameObject.SetActive(true);
         WeaponThrow.weaponThrow.ReturnWeapon();
+        PauseMenu.pauseMenuRef.crosshairImage.sprite = weaponCrosshair;
+        PauseMenu.pauseMenuRef.weaponIconDisplay.sprite = weaponIcon;
+
     }
 
     public void PickUp()
