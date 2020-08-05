@@ -48,7 +48,7 @@ public class WeaponThrow : MonoBehaviour
                 ReturnWeapon();
             }
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && weapon != null)
         {
             ReturnWeapon();
         }
