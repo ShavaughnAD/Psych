@@ -49,17 +49,17 @@ public class Health : MonoBehaviour
     public void Healing(float healingAmount)
     {
         healingRecieved = healingAmount;
-        onHeal.CallEvent(0);
+        //onHeal.CallEvent(0);
         currentHealth += healingAmount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         if(currentHealth >= maxHealth)
         {
             currentHealth = maxHealth;
             fullHealth = true;
-            if (healingpopup!=null)
-            {
-                HealingFloatingText();
-            }
+            //if (healingpopup!=null)
+            //{
+            //    HealingFloatingText();
+            //}
         }
     }
 

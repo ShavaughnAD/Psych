@@ -16,7 +16,7 @@ public class PlayerHealth : Health
         base.Awake();
         popup = Resources.Load<GameObject>("Resources/Prefabs/UIAssets/HealingFloatingText");
         //onHurt.BindToEvent(Hurt);
-        onHeal.BindToEvent(Heal);
+        //onHeal.BindToEvent(Heal);
         onDeath.BindToEvent(Death);
 
 //#if DEBUG
