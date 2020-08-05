@@ -28,17 +28,17 @@ public class PlayerAim : MonoBehaviour
     public Transform _selection;
     public Rigidbody selectedObjectRB = null;
     public Collider selectedObjectCol = null;
-    GameObject attractTarget;
+    [SerializeField] GameObject attractTarget;
     Vector3 targetPosition;
     Vector3 objectRBPosition;
-    Rigidbody objectRB = null;
-    Rigidbody objectRBinHand = null;
-    Collider objectColinHand = null;
+    [SerializeField] Rigidbody objectRB = null;
+    [SerializeField] Rigidbody objectRBinHand = null;
+    [SerializeField] Collider objectColinHand = null;
     bool isPowerSufficient = false;
     [SerializeField] float attractSpeed = 7f;
     [SerializeField] float throwSpeed = 30f;
-    public bool isCarryingObject = false;
-    public bool isAttracting = false;
+    [SerializeField] public bool isCarryingObject = false;
+    [SerializeField] public bool isAttracting = false;
 
     #endregion
 
@@ -213,10 +213,14 @@ public class PlayerAim : MonoBehaviour
             objectRBinHand.isKinematic = false;
             objectColinHand.enabled = true;
             objectRBinHand.tag = "Selectable";
+            
 
             //objectRBinHand.AddForce(Camera.main.transform.forward * throwSpeed, ForceMode.Impulse);
             objectRBinHand.AddForce(CameraManager.cameraManager.playerCam.transform.TransformDirection(Vector3.forward) * throwSpeed, ForceMode.Impulse);
 
+            objectColinHand = null;
+            objectRBinHand = null;
+            objectRB = null;
             //Vector3 velocity = SetThrowVelocity(objectRBinHand, targetPoint, throwSpeed);
             //Vector3 velocity = SetThrowVelocity(objectRBinHand, centerScreen, throwSpeed);
             //if (velocity != Vector3.zero)
@@ -229,20 +233,24 @@ public class PlayerAim : MonoBehaviour
 
     void MoveToTarget()
     {
-        objectRBPosition = objectRBinHand.position;
-        targetPosition = attractTarget.transform.position;
-        float speed = attractSpeed * Time.deltaTime;
-        if (objectRBPosition == targetPosition)
+        if(objectRBinHand != null)
         {
-            objectRBinHand.transform.parent = GameObject.FindGameObjectWithTag("Player").transform;
-            objectRBinHand.tag = "NotSelectable";
-            isAttracting = false;
-            return;
+            objectRBPosition = objectRBinHand.position;
+            targetPosition = attractTarget.transform.position;
+            float speed = attractSpeed * Time.deltaTime;
+            if (objectRBPosition == targetPosition)
+            {
+                objectRBinHand.transform.parent = GameObject.FindGameObjectWithTag("Player").transform;
+                objectRBinHand.tag = "NotSelectable";
+                isAttracting = false;
+                return;
+            }
+            objectRBinHand.position = Vector3.MoveTowards(objectRB.position, targetPosition, speed);
         }
-        objectRBinHand.position = Vector3.MoveTowards(objectRB.position, targetPosition, speed);
+        
     }
 
-    Vector3 SetThrowVelocity(Rigidbody rigidbody, Vector3 target, float force, float arch = 0.2f)
+    /*Vector3 SetThrowVelocity(Rigidbody rigidbody, Vector3 target, float force, float arch = 0.2f)
     {
         Mathf.Clamp(arch, 0, 1);
         var origin = rigidbody.position;
@@ -266,7 +274,7 @@ public class PlayerAim : MonoBehaviour
         float vz = z / time;
         Vector3 velocity = new Vector3(vx, vy, vz);
         return velocity;
-    }
+    }*/
 
     public void EmptyHand()
     {
