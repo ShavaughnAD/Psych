@@ -2023,6 +2023,10 @@ MonoBehaviour:
   _selection: {fileID: 0}
   selectedObjectRB: {fileID: 0}
   selectedObjectCol: {fileID: 0}
+  attractTarget: {fileID: 0}
+  objectRB: {fileID: 0}
+  objectRBinHand: {fileID: 0}
+  objectColinHand: {fileID: 0}
   attractSpeed: 30
   throwSpeed: 50
   isCarryingObject: 0
@@ -3570,7 +3574,7 @@ Animator:
   m_GameObject: {fileID: 8030581170237732053}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c1f981507ad4cd340871a6aafb0a3ccf, type: 2}
+  m_Controller: {fileID: 9100000, guid: 87230ea6fc5d84c4e9b42d4633c3e80f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

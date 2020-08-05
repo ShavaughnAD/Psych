@@ -28,7 +28,7 @@ public class Generator : MonoBehaviour
         }
         else
         {
-            cells = 0;
+            //cells = 0;
             foreach (GameObject _cell in cellInGenerator)
             {
                 _cell.SetActive(false);
@@ -72,7 +72,7 @@ public class Generator : MonoBehaviour
                 }
                 if(doorToOpen != null)
                 {
-                    doorToOpen.GetComponent<doorCollider>().enabled = true;
+                    doorToOpen.GetComponent<DoorFunctionality>().Powered = true;
                 }
                 cellInGenerator[3].SetActive(true);
                 break;

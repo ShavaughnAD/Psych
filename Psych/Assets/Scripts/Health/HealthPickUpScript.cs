@@ -10,7 +10,7 @@ public class HealthPickUpScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other);
+        //Debug.LogError(other);
         if (other.GetComponent<PlayerHealth>() != null)
         {
             if(!other.GetComponent<PlayerHealth>().fullHealth)
