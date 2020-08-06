@@ -96,16 +96,17 @@ public class WeaponPickUp : MonoBehaviour
 
     public void Equip()
     {
-        FindObjectOfType<WeaponThrow>().weapon = gameObject;
-        FindObjectOfType<WeaponThrow>().weapon.GetComponent<WeaponShooting>().enabled = true;
+        WeaponThrow W_Throw = FindObjectOfType<WeaponThrow>();
+        W_Throw.weapon = gameObject;
+        W_Throw.weapon.GetComponent<WeaponShooting>().enabled = true;
         weaponShooting.equipped = true;
         pickedUp = true;
         gameObject.transform.parent = FindObjectOfType<WeaponThrow>().transform;
-        FindObjectOfType<WeaponThrow>().weaponRB = weaponRB;
+        W_Throw.weaponRB = weaponRB;
         GetComponentInParent<PlayerAim>().UpdateCurrentWeaponStats(weaponShooting.rate, weaponShooting.damage, weaponShooting.ammoAmount, weaponShooting.bulletTracer);
-        FindObjectOfType<WeaponThrow>().controlledParticle = weaponControlledParticle;
+        W_Throw.controlledParticle = weaponControlledParticle;
         weaponControlledParticle.gameObject.SetActive(true);
-        FindObjectOfType<WeaponThrow>().ReturnWeapon();
+        W_Throw.ReturnWeapon();
         PauseMenu.pauseMenuRef.crosshairImage.sprite = weaponCrosshair;
         PauseMenu.pauseMenuRef.weaponIconDisplay.sprite = weaponIcon;
     }
