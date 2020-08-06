@@ -65,7 +65,7 @@ public class WeaponPickUp : MonoBehaviour
 
     void Update()
     {
-        if (isPlayerHere == true && pickedUp == false)
+        if (isPlayerHere == true && pickedUp == false && CameraManager.cameraManager.playerMovement.enabled == true)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
