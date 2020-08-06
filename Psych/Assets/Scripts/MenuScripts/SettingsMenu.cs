@@ -52,20 +52,21 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetMasterVolume(float volume)
     {
-        PlayerPrefs.SetFloat("Master_Vol", volume);
-        masterMixer.SetFloat("volume", volume);
+        Debug.Log(Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("Master_Vol", Mathf.Log10(volume) * 20);
+        masterMixer.SetFloat("volume", Mathf.Log10(volume) * 20);
     }
 
     public void SetMusicVolume(float volume)
     {
-        PlayerPrefs.SetFloat("BGM_Vol", volume);
-        masterMixer.SetFloat("musicVolume", volume);
+        PlayerPrefs.SetFloat("BGM_Vol", Mathf.Log10(volume) * 20);
+        masterMixer.SetFloat("musicVolume", Mathf.Log10(volume) * 20);
     }
 
     public void SetSFXVolume(float volume)
     {
-        PlayerPrefs.SetFloat("SFx_Vol", volume);
-        masterMixer.SetFloat("soundEffectsVolume", volume);
+        PlayerPrefs.SetFloat("SFx_Vol", Mathf.Log10(volume) * 20);
+        masterMixer.SetFloat("soundEffectsVolume", Mathf.Log10(volume) * 20);
     }
 
     public void SetQuality(int qualityIndex)
@@ -88,16 +89,16 @@ public class SettingsMenu : MonoBehaviour
         masterMixer.SetFloat("musicVolume", PlayerPrefs.GetFloat("BGM_Vol"));
         masterMixer.SetFloat("soundEffectsVolume", PlayerPrefs.GetFloat("SFx_Vol"));
 
-        MasterSlider.value = PlayerPrefs.GetFloat("Master_Vol");
-        BGMSlider.value = PlayerPrefs.GetFloat("BGM_Vol");
-        SFxSlider.value = PlayerPrefs.GetFloat("SFx_Vol");
+        MasterSlider.value = Mathf.Pow(10,(PlayerPrefs.GetFloat("Master_Vol") / 20));
+        BGMSlider.value = Mathf.Pow(10, (PlayerPrefs.GetFloat("BGM_Vol") / 20));
+        SFxSlider.value = Mathf.Pow(10, (PlayerPrefs.GetFloat("SFx_Vol") / 20));
     }
 
     public void ResetAudioSetting()
     {
-        PlayerPrefs.SetFloat("Master_Vol", 0);
-        PlayerPrefs.SetFloat("SFx_Vol", 0);
-        PlayerPrefs.SetFloat("BGM_Vol", 0);
+        PlayerPrefs.SetFloat("Master_Vol", 1);
+        PlayerPrefs.SetFloat("SFx_Vol", 1);
+        PlayerPrefs.SetFloat("BGM_Vol", 1);
 
         masterMixer.SetFloat("volume", 0);
         masterMixer.SetFloat("musicVolume", 0);
