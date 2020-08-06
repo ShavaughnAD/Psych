@@ -421,7 +421,7 @@ PrefabInstance:
     - target: {fileID: 3513000237656205990, guid: 39f555063808e20409df1c5125fee58b,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4322808052490781562, guid: 39f555063808e20409df1c5125fee58b,
         type: 3}
@@ -493,6 +493,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.164
       objectReference: {fileID: 0}
+    - target: {fileID: 8567953483223310726, guid: 39f555063808e20409df1c5125fee58b,
+        type: 3}
+      propertyPath: weaponCrosshair
+      value: 
+      objectReference: {fileID: 21300000, guid: 542ff191f43f81747b46c2962560d442,
+        type: 3}
+    - target: {fileID: 8567953483223310726, guid: 39f555063808e20409df1c5125fee58b,
+        type: 3}
+      propertyPath: weaponIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: a24d23f85c5d5f94d9d166bd81dae34a,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 2861147952259462650, guid: 39f555063808e20409df1c5125fee58b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 39f555063808e20409df1c5125fee58b, type: 3}

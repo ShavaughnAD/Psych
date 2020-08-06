@@ -45,7 +45,7 @@ public class TutorialPopUp : MonoBehaviour
         {
             countdownTime -= Time.deltaTime;
             playerMovement.enabled = false;
-            WeaponThrow.weaponThrow.enabled = false;
+            FindObjectOfType<WeaponThrow>().enabled = false;
         }
         if (countdownTime <= 0)
         {
@@ -59,7 +59,7 @@ public class TutorialPopUp : MonoBehaviour
             }
             startCountdown = false;
             playerMovement.enabled = true;
-            WeaponThrow.weaponThrow.enabled = true;
+            FindObjectOfType<WeaponThrow>().enabled = true;
             TutorialPhases();
         }
     }
@@ -98,7 +98,7 @@ public class TutorialPopUp : MonoBehaviour
 
                 promptText.text = "Nice, now move over to the weapon nearby and Press E to pick it up";
 
-                if(WeaponThrow.weaponThrow.weapon != null)
+                if(FindObjectOfType<WeaponThrow>().weapon != null)
                 {
                     tutorialPhase = TutorialPhase.ShootingWeapon;
                 }
@@ -106,7 +106,7 @@ public class TutorialPopUp : MonoBehaviour
 
             case TutorialPhase.ShootingWeapon:
                 promptText.text = "Awesome, to shoot your equipped weapon, press the Left Mouse Button, go on Shoot some rounds";
-                if (PlayerAim.aim.ammo <= 0)
+                if (FindObjectOfType<PlayerAim>().ammo <= 0)
                 {
                     tutorialPhase = TutorialPhase.StealingWeapon;
                 }
@@ -117,7 +117,7 @@ public class TutorialPopUp : MonoBehaviour
                
                 promptText.text = "Fear not when out of ammo, you can steal enemy weapons, aim at the nearby enemy's weapon and press Q to steal it!";
               
-                if(WeaponThrow.weaponThrow.weapon.GetComponent<WeaponPickUp>().wasStolen == true)
+                if(GetComponent<WeaponPickUp>().wasStolen == true)
                 {
                     tutorialPhase = TutorialPhase.ThrowingWeapon;
                 }
@@ -126,7 +126,7 @@ public class TutorialPopUp : MonoBehaviour
 
             case TutorialPhase.RecallingWeapon:
                 promptText.text = "To Recall Weapon, Press Right Mouse Button Again";
-                if (WeaponThrow.weaponThrow.isReturning)
+                if (FindObjectOfType<WeaponThrow>().isReturning)
                 {
                     tutorialPhase = TutorialPhase.Play;
                 }
@@ -135,7 +135,7 @@ public class TutorialPopUp : MonoBehaviour
             case TutorialPhase.ThrowingWeapon:
                
                 promptText.text = "If you haven't realized yet, you have Psychic powers. You can throw weapons and then control them. Press the Right Mouse Button to throw weapon and then press 3 to control it";
-                if (WeaponThrow.weaponThrow.isThrown)
+                if (FindObjectOfType<WeaponThrow>().isThrown)
                 {
                     tutorialPhase = TutorialPhase.RecallingWeapon;
                 }

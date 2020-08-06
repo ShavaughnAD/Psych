@@ -107,13 +107,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (!PlayerAim.aim.isCarryingObject)
+            if (!FindObjectOfType<PlayerAim>().isCarryingObject)
             {
-                PlayerAim.aim.ObjectPickUP();
+                FindObjectOfType<PlayerAim>().ObjectPickUP();
             }
             else
             {
-                PlayerAim.aim.ThrowObject();
+                FindObjectOfType<PlayerAim>().ThrowObject();
             }
         }
     }

@@ -77,7 +77,7 @@ public class WeaponPickUp : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.tag == "Player" && !pickedUp)
         {
             isPlayerHere = true;
             GameManager.gameManager.displayWeaponImage.sprite = weaponIcon;
@@ -96,35 +96,34 @@ public class WeaponPickUp : MonoBehaviour
 
     public void Equip()
     {
-        WeaponThrow.weaponThrow.weapon = gameObject;
-        WeaponThrow.weaponThrow.weapon.GetComponent<WeaponShooting>().enabled = true;
+        FindObjectOfType<WeaponThrow>().weapon = gameObject;
+        FindObjectOfType<WeaponThrow>().weapon.GetComponent<WeaponShooting>().enabled = true;
         weaponShooting.equipped = true;
         pickedUp = true;
-        gameObject.transform.parent = WeaponThrow.weaponThrow.transform;
-        WeaponThrow.weaponThrow.weaponRB = weaponRB;
-        PlayerAim.aim.UpdateCurrentWeaponStats(weaponShooting.rate, weaponShooting.damage, weaponShooting.ammoAmount, weaponShooting.bulletTracer);
-        WeaponThrow.weaponThrow.controlledParticle = weaponControlledParticle;
+        gameObject.transform.parent = FindObjectOfType<WeaponThrow>().transform;
+        FindObjectOfType<WeaponThrow>().weaponRB = weaponRB;
+        GetComponentInParent<PlayerAim>().UpdateCurrentWeaponStats(weaponShooting.rate, weaponShooting.damage, weaponShooting.ammoAmount, weaponShooting.bulletTracer);
+        FindObjectOfType<WeaponThrow>().controlledParticle = weaponControlledParticle;
         weaponControlledParticle.gameObject.SetActive(true);
-        WeaponThrow.weaponThrow.ReturnWeapon();
+        FindObjectOfType<WeaponThrow>().ReturnWeapon();
         PauseMenu.pauseMenuRef.crosshairImage.sprite = weaponCrosshair;
         PauseMenu.pauseMenuRef.weaponIconDisplay.sprite = weaponIcon;
-
     }
 
     public void PickUp()
     {
         //Unassign the current variables in player is using
-        if (WeaponThrow.weaponThrow.weapon != null)
+        if (FindObjectOfType<WeaponThrow>().weapon != null)
         {
-            WeaponThrow.weaponThrow.weapon.GetComponent<BoxCollider>().enabled = true;
-            WeaponThrow.weaponThrow.weapon.GetComponent<WeaponPickUp>().pickedUp = false;
-            WeaponThrow.weaponThrow.weapon.GetComponent<WeaponShooting>().equipped = false;
+            FindObjectOfType<WeaponThrow>().weapon.GetComponent<BoxCollider>().enabled = true;
+            FindObjectOfType<WeaponThrow>().weapon.GetComponent<WeaponPickUp>().pickedUp = false;
+            FindObjectOfType<WeaponThrow>().weapon.GetComponent<WeaponShooting>().equipped = false;
             CameraManager.cameraManager.cameraController.enabled = false;
-            WeaponThrow.weaponThrow.weapon.transform.parent = null;
-            WeaponThrow.weaponThrow.weapon = null;
-            WeaponThrow.weaponThrow.weaponRB.useGravity = true;
-            WeaponThrow.weaponThrow.weaponRB.isKinematic = false;
-            WeaponThrow.weaponThrow.controlledParticle.gameObject.SetActive(false);
+            FindObjectOfType<WeaponThrow>().weapon.transform.parent = null;
+            FindObjectOfType<WeaponThrow>().weapon = null;
+            FindObjectOfType<WeaponThrow>().weaponRB.useGravity = true;
+            FindObjectOfType<WeaponThrow>().weaponRB.isKinematic = false;
+            FindObjectOfType<WeaponThrow>().controlledParticle.gameObject.SetActive(false);
         }
         else
         {

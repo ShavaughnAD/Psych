@@ -4,7 +4,7 @@ using UnityEngine.UI;
 //Reference: Brackeys. (2017). Shooting with Raycasts - Unity Tutorial. Retrieved from https://www.youtube.com/watch?v=THnivyG0Mvo
 public class PlayerAim : MonoBehaviour
 {
-    public static PlayerAim aim;
+    public PlayerAim aim;
     public LayerMask enemyMask;
     public LayerMask pickUpMask;
     public LayerMask weaponMask;
@@ -44,7 +44,7 @@ public class PlayerAim : MonoBehaviour
 
     void Awake()
     {
-        aim = this;
+        //aim = this;
         shootingAudio = GetComponent<AudioSource>();
     }
 

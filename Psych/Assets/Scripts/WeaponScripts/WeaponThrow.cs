@@ -3,7 +3,7 @@
 public class WeaponThrow : MonoBehaviour
 {
     #region Public Variables
-    public static WeaponThrow weaponThrow;
+    //public static WeaponThrow weaponThrow;
     public GameObject weapon = null;
     public Rigidbody weaponRB = null;
     public float returnRotSpeed = 50;
@@ -21,7 +21,7 @@ public class WeaponThrow : MonoBehaviour
 
     void Awake()
     {
-        weaponThrow = this;
+        //weaponThrow = this;
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -35,6 +35,7 @@ public class WeaponThrow : MonoBehaviour
         #region Input
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
+            //Debug.LogError("Throwing Gun");
             if(isReturning)
             {
                 return;
