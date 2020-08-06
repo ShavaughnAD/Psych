@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 8699912831636415908}
   - component: {fileID: 8699912831636415909}
   - component: {fileID: 8699912831636415910}
-  - component: {fileID: 8720000030751988975}
+  - component: {fileID: 897431320}
   m_Layer: 0
   m_Name: JetpackEnemy
   m_TagString: Enemy
@@ -301,7 +301,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!95 &8699912831636415916
 Animator:
@@ -359,6 +359,7 @@ MonoBehaviour:
   arrayOfPatrolPoints:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   patrollerGameObject: {fileID: 837002910930994009}
   patrolSpeed: 5
 --- !u!114 &8699912831636415905
@@ -375,23 +376,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GlobalState: []
   States:
-  - State: {fileID: 0}
+  - State: {fileID: 8699912831636415919}
+    Transitions:
+    - Next: {fileID: 8699912831636415906}
+      Cond: {fileID: 8699912831636415908}
+      Priority: 0
+      Not: 0
+    - Next: {fileID: 8699912831636415907}
+      Cond: {fileID: 8699912831636415909}
+      Priority: 0
+      Not: 0
+  - State: {fileID: 8699912831636415906}
     Transitions:
     - Next: {fileID: 0}
       Cond: {fileID: 0}
       Priority: 0
       Not: 0
-    - Next: {fileID: 0}
-      Cond: {fileID: 0}
-      Priority: 0
-      Not: 0
-  - State: {fileID: 0}
-    Transitions:
-    - Next: {fileID: 0}
-      Cond: {fileID: 0}
-      Priority: 0
-      Not: 0
-  - State: {fileID: 0}
+  - State: {fileID: 8699912831636415919}
     Transitions:
     - Next: {fileID: 0}
       Cond: {fileID: 0}
@@ -404,14 +405,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837002910930994009}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1795e0e61f9970e4fb847f9a25c412fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeapon: {fileID: 0}
+  currentWeapon: {fileID: 4648776747149081621}
   movementSpeed: 15
-  Anim: {fileID: 0}
 --- !u!114 &8699912831636415907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,7 +419,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837002910930994009}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a66ee400c8ef1ab4992db59741b56c8c, type: 3}
   m_Name: 
@@ -465,9 +465,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxWaitTimeToLookForTarget: 500
-  Anim: {fileID: 0}
---- !u!136 &8720000030751988975
-CapsuleCollider:
+--- !u!65 &897431320
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -476,10 +475,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.039585114
-  m_Height: 0.17994332
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.0050691366, z: 0.03183365}
+  serializedVersion: 2
+  m_Size: {x: 0.04993696, y: 0.12465805, z: 0.04210362}
+  m_Center: {x: -0.0008234481, y: 0.013809892, z: 0.02867121}
 --- !u!1 &884762771268072523
 GameObject:
   m_ObjectHideFlags: 0
@@ -2984,6 +2982,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e91f7d1c9949e54a80737c9774f8253, type: 3}
+--- !u!1 &4648776747149081621 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4053109314030965586, guid: 2e91f7d1c9949e54a80737c9774f8253,
+    type: 3}
+  m_PrefabInstance: {fileID: 8699912831850393415}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4648776747149081630 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4053109314030965593, guid: 2e91f7d1c9949e54a80737c9774f8253,

@@ -18,7 +18,7 @@ public class LostPlayer : FsmCondition
     private float waitTimeToLookForTarget;
     
     private SeesPlayer lineOfSight;
-    public Animator Anim;
+     Animator Anim;
 
     private void Awake() {
         lineOfSight = this.GetComponent<SeesPlayer>();

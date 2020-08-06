@@ -1130,7 +1130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetObject: {fileID: 0}
   visionRange: 45
-  maxVisionDistance: 50
+  maxVisionDistance: 15
 --- !u!114 &6036562452661943257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1138,7 +1138,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2371075415447921353}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a66ee400c8ef1ab4992db59741b56c8c, type: 3}
   m_Name: 
@@ -1150,14 +1150,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2371075415447921353}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1795e0e61f9970e4fb847f9a25c412fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 7130793088106065380}
   movementSpeed: 15
-  Anim: {fileID: 0}
 --- !u!114 &6036562452661943255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1225,7 +1224,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxWaitTimeToLookForTarget: 500
-  Anim: {fileID: 0}
 --- !u!65 &4519655994961282126
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3317,6 +3315,10 @@ PrefabInstance:
     - target: {fileID: 1116050237, guid: 11ac3fceb580271409627f9ecfa8da0c, type: 3}
       propertyPath: m_Drag
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116050237, guid: 11ac3fceb580271409627f9ecfa8da0c, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 476245502809587978, guid: 11ac3fceb580271409627f9ecfa8da0c,
         type: 3}
