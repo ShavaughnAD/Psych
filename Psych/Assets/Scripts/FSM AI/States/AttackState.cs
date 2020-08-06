@@ -13,7 +13,7 @@ public class AttackState : FsmState
     private Vector3 targetLastPosition;
     
     private NavMeshAgent enemyAgent;
-    public Animator Anim;
+     Animator Anim;
 
     
     private void Start() {
