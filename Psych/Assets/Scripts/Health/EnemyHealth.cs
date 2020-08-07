@@ -26,6 +26,8 @@ public class EnemyHealth : Health
         if (isSlug)
         {
             GetComponent<Animator>().SetBool("isDead", true);
+            GetComponent<AttackState>().currentWeapon.transform.parent = null;
+            GetComponent<AttackState>().currentWeapon.GetComponent<Rigidbody>().isKinematic = false;
             Destroy(gameObject, 2);
         }
         else
