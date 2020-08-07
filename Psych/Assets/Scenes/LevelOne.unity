@@ -307,6 +307,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1715998240}
     m_Modifications:
+    - target: {fileID: 2855714489128250082, guid: 4285c833eb80ec047a1cf9f4a9c29e93,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5846587485673926007, guid: 4285c833eb80ec047a1cf9f4a9c29e93,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -315,7 +320,7 @@ PrefabInstance:
     - target: {fileID: 5846587485673926007, guid: 4285c833eb80ec047a1cf9f4a9c29e93,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 25.393816
+      value: 25.42
       objectReference: {fileID: 0}
     - target: {fileID: 5846587485673926007, guid: 4285c833eb80ec047a1cf9f4a9c29e93,
         type: 3}
@@ -1535,6 +1540,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5769338595867936491, guid: 8d4a22c3a9dec8a4b957509182c22fe3,
     type: 3}
   m_PrefabInstance: {fileID: 1543180152943317283}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &298753566 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7128655925091891787, guid: 33c102e11d34c2c439eca5d1a2c14ad4,
+    type: 3}
+  m_PrefabInstance: {fileID: 265470654788342801}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &299191096
 PrefabInstance:
@@ -3077,7 +3088,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451292293}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c9182cfb6e56094489fb1fde79021c6, type: 3}
   m_Name: 
@@ -9972,6 +9983,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 8594749081998070171, guid: d014b9c39c074c84797de933604866f8,
+        type: 3}
+      propertyPath: cells
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8594749081998070171, guid: d014b9c39c074c84797de933604866f8,
+        type: 3}
+      propertyPath: doorToOpen
+      value: 
+      objectReference: {fileID: 298753566}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d014b9c39c074c84797de933604866f8, type: 3}
 --- !u!1001 &1261808608
@@ -15541,7 +15562,7 @@ PrefabInstance:
     - target: {fileID: 7242689205392972047, guid: 33c102e11d34c2c439eca5d1a2c14ad4,
         type: 3}
       propertyPath: Powered
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33c102e11d34c2c439eca5d1a2c14ad4, type: 3}
