@@ -4,7 +4,7 @@ using UnityEngine.UI;
 //Reference: Brackeys. (2017). Shooting with Raycasts - Unity Tutorial. Retrieved from https://www.youtube.com/watch?v=THnivyG0Mvo
 public class PlayerAim : MonoBehaviour
 {
-    public static PlayerAim aim;
+    public PlayerAim aim;
     public LayerMask enemyMask;
     public LayerMask pickUpMask;
     public LayerMask weaponMask;
@@ -44,7 +44,7 @@ public class PlayerAim : MonoBehaviour
 
     void Awake()
     {
-        aim = this;
+        //aim = this;
         shootingAudio = GetComponent<AudioSource>();
     }
 
@@ -129,36 +129,16 @@ public class PlayerAim : MonoBehaviour
 
         #region StealWeapon
 
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    if (Physics.Raycast(ray, out hit, Mathf.Infinity, weaponMask))
-        //    {
-        //        if (hit.transform.GetComponent<WeaponPickUp>().canBeStolen)
-        //        {
-        //            hit.transform.GetComponent<WeaponPickUp>().wasStolen = true;
-        //            hit.transform.GetComponent<WeaponPickUp>().PickUp();
-        //        }
-        //        else
-        //        {
-        //            Debug.LogError("Weapon cannot be stolen mad dog");
-        //        }
-        //    }
-        //}
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, weaponMask))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            if(hit.transform.GetComponent<AttackState>().currentWeapon.GetComponent<WeaponPickUp>().canBeStolen)
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, weaponMask))
             {
-                if (Input.GetKeyDown(KeyCode.Q))
+                if (hit.transform.GetComponent<AttackState>().currentWeapon.GetComponent<WeaponPickUp>().canBeStolen)
                 {
                     hit.transform.GetComponent<AttackState>().currentWeapon.GetComponent<WeaponPickUp>().PickUp();
                 }
             }
-            else
-            {
-                return;
-            }
         }
-
         #endregion
 
         if (Input.GetKeyDown(KeyCode.Backspace))

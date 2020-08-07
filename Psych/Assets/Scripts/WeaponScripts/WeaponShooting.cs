@@ -47,7 +47,7 @@ public class WeaponShooting : MonoBehaviour
         shotgunHandler = GetComponent<ShotgunHandler>();
         if (equipped)
         {
-            PlayerAim.aim.UpdateCurrentWeaponStats(rate, damage, ammoAmount, bulletTracer);
+            FindObjectOfType<PlayerAim>().UpdateCurrentWeaponStats(rate, damage, ammoAmount, bulletTracer);
         }
     }
 
@@ -76,7 +76,7 @@ public class WeaponShooting : MonoBehaviour
                 shootTimer = 0;
             }
 
-            if (thrown == true && Input.GetKeyDown(KeyCode.Alpha3) && WeaponThrow.weaponThrow.isReturning == false)
+            if (thrown == true && Input.GetKeyDown(KeyCode.Alpha3) && FindObjectOfType<WeaponThrow>().isReturning == false)
             {
                 CameraManager.cameraManager.ActivateWeaponCamera();
                 //CameraManager.cameraManager.cameraController.target = transform;
