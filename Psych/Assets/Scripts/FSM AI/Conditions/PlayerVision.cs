@@ -17,7 +17,10 @@ public class PlayerVision : MonoBehaviour
     {
         targetInSight = CheckIfTargetIsWithinVision();
 
-
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            GetComponent<AttackState>().currentWeapon = GetComponent<AttackState>().C_Stolen;
+        }
 
         //Debug.Log("TRULY Able to see target: " + targetInSight);
     }
