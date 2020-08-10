@@ -17,26 +17,34 @@ public class LostPlayer : FsmCondition
     private float maxWaitTimeToLookForTarget = 5f;
     private float waitTimeToLookForTarget;
     
-    private SeesPlayer lineOfSight;
+    private PlayerVision lineOfSight;
      Animator Anim;
+    private bool lostSightOfTarget = false;
+    private WasAlerted wasAlerted;
+
 
     private void Awake() {
-        lineOfSight = this.GetComponent<SeesPlayer>();
+        lineOfSight = this.GetComponent<PlayerVision>();
         float waitTimeToLookForTarget = maxWaitTimeToLookForTarget;
     }
      void Start()
     {
         Anim = GetComponent<Animator>();
+        wasAlerted = this.GetComponent<WasAlerted>();
     }
 
     private void Update() {
-        LostSightOfTarget();
+        this.lostSightOfTarget = LostSightOfTarget();
+        if (wasAlerted.IsAlerted()) //If being alerted, continue to wait
+        {
+            ResetWaitTime();
+        }
     }
 
     public bool LostSightOfTarget(){
 
         //If I can see the target, then I haven't lost sight of it.  
-        if(lineOfSight.CheckIfTargetIsWithinVision()){
+        if(lineOfSight.GetTargetInSight()){
             ResetWaitTime();
             return false;
         
@@ -68,6 +76,6 @@ public class LostPlayer : FsmCondition
     
     public override bool IsSatisfied(FsmState curr, FsmState next){
 
-        return LostSightOfTarget();
+        return lostSightOfTarget;
     }
 }
