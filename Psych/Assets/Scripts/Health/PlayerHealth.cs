@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class PlayerHealth : Health
 {
     public Image healthBar;
-    public Text healthText;
+    //public Text healthText;
     public Renderer[] orbs;
     public float maxPower = 50;
     public float currentPower = 0;
@@ -16,7 +16,7 @@ public class PlayerHealth : Health
         base.Awake();
         popup = Resources.Load<GameObject>("Resources/Prefabs/UIAssets/HealingFloatingText");
         //onHurt.BindToEvent(Hurt);
-        onHeal.BindToEvent(Heal);
+        //onHeal.BindToEvent(Heal);
         onDeath.BindToEvent(Death);
 
 //#if DEBUG
@@ -39,20 +39,21 @@ public class PlayerHealth : Health
     void Update()
     {
         healthBar.fillAmount = currentHealth / maxHealth;
-        healthText.text = currentHealth.ToString("0") + " / " + maxHealth.ToString("0");
+        //healthText.text = currentHealth.ToString("0") + " / " + maxHealth.ToString("0");
         HealthRegen();
         foreach(Renderer rend in orbs)
         {
             if (currentHealth == maxHealth || currentHealth >= maxHealth * 0.51f)
             {
                 rend.material.SetColor("_EmissionColor", Color.blue);
-                healthBar.color = Color.blue;
+                healthBar.color = new Color(255, 255, 255);
                 damageReduction = 1;
             }
             else if (currentHealth <= maxHealth * 0.50f && currentHealth >= maxHealth * 0.31f)
             {
                 rend.material.SetColor("_EmissionColor", Color.yellow);
-                healthBar.color = Color.yellow;
+                healthBar.color = new Color(255, 255, 255);
+                //healthBar.color = Color.yellow;
                 damageReduction = 1;
             }
             else if (currentHealth <= maxHealth * 0.30f)

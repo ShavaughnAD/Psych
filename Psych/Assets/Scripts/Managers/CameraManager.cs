@@ -42,4 +42,10 @@ public class CameraManager : MonoBehaviour
         playerMovement.enabled = false;
         PowerManager.powerManager.drainPower = true;
     }
+
+    public void AssignNewWeaponCam(CameraController _camController, Camera _weaponCam)
+    {
+        weaponCam = _weaponCam;
+        cameraController = _camController;
+    }
 }

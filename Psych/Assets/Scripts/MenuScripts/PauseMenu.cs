@@ -1,23 +1,34 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
+    public static PauseMenu pauseMenuRef;
     public GameObject pauseMenuBackground;
     public GameObject pauseMenu;
     public GameObject settingsMenu;
 
     public GameObject crosshair;
+    public Image crosshairImage;
+    public Image weaponIconDisplay;
 
     public bool isPaused = false;
 
     PlayerMovement playerMovement;
-    CameraController weaponCam;
+
+    void Awake()
+    {
+        pauseMenuRef = this;
+    }
 
     void Start()
     {
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        weaponCam = CameraManager.cameraManager.cameraController;
         crosshair = GameObject.FindGameObjectWithTag("Crosshair");
+        if(crosshair != null)
+        {
+            crosshairImage = crosshair.GetComponent<Image>();
+        }
     }
 
     void Update()
@@ -32,7 +43,7 @@ public class PauseMenu : MonoBehaviour
                 Cursor.visible = true;
                 pauseMenuBackground.SetActive(true);
                 playerMovement.enabled = false;
-                weaponCam.enabled = false;
+                CameraManager.cameraManager.cameraController.enabled = false;
                 crosshair.SetActive(false);
             }
             else
@@ -55,7 +66,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = false;
         pauseMenuBackground.SetActive(false);
         playerMovement.enabled = true;
-        weaponCam.enabled = true;
+        CameraManager.cameraManager.cameraController.enabled = true;
         crosshair.SetActive(true);
     }
 

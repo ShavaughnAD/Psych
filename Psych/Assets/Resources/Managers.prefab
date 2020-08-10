@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5554212185934225964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5554212185934225961}
+  - component: {fileID: 5554212185934225966}
+  - component: {fileID: 5554212185934225967}
+  - component: {fileID: 5554212185934225963}
+  - component: {fileID: 5554212185934225960}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5554212185934225961
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554212185934225964}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.4878504, y: 2.529643, z: 26.000324}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5554212185934225966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554212185934225964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418f17e4c0d864b47ac0b53bf8a65f99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - soundName: GunShot
+    audioClip: {fileID: 8300000, guid: 2d8177e711ac1ea438eecf019460a5cc, type: 3}
+    soundVolume: 0.538
+    soundPitch: 1
+    loopSound: 0
+    playAwake: 0
+    isMusic: 0
+    soundSource: {fileID: 0}
+  - soundName: BagHead
+    audioClip: {fileID: 8300000, guid: da757ea54a454f647802e22b91891af3, type: 3}
+    soundVolume: 0.538
+    soundPitch: 1
+    loopSound: 0
+    playAwake: 0
+    isMusic: 1
+    soundSource: {fileID: 0}
+  - soundName: BrianBeat
+    audioClip: {fileID: 8300000, guid: 2f0b3a8de94b92546a9e8a97a8c1776c, type: 3}
+    soundVolume: 0.538
+    soundPitch: 1
+    loopSound: 0
+    playAwake: 0
+    isMusic: 1
+    soundSource: {fileID: 0}
+  - soundName: DirteSanchez
+    audioClip: {fileID: 8300000, guid: 0cca3d8206a253d4e8f539a4807a5e09, type: 3}
+    soundVolume: 0.538
+    soundPitch: 1
+    loopSound: 0
+    playAwake: 0
+    isMusic: 1
+    soundSource: {fileID: 0}
+--- !u!114 &5554212185934225967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554212185934225964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c0acc840ba2d094c8f918da41a80560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCam: {fileID: 0}
+  weaponCam: {fileID: 0}
+  cameraController: {fileID: 0}
+  playerMovement: {fileID: 0}
+  playerAim: {fileID: 0}
+--- !u!114 &5554212185934225963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554212185934225964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c14fd86820331240b8053a0647ef724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayWeapon: {fileID: 0}
+  displayWeaponImage: {fileID: 0}
+--- !u!114 &5554212185934225960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554212185934225964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 875ea3c3cec494e4a93682e444764a75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power: 100
+  maxPower: 100
+  regenRate: 2
+  drainPower: 0
+  powerBar: {fileID: 0}
+  powerText: {fileID: 0}

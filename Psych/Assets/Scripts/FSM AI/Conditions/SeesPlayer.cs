@@ -16,6 +16,7 @@ public class SeesPlayer : FsmCondition
     private void Start()
     {
         playerVision = this.GetComponent<PlayerVision>();
+        targetObject = GameObject.FindWithTag("Player").transform;
 
         if(playerVision == null)
         {

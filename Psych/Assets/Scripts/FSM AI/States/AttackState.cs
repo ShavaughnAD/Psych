@@ -5,21 +5,21 @@ using UnityEngine.AI;
 
 public class AttackState : FsmState
 {
-    [SerializeField]
-    private GameObject currentWeapon;
+    public GameObject currentWeapon;
     [SerializeField]
     private float movementSpeed = 7f;
 
-    private PlayerVision enemyVision;
     private Vector3 targetLastPosition;
     
     private NavMeshAgent enemyAgent;
+     Animator Anim;
+    private PlayerVision enemyVision;
 
     
     private void Start() {
         enemyVision = this.GetComponent<PlayerVision>();
-        //Debug.Log("ENTERING ATTACK STATE.");
         enemyAgent = this.GetComponent<NavMeshAgent>();
+        Anim = GetComponent<Animator>();
     }
 
     private void Update() {
@@ -31,7 +31,7 @@ public class AttackState : FsmState
             GetInAttackingRangeOfTarget();
             
         }else{
-            MoveTowardsTargetLastKnownPosition();
+            MoveTowardsTarget();
         }
     }
 
@@ -40,15 +40,21 @@ public class AttackState : FsmState
         
         //Debug.Log("I remember where I saw the target.");
         targetLastPosition = enemyVision.getTargetObjectTransform().position;
-      
+        
     }
 
     private void GetInAttackingRangeOfTarget(){
+        if(enemyVision.GetTargetInSight() ){
+            Anim.SetBool("CanAttack", true);
+            AttackTarget();
+        }else{
 
-        AttackTarget();
+            MoveTowardsTarget();
+        }
     }
 
     private void AttackTarget(){
+        
         AimWeaponAtTarget();
         UseWeaponAtTarget();
     }
@@ -68,11 +74,10 @@ public class AttackState : FsmState
     }
     
     private void UseWeaponAtTarget(){
-        Debug.Log("Using weapon!");
         currentWeapon.GetComponent<WeaponShooting>().EnemyShootProjectile();
     }
 
-    private void MoveTowardsTargetLastKnownPosition(){
+    private void MoveTowardsTarget(){
         //Debug.Log("I'm coming after you!");
         // transform.position = Vector3.MoveTowards(this.transform.position, targetPosition, movementSpeed * Time.deltaTime);
         enemyAgent.SetDestination(targetLastPosition);

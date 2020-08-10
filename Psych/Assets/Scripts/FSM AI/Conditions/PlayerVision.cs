@@ -29,7 +29,7 @@ public class PlayerVision : MonoBehaviour
 
 
 
-    private bool CheckIfTargetIsWithinVision()
+    public bool CheckIfTargetIsWithinVision()
     {
         Vector3 targetDirection = targetObject.position - transform.position;
         float angle = Vector3.Angle(targetDirection, transform.forward);
