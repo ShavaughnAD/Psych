@@ -131,11 +131,18 @@ public class PlayerAim : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            //Debug.LogError("Q has been pressed");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, weaponMask))
             {
-                if (hit.transform.GetComponent<AttackState>().currentWeapon.GetComponent<WeaponPickUp>().canBeStolen)
+                //Debug.LogError("Weapon Mask");
+                if (hit.transform.GetComponent<AttackState>() != null)
                 {
-                    hit.transform.GetComponent<AttackState>().currentWeapon.GetComponent<WeaponPickUp>().PickUp();
+                    if (hit.transform.GetComponent<AttackState>().currentWeapon.GetComponent<WeaponPickUp>().canBeStolen)
+                    {
+                        hit.transform.GetComponent<AttackState>().WeapSteal();
+                        hit.transform.GetComponent<AttackState>().currentWeapon.GetComponent<WeaponPickUp>().PickUp();
+                        hit.transform.GetComponent<AttackState>().currentWeapon = null;
+                    }
                 }
             }
         }
