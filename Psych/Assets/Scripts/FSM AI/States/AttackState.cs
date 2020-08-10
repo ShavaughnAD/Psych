@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class AttackState : FsmState
 {
     public GameObject currentWeapon;
+    public GameObject C_Stolen;
     [SerializeField]
     private float movementSpeed = 7f;
 
@@ -83,6 +84,9 @@ public class AttackState : FsmState
         enemyAgent.SetDestination(targetLastPosition);
     }
 
-
+    public void WeapSteal()
+    {
+        C_Stolen = currentWeapon;       
+    }
 
 }
