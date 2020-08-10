@@ -20,7 +20,7 @@ public class AlertedState : FsmState
 
     private NavMeshAgent navMeshAgent;
 
-    private void Start()
+    private void Awake()
     {
         this.navMeshAgent = this.GetComponent<NavMeshAgent>();
         this.wasAlerted = this.GetComponent<WasAlerted>();
@@ -33,7 +33,8 @@ public class AlertedState : FsmState
     private void OnEnable()
     {
         SetTargetLastKnownPosition();
-        //Debug.Log("I've been alerted - (O_O)!");
+        
+        
     }
 
     private void SetTargetLastKnownPosition()

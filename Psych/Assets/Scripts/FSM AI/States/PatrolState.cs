@@ -34,11 +34,11 @@ public class PatrolState : FsmState
 
     private void OnTriggerEnter(Collider other) {
 
-        MoveToNextPatrolPoint(other);
+        SetNextPatrolPoint(other);
 
     }
 
-    private void MoveToNextPatrolPoint(Collider other)
+    private void SetNextPatrolPoint(Collider other)
     {
         if (other.gameObject == currentPatrolPoint)
         {
@@ -52,11 +52,11 @@ public class PatrolState : FsmState
     }
         
     private void Update(){
-        PatrolToPatrolPoints();
+        MoveToPatrolPoints();
 
     }
 
-    private void PatrolToPatrolPoints(){
+    private void MoveToPatrolPoints(){
         // patrollerGameObject.transform.position = Vector3.MoveTowards(this.transform.position, currentPatrolPoint.transform.position, patrolSpeed * Time.deltaTime);
         //     this.transform.LookAt(currentPatrolPoint.transform);
 

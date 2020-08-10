@@ -28,14 +28,14 @@ public class SeesPlayer : FsmCondition
         AlertOtherMinionsOfTargetWithinVision();
         canSeeTarget = playerVision.GetTargetInSight();
 
-        if (canSeeTarget)
-        {
-            Debug.Log("I can see the target");
-        }
-        else
-        {
-            Debug.Log("Where is the target?");
-        }
+        //if (canSeeTarget)
+        //{
+        //    Debug.Log("I can see the target");
+        //}
+        //else
+        //{
+        //    Debug.Log("Where is the target?");
+        //}
         
     }
 
@@ -63,14 +63,14 @@ public class SeesPlayer : FsmCondition
 
     public override bool IsSatisfied(FsmState curr, FsmState next){
 
-        if (canSeeTarget)
-        {
-            Debug.Log("I can see the target");
-        }
-        else
-        {
-            Debug.Log("Where is the target?");
-        }
+        //if (canSeeTarget)
+        //{
+        //    Debug.Log("I can see the target");
+        //}
+        //else
+        //{
+        //    Debug.Log("Where is the target?");
+        //}
         return canSeeTarget;
     }
 
@@ -82,7 +82,7 @@ public class SeesPlayer : FsmCondition
                 WasAlerted enemyAlerted = currentEnemyInRoom.gameObject.GetComponent<WasAlerted>();
                 if(enemyAlerted != null && !currentEnemyInRoom.gameObject.Equals(this.gameObject))
                 {
-                    Debug.Log(this.gameObject.name + ": Alerting " + currentEnemyInRoom.gameObject.name + " with target position " + targetObject.position );
+                    //Debug.Log(this.gameObject.name + ": Alerting " + currentEnemyInRoom.gameObject.name + " with target position " + targetObject.position );
                     enemyAlerted.AlertWithTargetLastKnownPosition(targetObject.position);
                 }
             }

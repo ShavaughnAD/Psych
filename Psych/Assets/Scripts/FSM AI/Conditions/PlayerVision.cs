@@ -19,7 +19,7 @@ public class PlayerVision : MonoBehaviour
 
 
 
-        Debug.Log("TRULY Able to see target: " + targetInSight);
+        //Debug.Log("TRULY Able to see target: " + targetInSight);
     }
 
     public bool GetTargetInSight()

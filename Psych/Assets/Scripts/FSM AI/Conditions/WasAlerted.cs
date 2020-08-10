@@ -9,7 +9,7 @@ public class WasAlerted : FsmCondition
     [SerializeField]
     private float alertedDuration = 1000f;
 
-    private Vector3 targetLastKnownPosition;
+    private Vector3 targetLastKnownPosition = Vector3.zero;
     private bool isAlerted = false;
     private LostPlayer targetSearchTimer;
     private float alertedDurationTimer;
@@ -53,6 +53,10 @@ public class WasAlerted : FsmCondition
         {
             Debug.LogWarning(this.name + " received 'null' for targetLastKnownPosition");
         }
+    }
+    public bool IsAlerted()
+    {
+        return this.isAlerted;
     }
 
     private void CheckIfAlertedTimerIsDone()

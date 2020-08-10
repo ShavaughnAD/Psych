@@ -27,32 +27,25 @@ public class AttackState : FsmState
         if(enemyVision.GetTargetInSight()){
             
             this.transform.LookAt(enemyVision.getTargetObjectTransform());
-            RememberTargetLastPosition(true);
+            RememberTargetLastPosition();
             GetInAttackingRangeOfTarget();
             
         }else{
-            MoveTowardsTarget();
+            MoveTowardsTargetLastKnownPosition();
         }
     }
 
     
-    private void RememberTargetLastPosition(bool rememberPosition){
-        if(rememberPosition){
-            //Debug.Log("I remember where I saw the target.");
-            targetLastPosition = enemyVision.getTargetObjectTransform().position;
-        }else{
-            targetLastPosition = Vector3.zero;
-        }
+    private void RememberTargetLastPosition(){
+        
+        //Debug.Log("I remember where I saw the target.");
+        targetLastPosition = enemyVision.getTargetObjectTransform().position;
+      
     }
 
     private void GetInAttackingRangeOfTarget(){
-        if(enemyVision.GetTargetInSight() ){
-            
-            AttackTarget();
-        }else{
 
-            MoveTowardsTarget();
-        }
+        AttackTarget();
     }
 
     private void AttackTarget(){
@@ -79,7 +72,7 @@ public class AttackState : FsmState
         currentWeapon.GetComponent<WeaponShooting>().EnemyShootProjectile();
     }
 
-    private void MoveTowardsTarget(){
+    private void MoveTowardsTargetLastKnownPosition(){
         //Debug.Log("I'm coming after you!");
         // transform.position = Vector3.MoveTowards(this.transform.position, targetPosition, movementSpeed * Time.deltaTime);
         enemyAgent.SetDestination(targetLastPosition);
