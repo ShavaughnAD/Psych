@@ -10,15 +10,33 @@ public class SeesPlayer : FsmCondition
     private float visionRange = 5.0f;
     [SerializeField]
     private float maxVisionDistance = 15.0f;
+    private bool canSeeTarget = false;
+    private PlayerVision playerVision;
 
-    private bool isAlerted = false;
-
-    public void Start()
+    private void Start()
     {
+        playerVision = this.GetComponent<PlayerVision>();
         targetObject = GameObject.FindWithTag("Player").transform;
+
+        if(playerVision == null)
+        {
+            Debug.LogError("Error: Missing Player Vision script on " + this.gameObject.name + " object");
+        }
     }
+
+
     private void Update() {
         AlertOtherMinionsOfTargetWithinVision();
+        canSeeTarget = playerVision.GetTargetInSight();
+
+        //if (canSeeTarget)
+        //{
+        //    Debug.Log("I can see the target");
+        //}
+        //else
+        //{
+        //    Debug.Log("Where is the target?");
+        //}
         
     }
 
@@ -34,26 +52,38 @@ public class SeesPlayer : FsmCondition
         //Debug.Log("angle: " + angle);
         //Debug.Log("Vector3 Distance between player and Enemy: " + targetDirection.magnitude);
 
-        
+        bool ableToSeeTarget = angle < visionRange && (targetDirection.magnitude < maxVisionDistance && targetDirection.magnitude >= 0);
 
-        return angle < visionRange && ( targetDirection.magnitude < maxVisionDistance && targetDirection.magnitude >= 0);
+        Debug.Log("Able to see target: " + ableToSeeTarget);
+
+
+
+        return ableToSeeTarget;
 
     }
 
     public override bool IsSatisfied(FsmState curr, FsmState next){
 
-        return CheckIfTargetIsWithinVision();
+        //if (canSeeTarget)
+        //{
+        //    Debug.Log("I can see the target");
+        //}
+        //else
+        //{
+        //    Debug.Log("Where is the target?");
+        //}
+        return canSeeTarget;
     }
 
-    public void AlertOtherMinionsOfTargetWithinVision(){
+    private void AlertOtherMinionsOfTargetWithinVision(){
         
-        if(CheckIfTargetIsWithinVision()){
+        if(canSeeTarget){
             
             foreach(Transform currentEnemyInRoom in this.transform.parent.transform){
                 WasAlerted enemyAlerted = currentEnemyInRoom.gameObject.GetComponent<WasAlerted>();
                 if(enemyAlerted != null && !currentEnemyInRoom.gameObject.Equals(this.gameObject))
                 {
-                    Debug.Log(this.gameObject.name + ": Alerting " + currentEnemyInRoom.gameObject.name + " with target position " + targetObject.position );
+                    //Debug.Log(this.gameObject.name + ": Alerting " + currentEnemyInRoom.gameObject.name + " with target position " + targetObject.position );
                     enemyAlerted.AlertWithTargetLastKnownPosition(targetObject.position);
                 }
             }
