@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class AttackState : FsmState
 {
     public GameObject currentWeapon;
+    public GameObject C_Stolen;
     [SerializeField]
     private float movementSpeed = 7f;
 
@@ -14,7 +15,7 @@ public class AttackState : FsmState
     private NavMeshAgent enemyAgent;
      Animator Anim;
     private PlayerVision enemyVision;
-
+    public Transform GunHand;
     
     private void Start() {
         enemyVision = this.GetComponent<PlayerVision>();
@@ -83,6 +84,10 @@ public class AttackState : FsmState
         enemyAgent.SetDestination(targetLastPosition);
     }
 
-
+    public void WeapSteal()
+    {
+        C_Stolen = currentWeapon;
+        GetComponent<PatrolState>().RunToGunRack();
+    }
 
 }
