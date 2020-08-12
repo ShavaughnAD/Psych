@@ -1015,6 +1015,7 @@ GameObject:
   - component: {fileID: 6036562452661943252}
   - component: {fileID: 4519655994961282126}
   - component: {fileID: 7959331687978557853}
+  - component: {fileID: 493292233}
   m_Layer: 10
   m_Name: RevolverEnemy
   m_TagString: Enemy
@@ -1173,7 +1174,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  patrollerGameObject: {fileID: 2371075415447921353}
   patrolSpeed: 5
 --- !u!114 &6036562452661943254
 MonoBehaviour:
@@ -1250,6 +1250,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.04993696, y: 0.053837378, z: 0.04210362}
   m_Center: {x: -0.0008234491, y: 0.042769276, z: 0.02867121}
+--- !u!114 &493292233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371075415447921353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cde2267c20dd5694a871146a438bee23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetObject: {fileID: 0}
+  visionRange: 5
+  maxVisionDistance: 15
 --- !u!1 &2429999856312236202
 GameObject:
   m_ObjectHideFlags: 0
