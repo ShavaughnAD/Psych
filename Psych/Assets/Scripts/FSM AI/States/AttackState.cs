@@ -15,7 +15,7 @@ public class AttackState : FsmState
     private NavMeshAgent enemyAgent;
      Animator Anim;
     private PlayerVision enemyVision;
-
+    public Transform GunHand;
     
     private void Start() {
         enemyVision = this.GetComponent<PlayerVision>();
@@ -86,7 +86,8 @@ public class AttackState : FsmState
 
     public void WeapSteal()
     {
-        C_Stolen = currentWeapon;       
+        C_Stolen = currentWeapon;
+        GetComponent<PatrolState>().RunToGunRack();
     }
 
 }
