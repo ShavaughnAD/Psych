@@ -55,7 +55,7 @@ public class AttackState : FsmState
 
     private void AttackTarget(){
         
-        AimWeaponAtTarget();
+        //AimWeaponAtTarget();
         UseWeaponAtTarget();
     }
 

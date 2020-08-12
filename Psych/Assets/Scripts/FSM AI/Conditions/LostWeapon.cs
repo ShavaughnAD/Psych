@@ -2,15 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LostWeapon : MonoBehaviour
+public class LostWeapon : FsmCondition
 {
 
-    private bool lostWeapon = false;
+    private AttackState attackState;
 
-    public void SetLostWeapon(bool lostWeapon)
+    public override bool IsSatisfied(FsmState curr, FsmState next)
     {
-        this.lostWeapon = lostWeapon;
+        return this.attackState.currentWeapon == null;
     }
+
+    private void Start()
+    {
+        this.attackState = this.GetComponent<AttackState>();
+    }
+
+
 
     
 

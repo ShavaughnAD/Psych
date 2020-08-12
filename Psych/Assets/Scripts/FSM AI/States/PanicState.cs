@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PanicState : MonoBehaviour
+public class PanicState : FsmState
 {
-
-    private GameObject weaponCrate;
+    [SerializeField]
+    private GameObject weaponRack;
+    private Vector3 lastKnownTargetPosition;
     private NavMeshAgent navMeshAgent;
     private WasAlerted wasAlerted;
     private PlayerVision vision;
+    private AttackState attackState;
+    private bool lookingForWeapon = true;
     
 
 
@@ -18,14 +21,22 @@ public class PanicState : MonoBehaviour
         wasAlerted = this.GetComponent<WasAlerted>();
         navMeshAgent = this.GetComponent<NavMeshAgent>();
         vision = this.GetComponent<PlayerVision>();
+        attackState = this.GetComponent<AttackState>();
     }
 
+    private void OnEnable()
+    {
+        if (vision.GetTargetInSight())
+        {
+           lastKnownTargetPosition = vision.getTargetObjectTransform().position;
+        }
+    }
 
     private void Update()
     {
-        if (WeaponCrateIsNearby())
+        if (WeaponCrateIsNearby() )
         {
-            GoToWeaponCrateAndEquipWeapon();
+            GoToWeaponRackAndEquipWeapon();
         }
         else
         {
@@ -40,23 +51,30 @@ public class PanicState : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject == weaponCrate) {
-            
+        if(other.gameObject == weaponRack && lookingForWeapon) {
 
+            Debug.Log("Attempting to equip weapon...");
+            lookingForWeapon = false;
+            wasAlerted.AlertWithTargetLastKnownPosition(lastKnownTargetPosition);
         }
     }
 
-    private void GoToWeaponCrateAndEquipWeapon()
+    private void GoToWeaponRackAndEquipWeapon()
     {
-        if(weaponCrate != null)
+        if(weaponRack != null && lookingForWeapon)
         {
             navMeshAgent.SetDestination(navMeshAgent.transform.position);
         }
-    }
+        else
+        {
+            Debug.LogWarning("Weapon rack property is set to null");
+        }
 
+    }
+    
     private void RunAwayFromTarget()
     {
-        Debug.Log("");
+         
     }
 
 }
