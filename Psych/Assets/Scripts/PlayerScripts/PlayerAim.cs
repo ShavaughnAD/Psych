@@ -135,7 +135,7 @@ public class PlayerAim : MonoBehaviour
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, weaponMask))
             {
                 //Debug.LogError("Weapon Mask");
-                if (hit.transform.GetComponent<AttackState>() != null)
+                if (hit.transform.GetComponent<AttackState>().currentWeapon != null)
                 {
                     if (hit.transform.GetComponent<AttackState>().currentWeapon.GetComponent<WeaponPickUp>().canBeStolen)
                     {
