@@ -352,6 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 0}
+  C_Stolen: {fileID: 0}
   movementSpeed: 7
 --- !u!114 &7946394248719299261
 MonoBehaviour:
@@ -1228,7 +1229,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3ce3c47a0bdd1db4798a619c3f608489, type: 2}
+  - {fileID: 2100000, guid: 2f7119cfc3e6a49459e723cb678e01ed, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
