@@ -200,10 +200,12 @@ public class PlayerAim : MonoBehaviour
             objectRBinHand.isKinematic = false;
             objectColinHand.enabled = true;
             objectRBinHand.tag = "Selectable";
-            
+
 
             //objectRBinHand.AddForce(Camera.main.transform.forward * throwSpeed, ForceMode.Impulse);
-            objectRBinHand.AddForce(CameraManager.cameraManager.playerCam.transform.TransformDirection(Vector3.forward) * throwSpeed, ForceMode.Impulse);
+            //objectRBinHand.AddForce(CameraManager.cameraManager.playerCam.transform.TransformDirection(Vector3.forward) * throwSpeed, ForceMode.Impulse);
+            //objectRBinHand.AddForce(centerScreen * throwSpeed, ForceMode.Impulse);
+            objectRBinHand.AddForce(CameraManager.cameraManager.playerCam.transform.TransformPoint(centerScreen) * throwSpeed * Time.deltaTime, ForceMode.Impulse);
 
             objectColinHand = null;
             objectRBinHand = null;
