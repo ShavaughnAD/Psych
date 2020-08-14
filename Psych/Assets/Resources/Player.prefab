@@ -2154,21 +2154,21 @@ MonoBehaviour:
     m_Bits: 2048
   weaponMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8192
+  crosshair: {fileID: 0}
+  rate: 0
   bulletForce: 125
-  ammo: 30
   muzzleFlash: {fileID: 7631054781869663525}
+  psychicAttack: {fileID: 5699919032068913110, guid: f36d5c1b71b4b134a955ae870d83d61a,
+    type: 3}
   impactEffect: {fileID: 8654427356223218432, guid: ac3150044c9de224eb34661bc9f584dc,
     type: 3}
+  psychicAttackSpawnPoint: {fileID: 4322808052747318339}
   cam: {fileID: 1924798446}
-  weaponIcon: {fileID: 0}
   shootingAudio: {fileID: 0}
-  ammoText: {fileID: 0}
   _selection: {fileID: 0}
   selectedObjectRB: {fileID: 0}
   selectedObjectCol: {fileID: 0}
-  attractTarget: {fileID: 0}
-  objectRB: {fileID: 0}
   objectRBinHand: {fileID: 0}
   objectColinHand: {fileID: 0}
   attractSpeed: 30
@@ -2452,7 +2452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4322808052747318339}
   m_Layer: 0
-  m_Name: Target
+  m_Name: PsychicAttackSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
