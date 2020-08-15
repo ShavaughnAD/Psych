@@ -64,7 +64,7 @@ public class PlayerAim : MonoBehaviour
         #region ShootingWeapon
 
         shootTimer += Time.deltaTime;
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (shootTimer >= rate)
             {
@@ -81,7 +81,7 @@ public class PlayerAim : MonoBehaviour
             }
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, enemyMask))
             {
-                crosshair.color = Color.red;
+                //crosshair.color = Color.red;
                 //Debug.Log(hit.collider.name);
                 //if (hit.collider.GetComponent<Health>() != null)
                 //{
@@ -95,7 +95,7 @@ public class PlayerAim : MonoBehaviour
             }
             else
             {
-                crosshair.color = Color.white;
+                //crosshair.color = Color.white;
             }
         }
 

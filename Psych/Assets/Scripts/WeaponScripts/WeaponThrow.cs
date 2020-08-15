@@ -28,55 +28,58 @@ public class WeaponThrow : MonoBehaviour
     #endregion
     void Update()
     {
-        Vector3 centerScreen = new Vector3(0.5f, 0.5f, 100);
-        Ray ray = CameraManager.cameraManager.playerCam.ViewportPointToRay(centerScreen);
-        RaycastHit hit;
-
-        #region Input
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (weapon != null)
         {
-            //Debug.LogError("Throwing Gun");
-            if(isReturning)
+            Vector3 centerScreen = new Vector3(0.5f, 0.5f, 100);
+            Ray ray = CameraManager.cameraManager.playerCam.ViewportPointToRay(centerScreen);
+            RaycastHit hit;
+
+            #region Input
+            if (Input.GetKeyDown(KeyCode.Mouse1))
             {
-                return;
+                //Debug.LogError("Throwing Gun");
+                if (isReturning)
+                {
+                    return;
+                }
+                if (isThrown == false)
+                {
+                    ThrowWeapon();
+                }
+                else
+                {
+                    ReturnWeapon();
+                }
             }
-            if (isThrown == false)
-            {
-                ThrowWeapon();
-            }
-            else
+            if (Input.GetKeyDown(KeyCode.Space) && weapon != null)
             {
                 ReturnWeapon();
             }
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && weapon != null)
-        {
-            ReturnWeapon();
-        }
 
-        #endregion
+            #endregion
 
-        if (isReturning)
-        {
-            if(time < 1)
+            if (isReturning)
             {
-                weaponRB.position = BezierQCP(time, prevPos, curvePoint.position, target.position);
-                weaponRB.rotation = Quaternion.Slerp(weaponRB.transform.rotation, target.rotation, returnRotSpeed * Time.deltaTime);
-                time += Time.deltaTime;
-            }
-            else
-            {
-                ResetWeapon();
-            }
-        }
-
-        if (isThrown == false && isReturning == false)
-        {
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-            {
-                if(weapon != null)
+                if (time < 1)
                 {
-                    weapon.transform.LookAt(hit.point);
+                    weaponRB.position = BezierQCP(time, prevPos, curvePoint.position, target.position);
+                    weaponRB.rotation = Quaternion.Slerp(weaponRB.transform.rotation, target.rotation, returnRotSpeed * Time.deltaTime);
+                    time += Time.deltaTime;
+                }
+                else
+                {
+                    ResetWeapon();
+                }
+            }
+
+            if (isThrown == false && isReturning == false)
+            {
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+                {
+                    if (weapon != null)
+                    {
+                        weapon.transform.LookAt(hit.point);
+                    }
                 }
             }
         }
