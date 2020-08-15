@@ -39,7 +39,7 @@ public class Damage : MonoBehaviour
     {
         if (gameObject.tag == "Projectile")
         {
-            Debug.LogError(other);
+            //Debug.LogError(other);
             if (other.gameObject.tag == "Enemy")
             {
                 Hits.Add(other.gameObject.GetComponent<Health>());
