@@ -35,7 +35,7 @@ public class PowerManager : MonoBehaviour
         if (power <= 0)
         {
             isStasis = true;
-            FindObjectOfType<WeaponThrow>().ReturnWeapon();
+            //FindObjectOfType<WeaponThrow>().ReturnWeapon();
             powerBar.color = stasisMode;
         }
         if (drainPower)

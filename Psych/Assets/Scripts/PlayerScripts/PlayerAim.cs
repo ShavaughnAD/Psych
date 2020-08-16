@@ -64,12 +64,13 @@ public class PlayerAim : MonoBehaviour
         #region ShootingWeapon
 
         shootTimer += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && PowerManager.powerManager.power - 5 >= 0)
         {
             if (shootTimer >= rate)
             {
                 GameObject psychicBlast = Instantiate(psychicAttack, psychicAttackSpawnPoint.position, Quaternion.identity);
                 psychicBlast.GetComponent<Rigidbody>().AddForce(cam.transform.TransformDirection(centerScreen) * throwSpeed * Time.deltaTime, ForceMode.Impulse);
+                PowerManager.powerManager.DecrementPower(5.0f);
                 //muzzleFlash.Play();
                 shootTimer = 0;
                 //AudioManager.audioManager.Play("GunShot", shootingAudio);
