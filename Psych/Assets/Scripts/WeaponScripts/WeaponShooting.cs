@@ -47,10 +47,6 @@ public class WeaponShooting : MonoBehaviour
     {
 
         shotgunHandler = GetComponent<ShotgunHandler>();
-        if (equipped)
-        {
-            FindObjectOfType<PlayerAim>().UpdateCurrentWeaponStats(rate, damage, ammoAmount, bulletTracer);
-        }
     }
 
     public virtual void Update()

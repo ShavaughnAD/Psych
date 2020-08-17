@@ -63,37 +63,6 @@ public class WeaponPickUp : MonoBehaviour
         //}
     }
 
-    void Update()
-    {
-        if (isPlayerHere == true && pickedUp == false && CameraManager.cameraManager.playerMovement.enabled == true)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                PickUp();
-                GameManager.gameManager.displayWeapon.SetActive(true);
-            }
-        }
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Player" && !pickedUp)
-        {
-            isPlayerHere = true;
-            GameManager.gameManager.displayWeaponImage.sprite = weaponIcon;
-            GameManager.gameManager.displayWeapon.SetActive(true);
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if(other.tag == "Player")
-        {
-            isPlayerHere = false;
-            GameManager.gameManager.displayWeapon.SetActive(false);
-        }
-    }
-
     public void Equip()
     {
         WeaponThrow W_Throw = FindObjectOfType<WeaponThrow>();
@@ -103,7 +72,6 @@ public class WeaponPickUp : MonoBehaviour
         pickedUp = true;
         gameObject.transform.parent = FindObjectOfType<WeaponThrow>().transform;
         W_Throw.weaponRB = weaponRB;
-        GetComponentInParent<PlayerAim>().UpdateCurrentWeaponStats(weaponShooting.rate, weaponShooting.damage, weaponShooting.ammoAmount, weaponShooting.bulletTracer);
         W_Throw.controlledParticle = weaponControlledParticle;
         weaponControlledParticle.gameObject.SetActive(true);
         W_Throw.ReturnWeapon();

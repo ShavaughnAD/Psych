@@ -10,7 +10,7 @@ public class PowerManager : MonoBehaviour
     public bool drainPower = false;
     public Image powerBar;
     public Text powerText;
-    bool isStasis = false;
+    public bool isStasis = false;
     float timer = 0f;
     float secondCount = 1f;
 
@@ -35,7 +35,7 @@ public class PowerManager : MonoBehaviour
         if (power <= 0)
         {
             isStasis = true;
-            FindObjectOfType<WeaponThrow>().ReturnWeapon();
+            //FindObjectOfType<WeaponThrow>().ReturnWeapon();
             powerBar.color = stasisMode;
         }
         if (drainPower)
@@ -74,6 +74,10 @@ public class PowerManager : MonoBehaviour
             else
                 power += regenRate;
 
+            if(power>maxPower)
+            {
+                power = maxPower;
+            }
             powerBar.fillAmount = power / maxPower;
         }
         else
