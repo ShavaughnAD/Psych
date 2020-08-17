@@ -13,6 +13,8 @@ public class PlayerVision : MonoBehaviour
     private float maxVisionDistance = 15.0f;
     private bool targetInSight = false;
 
+    public SkinnedMeshRenderer smRenderer;
+
     private void Update()
     {
         targetInSight = CheckIfTargetIsWithinVision();
@@ -51,6 +53,11 @@ public class PlayerVision : MonoBehaviour
     public Transform getTargetObjectTransform()
     {
         return targetObject;
+    }
+
+    public SkinnedMeshRenderer GetMeshRenderer()
+    {
+        return smRenderer;
     }
 
 }
