@@ -64,7 +64,7 @@ public class PlayerAim : MonoBehaviour
         #region ShootingWeapon
 
         shootTimer += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Mouse0) && PowerManager.powerManager.power - 5 >= 0)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && PowerManager.powerManager.power - 5 >= 0 && PowerManager.powerManager.isStasis == false)
         {
             if (shootTimer >= rate)
             {
@@ -119,26 +119,29 @@ public class PlayerAim : MonoBehaviour
                 _selection = selection;
             }
         }
-
+        if(Input.GetKey(KeyCode.R))
+        {
+            PowerManager.powerManager.DecrementPower(-0.05f);
+        }
         #region StealWeapon
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            //Debug.LogError("Q has been pressed");
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, weaponMask))
-            {
-                //Debug.LogError("Weapon Mask");
-                if (hit.transform.GetComponent<AttackState>().currentWeapon != null)
-                {
-                    if (hit.transform.GetComponent<AttackState>().currentWeapon.GetComponent<WeaponPickUp>().canBeStolen)
-                    {
-                        hit.transform.GetComponent<AttackState>().WeapSteal();
-                        hit.transform.GetComponent<AttackState>().currentWeapon.GetComponent<WeaponPickUp>().PickUp();
-                        hit.transform.GetComponent<AttackState>().currentWeapon = null;
-                    }
-                }
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    //Debug.LogError("Q has been pressed");
+        //    if (Physics.Raycast(ray, out hit, Mathf.Infinity, weaponMask))
+        //    {
+        //        //Debug.LogError("Weapon Mask");
+        //        if (hit.transform.GetComponent<AttackState>().currentWeapon != null)
+        //        {
+        //            if (hit.transform.GetComponent<AttackState>().currentWeapon.GetComponent<WeaponPickUp>().canBeStolen)
+        //            {
+        //                hit.transform.GetComponent<AttackState>().WeapSteal();
+        //                hit.transform.GetComponent<AttackState>().currentWeapon.GetComponent<WeaponPickUp>().PickUp();
+        //                hit.transform.GetComponent<AttackState>().currentWeapon = null;
+        //            }
+        //        }
+        //    }
+        //}
         #endregion
     }
 
