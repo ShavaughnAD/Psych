@@ -850,7 +850,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 649689694}
+  C_Stolen: {fileID: 0}
   movementSpeed: 15
+  GunHand: {fileID: 0}
 --- !u!114 &430900935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1527,7 +1529,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 854389643}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &714492791
 GameObject:
@@ -1764,7 +1766,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 1117516388}
+  C_Stolen: {fileID: 0}
   movementSpeed: 7
+  GunHand: {fileID: 0}
 --- !u!114 &754279614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2083,7 +2087,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 895023387}
+  C_Stolen: {fileID: 0}
   movementSpeed: 15
+  GunHand: {fileID: 0}
 --- !u!114 &848757029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2182,8 +2188,8 @@ Transform:
   m_LocalPosition: {x: -25.9, y: -2.0380504, z: -7.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1064192163}
   - {fileID: 684288261}
+  - {fileID: 1348890938}
   m_Father: {fileID: 1032651917}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 50.935, z: 0}
@@ -2328,6 +2334,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponRack: {fileID: 1938291091}
+  panicRunSpeed: 0
+  GRack: []
 --- !u!114 &854389653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2353,7 +2361,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 1064192164}
+  C_Stolen: {fileID: 1064192164}
   movementSpeed: 15
+  GunHand: {fileID: 1348890938}
 --- !u!114 &854389655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2395,6 +2405,10 @@ MonoBehaviour:
       Cond: {fileID: 854389650}
       Priority: 100
       Not: 0
+    - Next: {fileID: 854389652}
+      Cond: {fileID: 854389648}
+      Priority: 200
+      Not: 0
   - State: {fileID: 854389653}
     Transitions:
     - Next: {fileID: 854389654}
@@ -2405,6 +2419,10 @@ MonoBehaviour:
       Cond: {fileID: 854389649}
       Priority: -100
       Not: 0
+    - Next: {fileID: 854389652}
+      Cond: {fileID: 854389648}
+      Priority: 200
+      Not: 0
   - State: {fileID: 854389654}
     Transitions:
     - Next: {fileID: 854389655}
@@ -2413,14 +2431,14 @@ MonoBehaviour:
       Not: 0
     - Next: {fileID: 854389652}
       Cond: {fileID: 854389648}
-      Priority: -100
+      Priority: 100
       Not: 0
   - State: {fileID: 854389652}
     Transitions:
-    - Next: {fileID: 854389653}
-      Cond: {fileID: 854389650}
-      Priority: -100
-      Not: 0
+    - Next: {fileID: 854389655}
+      Cond: {fileID: 854389648}
+      Priority: 0
+      Not: 1
 --- !u!54 &854389657
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2895,7 +2913,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 854389643}
+    m_TransformParent: {fileID: 1348890938}
     m_Modifications:
     - target: {fileID: -1579750092073799946, guid: 6bc25186117f6c147a6b2d07bd4f10d5,
         type: 3}
@@ -2935,7 +2953,7 @@ PrefabInstance:
     - target: {fileID: 4053109314030965593, guid: 6bc25186117f6c147a6b2d07bd4f10d5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.7384293
+      value: 0.118428946
       objectReference: {fileID: 0}
     - target: {fileID: 4053109314030965593, guid: 6bc25186117f6c147a6b2d07bd4f10d5,
         type: 3}
@@ -2945,7 +2963,7 @@ PrefabInstance:
     - target: {fileID: 4053109314030965593, guid: 6bc25186117f6c147a6b2d07bd4f10d5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.24968581
+      value: -0.08031456
       objectReference: {fileID: 0}
     - target: {fileID: 4053109314030965593, guid: 6bc25186117f6c147a6b2d07bd4f10d5,
         type: 3}
@@ -3621,6 +3639,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1320587656}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1348890937
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1348890938}
+  m_Layer: 10
+  m_Name: Gun Hand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1348890938
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348890937}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.62, y: 0, z: 0.33}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1064192163}
+  m_Father: {fileID: 854389643}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1379438645
 GameObject:
   m_ObjectHideFlags: 0
@@ -4440,7 +4489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1802611125
 Transform:
   m_ObjectHideFlags: 0
@@ -4564,7 +4613,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 1678073635}
+  C_Stolen: {fileID: 0}
   movementSpeed: 15
+  GunHand: {fileID: 0}
 --- !u!114 &1802611133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5657,7 +5708,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 2045282457}
+  C_Stolen: {fileID: 0}
   movementSpeed: 15
+  GunHand: {fileID: 0}
 --- !u!114 &1977343792
 MonoBehaviour:
   m_ObjectHideFlags: 0

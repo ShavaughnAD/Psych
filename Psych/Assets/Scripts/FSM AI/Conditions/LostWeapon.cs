@@ -17,9 +17,14 @@ public class LostWeapon : FsmCondition
         this.attackState = this.GetComponent<AttackState>();
     }
 
+    private void Update()
+    {
+        Debug.Log("Lost Weapon?: " + this.attackState.currentWeapon == null);
+    }
 
 
-    
 
-    
+
+
+
 }

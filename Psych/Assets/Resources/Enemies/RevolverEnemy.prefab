@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &669424960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 669424961}
+  m_Layer: 0
+  m_Name: GunSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &669424961
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669424960}
+  m_LocalRotation: {x: 0.79477423, y: 0.19857362, z: 0.5012621, w: 0.2786372}
+  m_LocalPosition: {x: -0.0142, y: -0.0073, z: -0.004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2060662445504052433}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 165.887, y: 290.661, z: 322.157}
 --- !u!1 &225259857197267218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,6 +1046,8 @@ GameObject:
   - component: {fileID: 4519655994961282126}
   - component: {fileID: 7959331687978557853}
   - component: {fileID: 493292233}
+  - component: {fileID: 5402023135798004502}
+  - component: {fileID: 1512210783821398793}
   m_Layer: 10
   m_Name: RevolverEnemy
   m_TagString: Enemy
@@ -1159,7 +1191,7 @@ MonoBehaviour:
   currentWeapon: {fileID: 7130793088106065380}
   C_Stolen: {fileID: 0}
   movementSpeed: 15
-  GunHand: {fileID: 8375915276065957533}
+  GunHand: {fileID: 669424961}
 --- !u!114 &6036562452661943255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1174,10 +1206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrayOfPatrolPoints:
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   patrolSpeed: 5
-  GRack: []
 --- !u!114 &6036562452661943254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1202,11 +1231,19 @@ MonoBehaviour:
       Cond: {fileID: 6036562452661943259}
       Priority: 0
       Not: 0
+    - Next: {fileID: 1512210783821398793}
+      Cond: {fileID: 5402023135798004502}
+      Priority: 0
+      Not: 0
   - State: {fileID: 6036562452661943256}
     Transitions:
     - Next: {fileID: 6036562452661943255}
       Cond: {fileID: 6036562452661943252}
       Priority: 0
+      Not: 0
+    - Next: {fileID: 1512210783821398793}
+      Cond: {fileID: 5402023135798004502}
+      Priority: 100
       Not: 0
   - State: {fileID: 6036562452661943255}
     Transitions:
@@ -1214,6 +1251,16 @@ MonoBehaviour:
       Cond: {fileID: 6036562452661943258}
       Priority: 0
       Not: 0
+    - Next: {fileID: 1512210783821398793}
+      Cond: {fileID: 5402023135798004502}
+      Priority: 0
+      Not: 0
+  - State: {fileID: 1512210783821398793}
+    Transitions:
+    - Next: {fileID: 6036562452661943255}
+      Cond: {fileID: 5402023135798004502}
+      Priority: 0
+      Not: 1
 --- !u!114 &6036562452661943252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1268,6 +1315,33 @@ MonoBehaviour:
   targetObject: {fileID: 0}
   visionRange: 5
   maxVisionDistance: 15
+--- !u!114 &5402023135798004502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371075415447921353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 039a1c23fb672f24f94c3869d40d5492, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1512210783821398793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371075415447921353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47adbdf04819605418b21e9535929abd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponRack: {fileID: 0}
+  panicRunSpeed: 8
+  GRack: []
 --- !u!1 &2429999856312236202
 GameObject:
   m_ObjectHideFlags: 0
@@ -1658,6 +1732,7 @@ Transform:
   - {fileID: 8532166346580997812}
   - {fileID: 7941270890175600485}
   - {fileID: 6102082072619884535}
+  - {fileID: 669424961}
   m_Father: {fileID: 6125304556329725717}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

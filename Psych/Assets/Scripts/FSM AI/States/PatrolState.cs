@@ -13,7 +13,6 @@ public class PatrolState : FsmState
     private int currentPatrolPointIndex = 0;
 
     private NavMeshAgent enemyAgent;
-    public List<GunRack> GRack;
     
     //On entry, immediately move to last patrol point (this is set to the first patrol point in the array on wake)
     //when a patrol point is reached, switch current patrol point to the next pp in line
@@ -30,21 +29,6 @@ public class PatrolState : FsmState
             //Alternatively, we can set a patrol to the position of the object
             Debug.LogError("No Patrol Points Set");;;
         }          
-    }
-    private void Start()
-    {
-        foreach (GunRack GAdd in FindObjectsOfType<GunRack>())
-        {
-            if (GRack.Contains(GAdd))
-            {
-                Debug.LogError("Cant Add");
-                //Blank
-            }
-            else
-            {
-                GRack.Add(GAdd);              
-            }
-        }
     }
     private void OnTriggerEnter(Collider other) {
 
@@ -76,25 +60,5 @@ public class PatrolState : FsmState
         enemyAgent.speed = patrolSpeed;
     }
 
-    public void RunToGunRack()
-    {
-        //Find Nearest Gun Rack and run 
-        for (int i = 0; i < GRack.Count; i++)
-        {
-            foreach (Transform G_Rack in GRack[i].gameObject.transform)
-            {
-                float Dist = Mathf.Infinity;
-                Vector3 GunRackPos = G_Rack.position;
-                float GunRa = GunRackPos.sqrMagnitude;
-                if(GunRa < Dist)
-                {
-                    currentPatrolPoint = GRack[i].gameObject;
-                    //Ran Awayyyyyyyyyyy!!!!
-
-                    enemyAgent.SetDestination(currentPatrolPoint.transform.position);
-                    enemyAgent.speed = patrolSpeed;
-                }
-            }
-        }       
-    }
+    
 }

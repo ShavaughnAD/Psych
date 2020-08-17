@@ -11,8 +11,13 @@ public class PlayerVision : MonoBehaviour
     private float visionRange = 5.0f;
     [SerializeField]
     private float maxVisionDistance = 15.0f;
+    [SerializeField]
     private bool targetInSight = false;
 
+    private void Start()
+    {
+        targetObject = GameObject.FindGameObjectWithTag("Player").transform;
+    }
     private void Update()
     {
         targetInSight = CheckIfTargetIsWithinVision();

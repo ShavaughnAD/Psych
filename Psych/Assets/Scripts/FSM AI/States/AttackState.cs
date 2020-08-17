@@ -9,6 +9,8 @@ public class AttackState : FsmState
     public GameObject C_Stolen;
     [SerializeField]
     private float movementSpeed = 7f;
+    [SerializeField]
+    private float stoppingDistance = 10f;
 
     private Vector3 targetLastPosition;
     
@@ -16,12 +18,16 @@ public class AttackState : FsmState
      Animator Anim;
     private PlayerVision enemyVision;
     public Transform GunHand;
+    public Vector3 storedWeaponEulerAngleRotation;
     
     private void Start() {
         enemyVision = this.GetComponent<PlayerVision>();
         enemyAgent = this.GetComponent<NavMeshAgent>();
         Anim = GetComponent<Animator>();
+        storedWeaponEulerAngleRotation = currentWeapon.transform.localEulerAngles;
     }
+
+
 
     private void Update() {
         //If the enemy can see the target
@@ -32,6 +38,8 @@ public class AttackState : FsmState
             GetInAttackingRangeOfTarget();
             
         }else{
+
+            Anim.SetBool("CanAttack", false);
             MoveTowardsTarget();
         }
     }
@@ -45,13 +53,13 @@ public class AttackState : FsmState
     }
 
     private void GetInAttackingRangeOfTarget(){
-        if(enemyVision.GetTargetInSight() ){
-            Anim.SetBool("CanAttack", true);
+        //if(enemyVision.GetTargetInSight() ){
             AttackTarget();
-        }else{
+        //}
+        //else{
 
-            MoveTowardsTarget();
-        }
+        //    MoveTowardsTarget();
+        //}
     }
 
     private void AttackTarget(){
@@ -60,19 +68,19 @@ public class AttackState : FsmState
         UseWeaponAtTarget();
     }
 
-    private bool AimWeaponAtTarget(){
-        bool foundTheTarget = false;
-        if(foundTheTarget){
-            //Debug.Log("Found the target");
-            currentWeapon.transform.LookAt(enemyVision.getTargetObjectTransform());
+    //private bool AimWeaponAtTarget(){
+    //    bool foundTheTarget = false;
+    //    if(foundTheTarget){
+    //        //Debug.Log("Found the target");
+    //        currentWeapon.transform.LookAt(enemyVision.getTargetObjectTransform());
         
-        }else{
+    //    }else{
             
-            //Debug.Log("Aiming - ( -_･) ︻デ═一");
-        }
+    //        //Debug.Log("Aiming - ( -_･) ︻デ═一");
+    //    }
 
-        return foundTheTarget;
-    }
+    //    return foundTheTarget;
+    //}
     
     private void UseWeaponAtTarget(){
         currentWeapon.GetComponent<WeaponShooting>().EnemyShootProjectile();
@@ -87,7 +95,7 @@ public class AttackState : FsmState
     public void WeapSteal()
     {
         C_Stolen = currentWeapon;
-        GetComponent<PatrolState>().RunToGunRack();
+        //GetComponent<PanicState>().RunToGunRack();
     }
 
 }

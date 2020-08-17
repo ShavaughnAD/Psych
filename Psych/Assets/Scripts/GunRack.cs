@@ -14,8 +14,10 @@ public class GunRack : MonoBehaviour
         //}
         if(other.tag == "Enemy" && other.GetComponent<AttackState>().currentWeapon == null)
         {
-            other.GetComponent<AttackState>().currentWeapon = Instantiate(other.GetComponent<AttackState>().C_Stolen, other.GetComponent<AttackState>().GunHand.position, Quaternion.identity, other.GetComponent<AttackState>().GunHand);
-            other.GetComponent<AttackState>().currentWeapon.transform.localScale = new Vector3(0.00007f, 0.00007f, 0.00007f);
+            AttackState enemyAttackState = other.GetComponent<AttackState>();
+            enemyAttackState.currentWeapon = Instantiate(enemyAttackState.C_Stolen, enemyAttackState.GunHand.position, new Quaternion(0,0,0,0), enemyAttackState.GunHand);
+            enemyAttackState.currentWeapon.transform.localScale = new Vector3(0.00007f, 0.00007f, 0.00007f);
+            enemyAttackState.currentWeapon.transform.localEulerAngles = enemyAttackState.storedWeaponEulerAngleRotation;      
         }
     }
 

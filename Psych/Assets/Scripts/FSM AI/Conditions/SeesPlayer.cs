@@ -10,6 +10,7 @@ public class SeesPlayer : FsmCondition
     private float visionRange = 5.0f;
     [SerializeField]
     private float maxVisionDistance = 15.0f;
+    [SerializeField]
     private bool canSeeTarget = false;
     private PlayerVision playerVision;
 
@@ -40,27 +41,27 @@ public class SeesPlayer : FsmCondition
         
     }
 
-    public Transform getTargetObjectTransform(){
-        return targetObject;
-    }
+    //public Transform getTargetObjectTransform(){
+    //    return targetObject;
+    //}
 
-    public bool CheckIfTargetIsWithinVision(){
-        Vector3 targetDirection = targetObject.position - transform.position;
-        float angle = Vector3.Angle(targetDirection, transform.forward);
+    //public bool CheckIfTargetIsWithinVision(){
+    //    Vector3 targetDirection = targetObject.position - transform.position;
+    //    float angle = Vector3.Angle(targetDirection, transform.forward);
 
-        //Debug.Log("Target Direction: " + targetDirection);
-        //Debug.Log("angle: " + angle);
-        //Debug.Log("Vector3 Distance between player and Enemy: " + targetDirection.magnitude);
+    //    //Debug.Log("Target Direction: " + targetDirection);
+    //    //Debug.Log("angle: " + angle);
+    //    //Debug.Log("Vector3 Distance between player and Enemy: " + targetDirection.magnitude);
 
-        bool ableToSeeTarget = angle < visionRange && (targetDirection.magnitude < maxVisionDistance && targetDirection.magnitude >= 0);
+    //    bool ableToSeeTarget = angle < visionRange && (targetDirection.magnitude < maxVisionDistance && targetDirection.magnitude >= 0);
 
-        Debug.Log("Able to see target: " + ableToSeeTarget);
+    //    Debug.Log("Able to see target: " + ableToSeeTarget);
 
 
 
-        return ableToSeeTarget;
+    //    return ableToSeeTarget;
 
-    }
+    //}
 
     public override bool IsSatisfied(FsmState curr, FsmState next){
 
