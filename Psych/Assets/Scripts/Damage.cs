@@ -47,9 +47,12 @@ public class Damage : MonoBehaviour
             if (other.gameObject.tag == "Enemy")
             {
                 SkinnedMeshRenderer currentRenderer = other.gameObject.GetComponent<PlayerVision>().GetMeshRenderer();
-                hitRenderer = currentRenderer;
-                defaultMaterial = currentRenderer.material;
-                FlashRed();
+                if (currentRenderer != null)
+                {
+                    hitRenderer = currentRenderer;
+                    defaultMaterial = currentRenderer.material;
+                    FlashRed();
+                }
                     
                 Hits.Add(other.gameObject.GetComponent<Health>());
                 foreach (Health Harmed in Hits)
@@ -69,9 +72,9 @@ public class Damage : MonoBehaviour
                     }
                 }
             }
-            else if(other.gameObject.tag == "Player")
+            else if(other.gameObject.tag == "Player" || other.gameObject.tag == "Projectile" || other.gameObject.tag == "Weapon")
             {
-                Debug.Log("Player was hit");
+                Debug.Log("Don't Destroy Psychic Blast :" + other.gameObject + " was hit.");
             }
             else
             {
