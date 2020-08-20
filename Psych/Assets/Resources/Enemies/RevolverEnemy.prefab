@@ -1014,7 +1014,6 @@ GameObject:
   - component: {fileID: 6036562452661943254}
   - component: {fileID: 6036562452661943252}
   - component: {fileID: 4519655994961282126}
-  - component: {fileID: 7959331687978557853}
   - component: {fileID: 493292233}
   m_Layer: 10
   m_Name: RevolverEnemy
@@ -1240,19 +1239,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.05042225, y: 0.022799505, z: 0.11178627}
   m_Center: {x: -0.0008234491, y: 0.0029827806, z: -0.0061701317}
---- !u!65 &7959331687978557853
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2371075415447921353}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.04993696, y: 0.053837378, z: 0.04210362}
-  m_Center: {x: -0.0008234491, y: 0.042769276, z: 0.02867121}
 --- !u!114 &493292233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1268,6 +1254,7 @@ MonoBehaviour:
   targetObject: {fileID: 0}
   visionRange: 5
   maxVisionDistance: 15
+  smRenderer: {fileID: 4985464897180148086}
 --- !u!1 &2429999856312236202
 GameObject:
   m_ObjectHideFlags: 0

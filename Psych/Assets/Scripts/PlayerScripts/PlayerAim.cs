@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-//Reference: Brackeys. (2017). Shooting with Raycasts - Unity Tutorial. Retrieved from https://www.youtube.com/watch?v=THnivyG0Mvo
 public class PlayerAim : MonoBehaviour
 {
     public PlayerAim aim;
@@ -9,36 +8,36 @@ public class PlayerAim : MonoBehaviour
     public LayerMask pickUpMask;
     public LayerMask weaponMask;
 
+    public Image crosshair;
+
     float shootTimer = 0;
-    float rate = 0;
-    float damage;
+    public float rate = 0;
     public float bulletForce = 30;
-    public int ammo;
+
     public ParticleSystem muzzleFlash;
+    public GameObject psychicAttack;
     public GameObject impactEffect;
+    public Transform psychicAttackSpawnPoint;
     public Camera cam;
     Vector3 centerScreen;
-    public Sprite weaponIcon;
     public AudioSource shootingAudio;
-
-    public Text ammoText;
 
     #region Picking Up Objects Variables
 
     public Transform _selection;
     public Rigidbody selectedObjectRB = null;
     public Collider selectedObjectCol = null;
-    [SerializeField] GameObject attractTarget;
+    GameObject attractTarget;
     Vector3 targetPosition;
     Vector3 objectRBPosition;
-    [SerializeField] Rigidbody objectRB = null;
+    Rigidbody objectRB = null;
     [SerializeField] Rigidbody objectRBinHand = null;
     [SerializeField] Collider objectColinHand = null;
     bool isPowerSufficient = false;
     [SerializeField] float attractSpeed = 7f;
     [SerializeField] float throwSpeed = 30f;
-    [SerializeField] public bool isCarryingObject = false;
-    [SerializeField] public bool isAttracting = false;
+    public bool isCarryingObject = false;
+     public bool isAttracting = false;
 
     #endregion
 
@@ -55,11 +54,6 @@ public class PlayerAim : MonoBehaviour
 
     void Update()
     {
-        if (ammoText != null)
-        {
-            ammoText.text = ammo.ToString();
-        }
-
         if (isAttracting)
             MoveToTarget();
 
@@ -70,31 +64,39 @@ public class PlayerAim : MonoBehaviour
         #region ShootingWeapon
 
         shootTimer += Time.deltaTime;
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && PowerManager.powerManager.power - 5 >= 0 && PowerManager.powerManager.isStasis == false)
         {
-            if (shootTimer >= rate  && ammo  > 0)
+            if (shootTimer >= rate)
             {
-                muzzleFlash.Play();
-                ammo--;
+                GameObject psychicBlast = Instantiate(psychicAttack, psychicAttackSpawnPoint.position, Quaternion.identity);
+                psychicBlast.GetComponent<Rigidbody>().AddForce(cam.transform.TransformDirection(centerScreen) * throwSpeed * Time.deltaTime, ForceMode.Impulse);
+                PowerManager.powerManager.DecrementPower(5.0f);
+                //muzzleFlash.Play();
                 shootTimer = 0;
                 //AudioManager.audioManager.Play("GunShot", shootingAudio);
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity, enemyMask))
-                {
-                    Debug.Log(hit.collider.name);
-                    if (hit.collider.GetComponent<Health>() != null)
-                    {
-                        hit.collider.GetComponent<Health>().TakeDamage(damage);
-                    }
-                    if (hit.collider.GetComponent<Rigidbody>() != null)
-                    {
-                        Debug.Log("Rigidbody Detected");
-                        hit.collider.GetComponent<Rigidbody>().AddForce(-hit.normal * bulletForce);
-                    }
-                }
+
                 //The line below doesn't work ;(
                 //Returning Null Reference for Some Strange Reason. Check for Duplicate Script or Debug
                 // GameObject impact = Instantiate(impactEffect, hit.collider.transform.position, hit.collider.transform.rotation);
                 //Destroy(impact, 2);
+            }
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, enemyMask))
+            {
+                //crosshair.color = Color.red;
+                //Debug.Log(hit.collider.name);
+                //if (hit.collider.GetComponent<Health>() != null)
+                //{
+                //    hit.collider.GetComponent<Health>().TakeDamage(damage);
+                //}
+                //if (hit.collider.GetComponent<Rigidbody>() != null)
+                //{
+                //    Debug.Log("Rigidbody Detected");
+                //    hit.collider.GetComponent<Rigidbody>().AddForce(-hit.normal * bulletForce);
+                //}
+            }
+            else
+            {
+                //crosshair.color = Color.white;
             }
         }
 
@@ -102,8 +104,6 @@ public class PlayerAim : MonoBehaviour
 
         if (_selection != null)
         {
-            //var selectionRenderer = _selection.GetComponent<Renderer>();
-            //selectionRenderer.material = defaultMaterial;
             selectedObjectRB = null;
             _selection = null;
         }
@@ -115,52 +115,34 @@ public class PlayerAim : MonoBehaviour
             {
                 selectedObjectRB = selection.GetComponent<Rigidbody>();
                 selectedObjectCol = selection.GetComponent<Collider>();
-                //var selectionRenderer = selection.GetComponent<Renderer>();
-                //if (selectionRenderer != null)
-                //{
-                //    selectionRenderer.material = highlightMaterial;
-                //    selectedObjectRB = selectionRenderer.GetComponent<Rigidbody>();
-                //    selectedObjectCol = selectionRenderer.GetComponent<Collider>();
-                //}
 
                 _selection = selection;
             }
         }
-
+        if(Input.GetKey(KeyCode.R))
+        {
+            PowerManager.powerManager.DecrementPower(-0.05f);
+        }
         #region StealWeapon
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            //Debug.LogError("Q has been pressed");
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, weaponMask))
-            {
-                //Debug.LogError("Weapon Mask");
-                if (hit.transform.GetComponent<AttackState>().currentWeapon != null)
-                {
-                    if (hit.transform.GetComponent<AttackState>().currentWeapon.GetComponent<WeaponPickUp>().canBeStolen)
-                    {
-                        hit.transform.GetComponent<AttackState>().WeapSteal();
-                        hit.transform.GetComponent<AttackState>().currentWeapon.GetComponent<WeaponPickUp>().PickUp();
-                        hit.transform.GetComponent<AttackState>().currentWeapon = null;
-                    }
-                }
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    //Debug.LogError("Q has been pressed");
+        //    if (Physics.Raycast(ray, out hit, Mathf.Infinity, weaponMask))
+        //    {
+        //        //Debug.LogError("Weapon Mask");
+        //        if (hit.transform.GetComponent<AttackState>().currentWeapon != null)
+        //        {
+        //            if (hit.transform.GetComponent<AttackState>().currentWeapon.GetComponent<WeaponPickUp>().canBeStolen)
+        //            {
+        //                hit.transform.GetComponent<AttackState>().WeapSteal();
+        //                hit.transform.GetComponent<AttackState>().currentWeapon.GetComponent<WeaponPickUp>().PickUp();
+        //                hit.transform.GetComponent<AttackState>().currentWeapon = null;
+        //            }
+        //        }
+        //    }
+        //}
         #endregion
-
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            EmptyHand();
-        }
-    }
-
-    public void UpdateCurrentWeaponStats(float weaponRateOfFire, float weaponDamage, int ammoAmount, ParticleSystem bulletParticle)
-    {
-        //Need to Add Camera
-        muzzleFlash = bulletParticle;
-        damage = weaponDamage;
-        rate = weaponRateOfFire;
-        ammo = ammoAmount;
     }
 
     #region Pick Up & Throw Objects
@@ -192,7 +174,6 @@ public class PlayerAim : MonoBehaviour
 
     public void ThrowObject()
     {
-        //Vector3 targetPoint = selectedObjectRB.transform.position;
         if (isCarryingObject == true)
         {
             isCarryingObject = false;
@@ -200,21 +181,12 @@ public class PlayerAim : MonoBehaviour
             objectRBinHand.isKinematic = false;
             objectColinHand.enabled = true;
             objectRBinHand.tag = "Selectable";
-            
 
-            //objectRBinHand.AddForce(Camera.main.transform.forward * throwSpeed, ForceMode.Impulse);
-            objectRBinHand.AddForce(CameraManager.cameraManager.playerCam.transform.TransformDirection(Vector3.forward) * throwSpeed, ForceMode.Impulse);
+            objectRBinHand.AddForce(CameraManager.cameraManager.playerCam.transform.TransformDirection(centerScreen) * throwSpeed * Time.deltaTime, ForceMode.Impulse);
 
             objectColinHand = null;
             objectRBinHand = null;
             objectRB = null;
-            //Vector3 velocity = SetThrowVelocity(objectRBinHand, targetPoint, throwSpeed);
-            //Vector3 velocity = SetThrowVelocity(objectRBinHand, centerScreen, throwSpeed);
-            //if (velocity != Vector3.zero)
-            //{
-            //    objectRBinHand.AddForce(velocity, ForceMode.VelocityChange);
-            //    objectRBinHand.velocity = Camera.main.transform.forward * throwSpeed;
-            //}
         }
     }
 
@@ -237,31 +209,7 @@ public class PlayerAim : MonoBehaviour
         
     }
 
-    /*Vector3 SetThrowVelocity(Rigidbody rigidbody, Vector3 target, float force, float arch = 0.2f)
-    {
-        Mathf.Clamp(arch, 0, 1);
-        var origin = rigidbody.position;
-        float x = target.x - origin.x;
-        float y = target.y - origin.y;
-        float z = target.z - origin.z;
-        float gravity = -Physics.gravity.y;
-        float b = force * force - y * gravity;
-        float discriminant = b * b - gravity * gravity * (x * x + y * y + z * z);
-        if (discriminant < 0)
-        {
-            Debug.Log("Object not in range");
-            return Vector3.zero;
-        }
-        float discriminantSquareRoot = Mathf.Sqrt(discriminant);
-        float minTime = Mathf.Sqrt((b - discriminantSquareRoot) * 2) / Mathf.Abs(gravity);
-        float maxTime = Mathf.Sqrt((b + discriminantSquareRoot) * 2) / Mathf.Abs(gravity);
-        float time = (maxTime - minTime) * arch + minTime;
-        float vx = x / time;
-        float vy = y / time + time * gravity / 2;
-        float vz = z / time;
-        Vector3 velocity = new Vector3(vx, vy, vz);
-        return velocity;
-    }*/
+    #endregion
 
     public void EmptyHand()
     {
@@ -275,6 +223,4 @@ public class PlayerAim : MonoBehaviour
             _selection = null;
         }
     }
-
-    #endregion
 }
