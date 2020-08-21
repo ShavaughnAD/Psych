@@ -100,7 +100,7 @@ public class WeaponShooting : MonoBehaviour
         if (shootTimer >= rate)
         {
 
-            Debug.Log("Firing - (⌐■_■)–︻╦╤─<<- - -");
+            //Debug.Log("Firing - (⌐■_■)–︻╦╤─<<- - -");
             // GameObject bullet = objectpooler.SpawnFromPool("Bullet", spawnPoint.position, spawnPoint.rotation);
             GameObject bullet = Instantiate(ammo, spawnPoint.position, spawnPoint.rotation);
             bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * force;

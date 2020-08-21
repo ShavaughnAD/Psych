@@ -15,10 +15,12 @@ public class LostPlayer : FsmCondition
 {
     [SerializeField]
     private float maxWaitTimeToLookForTarget = 5f;
+    [SerializeField]
     private float waitTimeToLookForTarget;
     
     private PlayerVision lineOfSight;
      Animator Anim;
+    [SerializeField]
     private bool lostSightOfTarget = false;
     private WasAlerted wasAlerted;
 
@@ -49,11 +51,13 @@ public class LostPlayer : FsmCondition
             return false;
         
         }else{//If I can't see the player...
-            //...and I ran out of time to look for the target, 
-            //  then I lost sight of the target
+            
 
             if(waitTimeToLookForTarget <= 0){
-                Debug.Log("Gave up on the target - v( ･_･)v ???");
+                //...and I ran out of time to look for the target, 
+                //  then I lost sight of the target
+
+                //Debug.Log("Gave up on the target - v( ･_･)v ???");
                 Anim.SetBool("CanAttack", false);
                 return true;
 

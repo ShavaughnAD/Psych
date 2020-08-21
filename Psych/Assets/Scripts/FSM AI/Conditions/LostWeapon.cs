@@ -19,7 +19,7 @@ public class LostWeapon : FsmCondition
 
     private void Update()
     {
-        Debug.Log("Lost Weapon?: " + this.attackState.currentWeapon == null);
+        //Debug.Log("Lost Weapon?: " + this.attackState.currentWeapon == null);
     }
 
 

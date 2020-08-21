@@ -9,8 +9,6 @@ public class AttackState : FsmState
     public GameObject C_Stolen;
     [SerializeField]
     private float movementSpeed = 7f;
-    [SerializeField]
-    private float stoppingDistance = 10f;
 
     private Vector3 targetLastPosition;
     
@@ -53,13 +51,15 @@ public class AttackState : FsmState
     }
 
     private void GetInAttackingRangeOfTarget(){
-        //if(enemyVision.GetTargetInSight() ){
+        if (enemyVision.GetTargetInSight())
+        {
             AttackTarget();
-        //}
-        //else{
+        }
+        else
+        {
 
-        //    MoveTowardsTarget();
-        //}
+            MoveTowardsTarget();
+        }
     }
 
     private void AttackTarget(){
@@ -68,20 +68,24 @@ public class AttackState : FsmState
         UseWeaponAtTarget();
     }
 
-    //private bool AimWeaponAtTarget(){
-    //    bool foundTheTarget = false;
-    //    if(foundTheTarget){
-    //        //Debug.Log("Found the target");
-    //        currentWeapon.transform.LookAt(enemyVision.getTargetObjectTransform());
-        
-    //    }else{
-            
-    //        //Debug.Log("Aiming - ( -_･) ︻デ═一");
-    //    }
+    private bool AimWeaponAtTarget()
+    {
+        bool foundTheTarget = false;
+        if (foundTheTarget)
+        {
+            //Debug.Log("Found the target");
+            currentWeapon.transform.LookAt(enemyVision.getTargetObjectTransform());
 
-    //    return foundTheTarget;
-    //}
-    
+        }
+        else
+        {
+
+            //Debug.Log("Aiming - ( -_･) ︻デ═一");
+        }
+
+        return foundTheTarget;
+    }
+
     private void UseWeaponAtTarget(){
         currentWeapon.GetComponent<WeaponShooting>().EnemyShootProjectile();
     }

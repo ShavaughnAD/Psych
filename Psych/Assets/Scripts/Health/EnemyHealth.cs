@@ -6,6 +6,10 @@ public class EnemyHealth : Health
 {
     public int killScore;
     public bool isSlug = false;
+
+    private IsDead isDeadCondition;
+
+
     public override void Awake()
     {
         base.Awake();
@@ -13,6 +17,7 @@ public class EnemyHealth : Health
         onHurt.BindToEvent(Hurt);
         onDeath.BindToEvent(Death);
         gameObject.layer = 10;
+        isDeadCondition = this.GetComponent<IsDead>();
     }
 
     void Hurt(float param)
@@ -25,10 +30,7 @@ public class EnemyHealth : Health
         //ScoreSystem.Instance.AddScore(killScore);
         if (isSlug)
         {
-            GetComponent<Animator>().SetBool("isDead", true);
-            GetComponent<AttackState>().currentWeapon.transform.parent = null;
-            GetComponent<AttackState>().currentWeapon.GetComponent<Rigidbody>().isKinematic = false;
-            Destroy(gameObject, 2);
+            isDeadCondition.SetHealthReachedZero(true);
         }
         else
         {
