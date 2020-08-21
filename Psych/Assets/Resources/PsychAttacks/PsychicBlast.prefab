@@ -111,6 +111,8 @@ MonoBehaviour:
   Hits: []
   weaponSize: 3
   weightDamage: 5
+  flashTimer: 0
+  hitMaterial: {fileID: 2100000, guid: 203f2f854cbe77f47bdaa804c4bf761c, type: 2}
 --- !u!54 &4063140428508738804
 Rigidbody:
   m_ObjectHideFlags: 0

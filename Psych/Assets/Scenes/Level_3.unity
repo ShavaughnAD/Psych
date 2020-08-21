@@ -2624,7 +2624,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15332
+  m_Name: pb_Mesh18202
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4753,6 +4753,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RevolverEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580476503686736246, guid: 61bf30ae01c008947a24ccc007ff9871,
+        type: 3}
+      propertyPath: currentHealth
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5338265954149147882, guid: 61bf30ae01c008947a24ccc007ff9871,
         type: 3}

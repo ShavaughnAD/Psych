@@ -13,6 +13,7 @@ public class PlayerVision : MonoBehaviour
     [SerializeField]
     private bool targetInSight = false;
 
+    public SkinnedMeshRenderer smRenderer;
     public float distanceBetweenTargetAndEnemy;
     public float angleOfVision;
     public float maxAlertRange = 20f;
@@ -20,8 +21,7 @@ public class PlayerVision : MonoBehaviour
     private void Start()
     {
         targetObject = GameObject.FindGameObjectWithTag("Player").transform;
-    }
-    private void Update()
+    }    private void Update()
     {
         targetInSight = CheckIfTargetIsWithinVision();
         AlertOtherEnemiesOfTargetWithinVision();
@@ -65,7 +65,7 @@ public class PlayerVision : MonoBehaviour
         return targetObject;
     }
 
-    private void AlertOtherEnemiesOfTargetWithinVision()
+	private void AlertOtherEnemiesOfTargetWithinVision()
     {
 
         if (targetInSight)
@@ -99,4 +99,8 @@ public class PlayerVision : MonoBehaviour
 
     }
 
+    public SkinnedMeshRenderer GetMeshRenderer()
+    {
+        return smRenderer;
+    }
 }

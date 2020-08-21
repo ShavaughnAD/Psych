@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Damage : MonoBehaviour
@@ -11,7 +12,10 @@ public class Damage : MonoBehaviour
     public WeaponSize weaponSize;
     public float weightDamage = 5;
     Collider weaponCol;
-    public
+    public float flashTimer;
+    SkinnedMeshRenderer hitRenderer;
+    public Material hitMaterial;
+    Material defaultMaterial;
     void Awake()
     {
         weaponCol = GetComponent<Collider>();
@@ -42,6 +46,14 @@ public class Damage : MonoBehaviour
             //Debug.LogError(other);
             if (other.gameObject.tag == "Enemy")
             {
+                SkinnedMeshRenderer currentRenderer = other.gameObject.GetComponent<PlayerVision>().GetMeshRenderer();
+                if (currentRenderer != null)
+                {
+                    hitRenderer = currentRenderer;
+                    defaultMaterial = currentRenderer.material;
+                    FlashRed();
+                }
+                    
                 Hits.Add(other.gameObject.GetComponent<Health>());
                 foreach (Health Harmed in Hits)
                 {
@@ -56,19 +68,17 @@ public class Damage : MonoBehaviour
 
                     if (Hits[0] == null)
                     {
-                        Destroy(gameObject);
+                        //Destroy(gameObject);
                     }
                 }
-                //weaponCol.enabled = false;
-                //Destroy(gameObject);
             }
-            else if(other.gameObject.tag == "Player")
+            else if(other.gameObject.tag == "Player" || other.gameObject.tag == "Projectile" || other.gameObject.tag == "Weapon")
             {
-                Debug.Log("Player was hit");
+                Debug.Log("Don't Destroy Psychic Blast :" + other.gameObject + " was hit.");
             }
             else
             {
-                Destroy(gameObject);
+                //Destroy(gameObject);
             }
         }
         //else
@@ -78,5 +88,17 @@ public class Damage : MonoBehaviour
         //        other.GetComponent<Health>().TakeDamage(weightDamage);
         //    }
         //}
+    }
+    void FlashRed()
+    {
+        hitRenderer.material = hitMaterial;
+        flashTimer = 0.1f;
+        Time.timeScale = 1;
+        Invoke("ResetShader", flashTimer); 
+    }
+
+    void ResetShader()
+    {
+        hitRenderer.material = defaultMaterial;
     }
 }
