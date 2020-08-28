@@ -6,9 +6,11 @@ using UnityEngine.AI;
 public class PanicState : FsmState
 {
     [SerializeField]
-    private GameObject weaponRack;
-    [SerializeField]
     private float panicRunSpeed = 8f;
+    [SerializeField]
+    private float CoolVariable = 8f;
+    [SerializeField]
+    private bool isRunningAway = false;
 
     private Vector3 lastKnownTargetPosition;
     private NavMeshAgent navMeshAgent;
@@ -16,6 +18,7 @@ public class PanicState : FsmState
     private PlayerVision vision;
     private AttackState attackState;
     private bool lookingForWeapon = true;
+    private GameObject target;
 
 
     public List<GunRack> GRack;
@@ -28,6 +31,7 @@ public class PanicState : FsmState
         navMeshAgent = this.GetComponent<NavMeshAgent>();
         vision = this.GetComponent<PlayerVision>();
         attackState = this.GetComponent<AttackState>();
+        target = GameObject.FindGameObjectWithTag("Player");
 
         FindAllGunRacksInScene();
 
@@ -62,36 +66,52 @@ public class PanicState : FsmState
     {
 
         RunToGunRack();
+        RunAwayFromTarget();
         
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject == weaponRack && lookingForWeapon) {
+        //if(other.gameObject == weaponRack && lookingForWeapon) {
 
-            Debug.Log("Attempting to equip weapon...");
-            lookingForWeapon = false;
-            wasAlerted.AlertWithTargetLastKnownPosition(lastKnownTargetPosition);
-        }
+        //    Debug.Log("Attempting to equip weapon...");
+        //    lookingForWeapon = false;
+        //    wasAlerted.AlertWithTargetLastKnownPosition(lastKnownTargetPosition);
+        //}
     }
 
 
     public void RunToGunRack()
     {
         //Find Nearest Gun Rack and run 
-        for (int i = 0; i < GRack.Count; i++)
+        if (!isRunningAway)
         {
-            foreach (Transform G_Rack in GRack[i].gameObject.transform)
+            for (int i = 0; i < GRack.Count; i++)
             {
-                float Dist = Mathf.Infinity;
-                Vector3 GunRackPos = G_Rack.position;
-                float GunRa = GunRackPos.sqrMagnitude;
-                if (GunRa < Dist)
+                foreach (Transform G_Rack in GRack[i].gameObject.transform)
                 {
-                    navMeshAgent.SetDestination(GRack[i].gameObject.transform.position);
-                    navMeshAgent.speed = panicRunSpeed;
+                    float Dist = Mathf.Infinity;
+                    Vector3 GunRackPos = G_Rack.position;
+                    float GunRa = GunRackPos.sqrMagnitude;
+                    if (GunRa < Dist)
+                    {
+                        navMeshAgent.SetDestination(GRack[i].gameObject.transform.position);
+                        navMeshAgent.speed = panicRunSpeed;
+                    }
                 }
             }
+        }
+        
+    }
+
+    public void RunAwayFromTarget()
+    {
+
+        Vector3 distanceToTarget = VectorMathUtil.CalculateDirectionBetweenTwoPositions(this.gameObject.transform.position, target.transform.position);
+        if(distanceToTarget.magnitude < 15f)
+        {
+            Vector3 positionOppositeOfTarget = this.gameObject.transform.position + distanceToTarget;
+            navMeshAgent.SetDestination(positionOppositeOfTarget);
         }
     }
 
@@ -105,7 +125,7 @@ public class PanicState : FsmState
     //    {
     //        Debug.LogWarning("Weapon rack property is set to null");
     //    }
-
+     
     //}
     
 
