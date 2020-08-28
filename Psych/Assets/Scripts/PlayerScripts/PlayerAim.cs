@@ -119,10 +119,10 @@ public class PlayerAim : MonoBehaviour
                 _selection = selection;
             }
         }
-        if(Input.GetKey(KeyCode.R))
-        {
-            PowerManager.powerManager.DecrementPower(-0.05f);
-        }
+        //if(Input.GetKey(KeyCode.R))
+        //{
+        //    PowerManager.powerManager.DecrementPower(-0.05f);
+        //}
         #region StealWeapon
 
         //if (Input.GetKeyDown(KeyCode.Q))
