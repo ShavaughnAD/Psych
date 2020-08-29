@@ -7,9 +7,7 @@ public class PanicState : FsmState
 {
     [SerializeField]
     private float panicRunSpeed = 8f;
-    [SerializeField]
-    private float CoolVariable = 8f;
-    [SerializeField]
+    [SerializeField] //Serialized for testing only
     private bool isRunningAway = false;
 
     private Vector3 lastKnownTargetPosition;
