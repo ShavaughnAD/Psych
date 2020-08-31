@@ -35,9 +35,9 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isPaused == false)
-            {
-                isPaused = true;
+            isPaused = !isPaused;
+            if (isPaused)
+            {                
                 Time.timeScale = 0;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
@@ -47,13 +47,12 @@ public class PauseMenu : MonoBehaviour
                 crosshair.SetActive(false);
             }
             else
-            {
-                isPaused = false;
+            {                
                 settingsMenu.SetActive(false);
                 ResumeButon();
                 Time.timeScale = 1;
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
+                //Cursor.lockState = CursorLockMode.Locked;
+                //Cursor.visible = false;
             }
         }
     }
