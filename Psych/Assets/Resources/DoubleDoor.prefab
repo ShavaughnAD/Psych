@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 22947344993376454}
   - component: {fileID: 7242689205392972047}
   - component: {fileID: 1930523737467904215}
+  - component: {fileID: 2415990859340631966}
   m_Layer: 0
   m_Name: DoubleDoor
   m_TagString: Untagged
@@ -68,6 +69,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorAnimator: {fileID: 22947344993376454}
   shouldOpen: 0
+  Powered: 0
+  BossDoor: 0
 --- !u!65 &1930523737467904215
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -81,6 +84,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 9.491665, y: 2.9204588, z: 5.3597865}
   m_Center: {x: 0.136549, y: 1.5571408, z: 2.1798937}
+--- !u!208 &2415990859340631966
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7128655925091891787}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &2626938119642310749
 PrefabInstance:
   m_ObjectHideFlags: 0
