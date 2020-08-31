@@ -64,7 +64,7 @@ public class PlayerAim : MonoBehaviour
         #region ShootingWeapon
 
         shootTimer += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Mouse0) && PowerManager.powerManager.power - 5 >= 0 && PowerManager.powerManager.isStasis == false)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && PowerManager.powerManager.power - 5 >= 0 && PowerManager.powerManager.isStasis == false && Time.timeScale != 0)
         {
             if (shootTimer >= rate)
             {
