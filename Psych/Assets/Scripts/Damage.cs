@@ -74,11 +74,11 @@ public class Damage : MonoBehaviour
             }
             else if(other.gameObject.tag == "Player" || other.gameObject.tag == "Projectile" || other.gameObject.tag == "Weapon")
             {
-                Debug.Log("Don't Destroy Psychic Blast :" + other.gameObject + " was hit.");
+                //Debug.LogError("Don't Destroy Psychic Blast :" + other.gameObject + " was hit.");
             }
             else
             {
-                //Destroy(gameObject);
+                Destroy(gameObject);
             }
         }
         //else
