@@ -19,7 +19,7 @@ public class DoorFunctionality : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player" && Powered)
+        if(other.tag == "Player" && Powered || other.tag == "Enemy" && Powered)
         {
             shouldOpen = !shouldOpen;
             doorAnimator.SetBool("open", shouldOpen);
