@@ -21,7 +21,9 @@ public class PlayerVision : MonoBehaviour
     private void Start()
     {
         targetObject = GameObject.FindGameObjectWithTag("Player").transform;
-    }    private void Update()
+    }    
+    
+    private void Update()
     {
         targetInSight = CheckIfTargetIsWithinVision();
         AlertOtherEnemiesOfTargetWithinVision();
@@ -70,16 +72,6 @@ public class PlayerVision : MonoBehaviour
 
         if (targetInSight)
         {
-
-            //foreach (Transform currentEnemyInRoom in this.transform.parent.transform)
-            //{
-            //    WasAlerted enemyAlerted = currentEnemyInRoom.gameObject.GetComponent<WasAlerted>();
-            //    if (enemyAlerted != null && !currentEnemyInRoom.gameObject.Equals(this.gameObject))
-            //    {
-            //        //Debug.Log(this.gameObject.name + ": Alerting " + currentEnemyInRoom.gameObject.name + " with target position " + targetObject.position );
-            //        enemyAlerted.AlertWithTargetLastKnownPosition(targetObject.position);
-            //    }
-            //}
 
 
             foreach (GameObject currentEnemyInScene in GameObject.FindGameObjectsWithTag("Enemy"))

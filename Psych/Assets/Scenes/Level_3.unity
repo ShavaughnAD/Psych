@@ -956,6 +956,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dcc9008e25f67844bf0de59f3294a5d, type: 3}
+--- !u!1 &457656421 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9136002598794245286, guid: d40891b9607fbc74fa8e4581f3c76a0c,
+    type: 3}
+  m_PrefabInstance: {fileID: 728118110}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &457656422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457656421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cde2267c20dd5694a871146a438bee23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visionRange: 45
+  maxVisionDistance: 15
+  targetInSight: 0
+  smRenderer: {fileID: 0}
+  distanceBetweenTargetAndEnemy: 0
+  angleOfVision: 0
+  maxAlertRange: 30
 --- !u!1001 &492278222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2728,7 +2753,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14932
+  m_Name: pb_Mesh41696
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2991,7 +3016,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panicRunSpeed: 8
-  CoolVariable: 8
   isRunningAway: 0
   GRack: []
 --- !u!4 &1079211581 stripped
@@ -4919,7 +4943,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panicRunSpeed: 15
-  CoolVariable: 8
   isRunningAway: 1
   GRack: []
 --- !u!114 &1569329024 stripped
