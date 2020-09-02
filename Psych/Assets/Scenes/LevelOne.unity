@@ -8322,6 +8322,7 @@ MonoBehaviour:
   fullHealth: 0
   killScore: 0
   isSlug: 0
+  EnemyHurt: {fileID: 0}
 --- !u!1 &745608229
 GameObject:
   m_ObjectHideFlags: 0
@@ -9005,16 +9006,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   simpleTooltipStyle: {fileID: 11400000, guid: 1f0cc7a28e7642f4697d87459836c5a9, type: 2}
-  infoLeft: 'These are cells, they are used to power generators located throughout
-    the level.
+  infoLeft: 'Used to power the generator
 
-    Cells have a light flashing above them to let you know where
-    they area.
-
-    Once placed in the generator, power doors lights etc to progress
-    the level.
-
-    "Left click" to pick up the Cells.'
+    these can be picked up.'
   infoRight: Cell
 --- !u!1001 &865081547
 PrefabInstance:
@@ -9274,14 +9268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   simpleTooltipStyle: {fileID: 11400000, guid: 1f0cc7a28e7642f4697d87459836c5a9, type: 2}
-  infoLeft: 'These are where the Cell are to be brought once picked up.
-
-    The
-    Generator will automatically collect the Cell if you stand near it while having
-    the Cell picked up.
-
-    Each Generator may require different amount of Cells
-    to activate said electronic units.'
+  infoLeft: "These power doors and lights \nif the right amount of cells are installed"
   infoRight: Generator
 --- !u!1 &944693902
 GameObject:
@@ -10214,6 +10201,7 @@ MonoBehaviour:
   fullHealth: 0
   killScore: 0
   isSlug: 0
+  EnemyHurt: {fileID: 0}
 --- !u!1001 &976876125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19442,6 +19430,7 @@ MonoBehaviour:
   fullHealth: 0
   killScore: 0
   isSlug: 0
+  EnemyHurt: {fileID: 0}
 --- !u!1001 &1565699163
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20271,6 +20260,29 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1698216504}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1698216506 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3127244794206944827, guid: 0dcc9008e25f67844bf0de59f3294a5d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1698216504}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1698216507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698216506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99634edca86565b4a96a0b7b261787f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  simpleTooltipStyle: {fileID: 11400000, guid: f1d1c287ded68be43934c42c517f05d2, type: 2}
+  infoLeft: 'Can be picked with the player ability
+
+    like the Cells.'
+  infoRight: Table
 --- !u!1001 &1703989105
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26325,6 +26337,7 @@ MonoBehaviour:
   fullHealth: 0
   killScore: 0
   isSlug: 0
+  EnemyHurt: {fileID: 0}
 --- !u!1001 &1796140477
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28703,6 +28716,29 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &2083983046 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3127244794206944827, guid: 0dcc9008e25f67844bf0de59f3294a5d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1849073938}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2083983047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083983046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99634edca86565b4a96a0b7b261787f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  simpleTooltipStyle: {fileID: 11400000, guid: f1d1c287ded68be43934c42c517f05d2, type: 2}
+  infoLeft: 'Can be picked up liked
+
+    the Cells and thrown.'
+  infoRight: Table
 --- !u!1001 &2093260175
 PrefabInstance:
   m_ObjectHideFlags: 0

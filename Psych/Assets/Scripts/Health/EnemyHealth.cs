@@ -13,6 +13,7 @@ public class EnemyHealth : Health
     public AudioClip EnemyHurt;
     public override void Awake()
     {
+        auSource = GetComponent<AudioSource>();
         base.Awake();
         popup = Resources.Load<GameObject>("Prefabs/UIAssets/DamageFloatingText");
         onHurt.BindToEvent(Hurt);
