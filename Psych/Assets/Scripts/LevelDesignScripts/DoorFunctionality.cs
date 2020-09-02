@@ -11,6 +11,7 @@ public class DoorFunctionality : MonoBehaviour
     public AudioClip MechanicalDoor;
     void Awake()
     {
+        auSource = GetComponent<AudioSource>();
         if(doorAnimator == null)
         {
             doorAnimator = GetComponent<Animator>();
@@ -23,10 +24,10 @@ public class DoorFunctionality : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player" && Powered || other.tag == "Enemy" && Powered)
-        {           
-            auSource.PlayOneShot(MechanicalDoor);
+        {                       
             shouldOpen = !shouldOpen;
             doorAnimator.SetBool("open", shouldOpen);
+            auSource.PlayOneShot(MechanicalDoor);
         }
     }
     void OnTriggerExit(Collider other)

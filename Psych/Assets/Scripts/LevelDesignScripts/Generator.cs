@@ -41,7 +41,7 @@ public class Generator : MonoBehaviour
         if (other.GetComponent<IsACell>())
         {
             cell = other.gameObject;
-            if(cells < 4)
+            if(cells <= 4)
             {
                 GeneratorState();
             }
