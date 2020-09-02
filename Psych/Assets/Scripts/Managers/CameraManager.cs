@@ -14,7 +14,7 @@ public class CameraManager : MonoBehaviour
     {
         cameraManager = this;
         playerMovement = FindObjectOfType<PlayerMovement>();
-        cameraController = weaponCam.GetComponent<CameraController>();
+        //cameraController = weaponCam.GetComponent<CameraController>();
         playerAim = FindObjectOfType<PlayerAim>();
     }
 
@@ -27,7 +27,7 @@ public class CameraManager : MonoBehaviour
     {
         playerCam.enabled = true;
         playerAim.cam = playerCam;
-        weaponCam.enabled = false;
+        //weaponCam.enabled = false;
         playerMovement.isBeingControlled = false;
         playerMovement.enabled = true;
         PowerManager.powerManager.drainPower = false;
@@ -35,9 +35,9 @@ public class CameraManager : MonoBehaviour
 
     public void ActivateWeaponCamera()
     {
-        cameraController.enabled = true;
+        //cameraController.enabled = true;
         playerAim.cam = weaponCam;
-        weaponCam.enabled = true;
+        //weaponCam.enabled = true;
         playerMovement.isBeingControlled = true;
         playerMovement.enabled = false;
         PowerManager.powerManager.drainPower = true;

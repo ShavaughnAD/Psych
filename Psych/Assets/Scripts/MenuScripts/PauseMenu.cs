@@ -35,25 +35,24 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isPaused == false)
-            {
-                isPaused = true;
+            isPaused = !isPaused;
+            if (isPaused)
+            {                
                 Time.timeScale = 0;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 pauseMenuBackground.SetActive(true);
                 playerMovement.enabled = false;
-                CameraManager.cameraManager.cameraController.enabled = false;
+                //CameraManager.cameraManager.cameraController.enabled = false;
                 crosshair.SetActive(false);
             }
             else
-            {
-                isPaused = false;
+            {                
                 settingsMenu.SetActive(false);
                 ResumeButon();
                 Time.timeScale = 1;
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
+                //Cursor.lockState = CursorLockMode.Locked;
+                //Cursor.visible = false;
             }
         }
     }
@@ -66,7 +65,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = false;
         pauseMenuBackground.SetActive(false);
         playerMovement.enabled = true;
-        CameraManager.cameraManager.cameraController.enabled = true;
+        //CameraManager.cameraManager.cameraController.enabled = true;
         crosshair.SetActive(true);
     }
 
