@@ -121,6 +121,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 685104ccd66e9314bb26f8c49e69bcb7, type: 2}
+--- !u!95 &41270602 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6036562452661943253, guid: 61bf30ae01c008947a24ccc007ff9871,
+    type: 3}
+  m_PrefabInstance: {fileID: 1614214486}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &94309540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3222,6 +3228,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4193549405228372685, guid: 33c102e11d34c2c439eca5d1a2c14ad4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7128655925091891787, guid: 33c102e11d34c2c439eca5d1a2c14ad4,
         type: 3}
       propertyPath: m_Name
@@ -3237,7 +3248,13 @@ PrefabInstance:
       propertyPath: Powered
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6773425087802043748, guid: 33c102e11d34c2c439eca5d1a2c14ad4, type: 3}
+    - {fileID: 3046239376427238593, guid: 33c102e11d34c2c439eca5d1a2c14ad4, type: 3}
+    - {fileID: 1039739562312637783, guid: 33c102e11d34c2c439eca5d1a2c14ad4, type: 3}
+    - {fileID: 6676777222946961207, guid: 33c102e11d34c2c439eca5d1a2c14ad4, type: 3}
+    - {fileID: 8683822505694883489, guid: 33c102e11d34c2c439eca5d1a2c14ad4, type: 3}
+    - {fileID: 920214435003647748, guid: 33c102e11d34c2c439eca5d1a2c14ad4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 33c102e11d34c2c439eca5d1a2c14ad4, type: 3}
 --- !u!1 &1153410840 stripped
 GameObject:
@@ -4760,6 +4777,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RevolverEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3819842996252663665, guid: 61bf30ae01c008947a24ccc007ff9871,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 41270602}
     - target: {fileID: 4580476503686736246, guid: 61bf30ae01c008947a24ccc007ff9871,
         type: 3}
       propertyPath: currentHealth
