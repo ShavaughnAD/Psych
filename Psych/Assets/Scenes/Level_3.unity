@@ -1913,7 +1913,7 @@ PrefabInstance:
     - target: {fileID: 4112710604274464422, guid: af7a2305c0d5d9f4f8c0ebff1e054e76,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2.9999847
+      value: -2.9999695
       objectReference: {fileID: 0}
     - target: {fileID: 4860264434290890050, guid: af7a2305c0d5d9f4f8c0ebff1e054e76,
         type: 3}
@@ -2630,7 +2630,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54244
+  m_Name: pb_Mesh85054
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -37807,6 +37807,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HealthPickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 2120503334919430947, guid: 3dee943070421174982a6e37fe25874e,
+        type: 3}
+      propertyPath: X
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2120503334919430947, guid: 3dee943070421174982a6e37fe25874e,
+        type: 3}
+      propertyPath: Z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2120503334919430947, guid: 3dee943070421174982a6e37fe25874e,
+        type: 3}
+      propertyPath: Y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dee943070421174982a6e37fe25874e, type: 3}
