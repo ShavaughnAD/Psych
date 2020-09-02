@@ -13,14 +13,19 @@ public class CameraWallSlide : MonoBehaviour
     [SerializeField]
     private Vector3 targetLocation;
     [SerializeField]
+    private Vector3 zoomLocation;
+    [SerializeField]
     private float sphereCheckRadius = 2.0f;
     [SerializeField]
     public Vector3 checkBehind = Vector3.back;
-
-    public Vector3 previousCameraPosition;
-    public Vector3 previousCameraRotation;
+    [SerializeField]
+    private int layerMaskDetect = ~(1 << 8); //layermasks apparrently work using bits, its a long story but basically this checks everything not on the player layer.
+    public int layerMaskDetect2 = ~((1 << 8)| (1<<9));
+    private Vector3 previousCameraRotation;
     public float lerpSpeed = 2.0f;
     public float wallDetectionDistace = 10.0f;
+    Collider[] detections;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,10 +37,9 @@ public class CameraWallSlide : MonoBehaviour
         playerMovementScript = GameObject.FindObjectOfType<PlayerMovement>();
 
     }
-  
+
     private void LateUpdate()
     {
-        previousCameraPosition = transform.localPosition;
         previousCameraRotation = transform.localEulerAngles;
     }
 
@@ -48,81 +52,92 @@ public class CameraWallSlide : MonoBehaviour
         if (myCamera != null)
         {
 
-            if (Physics.SphereCast(myCamera.transform.position, sphereCheckRadius, checkBehind, out hitBox))
-            {
-                transform.localEulerAngles = previousCameraRotation;
-  
-                Vector3 newloc = Vector3.zero;
-                newloc = transform.localPosition + Vector3.forward * sphereCheckRadius;
-                float distance = Vector3.Distance(newloc, playerMovementScript.transform.position);
-                if (distance < wallDetectionDistace)
-                {
-                    transform.localPosition = Vector3.Lerp(transform.localPosition, newloc, lerpSpeed  * Time.fixedDeltaTime);
-                   // Debug.Log("1");
-                }
 
-            }
-            else if (Physics.SphereCast(myCamera.transform.position, sphereCheckRadius * 2, checkBehind, out hitBox))
+            if (Physics.SphereCast(playerMovementScript.transform.position, sphereCheckRadius * 0.5f, checkBehind, out hitBox, sphereCheckRadius * 0.5f, layerMaskDetect))
             {
-                //Keep this empty, don't want to move camera if its hugged against wall.
 
-            }
-            else if (Physics.OverlapSphere(transform.position, sphereCheckRadius).Length > 0)
-            {
-                Vector3 newloc = transform.localPosition + Vector3.forward * sphereCheckRadius;
-                float distance = Vector3.Distance(newloc, playerMovementScript.transform.position);
-
-                if (distance < wallDetectionDistace)
-                {
-                    transform.localPosition = Vector3.Lerp(transform.localPosition, newloc, lerpSpeed * Time.fixedDeltaTime);
-                    //Debug.Log("3");
-                }
-            }
-            else if (Physics.OverlapSphere(transform.position, sphereCheckRadius * 2).Length > 0)
-            {
-           //Keep this empty, don't want to move camera if its hugged against wall.
-                    Debug.Log("4");
-            }
-
-           else if (Physics.SphereCast(playerMovementScript.transform.position, sphereCheckRadius, checkBehind, out hitBox))
-            {
                 transform.localEulerAngles = previousCameraRotation;
 
-                Vector3 newloc = Vector3.zero;
-                newloc = targetLocation + Vector3.forward * sphereCheckRadius;
-                float distance = Vector3.Distance(newloc, playerMovementScript.transform.position);
-                    Debug.Log("1");
-                if (distance < wallDetectionDistace)
-                {
-                    transform.localPosition = Vector3.Lerp(transform.localPosition, newloc, lerpSpeed * Time.fixedDeltaTime);
-                    Debug.Log("10");
-                }
+                transform.localPosition = Vector3.Lerp(transform.localPosition, zoomLocation, lerpSpeed * Time.fixedDeltaTime);
+
+                Debug.Log("4");
+
+            }
+            else if (Physics.SphereCast(playerMovementScript.transform.position, sphereCheckRadius, checkBehind, out hitBox, sphereCheckRadius, layerMaskDetect))
+            {
+
+
+                transform.localPosition = Vector3.Lerp(transform.localPosition, zoomLocation, lerpSpeed * 1.5f * Time.fixedDeltaTime);
+
+
+                Debug.Log("5");
+
+            }
+            else if (Physics.SphereCast(playerMovementScript.transform.position, sphereCheckRadius * 2, checkBehind, out hitBox, sphereCheckRadius * 2, layerMaskDetect))
+            {
+
+
+                Debug.Log("6");
+
+            }
+            else if ((Physics.OverlapSphere(transform.position, sphereCheckRadius * 0.5f, layerMaskDetect)).Length > 0)
+            {
+
+                transform.localEulerAngles = previousCameraRotation;
+
+                transform.localPosition = Vector3.Lerp(transform.localPosition, zoomLocation, lerpSpeed * Time.fixedDeltaTime);
+
+                Debug.Log("whine");
+            }
+            else if ((Physics.OverlapSphere(transform.position, sphereCheckRadius, layerMaskDetect)).Length > 0)
+            {
+
+                transform.localEulerAngles = previousCameraRotation;
+
+                transform.localPosition = Vector3.Lerp(transform.localPosition, zoomLocation, lerpSpeed * Time.fixedDeltaTime);
+
+                Debug.Log("10");
+            }
+            else if ((Physics.OverlapSphere(transform.position, sphereCheckRadius * 1.5f, layerMaskDetect)).Length > 0)
+            {
+
+                transform.localEulerAngles = previousCameraRotation;
+
+                transform.localPosition = Vector3.Lerp(transform.localPosition, zoomLocation, lerpSpeed * Time.fixedDeltaTime);
+
+                Debug.Log("11");
+            }
+            else if (Physics.OverlapSphere(transform.position, sphereCheckRadius * 2, layerMaskDetect).Length > 0)
+            {
+                transform.localEulerAngles = previousCameraRotation;
+                transform.localPosition = Vector3.Lerp(transform.localPosition, zoomLocation * 0.5f, lerpSpeed * Time.fixedDeltaTime);
+
+
+                Debug.Log("12");
 
             }
 
-            else if (Physics.OverlapSphere(playerMovementScript.transform.position, sphereCheckRadius).Length > 0)
+            else if (Physics.OverlapSphere(transform.position, sphereCheckRadius * 2.5f, layerMaskDetect).Length > 0)
             {
-                Vector3 newloc = targetLocation + Vector3.forward * sphereCheckRadius;
-                float distance = Vector3.Distance(newloc, playerMovementScript.transform.position);
+                transform.localEulerAngles = previousCameraRotation;
 
-                    Debug.Log("30");
-                if (distance < wallDetectionDistace)
-                {
-                    transform.localPosition = Vector3.Lerp(transform.localPosition, newloc, lerpSpeed * Time.fixedDeltaTime);
-                    Debug.Log("3");
-                }
+
+                Debug.Log("13");
+
             }
-            else if (Physics.OverlapSphere(playerMovementScript.transform.position, sphereCheckRadius * 2).Length > 0)
+            else if (Physics.OverlapSphere(transform.position, sphereCheckRadius * 3, layerMaskDetect).Length > 0)
             {
-                //Keep this empty, don't want to move camera if its hugged against wall.
-                //  Debug.Log("4");
+                transform.localEulerAngles = previousCameraRotation;
+
+
+                Debug.Log("14");
+
             }
             else
             {
-                float distance = Vector3.Distance(transform.localPosition, targetLocation);
                 transform.localPosition = Vector3.Lerp(transform.localPosition, targetLocation, lerpSpeed * Time.fixedDeltaTime);
-            }
 
+            }
 
 
 
