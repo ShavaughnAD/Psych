@@ -60,7 +60,6 @@ public class CameraWallSlide : MonoBehaviour
 
                 transform.localPosition = Vector3.Lerp(transform.localPosition, zoomLocation, lerpSpeed * Time.fixedDeltaTime);
 
-                Debug.Log("4");
 
             }
             else if (Physics.SphereCast(playerMovementScript.transform.position, sphereCheckRadius, checkBehind, out hitBox, sphereCheckRadius, layerMaskDetect))
@@ -70,14 +69,13 @@ public class CameraWallSlide : MonoBehaviour
                 transform.localPosition = Vector3.Lerp(transform.localPosition, zoomLocation, lerpSpeed * 1.5f * Time.fixedDeltaTime);
 
 
-                Debug.Log("5");
+              
 
             }
             else if (Physics.SphereCast(playerMovementScript.transform.position, sphereCheckRadius * 2, checkBehind, out hitBox, sphereCheckRadius * 2, layerMaskDetect))
             {
 
 
-                Debug.Log("6");
 
             }
             else if ((Physics.OverlapSphere(transform.position, sphereCheckRadius * 0.5f, layerMaskDetect)).Length > 0)
@@ -87,7 +85,6 @@ public class CameraWallSlide : MonoBehaviour
 
                 transform.localPosition = Vector3.Lerp(transform.localPosition, zoomLocation, lerpSpeed * Time.fixedDeltaTime);
 
-                Debug.Log("whine");
             }
             else if ((Physics.OverlapSphere(transform.position, sphereCheckRadius, layerMaskDetect)).Length > 0)
             {
@@ -96,7 +93,6 @@ public class CameraWallSlide : MonoBehaviour
 
                 transform.localPosition = Vector3.Lerp(transform.localPosition, zoomLocation, lerpSpeed * Time.fixedDeltaTime);
 
-                Debug.Log("10");
             }
             else if ((Physics.OverlapSphere(transform.position, sphereCheckRadius * 1.5f, layerMaskDetect)).Length > 0)
             {
@@ -105,7 +101,6 @@ public class CameraWallSlide : MonoBehaviour
 
                 transform.localPosition = Vector3.Lerp(transform.localPosition, zoomLocation, lerpSpeed * Time.fixedDeltaTime);
 
-                Debug.Log("11");
             }
             else if (Physics.OverlapSphere(transform.position, sphereCheckRadius * 2, layerMaskDetect).Length > 0)
             {
@@ -113,7 +108,6 @@ public class CameraWallSlide : MonoBehaviour
                 transform.localPosition = Vector3.Lerp(transform.localPosition, zoomLocation * 0.5f, lerpSpeed * Time.fixedDeltaTime);
 
 
-                Debug.Log("12");
 
             }
 
@@ -122,7 +116,6 @@ public class CameraWallSlide : MonoBehaviour
                 transform.localEulerAngles = previousCameraRotation;
 
 
-                Debug.Log("13");
 
             }
             else if (Physics.OverlapSphere(transform.position, sphereCheckRadius * 3, layerMaskDetect).Length > 0)
@@ -130,7 +123,6 @@ public class CameraWallSlide : MonoBehaviour
                 transform.localEulerAngles = previousCameraRotation;
 
 
-                Debug.Log("14");
 
             }
             else

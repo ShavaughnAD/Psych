@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1924798445}
   - component: {fileID: 3948047354001275107}
   - component: {fileID: 6000226316137451566}
+  - component: {fileID: 4852753688475358263}
   m_Layer: 9
   m_Name: PlayerCam
   m_TagString: MainCamera
@@ -164,6 +165,28 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &4852753688475358263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924798443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b669beb3d34c4a47b60c3b673033e63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCamera: {fileID: 0}
+  playerMovementScript: {fileID: 0}
+  targetLocation: {x: 1.4, y: 1, z: -7.64}
+  zoomLocation: {x: 0, y: 1, z: -0.1}
+  sphereCheckRadius: 0.5
+  checkBehind: {x: 0, y: 1, z: -1}
+  layerMaskDetect: -257
+  layerMaskDetect2: -769
+  lerpSpeed: 1
+  wallDetectionDistace: 10
 --- !u!1 &850126435949546336
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,6 +490,7 @@ MonoBehaviour:
   currentPower: 0
   healthRegenAmount: 1
   respawnPoint: {x: 0, y: 0, z: 0}
+  PlayerHurt: {fileID: 0}
 --- !u!143 &4322808052490781563
 CharacterController:
   m_ObjectHideFlags: 0
