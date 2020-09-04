@@ -11,6 +11,8 @@ public class PlayerHealth : Health
     public float healthRegenAmount = 1;
     public Vector3 respawnPoint;
 
+    AudioSource auSource;
+    public AudioClip PlayerHurt;
     public override void Awake()
     {
         base.Awake();
@@ -81,10 +83,10 @@ public class PlayerHealth : Health
         Debug.Log("PLAYER HP : NEW CHECK POINT");
     }
 
-    //void Hurt(float param)
-    //{
-
-    //}
+    void Hurt(float param)
+    {
+        auSource.PlayOneShot(PlayerHurt);
+    }
 
     void Heal(float param)
     {

@@ -5,50 +5,24 @@ public class GunRack : MonoBehaviour
     //public GameObject weaponSelection;
     //public GameObject[] weapons;
     //public Transform weaponSpawnPoint;
-
-    [SerializeField]
-    private int maxWeaponCount = 3;
-    private int currentWeaponCount;
-
-    private void Start()
-    {
-        currentWeaponCount = maxWeaponCount;
-    }
-
+    public int CurInRack;
     void OnTriggerEnter(Collider other)
     {
         //if(other.tag == "Player")
         //{
         //    weaponSelection.SetActive(true);
         //}
-        if(other.tag == "Enemy" && other.GetComponent<AttackState>().currentWeapon == null)
+        if(other.tag == "Enemy" && other.GetComponent<AttackState>().currentWeapon == null && CurInRack > 0)
         {
-            if(currentWeaponCount > 0)
-            {
-                EquipWeaponOnEnemy(other);
-                currentWeaponCount--;
-
-            }
-            else
-            {
-                ReportNoWeaponsAvailable(other);
-            }
+            AttackState enemyAttackState = other.GetComponent<AttackState>();
+            enemyAttackState.currentWeapon = Instantiate(enemyAttackState.C_Stolen, enemyAttackState.GunHand.position, new Quaternion(0,0,0,0), enemyAttackState.GunHand);
+            enemyAttackState.currentWeapon.transform.localScale = new Vector3(0.00007f, 0.00007f, 0.00007f);
+            enemyAttackState.currentWeapon.transform.localEulerAngles = enemyAttackState.storedWeaponEulerAngleRotation;      
         }
-    }
-
-    private void EquipWeaponOnEnemy(Collider other)
-    {
-        AttackState enemyAttackState = other.GetComponent<AttackState>();
-        enemyAttackState.currentWeapon = Instantiate(enemyAttackState.C_Stolen, enemyAttackState.GunHand.position, new Quaternion(0, 0, 0, 0), enemyAttackState.GunHand);
-        enemyAttackState.currentWeapon.transform.localScale = new Vector3(0.00007f, 0.00007f, 0.00007f);
-        enemyAttackState.currentWeapon.transform.localEulerAngles = enemyAttackState.storedWeaponEulerAngleRotation;
-    }
-
-    private void ReportNoWeaponsAvailable(Collider other)
-    {
-        PanicState enemyPanicState = other.gameObject.GetComponent<PanicState>();
-        Debug.Log(this.gameObject.name + ": No weapons available.");
-        //Call method to let enemy know that no weapons are available
+        else if(CurInRack < 0)
+        {
+            //Panic
+        }
     }
 
     //public void ChooseWeapon(int weaponID)

@@ -70,7 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5623893403367982716}
   - component: {fileID: 918611989738052316}
-  - component: {fileID: 8493589268428366800}
+  - component: {fileID: 2109530147}
   m_Layer: 0
   m_Name: polySurface6
   m_TagString: Untagged
@@ -100,8 +100,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143191193094118395}
   m_Mesh: {fileID: -5546347261141537002, guid: 92435e1a1a50845d88eb7d40619f69be, type: 3}
---- !u!23 &8493589268428366800
-MeshRenderer:
+--- !u!137 &2109530147
+SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -114,7 +114,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -139,6 +139,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: -5546347261141537002, guid: 92435e1a1a50845d88eb7d40619f69be, type: 3}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: 183.79587, y: 399.89484, z: -0.0000076293945}
+    m_Extent: {x: 317.88638, y: 163.62598, z: 231.06909}
+  m_DirtyAABB: 0
 --- !u!1 &3742754376622186707
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,6 +306,7 @@ GameObject:
   - component: {fileID: 2336954048339665425}
   - component: {fileID: 1880257441}
   - component: {fileID: 1242159725413065754}
+  - component: {fileID: 2701683840942036349}
   m_Layer: 10
   m_Name: DoubleTurret
   m_TagString: Enemy
@@ -378,3 +391,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 656.47736, y: 636.51953, z: 462.66187}
   m_Center: {x: 185.54745, y: 260.63525, z: 35.614525}
+--- !u!114 &2701683840942036349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9136002598794245286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cde2267c20dd5694a871146a438bee23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visionRange: 5
+  maxVisionDistance: 15
+  targetInSight: 0
+  smRenderer: {fileID: 2109530147}
+  distanceBetweenTargetAndEnemy: 0
+  angleOfVision: 0
+  maxAlertRange: 20

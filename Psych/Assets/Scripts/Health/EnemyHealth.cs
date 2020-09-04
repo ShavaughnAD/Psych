@@ -9,7 +9,8 @@ public class EnemyHealth : Health
 
     private IsDead isDeadCondition;
 
-
+    AudioSource auSource;
+    public AudioClip EnemyHurt;
     public override void Awake()
     {
         base.Awake();
@@ -22,6 +23,7 @@ public class EnemyHealth : Health
 
     void Hurt(float param)
     {
+        auSource.PlayOneShot(EnemyHurt);
         DamageFloatingText();
     }
 
