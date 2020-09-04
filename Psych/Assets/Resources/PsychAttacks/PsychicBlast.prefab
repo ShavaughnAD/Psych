@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2905637176639208773}
   - component: {fileID: 3765937137734503444}
   - component: {fileID: 170204659573285031}
-  - component: {fileID: 6829920851906189941}
   - component: {fileID: 4063140428508738804}
   - component: {fileID: 2003223499196786291}
+  - component: {fileID: -3709728195869679401}
   m_Layer: 10
   m_Name: PsychicBlast
   m_TagString: Projectile
@@ -33,7 +33,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8564710911799892068}
+  - {fileID: 1123451096724716353}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -97,23 +97,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6829920851906189941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5699919032068913110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79172ba8ef4fae14db98f2d163f9adb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Hits: []
-  weaponSize: 3
-  weightDamage: 5
-  flashTimer: 0
-  hitMaterial: {fileID: 2100000, guid: 203f2f854cbe77f47bdaa804c4bf761c, type: 2}
 --- !u!54 &4063140428508738804
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -226,6 +209,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-3709728195869679401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5699919032068913110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79232b9644c1e7d4cbc6a00389ce153b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hits: []
+  weaponSize: 0
+  weightDamage: 5
+  flashTimer: 0
+  hitMaterial: {fileID: 0}
 --- !u!1001 &1123451096724711865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -315,7 +315,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a0e0f3f2225a1246a966b1ed606e0f5, type: 3}
---- !u!4 &8564710911799892068 stripped
+--- !u!4 &1123451096724716353 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8740567563596083677, guid: 6a0e0f3f2225a1246a966b1ed606e0f5,
     type: 3}

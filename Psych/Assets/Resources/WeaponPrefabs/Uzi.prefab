@@ -4909,8 +4909,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79172ba8ef4fae14db98f2d163f9adb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Hits: []
   weaponSize: 0
   weightDamage: 5
+  flashTimer: 0
+  hitMaterial: {fileID: 0}
 --- !u!114 &4053109314030965597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4959,6 +4962,7 @@ MonoBehaviour:
   pelletTravelSpeed: 5
   pellet: {fileID: 0}
   bulletTracer: {fileID: 2264280563558098887}
+  anim: {fileID: 0}
 --- !u!1 &9042422322405742184
 GameObject:
   m_ObjectHideFlags: 0
@@ -4976,7 +4980,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &626574615300382199
 Transform:
   m_ObjectHideFlags: 0

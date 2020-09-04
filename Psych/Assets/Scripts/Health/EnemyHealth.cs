@@ -25,7 +25,7 @@ public class EnemyHealth : Health
     void Hurt(float param)
     {
         auSource.PlayOneShot(EnemyHurt);
-        DamageFloatingText();
+        //DamageFloatingText();
     }
 
     void Death(float param)

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7597349535155417509}
   - component: {fileID: 7597349535155417510}
+  - component: {fileID: 6322153227191891970}
   m_Layer: 0
   m_Name: PatrolPoint
   m_TagString: Untagged
@@ -44,3 +45,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6322153227191891970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7597349535155417508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ca511f4e7a19644b5d8bb05364f112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  X: 0
+  Y: 0
+  Z: 0

@@ -13,9 +13,9 @@ public class Damage : MonoBehaviour
     public float weightDamage = 5;
     Collider weaponCol;
     public float flashTimer;
-    SkinnedMeshRenderer hitRenderer;
-    public Material hitMaterial;
-    Material defaultMaterial;
+    protected SkinnedMeshRenderer hitRenderer;
+    protected Material hitMaterial;
+    protected Material defaultMaterial;
     void Awake()
     {
         weaponCol = GetComponent<Collider>();
@@ -42,39 +42,18 @@ public class Damage : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (gameObject.tag == "Projectile")
-        {
-            //Debug.LogError(other);
-            if (other.gameObject.tag == "Enemy")
+        {           
+            if(other.gameObject.tag == "Player")
             {
-                SkinnedMeshRenderer currentRenderer = other.gameObject.GetComponent<PlayerVision>().GetMeshRenderer();
-                if (currentRenderer != null)
+                if (other.GetComponent<PlayerHealth>() != null)
                 {
-                    hitRenderer = currentRenderer;
-                    defaultMaterial = currentRenderer.material;
-                    FlashRed();
+                    other.GetComponent<PlayerHealth>().TakeDamage(weightDamage);
                 }
-                    
-                Hits.Add(other.gameObject.GetComponent<Health>());
-                foreach (Health Harmed in Hits)
-                {
-                    if (Hits[0])
-                    {
-                        other.gameObject.GetComponent<Health>().TakeDamage(weightDamage);
-                    }
-                    else
-                    {
-                        other.gameObject.GetComponent<Health>().TakeDamage(weightDamage / 2);
-                    }
-
-                    if (Hits[0] == null)
-                    {
-                        //Destroy(gameObject);
-                    }
-                }
-            }
-            else if(other.gameObject.tag == "Player" || other.gameObject.tag == "Projectile" || other.gameObject.tag == "Weapon")
-            {
                 //Debug.LogError("Don't Destroy Psychic Blast :" + other.gameObject + " was hit.");
+            }
+            else if(other.gameObject.tag == "Projectile" || other.gameObject.tag == "Weapon" || other.GetComponent<DoorFunctionality>() != null)
+            {
+
             }
             else
             {
@@ -89,7 +68,7 @@ public class Damage : MonoBehaviour
         //    }
         //}
     }
-    void FlashRed()
+    public void FlashRed()
     {
         hitRenderer.material = hitMaterial;
         flashTimer = 0.1f;
