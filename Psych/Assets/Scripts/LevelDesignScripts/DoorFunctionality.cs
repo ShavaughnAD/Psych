@@ -28,15 +28,23 @@ public class DoorFunctionality : MonoBehaviour
             shouldOpen = !shouldOpen;
             doorAnimator.SetBool("open", shouldOpen);
             auSource.PlayOneShot(MechanicalDoor);
+            GetComponent<BoxCollider>().enabled = false;
+            GetComponentInChildren<BoxCollider>().enabled = false;
         }
+        
     }
     void OnTriggerExit(Collider other)
     {
+        if (other.tag == "Player" && Powered || other.tag == "Enemy" && Powered)
+        {
+            GetComponent<BoxCollider>().enabled = true;
+            GetComponentInChildren<BoxCollider>().enabled = true;
+        }
         if (BossDoor == true)
         {
             shouldOpen = false;
             doorAnimator.SetBool("open", shouldOpen);
             Powered = false;
-        }
+        }       
     }
 }

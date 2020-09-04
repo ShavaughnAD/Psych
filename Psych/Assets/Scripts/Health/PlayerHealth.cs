@@ -15,6 +15,7 @@ public class PlayerHealth : Health
     public AudioClip PlayerHurt;
     public override void Awake()
     {
+        auSource = GetComponent<AudioSource>();
         base.Awake();
         popup = Resources.Load<GameObject>("Resources/Prefabs/UIAssets/HealingFloatingText");
         //onHurt.BindToEvent(Hurt);

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6829920851906189941}
   - component: {fileID: 4063140428508738804}
   - component: {fileID: 2003223499196786291}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PsychicBlast
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -233,10 +233,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1514854746679672341}
     m_Modifications:
+    - target: {fileID: 8740567562634915389, guid: 6a0e0f3f2225a1246a966b1ed606e0f5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8740567563596083676, guid: 6a0e0f3f2225a1246a966b1ed606e0f5,
         type: 3}
       propertyPath: m_Name
       value: OrbParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8740567563596083676, guid: 6a0e0f3f2225a1246a966b1ed606e0f5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8740567563596083677, guid: 6a0e0f3f2225a1246a966b1ed606e0f5,
         type: 3}
@@ -292,6 +302,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8740567564090425150, guid: 6a0e0f3f2225a1246a966b1ed606e0f5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8740567564250849725, guid: 6a0e0f3f2225a1246a966b1ed606e0f5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a0e0f3f2225a1246a966b1ed606e0f5, type: 3}

@@ -390,14 +390,18 @@ MonoBehaviour:
       Not: 0
   - State: {fileID: 8699912831636415906}
     Transitions:
-    - Next: {fileID: 0}
-      Cond: {fileID: 0}
+    - Next: {fileID: 8699912831636415919}
+      Cond: {fileID: 8699912831636415910}
       Priority: 0
       Not: 0
-  - State: {fileID: 8699912831636415919}
+  - State: {fileID: 8699912831636415907}
     Transitions:
-    - Next: {fileID: 0}
-      Cond: {fileID: 0}
+    - Next: {fileID: 8699912831636415919}
+      Cond: {fileID: 8699912831636415910}
+      Priority: 0
+      Not: 0
+    - Next: {fileID: 8699912831636415906}
+      Cond: {fileID: 8699912831636415908}
       Priority: 0
       Not: 0
 --- !u!114 &8699912831636415906

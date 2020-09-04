@@ -43,7 +43,7 @@ public class PauseMenu : MonoBehaviour
                 Cursor.visible = true;
                 pauseMenuBackground.SetActive(true);
                 playerMovement.enabled = false;
-                CameraManager.cameraManager.cameraController.enabled = false;
+                //CameraManager.cameraManager.cameraController.enabled = false;
                 crosshair.SetActive(false);
             }
             else
@@ -65,7 +65,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = false;
         pauseMenuBackground.SetActive(false);
         playerMovement.enabled = true;
-        CameraManager.cameraManager.cameraController.enabled = true;
+        //CameraManager.cameraManager.cameraController.enabled = true;
         crosshair.SetActive(true);
     }
 

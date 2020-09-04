@@ -70,7 +70,7 @@ public class PowerManager : MonoBehaviour
         if(power < maxPower)
         {
             if(isStasis)
-                power += (regenRate/2);
+                power += (regenRate * 2);
             else
                 power += regenRate;
 
