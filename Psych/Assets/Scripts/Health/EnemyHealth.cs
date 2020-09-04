@@ -37,7 +37,7 @@ public class EnemyHealth : Health
         }
         else
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

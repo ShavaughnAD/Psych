@@ -16,6 +16,9 @@ public class Damage : MonoBehaviour
     SkinnedMeshRenderer hitRenderer;
     public Material hitMaterial;
     Material defaultMaterial;
+    SkinnedMeshRenderer currentRenderer;
+    GameObject enemyObject;
+
     void Awake()
     {
         weaponCol = GetComponent<Collider>();
@@ -46,12 +49,15 @@ public class Damage : MonoBehaviour
             //Debug.LogError(other);
             if (other.gameObject.tag == "Enemy")
             {
-                SkinnedMeshRenderer currentRenderer = other.gameObject.GetComponent<PlayerVision>().GetMeshRenderer();
+                if(other != null)
+                {
+                    currentRenderer = other.gameObject.GetComponent<PlayerVision>().GetMeshRenderer();
+                }
                 if (currentRenderer != null)
                 {
                     hitRenderer = currentRenderer;
                     defaultMaterial = currentRenderer.material;
-                    FlashRed();
+                    FlashRed(gameObject);
                 }
                     
                 Hits.Add(other.gameObject.GetComponent<Health>());
@@ -89,8 +95,9 @@ public class Damage : MonoBehaviour
         //    }
         //}
     }
-    void FlashRed()
+    void FlashRed(GameObject gameObject)
     {
+        enemyObject = gameObject;
         hitRenderer.material = hitMaterial;
         flashTimer = 0.1f;
         Time.timeScale = 1;
@@ -99,6 +106,13 @@ public class Damage : MonoBehaviour
 
     void ResetShader()
     {
-        hitRenderer.material = defaultMaterial;
+        if(enemyObject.activeSelf)
+        {
+            hitRenderer.material = defaultMaterial;
+        }
+        else
+        {
+            Destroy(gameObject,1);
+        }
     }
 }
