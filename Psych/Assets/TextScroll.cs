@@ -7,7 +7,7 @@ public class TextScroll : MonoBehaviour
     public float speed;
     public Vector3 Dir;
     //public bool IVisible;
-    void Update()
+    void FixedUpdate()
     {
         transform.Translate(Dir * Time.deltaTime * speed);
         //if(GetComponent<Renderer>().isVisible)
