@@ -27,7 +27,15 @@ public class PatrolState : FsmState
         }
         else{
             //Alternatively, we can set a patrol to the position of the object
-            Debug.LogError("No Patrol Points Set");;;
+            arrayOfPatrolPoints = new GameObject[1];
+
+            GameObject defaultPatrolPointObject = new GameObject();
+            defaultPatrolPointObject.transform.position = this.gameObject.transform.position;
+            defaultPatrolPointObject.gameObject.name = "Default Patrol Point";
+            arrayOfPatrolPoints[0] = defaultPatrolPointObject ;
+
+            Debug.LogWarning("No Patrol Points Set");
+
         }          
     }
     private void OnTriggerEnter(Collider other) {
