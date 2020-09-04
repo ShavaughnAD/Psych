@@ -2646,7 +2646,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16984
+  m_Name: pb_Mesh15548
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5283,6 +5283,11 @@ PrefabInstance:
       propertyPath: BossDoor
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7242689205392972047, guid: 33c102e11d34c2c439eca5d1a2c14ad4,
+        type: 3}
+      propertyPath: Boss
+      value: 
+      objectReference: {fileID: 1127365437}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33c102e11d34c2c439eca5d1a2c14ad4, type: 3}
 --- !u!1001 &1722558286
