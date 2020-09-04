@@ -5,15 +5,15 @@ public class LevelChanger : MonoBehaviour
 {
     public Animator animator;
     private int levelToLoad;
-    
-    void Update()
+
+    void OnTriggerEnter(Collider other)
     {
-        if (Input.GetMouseButton(0))
+        if (other.tag == "Player")
         {
             FadeToLevel(1);
         }
     }
-    
+
     public void FadeToLevel (int levelIndex)
     {
         levelToLoad = levelIndex;
