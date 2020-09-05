@@ -10,14 +10,23 @@ public class LevelChanger : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            FadeToLevel(1);
+            int NxtLvL = SceneManager.GetActiveScene().buildIndex + 1;
+            if (SceneManager.GetSceneByBuildIndex(NxtLvL) != null)
+            {
+                FadeToLevel(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            else
+            {
+                SceneManager.LoadScene(0);
+            }
+
         }
     }
 
-    public void FadeToLevel (int levelIndex)
+    public void FadeToLevel(int levelIndex)
     {
         levelToLoad = levelIndex;
-        animator.SetTrigger("Fadeout");       
+        animator.SetTrigger("Fadeout");
     }
 
     public void OnFadeComplete()
