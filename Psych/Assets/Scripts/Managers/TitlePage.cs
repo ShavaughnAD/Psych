@@ -11,6 +11,8 @@ public class TitlePage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         mainMenu.SetActive(false);
         titleMenu.SetActive(true);
     }
