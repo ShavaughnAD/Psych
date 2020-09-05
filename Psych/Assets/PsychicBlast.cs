@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PsychicBlast : Damage
 {
+    
     public void OnTriggerEnter(Collider other)
     {
         //Debug.LogError(other);
@@ -14,7 +15,9 @@ public class PsychicBlast : Damage
             {
                 hitRenderer = currentRenderer;
                 defaultMaterial = currentRenderer.material;
-                FlashRed();
+               
+                    FlashRed();
+                
             }
 
             Hits.Add(other.gameObject.GetComponent<EnemyHealth>());

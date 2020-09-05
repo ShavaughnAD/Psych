@@ -16,6 +16,7 @@ public class Damage : MonoBehaviour
     protected SkinnedMeshRenderer hitRenderer;
     protected Material hitMaterial;
     protected Material defaultMaterial;
+    bool isRed = false;
     void Awake()
     {
         weaponCol = GetComponent<Collider>();
@@ -51,7 +52,7 @@ public class Damage : MonoBehaviour
                 }
                 //Debug.LogError("Don't Destroy Psychic Blast :" + other.gameObject + " was hit.");
             }
-            else if(other.gameObject.tag == "Projectile" || other.gameObject.tag == "Weapon" || other.GetComponent<DoorFunctionality>() != null)
+            else if(other.gameObject.tag == "Projectile" || other.gameObject.tag == "Weapon" || other.GetComponent<DoorFunctionality>() != null || other.GetComponent<SpinGenerator>() != null)
             {
 
             }
@@ -70,14 +71,19 @@ public class Damage : MonoBehaviour
     }
     public void FlashRed()
     {
-        hitRenderer.material = hitMaterial;
-        flashTimer = 0.1f;
-        Time.timeScale = 1;
-        Invoke("ResetShader", flashTimer); 
+        if (isRed == false)
+        {
+            isRed = true;
+            hitRenderer.material = hitMaterial;
+            flashTimer = 0.1f;
+            Time.timeScale = 1;
+            Invoke("ResetShader", flashTimer);
+        }
     }
 
     void ResetShader()
     {
         hitRenderer.material = defaultMaterial;
+        isRed = false;
     }
 }

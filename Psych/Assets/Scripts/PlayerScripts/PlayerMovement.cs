@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         flashlight = GameObject.FindGameObjectWithTag("Flashlight").GetComponent<Light>();
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         //baseSpeed = speed;
        
     }
