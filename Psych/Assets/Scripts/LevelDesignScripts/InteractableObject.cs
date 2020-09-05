@@ -12,15 +12,19 @@ public class InteractableObject : MonoBehaviour
     Material highlightMaterial;
 
     Color startColor;
-
+    Rigidbody myRigidBody;
     #endregion
 
     void Start()
     {
         objRend = GetComponent<Renderer>();
-        if(objRend == null) // Checking if its still null after the parent assignment, if yes. Use the child renderererer
+        if (objRend == null) // Checking if its still null after the parent assignment, if yes. Use the child renderererer
         {
             objRend = GetComponentInChildren<Renderer>();
+        }
+        if (myRigidBody == null)
+        {
+            myRigidBody = GetComponent<Rigidbody>();
         }
         startColor = objRend.material.color;
         defaultMaterial = objRend.material;
@@ -30,7 +34,7 @@ public class InteractableObject : MonoBehaviour
     {
         if (useMaterial == true)
         {
-            if(highlightMaterial != null)
+            if (highlightMaterial != null)
             {
                 objRend.material = highlightMaterial;
             }
@@ -54,6 +58,28 @@ public class InteractableObject : MonoBehaviour
         else
         {
             objRend.material.color = startColor;
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision != null)
+        {
+            if (collision.collider.gameObject.layer != 8)
+            {
+
+                if (myRigidBody != null && !collision.collider.gameObject.GetComponent<Generator>())
+                {
+                    Vector3 storedVelocity = myRigidBody.velocity;
+                    myRigidBody.velocity = Vector3.zero;
+                    if (myRigidBody.isKinematic == false && storedVelocity.sqrMagnitude > 0)
+                    {
+
+                        myRigidBody.AddForce(storedVelocity.x * -0.5f * Time.fixedDeltaTime, storedVelocity.y * -0.5f * Time.fixedDeltaTime, storedVelocity.z * -0.5f * Time.fixedDeltaTime, ForceMode.VelocityChange);
+                    }
+                }
+            }
+
+
         }
     }
 }

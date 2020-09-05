@@ -179,10 +179,11 @@ public class PlayerAim : MonoBehaviour
             isCarryingObject = false;
             objectRBinHand.transform.parent = null;
             objectRBinHand.isKinematic = false;
+            objectRBinHand.collisionDetectionMode = CollisionDetectionMode.Continuous;
             objectColinHand.enabled = true;
             objectRBinHand.tag = "Selectable";
 
-            objectRBinHand.AddForce(CameraManager.cameraManager.playerCam.transform.TransformDirection(centerScreen) * throwSpeed * Time.deltaTime, ForceMode.Impulse);
+            objectRBinHand.AddForce(CameraManager.cameraManager.playerCam.transform.TransformDirection(centerScreen) * throwSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
 
             objectColinHand = null;
             objectRBinHand = null;
