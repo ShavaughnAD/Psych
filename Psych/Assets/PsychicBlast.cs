@@ -4,32 +4,25 @@ using UnityEngine;
 
 public class PsychicBlast : Damage
 {
-    
+
     public void OnTriggerEnter(Collider other)
     {
         //Debug.LogError(other);
         if (other.gameObject.tag == "Enemy" && other.GetComponent<EnemyHealth>() != null)
         {
-            SkinnedMeshRenderer currentRenderer = other.gameObject.GetComponent<PlayerVision>().GetMeshRenderer();
-            if (currentRenderer != null)
-            {
-                hitRenderer = currentRenderer;
-                defaultMaterial = currentRenderer.material;
-               
-                    FlashRed();
-                
-            }
-
             Hits.Add(other.gameObject.GetComponent<EnemyHealth>());
-            foreach (Health Harmed in Hits)
+            foreach (EnemyHealth Harmed in Hits)
             {
-                if (Hits[0])
+                if (Harmed.currentHealth > 0)
                 {
-                    other.gameObject.GetComponent<EnemyHealth>().TakeDamage(weightDamage);
-                }
-                else
-                {
-                    other.gameObject.GetComponent<EnemyHealth>().TakeDamage(weightDamage / 2);
+                    Harmed.TakeDamage(weightDamage);
+                    SkinnedMeshRenderer currentRenderer = other.gameObject.GetComponent<PlayerVision>().GetMeshRenderer();
+                    if (currentRenderer != null && Harmed != null && isRed == false)
+                    {
+                        hitRenderer = currentRenderer;
+                        defaultMaterial = currentRenderer.material;
+                        FlashRed();
+                    }
                 }
 
                 if (Hits[0] == null)
