@@ -5497,8 +5497,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79172ba8ef4fae14db98f2d163f9adb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Hits: []
   weaponSize: 0
   weightDamage: 5
+  flashTimer: 0
 --- !u!114 &8567953482718771257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5547,6 +5549,8 @@ MonoBehaviour:
   pelletTravelSpeed: 5
   pellet: {fileID: 0}
   bulletTracer: {fileID: 7631054783381404826}
+  anim: {fileID: 0}
+  projectileFiringWaitTime: 0
 --- !u!65 &2882391661428783556
 BoxCollider:
   m_ObjectHideFlags: 0

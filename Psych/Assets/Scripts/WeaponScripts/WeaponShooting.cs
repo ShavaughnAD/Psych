@@ -22,7 +22,9 @@ public class WeaponShooting : MonoBehaviour
     public ParticleSystem bulletTracer;
     ShotgunHandler shotgunHandler;
     public Animator anim;
-
+    [SerializeField]
+    private float projectileFiringWaitTime = .5f;
+    private bool enableShooting = true;
     Rigidbody rb;
     ObjectPooler objectpooler;
 
@@ -99,19 +101,30 @@ public class WeaponShooting : MonoBehaviour
 
         if (shootTimer >= rate)
         {
+            if (enableShooting)
+            {
 
-            //Debug.Log("Firing - (⌐■_■)–︻╦╤─<<- - -");
-            // GameObject bullet = objectpooler.SpawnFromPool("Bullet", spawnPoint.position, spawnPoint.rotation);
-            GameObject bullet = Instantiate(ammo, spawnPoint.position, spawnPoint.rotation);
-            bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * force;
-            shootTimer = 0;
-            //AudioManager.audioManager.Play("GunShot");
-            anim.SetBool("CanAttack", true);
+                anim.SetBool("CanAttack", true);
+                Invoke("FireTheProjectile", projectileFiringWaitTime);
+                enableShooting = false;
+            }
+            
         }
         else
         {
+            enableShooting = true;
             anim.SetBool("CanAttack", false);
         }
 
+    }
+
+    private void FireTheProjectile()
+    {
+        //Debug.Log("Firing - (⌐■_■)–︻╦╤─<<- - -");
+        // GameObject bullet = objectpooler.SpawnFromPool("Bullet", spawnPoint.position, spawnPoint.rotation);
+        GameObject bullet = Instantiate(ammo, spawnPoint.position, spawnPoint.rotation);
+        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * force;
+        shootTimer = 0;
+        //AudioManager.audioManager.Play("GunShot");
     }
 }
