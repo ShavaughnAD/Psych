@@ -3607,7 +3607,7 @@ PrefabInstance:
     - target: {fileID: 7437636944638050700, guid: 11ac3fceb580271409627f9ecfa8da0c,
         type: 3}
       propertyPath: force
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7437636944638050700, guid: 11ac3fceb580271409627f9ecfa8da0c,
         type: 3}
@@ -3638,7 +3638,7 @@ PrefabInstance:
     - target: {fileID: 7437636944638050700, guid: 11ac3fceb580271409627f9ecfa8da0c,
         type: 3}
       propertyPath: projectileFiringWaitTime
-      value: 0.2
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 7631054783381404825, guid: 11ac3fceb580271409627f9ecfa8da0c,
         type: 3}
@@ -3697,6 +3697,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: c0eefd9fb26a7af4e8d0bd8cf1a07fcb,
         type: 3}
+    - target: {fileID: 8844135795942732717, guid: 11ac3fceb580271409627f9ecfa8da0c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 82
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844135795942732717, guid: 11ac3fceb580271409627f9ecfa8da0c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 467
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5630208356583686018, guid: 11ac3fceb580271409627f9ecfa8da0c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 11ac3fceb580271409627f9ecfa8da0c, type: 3}
