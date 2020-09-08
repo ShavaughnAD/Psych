@@ -28,6 +28,7 @@ public class PatrolState : FsmState
         else{
             //Alternatively, we can set a patrol to the position of the object
             arrayOfPatrolPoints = new GameObject[1];
+            Debug.Log("Number of patrol points: " + arrayOfPatrolPoints.Length);
 
             GameObject defaultPatrolPointObject = new GameObject();
             defaultPatrolPointObject.transform.position = this.gameObject.transform.position;
