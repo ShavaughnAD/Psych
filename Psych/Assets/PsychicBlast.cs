@@ -19,9 +19,21 @@ public class PsychicBlast : Damage
                     SkinnedMeshRenderer currentRenderer = other.gameObject.GetComponent<PlayerVision>().GetMeshRenderer();
                     if (currentRenderer != null && Harmed != null && isRed == false)
                     {
-                        hitRenderer = currentRenderer;
-                        defaultMaterial = currentRenderer.material;
-                        FlashRed();
+                        DamageHandler handler = null;
+                        if(currentRenderer.gameObject.GetComponent<DamageHandler>())
+                        {
+                            handler = currentRenderer.gameObject.GetComponent<DamageHandler>();
+                        }
+                        else
+                        {
+                            handler = currentRenderer.gameObject.AddComponent<DamageHandler>();
+                            handler.AssignEverything();
+                        }
+                        handler.ShowDamage();
+                        handler.StartCoroutine(handler.ResetCountdown(1));
+                        //hitRenderer = currentRenderer;
+                        //defaultMaterial = currentRenderer.material;
+                        //FlashRed();
                     }
                 }
 
@@ -37,6 +49,7 @@ public class PsychicBlast : Damage
         }
         else
         {
+            Debug.Log(other);
             Destroy(gameObject);
         }
     }

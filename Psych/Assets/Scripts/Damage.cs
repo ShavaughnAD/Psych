@@ -14,8 +14,8 @@ public class Damage : MonoBehaviour
     Collider weaponCol;
     public float flashTimer;
     protected SkinnedMeshRenderer hitRenderer;
-    protected Material hitMaterial;
-    protected Material defaultMaterial;
+    public Material hitMaterial;
+    public Material defaultMaterial;
     protected bool isRed = false;
     void Awake()
     {
