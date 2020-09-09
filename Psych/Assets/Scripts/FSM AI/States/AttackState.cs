@@ -30,7 +30,8 @@ public class AttackState : FsmState
     private void Update() {
         //If the enemy can see the target
         if(enemyVision.GetTargetInSight()){
-            
+
+            this.enemyAgent.isStopped = true;
             this.transform.LookAt(enemyVision.getTargetObjectTransform());
             RememberTargetLastPosition();
             GetInAttackingRangeOfTarget();
@@ -93,6 +94,7 @@ public class AttackState : FsmState
     private void MoveTowardsTarget(){
         //Debug.Log("I'm coming after you!");
         // transform.position = Vector3.MoveTowards(this.transform.position, targetPosition, movementSpeed * Time.deltaTime);
+        enemyAgent.isStopped = false;
         enemyAgent.SetDestination(targetLastPosition);
     }
 

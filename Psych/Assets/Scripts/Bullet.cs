@@ -17,12 +17,16 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" || other.tag == "Enemy")
+        if (other.tag.Equals("Player") || other.tag.Equals("Enemy"))
         {
             other.GetComponent<Health>().TakeDamage(damage);
             gameObject.SetActive(false);
         }
-        gameObject.SetActive(false);
+        else if(!other.tag.Equals("Weapon"))
+        {
+
+            gameObject.SetActive(false);
+        }
         Debug.LogWarning(this.gameObject.name + " Collided with " + other.gameObject.name);
     }
 
