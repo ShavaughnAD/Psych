@@ -69,7 +69,11 @@ public class PlayerAim : MonoBehaviour
             if (shootTimer >= rate)
             {
                 GameObject psychicBlast = Instantiate(psychicAttack, psychicAttackSpawnPoint.position, Quaternion.identity);
-                psychicBlast.GetComponent<Rigidbody>().AddForce(cam.transform.TransformDirection(centerScreen) * throwSpeed * Time.deltaTime, ForceMode.Impulse);
+                Vector3 trueScreenPoint = centerScreen;
+                Vector3 someDirection = trueScreenPoint - (psychicAttackSpawnPoint.position );
+                someDirection = cam.transform.TransformDirection(someDirection);
+                Vector3 someforce = someDirection * throwSpeed * Time.fixedDeltaTime;
+                psychicBlast.GetComponent<Rigidbody>().AddForce(someforce, ForceMode.VelocityChange);
                 PowerManager.powerManager.DecrementPower(5.0f);
                 //muzzleFlash.Play();
                 shootTimer = 0;
@@ -182,8 +186,8 @@ public class PlayerAim : MonoBehaviour
             objectRBinHand.collisionDetectionMode = CollisionDetectionMode.Continuous;
             objectColinHand.enabled = true;
             objectRBinHand.tag = "Selectable";
-
-            objectRBinHand.AddForce(CameraManager.cameraManager.playerCam.transform.TransformDirection(centerScreen) * throwSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+            Vector3 someforce = CameraManager.cameraManager.playerCam.transform.TransformDirection(centerScreen) * throwSpeed * Time.fixedDeltaTime;
+            objectRBinHand.AddForce(someforce, ForceMode.VelocityChange);
 
             objectColinHand = null;
             objectRBinHand = null;

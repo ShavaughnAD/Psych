@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5196136012197049213}
   - component: {fileID: 1328239108975842779}
   - component: {fileID: 7681797891756350808}
+  - component: {fileID: 308205186655916011}
   m_Layer: 11
   m_Name: Cell
   m_TagString: Selectable
@@ -71,6 +72,7 @@ MonoBehaviour:
   weightDamage: 5
   flashTimer: 0
   hitMaterial: {fileID: 0}
+  defaultMaterial: {fileID: 0}
 --- !u!65 &6092464823676497113
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -122,6 +124,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51fcbe381e6e12a4e84e868146488104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &308205186655916011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136432351179194371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ca511f4e7a19644b5d8bb05364f112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  X: 0
+  Y: 0
+  Z: 0
 --- !u!1 &2019665206941766502
 GameObject:
   m_ObjectHideFlags: 0
