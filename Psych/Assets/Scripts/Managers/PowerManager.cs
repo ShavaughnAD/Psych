@@ -5,11 +5,11 @@ public class PowerManager : MonoBehaviour
 {
     public static PowerManager powerManager;
     public float power = 50f;
-    public float maxPower = 50;
+    public float maxPower = 100;
     public float regenRate = 5;
     public bool drainPower = false;
     public Image powerBar;
-    public Text powerText;
+    //public Text powerText;
     public bool isStasis = false;
     float timer = 0f;
     float secondCount = 1f;
@@ -23,15 +23,18 @@ public class PowerManager : MonoBehaviour
         power = maxPower;
     }
 
-    void Start()
-    {
-        powerBar = GameObject.FindGameObjectWithTag("PowerBar").GetComponent<Image>();
-        powerBar.color = normalMode;
-        powerText = GameObject.FindGameObjectWithTag("PowerText").GetComponent<Text>();
-    }
-
     void Update()
     {
+        if(powerBar == null && GameObject.FindGameObjectWithTag("PowerBar") != null)
+        {
+            powerBar = GameObject.FindGameObjectWithTag("PowerBar").GetComponent<Image>();
+            power = maxPower;
+            powerBar.color = normalMode;
+            timer = 0.0f;
+            //powerText = GameObject.FindGameObjectWithTag("PowerText").GetComponent<Text>();
+            
+        }
+
         if (power <= 0)
         {
             isStasis = true;
@@ -42,11 +45,14 @@ public class PowerManager : MonoBehaviour
         {
             DecrementPower(5 * Time.deltaTime);
         }
-        timer += Time.deltaTime;
-        if (timer > secondCount && drainPower == false)
-            PowerUp();
-
-        powerText.text = power.ToString("F0") + " / " + maxPower.ToString("F0");
+        if (power < maxPower && PauseMenu.pauseMenuRef.isPaused == false)
+        {
+            Debug.Log("Power up");
+            timer += Time.deltaTime;
+            if (timer > secondCount && drainPower == false)
+                PowerUp();
+        }
+        //dpowerText.text = power.ToString("F0") + " / " + maxPower.ToString("F0");
     }
 
     public bool DecrementPower(float valueDeducted)
