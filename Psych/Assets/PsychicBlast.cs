@@ -46,11 +46,11 @@ public class PsychicBlast : Damage
         else if (other.gameObject.tag == "Projectile" || other.gameObject.tag == "Weapon" || other.gameObject.tag == "Player" || other.GetComponent<DoorFunctionality>() != null || other.GetComponent<SpinGenerator>() != null)
         {
             //Ignore it
-            Debug.Log("ignoring" + other);
+
         }
         else
         {
-            Debug.Log(other);
+
             Destroy(gameObject);
         }
     }

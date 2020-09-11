@@ -3909,6 +3909,8 @@ MonoBehaviour:
   weaponSize: 2
   weightDamage: 5
   flashTimer: 0
+  hitMaterial: {fileID: 0}
+  defaultMaterial: {fileID: 0}
 --- !u!135 &342301550
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6493,6 +6495,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5726477605403404263, guid: 39f555063808e20409df1c5125fee58b,
+        type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 844875263}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39f555063808e20409df1c5125fee58b, type: 3}
 --- !u!1001 &614154930
@@ -8937,6 +8944,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0c5b157ab964d14487946c4c74d67e4, type: 3}
+--- !u!114 &844875263 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4860264434056440072, guid: af7a2305c0d5d9f4f8c0ebff1e054e76,
+    type: 3}
+  m_PrefabInstance: {fileID: 535694890}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &857121856
 PrefabInstance:
   m_ObjectHideFlags: 0

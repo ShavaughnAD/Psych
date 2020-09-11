@@ -56,7 +56,6 @@ public class CameraWallSlide : MonoBehaviour
             if (Physics.SphereCast(playerMovementScript.transform.position, sphereCheckRadius * 0.5f, checkBehind, out hitBox, sphereCheckRadius * 0.5f, layerMaskDetect))
             {
 
-                transform.localEulerAngles = previousCameraRotation;
 
                 transform.localPosition = Vector3.Lerp(transform.localPosition, zoomLocation, lerpSpeed * Time.fixedDeltaTime);
 
@@ -81,7 +80,6 @@ public class CameraWallSlide : MonoBehaviour
             else if ((Physics.OverlapSphere(transform.position, sphereCheckRadius * 0.5f, layerMaskDetect)).Length > 0)
             {
 
-                transform.localEulerAngles = previousCameraRotation;
 
                 transform.localPosition = Vector3.Lerp(transform.localPosition, zoomLocation, lerpSpeed * Time.fixedDeltaTime);
 
@@ -89,7 +87,6 @@ public class CameraWallSlide : MonoBehaviour
             else if ((Physics.OverlapSphere(transform.position, sphereCheckRadius, layerMaskDetect)).Length > 0)
             {
 
-                transform.localEulerAngles = previousCameraRotation;
 
                 transform.localPosition = Vector3.Lerp(transform.localPosition, zoomLocation, lerpSpeed * Time.fixedDeltaTime);
 
@@ -97,14 +94,12 @@ public class CameraWallSlide : MonoBehaviour
             else if ((Physics.OverlapSphere(transform.position, sphereCheckRadius * 1.5f, layerMaskDetect)).Length > 0)
             {
 
-                transform.localEulerAngles = previousCameraRotation;
 
                 transform.localPosition = Vector3.Lerp(transform.localPosition, zoomLocation, lerpSpeed * Time.fixedDeltaTime);
 
             }
             else if (Physics.OverlapSphere(transform.position, sphereCheckRadius * 2, layerMaskDetect).Length > 0)
             {
-                transform.localEulerAngles = previousCameraRotation;
                 transform.localPosition = Vector3.Lerp(transform.localPosition, zoomLocation * 0.5f, lerpSpeed * Time.fixedDeltaTime);
 
 
@@ -113,14 +108,12 @@ public class CameraWallSlide : MonoBehaviour
 
             else if (Physics.OverlapSphere(transform.position, sphereCheckRadius * 2.5f, layerMaskDetect).Length > 0)
             {
-                transform.localEulerAngles = previousCameraRotation;
 
 
 
             }
             else if (Physics.OverlapSphere(transform.position, sphereCheckRadius * 3, layerMaskDetect).Length > 0)
             {
-                transform.localEulerAngles = previousCameraRotation;
 
 
 

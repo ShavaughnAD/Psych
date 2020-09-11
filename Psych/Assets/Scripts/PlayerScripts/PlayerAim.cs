@@ -57,7 +57,8 @@ public class PlayerAim : MonoBehaviour
         if (isAttracting)
             MoveToTarget();
 
-        centerScreen = new Vector3(0.5f, 0.5f, 100);
+         centerScreen = new Vector3(0.5f, 0.5f, 100);
+     
         Ray ray = cam.ViewportPointToRay(centerScreen);
         RaycastHit hit;
 
@@ -69,11 +70,11 @@ public class PlayerAim : MonoBehaviour
             if (shootTimer >= rate)
             {
                 GameObject psychicBlast = Instantiate(psychicAttack, psychicAttackSpawnPoint.position, Quaternion.identity);
-                Vector3 trueScreenPoint = centerScreen;
-                Vector3 someDirection = trueScreenPoint - (psychicAttackSpawnPoint.position );
-                someDirection = cam.transform.TransformDirection(someDirection);
-                Vector3 someforce = someDirection * throwSpeed * Time.fixedDeltaTime;
-                psychicBlast.GetComponent<Rigidbody>().AddForce(someforce, ForceMode.VelocityChange);
+                Vector3 trueScreenPoint = cam.ScreenToWorldPoint(Input.mousePosition);
+         
+                psychicBlast.transform.LookAt(trueScreenPoint);
+                Vector3 someforce = (cam.transform.forward) * 100.0f * throwSpeed * Time.fixedDeltaTime;
+                psychicBlast.GetComponent<Rigidbody>().AddRelativeForce(someforce, ForceMode.VelocityChange);
                 PowerManager.powerManager.DecrementPower(5.0f);
                 //muzzleFlash.Play();
                 shootTimer = 0;
@@ -186,8 +187,12 @@ public class PlayerAim : MonoBehaviour
             objectRBinHand.collisionDetectionMode = CollisionDetectionMode.Continuous;
             objectColinHand.enabled = true;
             objectRBinHand.tag = "Selectable";
-            Vector3 someforce = CameraManager.cameraManager.playerCam.transform.TransformDirection(centerScreen) * throwSpeed * Time.fixedDeltaTime;
-            objectRBinHand.AddForce(someforce, ForceMode.VelocityChange);
+            //Vector3 someforce = CameraManager.cameraManager.playerCam.transform.TransformDirection(centerScreen) * throwSpeed * Time.fixedDeltaTime;
+
+            Vector3 trueScreenPoint = cam.ScreenToWorldPoint(Input.mousePosition);
+            objectRBinHand.transform.LookAt(trueScreenPoint);
+            Vector3 someforce = (cam.transform.forward) * 100.0f * throwSpeed * Time.fixedDeltaTime;
+            objectRBinHand.AddRelativeForce(someforce, ForceMode.VelocityChange);
 
             objectColinHand = null;
             objectRBinHand = null;
