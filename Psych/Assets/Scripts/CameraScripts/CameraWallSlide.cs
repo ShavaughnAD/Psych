@@ -19,8 +19,8 @@ public class CameraWallSlide : MonoBehaviour
     [SerializeField]
     public Vector3 checkBehind = Vector3.back;
     [SerializeField]
-    private int layerMaskDetect = ~(1 << 8); //layermasks apparrently work using bits, its a long story but basically this checks everything not on the player layer.
-    public int layerMaskDetect2 = ~((1 << 8)| (1<<9));
+    private int layerMaskDetect = ~((1 << 8) | (1 << 9) | (1 << 11));//layermasks apparrently work using bits, its a long story but basically this checks everything not on the player layer.
+   // public int layerMaskDetect2 = ~((1 << 8) | (1<<9) | (1 << 11));
     private Vector3 previousCameraRotation;
     public float lerpSpeed = 2.0f;
     public float wallDetectionDistace = 10.0f;

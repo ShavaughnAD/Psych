@@ -70,8 +70,7 @@ public class PlayerAim : MonoBehaviour
             if (shootTimer >= rate)
             {
                 GameObject psychicBlast = Instantiate(psychicAttack, psychicAttackSpawnPoint.position, Quaternion.identity);
-                Vector3 trueScreenPoint = cam.ScreenToWorldPoint(Input.mousePosition);
-         
+                Vector3 trueScreenPoint = cam.ScreenToWorldPoint(Input.mousePosition);         
                 psychicBlast.transform.LookAt(trueScreenPoint);
                 Vector3 someforce = (cam.transform.forward) * 100.0f * throwSpeed * Time.fixedDeltaTime;
                 psychicBlast.GetComponent<Rigidbody>().AddRelativeForce(someforce, ForceMode.VelocityChange);
@@ -210,7 +209,7 @@ public class PlayerAim : MonoBehaviour
             if (objectRBPosition == targetPosition)
             {
                 objectRBinHand.transform.parent = GameObject.FindGameObjectWithTag("Player").transform;
-                objectRBinHand.tag = "NotSelectable";
+               // objectRBinHand.tag = "NotSelectable";
                 isAttracting = false;
                 return;
             }

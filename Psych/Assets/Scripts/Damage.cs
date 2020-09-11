@@ -56,9 +56,48 @@ public class Damage : MonoBehaviour
             {
 
             }
+        
             else
             {
                 Destroy(gameObject);
+            }
+        }
+        else if(gameObject.tag == "Selectable")
+        {
+            if (other.gameObject.tag == "Enemy" && other.GetComponent<EnemyHealth>() != null)
+            {
+                Hits.Add(other.gameObject.GetComponent<EnemyHealth>());
+                foreach (EnemyHealth Harmed in Hits)
+                {
+                    if (Harmed.currentHealth > 0)
+                    {
+                        Harmed.TakeDamage(weightDamage);
+                        SkinnedMeshRenderer currentRenderer = other.gameObject.GetComponent<PlayerVision>().GetMeshRenderer();
+                        if (currentRenderer != null && Harmed != null && isRed == false)
+                        {
+                            DamageHandler handler = null;
+                            if (currentRenderer.gameObject.GetComponent<DamageHandler>())
+                            {
+                                handler = currentRenderer.gameObject.GetComponent<DamageHandler>();
+                            }
+                            else
+                            {
+                                handler = currentRenderer.gameObject.AddComponent<DamageHandler>();
+                                handler.AssignEverything();
+                            }
+                            handler.ShowDamage();
+                            handler.StartCoroutine(handler.ResetCountdown(1));
+                            //hitRenderer = currentRenderer;
+                            //defaultMaterial = currentRenderer.material;
+                            //FlashRed();
+                        }
+                    }
+
+                    if (Hits[0] == null)
+                    {
+                        Destroy(gameObject);
+                    }
+                }
             }
         }
         //else

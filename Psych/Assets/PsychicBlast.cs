@@ -43,7 +43,7 @@ public class PsychicBlast : Damage
                 }
             }
         }
-        else if (other.gameObject.tag == "Projectile" || other.gameObject.tag == "Weapon" || other.gameObject.tag == "Player" || other.GetComponent<DoorFunctionality>() != null || other.GetComponent<SpinGenerator>() != null)
+        else if (other.gameObject.tag == "Projectile" || other.gameObject.tag == "Weapon" || other.gameObject.tag == "Player" || other.GetComponent<DoorFunctionality>() != null || other.GetComponent<SpinGenerator>() != null || other.GetComponent<Bullet>() != null)
         {
             //Ignore it
 

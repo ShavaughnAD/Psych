@@ -67,13 +67,13 @@ public class InteractableObject : MonoBehaviour
             if (collision.collider.gameObject.layer < 8)
             {
 
-                if (myRigidBody != null && !collision.collider.gameObject.GetComponent<Generator>() && collision.collider.gameObject.tag != "Player" && !collision.collider.gameObject.GetComponent<Bullet>())
+                if (myRigidBody != null && !collision.collider.gameObject.GetComponent<Generator>() && collision.collider.gameObject.tag != "Player" && !collision.collider.gameObject.GetComponent<Bullet>() && collision.collider.gameObject.tag != "Projectile")
                 {
                     Vector3 storedVelocity = myRigidBody.velocity;
                     myRigidBody.velocity = Vector3.zero;
                     if (myRigidBody.isKinematic == false && storedVelocity.sqrMagnitude > 0)
                     {
-                        Debug.Log(collision.collider.gameObject.name);
+
                         myRigidBody.AddForce(storedVelocity.x * -0.5f * Time.fixedDeltaTime, storedVelocity.y * -0.5f * Time.fixedDeltaTime, storedVelocity.z * -0.5f * Time.fixedDeltaTime, ForceMode.VelocityChange);
                     }
                 }
