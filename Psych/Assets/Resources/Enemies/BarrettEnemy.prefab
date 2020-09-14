@@ -462,7 +462,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 96dd764a9b0ec35468a42867084d7c58, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -570,7 +570,10 @@ MonoBehaviour:
   fullHealth: 0
   killScore: 0
   isSlug: 0
-  EnemyHurt: {fileID: 8300000, guid: 96dd764a9b0ec35468a42867084d7c58, type: 3}
+  audioArray:
+  - {fileID: 8300000, guid: ce5d8fd89422f2143be03b77de73bdaf, type: 3}
+  - {fileID: 8300000, guid: 9e3be6099d0012f40b9a6c7096408c41, type: 3}
+  - {fileID: 8300000, guid: ac03f1607043332418180970378343f8, type: 3}
 --- !u!1 &1536916511691389968
 GameObject:
   m_ObjectHideFlags: 0

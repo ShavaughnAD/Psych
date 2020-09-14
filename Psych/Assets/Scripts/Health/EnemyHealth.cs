@@ -10,7 +10,8 @@ public class EnemyHealth : Health
     private IsDead isDeadCondition;
 
     AudioSource auSource;
-    public AudioClip EnemyHurt;
+
+    public AudioClip[] audioArray;
     public override void Awake()
     {
         auSource = GetComponent<AudioSource>();
@@ -24,7 +25,7 @@ public class EnemyHealth : Health
 
     void Hurt(float param)
     {
-        auSource.PlayOneShot(EnemyHurt);
+        HurtSound();
         //DamageFloatingText();
     }
 
@@ -39,5 +40,11 @@ public class EnemyHealth : Health
         {
             Destroy(gameObject);
         }
+    }
+
+    void HurtSound()
+    {
+        AudioClip temp = audioArray[Random.Range(0, audioArray.Length)];
+        auSource.PlayOneShot(temp);
     }
 }

@@ -6513,6 +6513,20 @@ PrefabInstance:
       objectReference: {fileID: 844875263}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39f555063808e20409df1c5125fee58b, type: 3}
+--- !u!1 &613993093 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4322808052490781564, guid: 39f555063808e20409df1c5125fee58b,
+    type: 3}
+  m_PrefabInstance: {fileID: 613993092}
+  m_PrefabAsset: {fileID: 0}
+--- !u!81 &613993094
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613993093}
+  m_Enabled: 1
 --- !u!1001 &614154930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8374,7 +8388,7 @@ MonoBehaviour:
   fullHealth: 0
   killScore: 0
   isSlug: 0
-  EnemyHurt: {fileID: 0}
+  audioArray: []
 --- !u!1 &745608229
 GameObject:
   m_ObjectHideFlags: 0
@@ -10259,7 +10273,7 @@ MonoBehaviour:
   fullHealth: 0
   killScore: 0
   isSlug: 0
-  EnemyHurt: {fileID: 0}
+  audioArray: []
 --- !u!1001 &976876125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19445,7 +19459,7 @@ MonoBehaviour:
   fullHealth: 0
   killScore: 0
   isSlug: 0
-  EnemyHurt: {fileID: 0}
+  audioArray: []
 --- !u!1001 &1565699163
 PrefabInstance:
   m_ObjectHideFlags: 0
