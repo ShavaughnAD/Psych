@@ -70,6 +70,7 @@ public class PlayerAim : MonoBehaviour
             if (shootTimer >= rate)
             {
                 GameObject psychicBlast = Instantiate(psychicAttack, psychicAttackSpawnPoint.position, Quaternion.identity);
+                psychicBlast.transform.position += new Vector3(0, 0.4f, 0);
                 Vector3 trueScreenPoint = cam.ScreenToWorldPoint(Input.mousePosition);         
                 psychicBlast.transform.LookAt(trueScreenPoint);
                 Vector3 someforce = (cam.transform.forward) * 100.0f * throwSpeed * Time.fixedDeltaTime;
@@ -172,6 +173,13 @@ public class PlayerAim : MonoBehaviour
                 objectRBinHand.isKinematic = true;
                 isCarryingObject = true;
                 isAttracting = true;
+                if(!objectRBinHand.GetComponent<InteractableObject>())
+                {
+                    objectRBinHand.gameObject.AddComponent<InteractableObject>();
+                }
+
+                if(objectRBinHand.gameObject.layer != 11)
+                    objectRBinHand.gameObject.layer = 11;
             }
         }
     }
@@ -190,7 +198,7 @@ public class PlayerAim : MonoBehaviour
 
             Vector3 trueScreenPoint = cam.ScreenToWorldPoint(Input.mousePosition);
             objectRBinHand.transform.LookAt(trueScreenPoint);
-            Vector3 someforce = (cam.transform.forward) * 100.0f * throwSpeed * Time.fixedDeltaTime;
+            Vector3 someforce = (cam.transform.forward) * 100.0f  * throwSpeed * Time.fixedDeltaTime;
             objectRBinHand.AddRelativeForce(someforce, ForceMode.VelocityChange);
 
             objectColinHand = null;
@@ -204,13 +212,31 @@ public class PlayerAim : MonoBehaviour
         if(objectRBinHand != null)
         {
             objectRBPosition = objectRBinHand.position;
-            targetPosition = attractTarget.transform.position;
+            targetPosition = psychicAttackSpawnPoint.transform.position;//attractTarget.transform.position;
+            Vector3 offset = objectColinHand.bounds.size;
+            if (objectColinHand.bounds.size == Vector3.zero)
+            {
+                BoxCollider[] collides = objectRBinHand.GetComponents<BoxCollider>();
+                for (int i = 0; i < collides.Length; i++)
+                {
+                    if(collides[i].bounds.size != Vector3.zero)
+                    {
+                        offset = collides[i].bounds.size;                       
+                        break;
+                    }
+                }
+            }
+            offset.y = 0;
+            offset.z = 0;
+            targetPosition = psychicAttackSpawnPoint.transform.position + offset;
+
             float speed = attractSpeed * Time.deltaTime;
             if (objectRBPosition == targetPosition)
             {
-                objectRBinHand.transform.parent = GameObject.FindGameObjectWithTag("Player").transform;
-               // objectRBinHand.tag = "NotSelectable";
-                isAttracting = false;
+                objectRBinHand.transform.parent = psychicAttackSpawnPoint; // GameObject.FindGameObjectWithTag("Player").transform;
+                objectRBinHand.transform.localPosition = Vector3.zero + offset;
+                 // objectRBinHand.tag = "NotSelectable";
+                 isAttracting = false;
                 return;
             }
             objectRBinHand.position = Vector3.MoveTowards(objectRB.position, targetPosition, speed);

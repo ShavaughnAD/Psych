@@ -6464,7 +6464,7 @@ PrefabInstance:
     - target: {fileID: 4322808052733305659, guid: 39f555063808e20409df1c5125fee58b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.58
+      value: 2.3
       objectReference: {fileID: 0}
     - target: {fileID: 4322808052733305659, guid: 39f555063808e20409df1c5125fee58b,
         type: 3}
@@ -9086,7 +9086,8 @@ MonoBehaviour:
   simpleTooltipStyle: {fileID: 11400000, guid: 1f0cc7a28e7642f4697d87459836c5a9, type: 2}
   infoLeft: 'Used to power the generator
 
-    these can be picked up.'
+    these can be picked up by pressing
+    1.'
   infoRight: Cell
 --- !u!1001 &865081547
 PrefabInstance:
