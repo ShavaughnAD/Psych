@@ -1195,8 +1195,10 @@ MonoBehaviour:
   currentWeapon: {fileID: 7130793088106065380}
   C_Stolen: {fileID: 0}
   movementSpeed: 15
+  Anim: {fileID: 0}
   GunHand: {fileID: 8375915276065957533}
   storedWeaponEulerAngleRotation: {x: 0, y: 0, z: 0}
+  CanAttackAnimVar: 0
 --- !u!114 &3378893123778273924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3708,7 +3710,7 @@ PrefabInstance:
     - target: {fileID: 8844135795942732717, guid: 11ac3fceb580271409627f9ecfa8da0c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 577
+      value: 763
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5630208356583686018, guid: 11ac3fceb580271409627f9ecfa8da0c, type: 3}

@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     public float damage = 5;
     [SerializeField]
     private float secondsTillBulletDeactivates = 5f;
+
     void Update()
     {
         transform.Translate(Vector3.forward * Time.deltaTime * force);

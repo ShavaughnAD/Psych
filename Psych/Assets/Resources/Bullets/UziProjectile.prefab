@@ -76,8 +76,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7a1e997c78614478cb578cd8d14167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 50
-  damage: 5
+  force: 30
+  damage: 2
+  secondsTillBulletDeactivates: 5
+  deviation: 0.1
 --- !u!82 &-384822425032617833
 AudioSource:
   m_ObjectHideFlags: 0
