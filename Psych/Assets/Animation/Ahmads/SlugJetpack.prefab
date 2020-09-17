@@ -127,7 +127,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GlobalState: []
-  States: []
+  States:
+  - State: {fileID: 0}
+    Transitions: []
+  - State: {fileID: 0}
+    Transitions: []
+  - State: {fileID: 0}
+    Transitions: []
 --- !u!114 &8763186051852390467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +147,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrayOfPatrolPoints: []
-  patrollerGameObject: {fileID: 0}
   patrolSpeed: 5
 --- !u!114 &5133551344639774975
 MonoBehaviour:
@@ -156,7 +161,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 0}
+  C_Stolen: {fileID: 0}
   movementSpeed: 7
+  GunHand: {fileID: 0}
+  storedWeaponEulerAngleRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &3742511383183126528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,9 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c74139325ec6f654e869dc820447a583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 0}
-  visionRange: 5
-  maxVisionDistance: 15
+  canSeeTarget: 0
 --- !u!114 &2928510968956309316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +216,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxWaitTimeToLookForTarget: 5
+  waitTimeToLookForTarget: 0
+  lostSightOfTarget: 0
 --- !u!114 &9155394631486993120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,6 +240,7 @@ MonoBehaviour:
   fullHealth: 0
   killScore: 0
   isSlug: 0
+  audioArray: []
 --- !u!1 &132479705518954323
 GameObject:
   m_ObjectHideFlags: 0

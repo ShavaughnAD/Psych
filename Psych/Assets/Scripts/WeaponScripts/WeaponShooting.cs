@@ -101,11 +101,12 @@ public class WeaponShooting : MonoBehaviour
 
         if (shootTimer >= rate)
         {
-            if (enableShooting)
+            if (enableShooting && anim != null)
             {
+                Debug.LogWarning(this.gameObject.name + ": Firing now!");
 
                 anim.SetBool("CanAttack", true);
-                Invoke("FireTheProjectile", projectileFiringWaitTime);
+                //Invoke("FireTheProjectile", projectileFiringWaitTime);
                 enableShooting = false;
             }
             
@@ -118,7 +119,7 @@ public class WeaponShooting : MonoBehaviour
 
     }
 
-    private void FireTheProjectile()
+    public void FireTheProjectile()
     {
         //Debug.Log("Firing - (⌐■_■)–︻╦╤─<<- - -");
         // GameObject bullet = objectpooler.SpawnFromPool("Bullet", spawnPoint.position, spawnPoint.rotation);

@@ -52,7 +52,7 @@ LightmapSettings:
     m_AlbedoBoost: 1
     m_EnvironmentLightingMode: 0
     m_EnableBakedLightmaps: 1
-    m_EnableRealtimeLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 12
     m_Resolution: 2
@@ -34832,10 +34832,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: JetpackEnemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1346529048762958257, guid: 4268371058229914b8d0ba5c9e07293f,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1930871359}
     - target: {fileID: 4451518435474829642, guid: 4268371058229914b8d0ba5c9e07293f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -48.65
+      value: 9.4
       objectReference: {fileID: 0}
     - target: {fileID: 4451518435474829642, guid: 4268371058229914b8d0ba5c9e07293f,
         type: 3}
@@ -34845,7 +34850,7 @@ PrefabInstance:
     - target: {fileID: 4451518435474829642, guid: 4268371058229914b8d0ba5c9e07293f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -41.148384
+      value: 3.1
       objectReference: {fileID: 0}
     - target: {fileID: 4451518435474829642, guid: 4268371058229914b8d0ba5c9e07293f,
         type: 3}
@@ -56385,6 +56390,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.33422014, y: 0.52713996, z: 0.41486377}
   m_Center: {x: -0.012048465, y: 0.23642956, z: -0.055588353}
+--- !u!95 &1930871359 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8699912831636415916, guid: 4268371058229914b8d0ba5c9e07293f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1214263964}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1932410825
 GameObject:
   m_ObjectHideFlags: 0
@@ -59862,7 +59873,7 @@ PrefabInstance:
     - target: {fileID: 7521392764339994981, guid: af7a2305c0d5d9f4f8c0ebff1e054e76,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2.6000977
+      value: -2.6000366
       objectReference: {fileID: 0}
     - target: {fileID: 8474953078977685014, guid: af7a2305c0d5d9f4f8c0ebff1e054e76,
         type: 3}
