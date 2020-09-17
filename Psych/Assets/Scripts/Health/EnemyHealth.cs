@@ -44,7 +44,10 @@ public class EnemyHealth : Health
 
     void HurtSound()
     {
-        AudioClip temp = audioArray[Random.Range(0, audioArray.Length)];
-        auSource.PlayOneShot(temp);
+        if (audioArray.Length > 0)
+        {
+            AudioClip temp = audioArray[Random.Range(0, audioArray.Length)];
+            auSource.PlayOneShot(temp);
+        }
     }
 }

@@ -56,14 +56,15 @@ public class Damage : MonoBehaviour
             {
 
             }
-        
+
             else
             {
                 Destroy(gameObject);
             }
         }
-        else if(gameObject.tag == "Selectable")
+        else if (gameObject.tag == "Selectable")
         {
+
             if (other.gameObject.tag == "Enemy" && other.GetComponent<EnemyHealth>() != null)
             {
                 Hits.Add(other.gameObject.GetComponent<EnemyHealth>());
@@ -87,9 +88,7 @@ public class Damage : MonoBehaviour
                             }
                             handler.ShowDamage();
                             handler.StartCoroutine(handler.ResetCountdown(1));
-                            //hitRenderer = currentRenderer;
-                            //defaultMaterial = currentRenderer.material;
-                            //FlashRed();
+
                         }
                     }
 
@@ -98,7 +97,9 @@ public class Damage : MonoBehaviour
                         Destroy(gameObject);
                     }
                 }
+
             }
+
         }
         //else
         //{
