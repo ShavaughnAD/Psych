@@ -1,0 +1,152 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.SocialPlatforms.GameCenter;
+
+public class BossAI : MonoBehaviour
+{
+    
+    public Transform target = null;
+    int cycle = 100;
+    int counter = 0;
+    public int hp;
+   public float shootTimer = 0;
+    public float rate, throwSpeed, dist;
+    public GameObject bossBlast, jointRef;
+    public GameObject blastAttackSpawnPoint;
+    public GameObject blastAttackSpawnPoint1;
+    public GameObject blastAttackSpawnPoint2;
+    public Animator anim;
+    
+   
+
+
+    NavMeshAgent agent;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        agent = GetComponentInParent<NavMeshAgent>();
+        jointRef.transform.rotation = Quaternion.identity;
+        hp = 700;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.LookAt(target.position);
+        dist = Vector3.Distance(target.position, transform.position);
+        
+        if (!target)
+        {
+            return;
+        }
+        counter++;
+        if(counter > cycle)
+        {
+            counter = 0;
+            cycle = Random.Range(700, 1000);
+            MoveToTarget(transform.position);
+        }
+
+        shootTimer += Time.deltaTime;
+        if (shootTimer >= rate && FF.force.shieldBreak)
+        {
+            BlastAttack();
+            
+        }
+        if(hp == 50)
+        {
+            FF.force.shieldBreak = false;
+            if (shootTimer >= .7)
+            {
+                GameObject psychicBlast1 = Instantiate(bossBlast, blastAttackSpawnPoint1.transform.position, Quaternion.identity);
+                psychicBlast1.GetComponent<Rigidbody>().AddForce(transform.forward * throwSpeed, ForceMode.VelocityChange);
+                GameObject psychicBlast2 = Instantiate(bossBlast, blastAttackSpawnPoint2.transform.position, Quaternion.identity);
+                psychicBlast2.GetComponent<Rigidbody>().AddForce(transform.forward * throwSpeed, ForceMode.VelocityChange);
+                shootTimer = 0;
+            }
+           
+        }
+        if(hp <= 0)
+        {
+            FF.force.shieldBreak = false;
+            anim.SetBool("isDead", true);
+            Invoke("Dead", 2);
+        }
+        //FieldOfView();
+    }
+
+    //void FieldOfView()
+    //{
+    //    if (!target)
+    //    {
+    //        return;
+    //    }
+    //    Vector3 directionToFace = target.position - transform.position;
+    //    directionToFace.y = 0;
+    //    if (directionToFace == Vector3.zero)
+    //        directionToFace = -transform.forward;
+    //    Quaternion targetPosition = Quaternion.LookRotation(directionToFace);
+    //    transform.rotation = Quaternion.Slerp(transform.rotation, targetPosition, Time.deltaTime * 5);
+    //}
+    void Dead()
+    {
+        Destroy(gameObject);
+    }
+    void MoveToTarget(Vector3 targetPosition)
+    {
+        //anim.SetBool("isWalking", true);
+
+        if (dist >= 6&& FF.force.shieldBreak)
+        {
+            anim.SetBool("isWalking", true);
+           
+            agent.SetDestination(targetPosition);
+        }
+        //if (!target)
+        //{
+        //    return;
+        //}
+        //Vector3 directionToMove = target.position - transform.position;
+        //if (directionToMove.x >= 0)
+        //{
+        //    if (directionToMove.z >= 0)
+        //agent.SetDestination(transform.position + new Vector3(-10, 0, -5));
+        //    else
+        //        agent.SetDestination(targetPosition + new Vector3(-10, 0, 5));
+        //}
+
+        //else
+        //{
+        //    if (directionToMove.z >= 0)
+        //        agent.SetDestination(targetPosition + new Vector3(10, 0, -5));
+        //    else
+        //        agent.SetDestination(targetPosition + new Vector3(10, 0, 5));
+        //}
+
+    }
+
+    void BlastAttack()
+    {
+        anim.SetBool("isAttack", true);
+        if (!target)
+        {
+            return;
+        }
+        GameObject psychicBlast = Instantiate(bossBlast, blastAttackSpawnPoint.transform.position, Quaternion.identity);
+        psychicBlast.GetComponent<Rigidbody>().AddForce(transform.forward * throwSpeed, ForceMode.VelocityChange);
+        shootTimer = 0;
+
+    }
+    void OnTriggerEnter(Collider other)
+    {
+     if(other.gameObject.tag == "Projectile")
+        {
+            hp -= 50; 
+        }   
+    }
+
+
+}
