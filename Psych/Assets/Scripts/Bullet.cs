@@ -18,17 +18,16 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag.Equals("Player") || other.tag.Equals("Enemy"))
+        if (other.GetComponent<PlayerHealth>() != null)
         {
-            other.GetComponent<Health>().TakeDamage(damage);
+            other.GetComponent<PlayerHealth>().TakeDamage(damage);
             gameObject.SetActive(false);
         }
         else if(!other.tag.Equals("Weapon"))
         {
-
             gameObject.SetActive(false);
         }
-        Debug.LogWarning(this.gameObject.name + " Collided with " + other.gameObject.name);
+        Debug.LogWarning(gameObject.name + " Collided with " + other.gameObject.name);
     }
 
     private void DeactivateWhenTimerExpires()

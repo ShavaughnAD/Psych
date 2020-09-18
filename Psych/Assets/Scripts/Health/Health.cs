@@ -28,7 +28,7 @@ public class Health : MonoBehaviour
         if (immune) return;
         if (currentHealth <= 0) return;
         currentHealth = Mathf.Clamp(currentHealth - Mathf.Round(damageAmount / damageReduction), 0, maxHealth);
-        if (currentHealth == 0)
+        if (currentHealth <= 0)
         {
             onDeath.CallEvent(0);
         }

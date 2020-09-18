@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : Health
@@ -69,14 +71,9 @@ public class PlayerHealth : Health
         }
     }
 
-    void Start()
+    public void GameRestart()
     {
-        GameRestart();
-    }
-
-    void GameRestart()
-    {
-        respawnPoint = transform.position;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void SetRespawnPoint(Transform transform)
     {
@@ -102,7 +99,10 @@ public class PlayerHealth : Health
 
     void Death(float param)
     {
-        Respawn();
+        if (GetComponentInChildren<Animator>().GetBool("isDead") == false)
+        {
+            GetComponentInChildren<Animator>().SetBool("isDead", true);
+        }
     }
 
     void Respawn()
@@ -110,6 +110,12 @@ public class PlayerHealth : Health
         transform.position = respawnPoint;
         //if need rotation
         //transform.rotation = respawnPoint.rotation;
+        GetComponentInChildren<Animator>().SetBool("isDead", false);
         currentHealth = maxHealth;
+    }
+
+    public void DeathAnim()
+    {
+        GameRestart();
     }
 }
