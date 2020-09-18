@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FF : MonoBehaviour
 {
     public static FF force;
     public Vector3 speed;
     public int hp;
+    public Image shieldBar;
     public bool shieldBreak;
      void Awake()
     {
@@ -15,6 +17,7 @@ public class FF : MonoBehaviour
     }
     void Update()
     {
+        shieldBar.fillAmount = (hp) / 400f;
         if (hp <= 0)
         {
             shieldBreak = true;

@@ -5,6 +5,10 @@ using UnityEngine;
 public class BossHealthBarTrigger : MonoBehaviour
 {
     public GameObject bossHealthBar;
+    private void Start()
+    {
+        bossHealthBar.SetActive(false);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -12,4 +16,12 @@ public class BossHealthBarTrigger : MonoBehaviour
         else
             return;
     }
+    private void Update()
+    {
+        if (BossAI.bossAI.isDead)
+        {
+            bossHealthBar.SetActive(false);
+        }
+    }
 }
+

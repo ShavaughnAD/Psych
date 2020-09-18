@@ -66,7 +66,7 @@ public class PlayerHealth : Health
                 rend.material.SetColor("_EmissionColor", Color.red);
                 healthBar.color = Color.red;
                 //We can reduce incoming damage here to give the player a fighting chance if need be
-                damageReduction = 2;
+                damageReduction = 5;
             }
         }
     }

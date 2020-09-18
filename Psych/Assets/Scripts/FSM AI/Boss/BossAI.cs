@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SocialPlatforms.GameCenter;
+using UnityEngine.UI;
 
 public class BossAI : MonoBehaviour
 {
-    
+    public static BossAI bossAI;
+    public Image bossBar;
     public Transform target = null;
     int cycle = 100;
     int counter = 0;
-    public int hp;
+    public int hp, point,maxHP;
    public float shootTimer = 0;
     public float rate, throwSpeed, dist;
     public GameObject bossBlast, jointRef;
@@ -18,6 +20,9 @@ public class BossAI : MonoBehaviour
     public GameObject blastAttackSpawnPoint1;
     public GameObject blastAttackSpawnPoint2;
     public Animator anim;
+    public GameObject warpPoint1,warpPoint2, warpPoint3;
+    public bool isDead;
+
     
    
 
@@ -27,14 +32,19 @@ public class BossAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        bossAI = this;
         agent = GetComponentInParent<NavMeshAgent>();
         jointRef.transform.rotation = Quaternion.identity;
-        hp = 700;
+        maxHP = 700;
+        hp = maxHP;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        point = Random.Range(1, 10);
+        bossBar.fillAmount = (hp)/700f;
         transform.LookAt(target.position);
         dist = Vector3.Distance(target.position, transform.position);
         
@@ -56,7 +66,7 @@ public class BossAI : MonoBehaviour
             BlastAttack();
             
         }
-        if(hp == 50)
+        if(hp == 300)
         {
             FF.force.shieldBreak = false;
             if (shootTimer >= .7)
@@ -66,12 +76,14 @@ public class BossAI : MonoBehaviour
                 GameObject psychicBlast2 = Instantiate(bossBlast, blastAttackSpawnPoint2.transform.position, Quaternion.identity);
                 psychicBlast2.GetComponent<Rigidbody>().AddForce(transform.forward * throwSpeed, ForceMode.VelocityChange);
                 shootTimer = 0;
+                agent.Warp(target.transform.position);
             }
            
         }
         if(hp <= 0)
         {
             FF.force.shieldBreak = false;
+            isDead = true;
             anim.SetBool("isDead", true);
             Invoke("Dead", 2);
         }
@@ -99,12 +111,12 @@ public class BossAI : MonoBehaviour
     {
         //anim.SetBool("isWalking", true);
 
-        if (dist >= 6&& FF.force.shieldBreak)
-        {
-            anim.SetBool("isWalking", true);
+        //if (dist >= 6&& FF.force.shieldBreak)
+        //{
+        //    anim.SetBool("isWalking", true);
            
-            agent.SetDestination(targetPosition);
-        }
+        //    agent.SetDestination(targetPosition);
+        //}
         //if (!target)
         //{
         //    return;
@@ -131,9 +143,19 @@ public class BossAI : MonoBehaviour
     void BlastAttack()
     {
         anim.SetBool("isAttack", true);
-        if (!target)
+        if(point<= 3)
         {
-            return;
+            agent.Warp(warpPoint1.transform.position);
+            
+        }
+        else if(point==4||point==5||point==6)
+        {
+            agent.Warp(warpPoint2.transform.position);
+            
+        }
+        else if (point >= 7)
+        {
+            agent.Warp(warpPoint3.transform.position);
         }
         GameObject psychicBlast = Instantiate(bossBlast, blastAttackSpawnPoint.transform.position, Quaternion.identity);
         psychicBlast.GetComponent<Rigidbody>().AddForce(transform.forward * throwSpeed, ForceMode.VelocityChange);
@@ -144,7 +166,9 @@ public class BossAI : MonoBehaviour
     {
      if(other.gameObject.tag == "Projectile")
         {
-            hp -= 50; 
+            hp -= 50;
+            
+            
         }   
     }
 
