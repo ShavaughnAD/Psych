@@ -19,20 +19,31 @@ public class PowerManager : MonoBehaviour
 
     void Awake()
     {
-        powerManager = this;
-        power = maxPower;
+        if (powerManager == null)
+        {
+            powerManager = this;
+            power = maxPower;
+        }
+    }
+    private void OnEnable()
+    {
+        if (powerManager == null)
+        {
+            powerManager = this;
+            power = maxPower;
+        }
     }
 
     void Update()
     {
-        if(powerBar == null && GameObject.FindGameObjectWithTag("PowerBar") != null)
+        if (powerBar == null && GameObject.FindGameObjectWithTag("PowerBar") != null)
         {
             powerBar = GameObject.FindGameObjectWithTag("PowerBar").GetComponent<Image>();
             power = maxPower;
             powerBar.color = normalMode;
             timer = 0.0f;
             //powerText = GameObject.FindGameObjectWithTag("PowerText").GetComponent<Text>();
-            
+
         }
 
         if (power <= 0)
@@ -45,6 +56,7 @@ public class PowerManager : MonoBehaviour
         {
             DecrementPower(5 * Time.deltaTime);
         }
+     
         if (power < maxPower && PauseMenu.pauseMenuRef.isPaused == false)
         {
             Debug.Log("Power up");
@@ -52,6 +64,7 @@ public class PowerManager : MonoBehaviour
             if (timer > secondCount && drainPower == false)
                 PowerUp();
         }
+    
         //dpowerText.text = power.ToString("F0") + " / " + maxPower.ToString("F0");
     }
 
@@ -67,20 +80,20 @@ public class PowerManager : MonoBehaviour
         {
             Debug.LogError("Not enough Power");
             return false;
-        } 
+        }
     }
 
     void PowerUp()
     {
         timer -= secondCount;
-        if(power < maxPower)
+        if (power < maxPower)
         {
-            if(isStasis)
+            if (isStasis)
                 power += (regenRate * 2);
             else
                 power += regenRate;
 
-            if(power>maxPower)
+            if (power > maxPower)
             {
                 power = maxPower;
             }

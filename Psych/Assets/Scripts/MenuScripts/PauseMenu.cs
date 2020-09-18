@@ -18,14 +18,21 @@ public class PauseMenu : MonoBehaviour
 
     void Awake()
     {
-        pauseMenuRef = this;
+        if (pauseMenuRef == null)
+            pauseMenuRef = this;
     }
+    private void OnEnable()
+    {
+        if (pauseMenuRef == null)
+            pauseMenuRef = this;
+    }
+
 
     void Start()
     {
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         crosshair = GameObject.FindGameObjectWithTag("Crosshair");
-        if(crosshair != null)
+        if (crosshair != null)
         {
             crosshairImage = crosshair.GetComponent<Image>();
         }
@@ -37,7 +44,7 @@ public class PauseMenu : MonoBehaviour
         {
             isPaused = !isPaused;
             if (isPaused)
-            {                
+            {
                 Time.timeScale = 0;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
@@ -47,7 +54,7 @@ public class PauseMenu : MonoBehaviour
                 crosshair.SetActive(false);
             }
             else
-            {                
+            {
                 settingsMenu.SetActive(false);
                 ResumeButon();
                 Time.timeScale = 1;
