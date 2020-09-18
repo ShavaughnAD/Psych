@@ -12,7 +12,7 @@ public class BossAI : MonoBehaviour
     public Transform target = null;
     int cycle = 100;
     int counter = 0;
-    public int hp, point,maxHP;
+    public int hp, point;
    public float shootTimer = 0;
     public float rate, throwSpeed, dist;
     public GameObject bossBlast, jointRef;
@@ -35,8 +35,8 @@ public class BossAI : MonoBehaviour
         bossAI = this;
         agent = GetComponentInParent<NavMeshAgent>();
         jointRef.transform.rotation = Quaternion.identity;
-        maxHP = 700;
-        hp = maxHP;
+        hp = 700;
+       
     }
 
     // Update is called once per frame
@@ -66,6 +66,7 @@ public class BossAI : MonoBehaviour
         }
         if(hp == 50)
         {
+            anim.SetBool("isMad", true);
             FF.force.shieldBreak = false;
             if (shootTimer >= .7)
             {
@@ -74,7 +75,7 @@ public class BossAI : MonoBehaviour
                 GameObject psychicBlast2 = Instantiate(bossBlast, blastAttackSpawnPoint2.transform.position, Quaternion.identity);
                 psychicBlast2.GetComponent<Rigidbody>().AddForce(transform.forward * throwSpeed, ForceMode.VelocityChange);
                 shootTimer = 0;
-                agent.Warp(target.transform.position);
+               
             }
            
         }
