@@ -37,7 +37,6 @@ public class BossAI : MonoBehaviour
         jointRef.transform.rotation = Quaternion.identity;
         maxHP = 700;
         hp = maxHP;
-
     }
 
     // Update is called once per frame
@@ -63,10 +62,9 @@ public class BossAI : MonoBehaviour
         shootTimer += Time.deltaTime;
         if (shootTimer >= rate && FF.force.shieldBreak)
         {
-            BlastAttack();
-            
+            BlastAttack();        
         }
-        if(hp == 300)
+        if(hp == 50)
         {
             FF.force.shieldBreak = false;
             if (shootTimer >= .7)
@@ -143,34 +141,28 @@ public class BossAI : MonoBehaviour
     void BlastAttack()
     {
         anim.SetBool("isAttack", true);
+        GameObject psychicBlast = Instantiate(bossBlast, blastAttackSpawnPoint.transform.position, Quaternion.identity);
+        psychicBlast.GetComponent<Rigidbody>().AddForce(transform.forward * throwSpeed, ForceMode.VelocityChange);
+        shootTimer = 0;
         if(point<= 3)
         {
             agent.Warp(warpPoint1.transform.position);
-            
         }
         else if(point==4||point==5||point==6)
         {
-            agent.Warp(warpPoint2.transform.position);
-            
+            agent.Warp(warpPoint2.transform.position);          
         }
         else if (point >= 7)
         {
             agent.Warp(warpPoint3.transform.position);
         }
-        GameObject psychicBlast = Instantiate(bossBlast, blastAttackSpawnPoint.transform.position, Quaternion.identity);
-        psychicBlast.GetComponent<Rigidbody>().AddForce(transform.forward * throwSpeed, ForceMode.VelocityChange);
-        shootTimer = 0;
 
     }
     void OnTriggerEnter(Collider other)
     {
-     if(other.gameObject.tag == "Projectile")
+        if(other.gameObject.tag == "Projectile")
         {
-            hp -= 50;
-            
-            
+            hp -= 50;           
         }   
     }
-
-
 }
