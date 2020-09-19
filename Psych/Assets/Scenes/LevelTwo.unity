@@ -33149,12 +33149,17 @@ PrefabInstance:
         type: 3}
       propertyPath: powerBar
       value: 
-      objectReference: {fileID: 918923587}
+      objectReference: {fileID: 0}
     - target: {fileID: 5554212185934225960, guid: 6f353d9464e984a4bbeeeb513d2e14bd,
         type: 3}
       propertyPath: powerText
       value: 
       objectReference: {fileID: 877581858}
+    - target: {fileID: 5554212185934225960, guid: 6f353d9464e984a4bbeeeb513d2e14bd,
+        type: 3}
+      propertyPath: regenRate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5554212185934225961, guid: 6f353d9464e984a4bbeeeb513d2e14bd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -38547,18 +38552,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.019999998, y: 0.02, z: 0.020000001}
   m_Center: {x: 0, y: 0.000000007450581, z: 0}
---- !u!114 &918923587 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3562108900980158788, guid: af7a2305c0d5d9f4f8c0ebff1e054e76,
-    type: 3}
-  m_PrefabInstance: {fileID: 2013180293}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &920882716 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8938866556569923485, guid: 908922ec89631364389b91611d94f19a,

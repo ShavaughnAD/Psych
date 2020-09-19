@@ -199,7 +199,7 @@ public class PlayerAim : MonoBehaviour
             Vector3 trueScreenPoint = cam.ScreenToWorldPoint(Input.mousePosition);
             objectRBinHand.transform.LookAt(trueScreenPoint);
             Vector3 someforce = (cam.transform.forward) * 100.0f  * throwSpeed * Time.fixedDeltaTime;
-            objectRBinHand.AddRelativeForce(someforce, ForceMode.VelocityChange);
+            objectRBinHand.AddRelativeForce(someforce, ForceMode.Impulse);
 
             objectColinHand = null;
             objectRBinHand = null;

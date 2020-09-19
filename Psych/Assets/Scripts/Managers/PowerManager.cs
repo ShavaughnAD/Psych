@@ -11,8 +11,8 @@ public class PowerManager : MonoBehaviour
     public Image powerBar;
     //public Text powerText;
     public bool isStasis = false;
-    float timer = 0f;
-    float secondCount = 1f;
+    public float timer = 0f;
+    public float secondCount = 2f;
 
     Color normalMode = new Color(255f, 255, 255);
     Color stasisMode = Color.magenta;
@@ -101,7 +101,7 @@ public class PowerManager : MonoBehaviour
 
     void PowerUp()
     {
-       // timer -= secondCount;
+        timer -= secondCount * Time.deltaTime;
         if (power < maxPower)
         {
             if (isStasis)

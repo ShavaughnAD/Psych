@@ -18,6 +18,16 @@ public class CameraManager : MonoBehaviour
         playerAim = FindObjectOfType<PlayerAim>();
     }
 
+    void OnEnable()
+    {
+        if (cameraManager == null)
+            cameraManager = this;
+        if (playerMovement == null)
+            playerMovement = FindObjectOfType<PlayerMovement>();
+        //cameraController = weaponCam.GetComponent<CameraController>();
+        if (playerAim == null)
+            playerAim = FindObjectOfType<PlayerAim>();
+    }
     void Start()
     {
         ActivatePlayerCamera();
