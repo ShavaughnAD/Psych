@@ -57,15 +57,28 @@ public class PowerManager : MonoBehaviour
             DecrementPower(5 * Time.deltaTime);
         }
      
-        if (power < maxPower && PauseMenu.pauseMenuRef.isPaused == false)
+        if (PauseMenu.pauseMenuRef.isPaused == false)
         {
-            Debug.Log("Power up");
+            if(power < maxPower )
+            {
             timer += Time.deltaTime;
-            //if (timer > secondCount && drainPower == false)
-            //    PowerUp();
+            if (timer > secondCount && drainPower == false)
+                PowerUp();
+            }
+            else
+            {
+                power = maxPower;
+                if (isStasis == true)
+                {
+                    timer = 0;
+                    powerBar.color = normalMode;
+                    isStasis = false;
+                }
+            }
+         
         }
       
-            PowerUp();
+        
         
     
         //dpowerText.text = power.ToString("F0") + " / " + maxPower.ToString("F0");
@@ -88,7 +101,7 @@ public class PowerManager : MonoBehaviour
 
     void PowerUp()
     {
-        timer -= secondCount;
+       // timer -= secondCount;
         if (power < maxPower)
         {
             if (isStasis)
