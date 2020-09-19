@@ -61,14 +61,12 @@ public class PowerManager : MonoBehaviour
         {
             Debug.Log("Power up");
             timer += Time.deltaTime;
-            if (timer > secondCount && drainPower == false)
-                PowerUp();
+            //if (timer > secondCount && drainPower == false)
+            //    PowerUp();
         }
-        else
-        {
-            //needed to remove stasis
+      
             PowerUp();
-        }
+        
     
         //dpowerText.text = power.ToString("F0") + " / " + maxPower.ToString("F0");
     }
