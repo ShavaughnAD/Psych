@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.SocialPlatforms.GameCenter;
 using UnityEngine.UI;
 
 public class BossAI : MonoBehaviour
@@ -13,7 +12,7 @@ public class BossAI : MonoBehaviour
     int cycle = 100;
     int counter = 0;
     public int hp, point;
-   public float shootTimer = 0;
+    public float shootTimer = 0;
     public float rate, throwSpeed, dist;
     public GameObject bossBlast, jointRef;
     public GameObject blastAttackSpawnPoint;
@@ -35,7 +34,7 @@ public class BossAI : MonoBehaviour
         bossAI = this;
         agent = GetComponentInParent<NavMeshAgent>();
         jointRef.transform.rotation = Quaternion.identity;
-        hp = 700;
+        hp = 1500;
        
     }
 
@@ -43,7 +42,7 @@ public class BossAI : MonoBehaviour
     void Update()
     {
         point = Random.Range(1, 10);
-        bossBar.fillAmount = (hp)/700f;
+        bossBar.fillAmount = (hp)/1500f;
         transform.LookAt(target.position);
         dist = Vector3.Distance(target.position, transform.position);
         

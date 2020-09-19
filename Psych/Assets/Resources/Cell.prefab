@@ -84,8 +84,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.014759049, y: 0.03146271, z: 0.014683859}
-  m_Center: {x: 0.0000018501281, y: 0.005279244, z: -0.00053257437}
+  m_Size: {x: 0.014759049, y: 0.055727012, z: 0.014683859}
+  m_Center: {x: 0.0000018501281, y: 0.004007882, z: -0.00053257466}
 --- !u!65 &5196136012197049213
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -97,8 +97,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.021624736, y: 0.035184152, z: 0.014683859}
-  m_Center: {x: 0.0000018501281, y: 0.005279244, z: -0.00053257437}
+  m_Size: {x: 0.021624736, y: 0.05959665, z: 0.014683859}
+  m_Center: {x: 0.0000018501281, y: 0.0053152083, z: -0.00053257466}
 --- !u!114 &1328239108975842779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,8 +165,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2019665206941766502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.000000016022, y: -0.0021712, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 77208230763476371}
   m_RootOrder: 0
@@ -225,6 +225,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 77208230763476371}
     m_Modifications:
+    - target: {fileID: 725935127513117456, guid: d0c5b157ab964d14487946c4c74d67e4,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 725935127513117456, guid: d0c5b157ab964d14487946c4c74d67e4,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 725935127513117456, guid: d0c5b157ab964d14487946c4c74d67e4,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 725935127513117456, guid: d0c5b157ab964d14487946c4c74d67e4,
+        type: 3}
+      propertyPath: simulationSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 725935127513117456, guid: d0c5b157ab964d14487946c4c74d67e4,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 725935127513117456, guid: d0c5b157ab964d14487946c4c74d67e4,
+        type: 3}
+      propertyPath: NoiseModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 725935127513117458, guid: d0c5b157ab964d14487946c4c74d67e4,
         type: 3}
       propertyPath: m_Name
@@ -238,7 +268,7 @@ PrefabInstance:
     - target: {fileID: 725935127513117487, guid: d0c5b157ab964d14487946c4c74d67e4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0214
+      value: 0.0397
       objectReference: {fileID: 0}
     - target: {fileID: 725935127513117487, guid: d0c5b157ab964d14487946c4c74d67e4,
         type: 3}

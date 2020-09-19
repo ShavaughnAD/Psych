@@ -11,10 +11,10 @@ public class FF : MonoBehaviour
     public Image shieldBar;
     public bool shieldBreak;
      void Awake()
-    {
+     {
         force = this;
         hp = 400;
-    }
+     }
     void Update()
     {
         shieldBar.fillAmount = (hp) / 400f;
