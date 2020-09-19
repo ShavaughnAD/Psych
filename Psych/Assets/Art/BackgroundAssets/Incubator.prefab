@@ -736,6 +736,7 @@ GameObject:
   - component: {fileID: 8291784929533656508}
   - component: {fileID: 1851768135361464631}
   - component: {fileID: 2723539211385359289}
+  - component: {fileID: 3995323613941515955}
   m_Layer: 0
   m_Name: Incubator
   m_TagString: Untagged
@@ -795,6 +796,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.29748794, y: 0.023178954, z: 0.35186577}
   m_Center: {x: 0.0019013205, y: 0.0129497135, z: -0.024751691}
+--- !u!65 &3995323613941515955
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4992538905159700399}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.29837954, y: 0.013994186, z: 0.3440404}
+  m_Center: {x: -0.00093098544, y: 0.46482867, z: -0.025570909}
 --- !u!1 &5149924075336319845
 GameObject:
   m_ObjectHideFlags: 0
