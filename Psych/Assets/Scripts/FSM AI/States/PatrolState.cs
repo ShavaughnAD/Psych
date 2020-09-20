@@ -28,29 +28,34 @@ public class PatrolState : FsmState
         else{
             //Alternatively, we can set a patrol to the position of the object
             arrayOfPatrolPoints = new GameObject[1];
-            Debug.Log("Number of patrol points: " + arrayOfPatrolPoints.Length);
+            //Debug.Log(this.gameObject.name + ": Number of patrol points: " + arrayOfPatrolPoints.Length);
 
             GameObject defaultPatrolPointObject = new GameObject();
             defaultPatrolPointObject.transform.position = this.gameObject.transform.position;
             defaultPatrolPointObject.gameObject.name = "Default Patrol Point";
             arrayOfPatrolPoints[0] = defaultPatrolPointObject;
+            currentPatrolPoint = arrayOfPatrolPoints[0];
 
-            Debug.LogWarning("No Patrol Points Set");
-        }          
+            Debug.LogWarning(this.gameObject.name + ": No Patrol Points Set");
+        }
     }
     private void OnTriggerEnter(Collider other) {
 
         SetNextPatrolPoint(other);
+        Debug.Log(this.gameObject.name + ": Hit Patrol Point");
 
     }
 
     public void SetNextPatrolPoint(Collider other)
     {
+        Debug.Log(this.gameObject.name + ": Current Patrol Point Name: " + currentPatrolPoint);
         if (other.gameObject == currentPatrolPoint)
         {
             currentPatrolPointIndex = (currentPatrolPointIndex + 1) % arrayOfPatrolPoints.Length;
             currentPatrolPoint = arrayOfPatrolPoints[currentPatrolPointIndex];
-            // Debug.Log("Current Patrol Point Index: " + currentPatrolPointIndex);
+
+            
+            Debug.Log(this.gameObject.name + ": Current Patrol Point Name: " + currentPatrolPoint);
 
             //If hits patrol point, it could be resetting back to the patrol state
         }
@@ -63,9 +68,16 @@ public class PatrolState : FsmState
     private void MoveToPatrolPoints(){
         // patrollerGameObject.transform.position = Vector3.MoveTowards(this.transform.position, currentPatrolPoint.transform.position, patrolSpeed * Time.deltaTime);
         //     this.transform.LookAt(currentPatrolPoint.transform);
-
-        enemyAgent.SetDestination(currentPatrolPoint.transform.position);
-        enemyAgent.speed = patrolSpeed;
+        if(currentPatrolPoint != null)
+        {
+            enemyAgent.SetDestination(currentPatrolPoint.transform.position);
+            enemyAgent.speed = patrolSpeed;
+        }
+        else
+        {
+            // Debug.LogWarning(this.gameObject.name + ": PatrolPoint at index " + System.Array.IndexOf(arrayOfPatrolPoints, currentPatrolPoint) + " is null");
+            Debug.LogWarning(this.gameObject.name + "Current patrolPoint = " + currentPatrolPoint);
+        }
     }
 
     
