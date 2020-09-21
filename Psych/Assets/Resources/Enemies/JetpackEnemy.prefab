@@ -359,7 +359,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 746f1d77d3564fb4aa0d46cd6e9ef2e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrayOfPatrolPoints: []
+  arrayOfPatrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
   patrolSpeed: 5
 --- !u!114 &8699912831636415905
 MonoBehaviour:
@@ -408,7 +410,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837002910930994009}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1795e0e61f9970e4fb847f9a25c412fd, type: 3}
   m_Name: 
@@ -501,7 +503,7 @@ MonoBehaviour:
   visionRange: 45
   maxVisionDistance: 15
   targetInSight: 0
-  smRenderer: {fileID: 0}
+  smRenderer: {fileID: 7950415583847629030}
   distanceBetweenTargetAndEnemy: 0
   angleOfVision: 0
   maxAlertRange: 20
@@ -613,8 +615,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b462719e352cb44bee7858f6209f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
-  currentHealth: 0
+  maxHealth: 50
+  currentHealth: 50
   damageTaken: 0
   healingRecieved: 0
   damageReduction: 1

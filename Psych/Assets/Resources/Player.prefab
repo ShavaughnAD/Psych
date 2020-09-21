@@ -183,8 +183,9 @@ MonoBehaviour:
   zoomLocation: {x: 0, y: 1, z: -0.1}
   sphereCheckRadius: 0.5
   checkBehind: {x: 0, y: 1, z: -1}
-  layerMaskDetect: -257
-  layerMaskDetect2: -769
+  layerMaskDetect:
+    serializedVersion: 2
+    m_Bits: 567
   lerpSpeed: 1
   wallDetectionDistace: 10
 --- !u!1 &850126435949546336
