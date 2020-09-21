@@ -11731,7 +11731,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 0.6320754, g: 0.0930771, b: 0, a: 1}
-      maxColor: {r: 0, g: 0.91391253, b: 1, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.35857958, g: 0.6837537, b: 0.9622642, a: 1}
@@ -17674,7 +17674,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.6921057, g: 0.9716981, b: 0.96980894, a: 1}
+      maxColor: {r: 0.9716981, g: 0.3205254, b: 0.087086126, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -24757,8 +24757,8 @@ Light:
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_Intensity: 5
   m_Range: 50
-  m_SpotAngle: 142
-  m_InnerSpotAngle: 21.80208
+  m_SpotAngle: 119
+  m_InnerSpotAngle: 1
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -82973,7 +82973,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.6036846, g: 0.9622642, b: 0.8146138, a: 1}
+      maxColor: {r: 0.9528302, g: 0.8955936, b: 0.4449537, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -83497,7 +83497,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 12
+      value: 14
       mode: 0
       spread: 0
       speed:
@@ -85377,7 +85377,7 @@ ParticleSystem:
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 7
+      scalar: 9
       minScalar: 2
       maxCurve:
         serializedVersion: 2
@@ -85534,16 +85534,16 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     separateAxes: 0
-    frequency: 0.6
+    frequency: 6
     damping: 1
-    octaves: 3
+    octaves: 2
     octaveMultiplier: 0.5
     octaveScale: 2
     quality: 2
     scrollSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -3
+      scalar: 0.5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
