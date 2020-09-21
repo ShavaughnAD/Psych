@@ -6026,8 +6026,23 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 542ff191f43f81747b46c2962560d442,
+      objectReference: {fileID: 21300000, guid: f135e003a05c02f48ab186ac9803e438,
         type: 3}
+    - target: {fileID: 4860264434056440072, guid: af7a2305c0d5d9f4f8c0ebff1e054e76,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.06132078
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860264434056440072, guid: af7a2305c0d5d9f4f8c0ebff1e054e76,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.90549767
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860264434056440072, guid: af7a2305c0d5d9f4f8c0ebff1e054e76,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4860264434290890050, guid: af7a2305c0d5d9f4f8c0ebff1e054e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6176,7 +6191,7 @@ PrefabInstance:
     - target: {fileID: 8474953078977685014, guid: af7a2305c0d5d9f4f8c0ebff1e054e76,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -4.100067
+      value: -4.1000977
       objectReference: {fileID: 0}
     - target: {fileID: 8696611508896328596, guid: af7a2305c0d5d9f4f8c0ebff1e054e76,
         type: 3}
@@ -7300,6 +7315,10 @@ PrefabInstance:
     - target: {fileID: 1924798444, guid: 39f555063808e20409df1c5125fee58b, type: 3}
       propertyPath: m_LocalPosition.z
       value: -7.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1924798445, guid: 39f555063808e20409df1c5125fee58b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1924798446, guid: 39f555063808e20409df1c5125fee58b, type: 3}
       propertyPath: m_FocalLength
@@ -28251,11 +28270,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8699912831636415919, guid: 4268371058229914b8d0ba5c9e07293f,
-        type: 3}
-      propertyPath: arrayOfPatrolPoints.Array.size
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8699912831636415919, guid: 4268371058229914b8d0ba5c9e07293f,
         type: 3}
