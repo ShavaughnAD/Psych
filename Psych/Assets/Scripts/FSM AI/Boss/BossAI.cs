@@ -21,9 +21,10 @@ public class BossAI : MonoBehaviour
     public Animator anim;
     public GameObject warpPoint1,warpPoint2, warpPoint3;
     public bool isDead;
-
-    
-   
+    public AudioSource auSource;
+    public AudioClip auClip;
+    public AudioClip auClip1;
+    public AudioClip auClip2;
 
 
     NavMeshAgent agent;
@@ -32,6 +33,7 @@ public class BossAI : MonoBehaviour
     void Start()
     {
         bossAI = this;
+        auSource = GetComponent<AudioSource>();
         agent = GetComponentInParent<NavMeshAgent>();
         jointRef.transform.rotation = Quaternion.identity;
         hp = 1500;
@@ -67,6 +69,7 @@ public class BossAI : MonoBehaviour
         {
             anim.SetBool("isMad", true);
             FF.force.shieldBreak = false;
+            auSource.PlayOneShot(auClip2);
             if (shootTimer >= .7)
             {
                 GameObject psychicBlast1 = Instantiate(bossBlast, blastAttackSpawnPoint1.transform.position, Quaternion.identity);
@@ -80,6 +83,7 @@ public class BossAI : MonoBehaviour
         }
         if(hp <= 0)
         {
+            auSource.PlayOneShot(auClip);
             FF.force.shieldBreak = false;
             isDead = true;
             anim.SetBool("isDead", true);
@@ -141,6 +145,7 @@ public class BossAI : MonoBehaviour
     void BlastAttack()
     {
         anim.SetBool("isAttack", true);
+        auSource.PlayOneShot(auClip1);
         GameObject psychicBlast = Instantiate(bossBlast, blastAttackSpawnPoint.transform.position, Quaternion.identity);
         psychicBlast.GetComponent<Rigidbody>().AddForce(transform.forward * throwSpeed, ForceMode.VelocityChange);
         shootTimer = 0;
@@ -162,7 +167,8 @@ public class BossAI : MonoBehaviour
     {
         if(other.gameObject.tag == "Projectile")
         {
-            hp -= 50;           
+            hp -= 50;
+            
         }   
     }
 }
