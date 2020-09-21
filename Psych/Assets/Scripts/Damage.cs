@@ -35,7 +35,7 @@ public class Damage : MonoBehaviour
                 break;
 
             case WeaponSize.Heavy:
-                weightDamage = 20;
+                weightDamage = 45;
                 break;
         }
     }
