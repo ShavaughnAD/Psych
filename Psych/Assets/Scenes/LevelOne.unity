@@ -882,7 +882,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 03ba3e50f236cf047a1df63c1690e394, type: 2}
+      objectReference: {fileID: 2100000, guid: 749fe4a1d1216dd4e8586e2a17900668, type: 2}
     - target: {fileID: 2855714489128250082, guid: 4285c833eb80ec047a1cf9f4a9c29e93,
         type: 3}
       propertyPath: m_CastShadows
@@ -892,12 +892,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 03ba3e50f236cf047a1df63c1690e394, type: 2}
+      objectReference: {fileID: 2100000, guid: 749fe4a1d1216dd4e8586e2a17900668, type: 2}
     - target: {fileID: 4650109781064055666, guid: 4285c833eb80ec047a1cf9f4a9c29e93,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 03ba3e50f236cf047a1df63c1690e394, type: 2}
+      objectReference: {fileID: 2100000, guid: 749fe4a1d1216dd4e8586e2a17900668, type: 2}
     - target: {fileID: 5846587485673926007, guid: 4285c833eb80ec047a1cf9f4a9c29e93,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9376,8 +9376,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.46934772, g: 1, b: 0, a: 1}
-  m_Intensity: 2.22
-  m_Range: 50
+  m_Intensity: 2
+  m_Range: 40
   m_SpotAngle: 129
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -13582,7 +13582,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9811321, g: 0, b: 0, a: 1}
   m_Intensity: 2.22
   m_Range: 50
   m_SpotAngle: 89
@@ -30811,7 +30811,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ac3b8aaa20f11be4eae317af8500a5d4, type: 2}
+      objectReference: {fileID: 2100000, guid: 749fe4a1d1216dd4e8586e2a17900668, type: 2}
     - target: {fileID: 2855714489128250082, guid: 4285c833eb80ec047a1cf9f4a9c29e93,
         type: 3}
       propertyPath: m_CastShadows
@@ -30821,12 +30821,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ac3b8aaa20f11be4eae317af8500a5d4, type: 2}
+      objectReference: {fileID: 2100000, guid: 749fe4a1d1216dd4e8586e2a17900668, type: 2}
     - target: {fileID: 4650109781064055666, guid: 4285c833eb80ec047a1cf9f4a9c29e93,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ac3b8aaa20f11be4eae317af8500a5d4, type: 2}
+      objectReference: {fileID: 2100000, guid: 749fe4a1d1216dd4e8586e2a17900668, type: 2}
     - target: {fileID: 5846587485673926007, guid: 4285c833eb80ec047a1cf9f4a9c29e93,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -31587,7 +31587,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 1, g: 0.1372549, b: 0.9561229, a: 1}
+  m_Color: {r: 0.9607843, g: 0, b: 0.86526626, a: 1}
   m_Intensity: 6
   m_Range: 30.46
   m_SpotAngle: 114.3
@@ -32542,7 +32542,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.5793711, g: 1, b: 0.033018887, a: 1}
+  m_Color: {r: 1, g: 0.09506322, b: 0.031372547, a: 1}
   m_Intensity: 1
   m_Range: 50
   m_SpotAngle: 126
