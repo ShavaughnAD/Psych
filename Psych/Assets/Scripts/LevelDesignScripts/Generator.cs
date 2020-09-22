@@ -38,7 +38,7 @@ public class Generator : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<IsACell>())
+        if (other.GetComponent<IsACell>() && cells < 4)
         {
             cell = other.gameObject;
             if(cells <= 4)

@@ -731,6 +731,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 50494325}
   m_CullTransparentMesh: 0
+--- !u!1 &75901617 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 360841257758984657, guid: 388024919a221284898b07009d0d0331,
+    type: 3}
+  m_PrefabInstance: {fileID: 631841197}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &75901618
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75901617}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.24967167, y: 0.017318048, z: 0.29665664}
+  m_Center: {x: -0.003308061, y: 0.024223575, z: 0.010167338}
 --- !u!1 &81910605
 GameObject:
   m_ObjectHideFlags: 0
@@ -2774,12 +2793,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 236422628}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.6421804, y: 2.2587166, z: 2.2587166}
+  m_LocalScale: {x: 3.6421804, y: 2.2587168, z: 2.2587168}
   m_Children: []
-  m_Father: {fileID: 1181580183}
-  m_RootOrder: 5
+  m_Father: {fileID: 1929707110}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8342,11 +8361,11 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\n Brian Winschel\n\n Derrek Elgarten\r\n Ozgur Kaderoglu\r\n Charnele\r
-    Callender\n Dennis Bowa \n\nSierra Decker\r\n Allen Winschel\r\n Elijah Davis\n\nShavaughn
-    DaCosta\n Ozgur Kaderoglu\n\nSowmya Ragi\n\n Trent Cobb\r\n Kyle Weddington\r\nRonnie
-    Savage\r\n Travis Richardson\n\nShavaughn DaCosta\r\n Raj Shah\r\n Kishore Boopati\r\nJohn
-    Summerville \r\n Andy Lam\r\nTristen Howk\nThomas \"TJay\" Cargle\n\nBill Howley\r\nAhmad
-    Haron\n Zygobot"
+    Callender\n Dennis Bowa \n\nOzgur Kaderoglu\r\n\nSierra Decker\r\n Allen Winschel\r\n
+    Elijah Davis\n\nShavaughn DaCosta\n Ozgur Kaderoglu\n\nSowmya Ragi\n\n Trent
+    Cobb\r\n Kyle Weddington\r\nRonnie Savage\r\n Travis Richardson\n\nShavaughn
+    DaCosta\r\n Raj Shah\r\n Kishore Boopati\r\nJohn Summerville \r\n Andy Lam\r\nTristen
+    Howk\nThomas \"TJay\" Cargle\n\nBill Howley\r\nAhmad Haron\n Zygobot"
 --- !u!222 &357955728
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8583,6 +8602,79 @@ RectTransform:
   m_AnchoredPosition: {x: 158, y: 0.000061035156}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &411730026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 411730027}
+  - component: {fileID: 411730029}
+  - component: {fileID: 411730028}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &411730027
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411730026}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1929707110}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 362, y: 185}
+  m_SizeDelta: {x: 54.6, y: 54.6}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &411730028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411730026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: f3377c675bdf4bb4cbd721eda4a68751, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &411730029
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411730026}
+  m_CullTransparentMesh: 0
 --- !u!1 &427750117
 GameObject:
   m_ObjectHideFlags: 0
@@ -16742,6 +16834,7 @@ GameObject:
   - component: {fileID: 762989929}
   - component: {fileID: 762989928}
   - component: {fileID: 762989930}
+  - component: {fileID: 762989931}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -16758,7 +16851,7 @@ RectTransform:
   m_GameObject: {fileID: 762989926}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.925, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 427750118}
   m_RootOrder: 0
@@ -16788,10 +16881,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 4d8353ad45623f34d94af410b7c144a3, type: 3}
-    m_FontSize: 15
+    m_FontSize: 19
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -16799,7 +16892,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Level Select
+  m_Text: Levels
 --- !u!222 &762989929
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16823,6 +16916,20 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1.5, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &762989931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762989926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 0
 --- !u!4 &766581567 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3788109886485242860, guid: d31e4a1f9fb4c394ea1746de1ab650cd,
@@ -20275,7 +20382,6 @@ RectTransform:
   - {fileID: 1497699430}
   - {fileID: 1012550421}
   - {fileID: 834403784}
-  - {fileID: 236422629}
   m_Father: {fileID: 329687134}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20791,8 +20897,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Lead Artist\n\nArtists \n\n\n\n\nAudio \n\n\n\nLead Producer \n\n\nAssistant
-    Producter \n\nDesigners \n\n\n\n\nDeveloper\n\n\n\n\n\n\n\nSpecial Thanks "
+  m_Text: "Lead Artist\n\nArtists \n\n\n\n\nLighting Artist\n\nAudio \n\n\n\nLead
+    Producer \n\n\nAssistant Producter \n\nDesigners \n\n\n\n\nDeveloper\n\n\n\n\n\n\n\nSpecial
+    Thanks "
 --- !u!222 &1251256462
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -21470,7 +21577,7 @@ RectTransform:
   m_GameObject: {fileID: 1331262882}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.875, y: 0.925, z: 1}
   m_Children: []
   m_Father: {fileID: 538665992}
   m_RootOrder: 0
@@ -21500,10 +21607,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 4d8353ad45623f34d94af410b7c144a3, type: 3}
-    m_FontSize: 20
+    m_FontSize: 19
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -25143,14 +25250,14 @@ RectTransform:
   m_GameObject: {fileID: 1719242091}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8625, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1517654291}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 1.3}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1719242093
@@ -25188,10 +25295,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 4d8353ad45623f34d94af410b7c144a3, type: 3}
-    m_FontSize: 20
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -30752,9 +30859,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3506928708747460770, guid: 54fac97fe96ff5f46b103a0cc00f92cf,
         type: 3}
+      propertyPath: musicClips.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3506928708747460770, guid: 54fac97fe96ff5f46b103a0cc00f92cf,
+        type: 3}
       propertyPath: musicToPlay
       value: SoulSurfin
       objectReference: {fileID: 0}
+    - target: {fileID: 3506928708747460770, guid: 54fac97fe96ff5f46b103a0cc00f92cf,
+        type: 3}
+      propertyPath: musicClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: bba9741c828b20544946af50681f2b86, type: 3}
     - target: {fileID: 3506928708747460771, guid: 54fac97fe96ff5f46b103a0cc00f92cf,
         type: 3}
       propertyPath: BypassEffects
@@ -31744,6 +31861,8 @@ RectTransform:
   m_Children:
   - {fileID: 802981065}
   - {fileID: 309384840}
+  - {fileID: 236422629}
+  - {fileID: 411730027}
   m_Father: {fileID: 1181580183}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
