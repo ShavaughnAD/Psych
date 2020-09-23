@@ -40,6 +40,7 @@ public class PsychicBlast : Damage
                 if (Hits[0] == null)
                 {
                     Destroy(gameObject);
+                    Hits.Clear();
                 }
             }
         }

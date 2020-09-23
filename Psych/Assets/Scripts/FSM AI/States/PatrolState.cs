@@ -42,20 +42,20 @@ public class PatrolState : FsmState
     private void OnTriggerEnter(Collider other) {
 
         SetNextPatrolPoint(other);
-        Debug.Log(this.gameObject.name + ": Hit Patrol Point");
+       // Debug.Log(this.gameObject.name + ": Hit Patrol Point");
 
     }
 
     public void SetNextPatrolPoint(Collider other)
     {
-        Debug.Log(this.gameObject.name + ": Current Patrol Point Name: " + currentPatrolPoint);
+       // Debug.Log(this.gameObject.name + ": Current Patrol Point Name: " + currentPatrolPoint);
         if (other.gameObject == currentPatrolPoint)
         {
             currentPatrolPointIndex = (currentPatrolPointIndex + 1) % arrayOfPatrolPoints.Length;
             currentPatrolPoint = arrayOfPatrolPoints[currentPatrolPointIndex];
 
             
-            Debug.Log(this.gameObject.name + ": Current Patrol Point Name: " + currentPatrolPoint);
+          //  Debug.Log(this.gameObject.name + ": Current Patrol Point Name: " + currentPatrolPoint);
 
             //If hits patrol point, it could be resetting back to the patrol state
         }
