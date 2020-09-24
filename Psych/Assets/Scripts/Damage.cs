@@ -64,10 +64,14 @@ public class Damage : MonoBehaviour
         }
         else if (gameObject.tag == "Selectable")
         {
+            if(other.gameObject.layer == 10)
+            {
 
             if (other.gameObject.tag == "Enemy" && other.GetComponent<EnemyHealth>() != null)
             {
+            Debug.Log("selectable damage enem, " + other);
                 Hits.Add(other.gameObject.GetComponent<EnemyHealth>());
+
                 foreach (EnemyHealth Harmed in Hits)
                 {
                     if (Harmed.currentHealth > 0)
@@ -95,11 +99,17 @@ public class Damage : MonoBehaviour
                     if (Hits[0] == null)
                     {
                         Destroy(gameObject);
+                        Hits.Clear();
                     }
                 }
 
             }
-
+            
+                else
+                {
+                    Debug.Log("actually hit, " + other);
+                }
+            }
         }
         //else
         //{

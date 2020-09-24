@@ -196,10 +196,17 @@ public class PlayerAim : MonoBehaviour
             objectRBinHand.tag = "Selectable";
             //Vector3 someforce = CameraManager.cameraManager.playerCam.transform.TransformDirection(centerScreen) * throwSpeed * Time.fixedDeltaTime;
 
+            //Vector3 trueScreenPoint = cam.ScreenToWorldPoint(Input.mousePosition);
+            //objectRBinHand.transform.LookAt(trueScreenPoint);
+            //Vector3 someforce = (cam.transform.forward) * 100.0f  * throwSpeed * Time.fixedDeltaTime;
+            //objectRBinHand.AddRelativeForce(someforce, ForceMode.Impulse);
+
             Vector3 trueScreenPoint = cam.ScreenToWorldPoint(Input.mousePosition);
-            objectRBinHand.transform.LookAt(trueScreenPoint);
-            Vector3 someforce = (cam.transform.forward) * 100.0f  * throwSpeed * Time.fixedDeltaTime;
-            objectRBinHand.AddRelativeForce(someforce, ForceMode.Impulse);
+            Vector3 someforce = (cam.transform.forward) * 80.0f * throwSpeed * Time.fixedDeltaTime;
+            objectRBinHand.transform.LookAt(someforce - trueScreenPoint);
+
+            objectRBinHand.AddRelativeForce(someforce, ForceMode.VelocityChange);
+            objectRBinHand.AddForceAtPosition(someforce, objectRBinHand.transform.position , ForceMode.VelocityChange);
 
             objectColinHand = null;
             objectRBinHand = null;
