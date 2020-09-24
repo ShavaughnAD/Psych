@@ -1163,7 +1163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 746f1d77d3564fb4aa0d46cd6e9ef2e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrayOfPatrolPoints: []
+  arrayOfPatrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
   patrolSpeed: 5
 --- !u!114 &6036562452661943257
 MonoBehaviour:
@@ -1339,8 +1341,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 59.40594
+  MaxDistance: 60
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1375,7 +1377,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
