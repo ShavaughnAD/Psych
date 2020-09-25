@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 50
   damage: 5
+  secondsTillBulletDeactivates: 5
 --- !u!82 &6627682010435995545
 AudioSource:
   m_ObjectHideFlags: 0
@@ -136,7 +137,8 @@ AudioSource:
   m_GameObject: {fileID: 9191110499706513320}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 7429343491735894469, guid: 46d18002c1d34554cbcbb7b150cb395c,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: d610e71a1a65869428d46a1df7816a15, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -145,7 +147,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 30
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

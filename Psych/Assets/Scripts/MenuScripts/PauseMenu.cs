@@ -49,6 +49,7 @@ public class PauseMenu : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 pauseMenuBackground.SetActive(true);
+                pauseMenu.SetActive(true);
                 playerMovement.enabled = false;
                 //CameraManager.cameraManager.cameraController.enabled = false;
                 crosshair.SetActive(false);
